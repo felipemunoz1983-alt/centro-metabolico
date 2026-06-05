@@ -2,9 +2,15 @@
 
 import { useEffect, ReactNode } from "react";
 import Lenis from "lenis";
+import { usePathname } from "next/navigation";
 
 export function SmoothScrollProvider({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
+
   useEffect(() => {
+    // Training sub-pages use Framer Motion useScroll — skip Lenis there
+    if (pathname?.match(/^\/entrenamiento\/.+/)) return;
+
     const lenis = new Lenis({
       lerp: 0.08,
       smoothWheel: true,
@@ -20,7 +26,7 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
     return () => {
       lenis.destroy();
     };
-  }, []);
+  }, [pathname]);
 
   return <>{children}</>;
 }
