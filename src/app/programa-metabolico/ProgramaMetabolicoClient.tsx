@@ -1,16 +1,18 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
-import { Navbar } from "@/components/sections/Navbar";
-import { Footer } from "@/components/sections/Footer";
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
+import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
+import { Footer } from "@/components/sections/Footer";
 
+const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const BRAND = "#00AEEF";
 const VIOLET = "#A78BFA";
 const AGENDA_URL = "/agendar";
 
+/* ── Icons ──────────────────────────────────────────────────── */
 function CheckIcon({ color }: { color: string }) {
   return (
     <svg viewBox="0 0 16 16" fill="none" className="h-3.5 w-3.5 shrink-0 mt-0.5" style={{ color }}>
@@ -21,19 +23,21 @@ function CheckIcon({ color }: { color: string }) {
 
 function ChevronIcon({ open }: { open: boolean }) {
   return (
-    <svg viewBox="0 0 16 16" fill="none" className="h-4 w-4 shrink-0 transition-transform duration-200" style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}>
+    <svg viewBox="0 0 16 16" fill="none" className="h-4 w-4 shrink-0 transition-transform duration-200"
+      style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}>
       <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
+/* ── Data ────────────────────────────────────────────────────── */
 const proFeatures = [
   {
     icon: "🧬",
     title: "Evaluación de composición corporal (InBody)",
     items: [
       "Conocerás tu porcentaje de grasa, masa muscular y estado nutricional.",
-      "Identificaremos zonas críticas como grasa visceral, que impacta en diabetes, hipertensión y síndrome metabólico.",
+      "Identificaremos zonas críticas como grasa visceral que impacta en diabetes, hipertensión y síndrome metabólico.",
     ],
   },
   {
@@ -49,7 +53,7 @@ const proFeatures = [
     title: "Calorimetría indirecta",
     items: [
       "Determinamos tu gasto energético en reposo (metabolismo basal) con precisión clínica.",
-      "Diseñamos tu plan alimentario ajustado a tus necesidades energéticas reales, no a estimaciones generales.",
+      "Diseñamos tu plan alimentario ajustado a tus necesidades energéticas reales.",
     ],
   },
   {
@@ -75,17 +79,17 @@ const dinamicsEvaluations = [
   {
     icon: "📊",
     title: "Evaluación de composición corporal",
-    desc: "Permite conocer el nivel de grasa corporal y comprender cómo se distribuye el tejido adiposo en el organismo.",
+    desc: "Conoce el nivel de grasa corporal y cómo se distribuye el tejido adiposo en tu organismo.",
   },
   {
     icon: "⚗️",
     title: "Evaluación metabólica",
-    desc: "Entrega información sobre el funcionamiento del metabolismo y permite diseñar estrategias nutricionales más precisas.",
+    desc: "Información sobre el funcionamiento de tu metabolismo para diseñar estrategias nutricionales más precisas.",
   },
   {
     icon: "💪",
     title: "Evaluación de fuerza",
-    desc: "Determina la condición física inicial del paciente y orienta la planificación del entrenamiento.",
+    desc: "Determina tu condición física inicial y orienta la planificación del entrenamiento.",
   },
 ];
 
@@ -104,13 +108,13 @@ const dinamicsBenefits = [
   "Desarrollar hábitos que puedas mantener en el tiempo",
 ];
 
+/* ── Feature accordion ──────────────────────────────────────── */
 function FeatureAccordion({ feature, color }: { feature: typeof proFeatures[0]; color: string }) {
   const [open, setOpen] = useState(false);
-
   return (
     <div
       className="rounded-2xl overflow-hidden cursor-pointer"
-      style={{ border: `1px solid ${open ? `${color}30` : "rgba(255,255,255,0.07)"}`, transition: "border-color 0.2s" }}
+      style={{ border: `1px solid ${open ? `${color}35` : "rgba(255,255,255,0.07)"}`, transition: "border-color 0.2s" }}
       onClick={() => setOpen(!open)}
     >
       <div className="flex items-center justify-between gap-3 px-5 py-4">
@@ -118,7 +122,7 @@ function FeatureAccordion({ feature, color }: { feature: typeof proFeatures[0]; 
           <span className="text-xl">{feature.icon}</span>
           <span className="text-sm font-semibold text-white">{feature.title}</span>
         </div>
-        <span style={{ color: `${color}99` }}>
+        <span style={{ color: `${color}80` }}>
           <ChevronIcon open={open} />
         </span>
       </div>
@@ -146,78 +150,209 @@ function FeatureAccordion({ feature, color }: { feature: typeof proFeatures[0]; 
   );
 }
 
+/* ── Main component ─────────────────────────────────────────── */
 export function ProgramaMetabolicoClient() {
+  const heroRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end end"],
+  });
+
+  const scale       = useTransform(scrollYProgress, [0, 1], [1.0, 1.45]);
+  const darkOverlay = useTransform(scrollYProgress, [0, 0.15, 0.55, 1], [0.50, 0.40, 0.40, 0.70]);
+  const vigOpacity  = useTransform(scrollYProgress, [0, 0.3, 0.6, 1], [0.40, 0.15, 0.25, 0.85]);
+
+  const p1Opacity = useTransform(scrollYProgress, [0, 0.25, 0.38], [1, 1, 0]);
+  const p1Y       = useTransform(scrollYProgress, [0, 0.38], [0, -60]);
+
+  const p2Opacity = useTransform(scrollYProgress, [0.38, 0.50, 0.65, 0.74], [0, 1, 1, 0]);
+  const p2Y       = useTransform(scrollYProgress, [0.38, 0.74], [60, -60]);
+
+  const p3Opacity = useTransform(scrollYProgress, [0.74, 0.85, 1, 1], [0, 1, 1, 1]);
+  const p3Y       = useTransform(scrollYProgress, [0.74, 0.85], [60, 0]);
+
+  const hintOpacity = useTransform(scrollYProgress, [0, 0.10], [0.8, 0]);
+
   return (
     <div style={{ backgroundColor: "var(--bg)", color: "white", minHeight: "100vh" }}>
-      <Navbar />
 
-      {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="px-6 pt-36 pb-24 text-center md:px-8"
-        style={{ background: "radial-gradient(ellipse 90% 55% at 50% 0%, rgba(0,174,239,0.07) 0%, transparent 70%)" }}>
-        <AnimatedSection>
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full px-4 py-1.5"
-            style={{ border: "1px solid rgba(0,174,239,0.3)", backgroundColor: "rgba(0,174,239,0.06)" }}>
-            <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: BRAND }} />
-            <span className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: BRAND }}>
+      {/* ── Fixed mini header ────────────────────────────────── */}
+      <header
+        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 md:px-10"
+        style={{ backgroundColor: "rgba(3,8,15,0.55)", backdropFilter: "blur(18px)" }}
+      >
+        <Link href="/" className="flex items-center gap-2 text-white/70 hover:text-white transition-colors text-sm">
+          ← Inicio
+        </Link>
+        <div className="flex items-center gap-2">
+          <span className="text-base font-bold" style={{ color: BRAND, fontFamily: "var(--font-display)" }}>C</span>
+          <div className="h-4 w-px" style={{ backgroundColor: BRAND, opacity: 0.4 }} />
+          <span className="text-base font-bold" style={{ color: BRAND, fontFamily: "var(--font-display)" }}>M</span>
+        </div>
+        <a
+          href={AGENDA_URL}
+          className="rounded-xl px-4 py-2 text-xs font-bold text-white"
+          style={{ backgroundColor: BRAND }}
+        >
+          Agendar →
+        </a>
+      </header>
+
+      {/* ── Scroll hero ─────────────────────────────────────── */}
+      <section ref={heroRef} style={{ height: "320vh" }} className="relative">
+        <div className="sticky top-0 h-screen overflow-hidden bg-[#03080F]">
+
+          {/* Background image */}
+          <motion.div
+            className="absolute inset-0"
+            style={{ scale, transformOrigin: "50% 40%", willChange: "transform" }}
+          >
+            <Image
+              src={`${BP}/pm1.webp`}
+              alt="Programa Metabólico — Centro Metabólico"
+              fill
+              priority
+              className="object-cover"
+              sizes="100vw"
+            />
+          </motion.div>
+
+          {/* Dark overlay */}
+          <motion.div className="absolute inset-0 pointer-events-none bg-black" style={{ opacity: darkOverlay }} />
+
+          {/* Vignette */}
+          <motion.div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              opacity: vigOpacity,
+              background: "radial-gradient(ellipse 70% 70% at 50% 50%, transparent 0%, rgba(0,0,0,0.95) 100%)",
+            }}
+          />
+
+          {/* Edge fades */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{ background: "linear-gradient(to bottom, rgba(3,8,15,0.7) 0%, transparent 18%, transparent 82%, rgba(3,8,15,0.8) 100%)" }}
+          />
+
+          {/* ── Phase 1 ─────────────────────────────── */}
+          <motion.div
+            className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none"
+            style={{ opacity: p1Opacity, y: p1Y }}
+          >
+            <span className="mb-5 rounded-full px-5 py-2 text-xs font-bold tracking-widest uppercase"
+              style={{ backgroundColor: "rgba(0,174,239,0.18)", color: BRAND, border: "1px solid rgba(0,174,239,0.35)" }}>
               Programa Metabólico
             </span>
-          </div>
+            <h2 className="text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl"
+              style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
+              Transforma tu cuerpo<br />
+              <span style={{ color: BRAND }}>con ciencia real.</span>
+            </h2>
+            <p className="mt-6 max-w-[46ch] text-base leading-relaxed md:text-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
+              Evaluamos tu metabolismo, composición corporal y capacidad física.<br />
+              Luego actuamos con precisión.
+            </p>
+          </motion.div>
 
-          <h1 className="mb-5 text-5xl font-semibold leading-[1.05] tracking-tighter text-sky-50 md:text-7xl">
-            Ciencia real para<br />
-            <span className="gradient-text-animated">transformar tu metabolismo.</span>
-          </h1>
+          {/* ── Phase 2 ─────────────────────────────── */}
+          <motion.div
+            className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none"
+            style={{ opacity: p2Opacity, y: p2Y }}
+          >
+            <span className="mb-5 rounded-full px-5 py-2 text-xs font-bold tracking-widest uppercase"
+              style={{ backgroundColor: "rgba(167,139,250,0.18)", color: VIOLET, border: "1px solid rgba(167,139,250,0.35)" }}>
+              El enfoque
+            </span>
+            <h2 className="text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl"
+              style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
+              Primero evaluar.<br />
+              <span style={{ color: VIOLET }}>Luego transformar.</span>
+            </h2>
+            <p className="mt-6 max-w-[46ch] text-base leading-relaxed md:text-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
+              InBody · VO₂máx · Calorimetría indirecta · Evaluación de fuerza.<br />
+              Datos reales para decisiones reales.
+            </p>
+          </motion.div>
 
-          <p className="mb-10 mx-auto max-w-[52ch] text-lg leading-relaxed text-sky-100/45">
-            Dos programas diseñados desde la evidencia clínica. Primero evaluamos tu organismo — luego actuamos con precisión.
-          </p>
-
-          <div className="flex flex-col gap-3 items-center sm:flex-row sm:justify-center">
+          {/* ── Phase 3 CTA ─────────────────────────── */}
+          <motion.div
+            className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center"
+            style={{ opacity: p3Opacity, y: p3Y }}
+          >
+            <div className="flex flex-col items-center gap-4 mb-8">
+              <span className="rounded-full px-5 py-2 text-xs font-bold tracking-widest uppercase"
+                style={{ backgroundColor: "rgba(0,174,239,0.18)", color: BRAND, border: "1px solid rgba(0,174,239,0.35)" }}>
+                Dos programas · Un objetivo
+              </span>
+              <h2 className="text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl"
+                style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
+                Elige tu camino<br />
+                <span style={{ color: BRAND }}>hacia el cambio.</span>
+              </h2>
+            </div>
+            <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+              <div className="rounded-2xl px-6 py-3 text-center"
+                style={{ backgroundColor: "rgba(0,174,239,0.12)", border: "1px solid rgba(0,174,239,0.3)" }}>
+                <div className="text-xs font-bold tracking-widest uppercase" style={{ color: BRAND }}>Plan Metabólico Pro</div>
+                <div className="text-2xl font-bold text-white mt-1">$330.000</div>
+                <div className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>6 sesiones</div>
+              </div>
+              <div className="rounded-2xl px-6 py-3 text-center"
+                style={{ backgroundColor: "rgba(167,139,250,0.12)", border: "1px solid rgba(167,139,250,0.3)" }}>
+                <div className="text-xs font-bold tracking-widest uppercase" style={{ color: VIOLET }}>Metabólico Dinámics</div>
+                <div className="text-2xl font-bold text-white mt-1">$380.000</div>
+                <div className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>40 sesiones</div>
+              </div>
+            </div>
             <motion.a
               href={AGENDA_URL}
-              className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-sm font-semibold text-white"
+              className="mt-8 inline-flex items-center gap-2 rounded-2xl px-10 py-4 text-base font-bold text-white"
               style={{ backgroundColor: BRAND }}
-              whileHover={{ scale: 1.02, boxShadow: "0 0 32px rgba(0,174,239,0.45)" }}
+              whileHover={{ scale: 1.05, boxShadow: "0 0 48px rgba(0,174,239,0.6)" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               Agendar evaluación →
             </motion.a>
-            <motion.a
-              href="https://wa.me/56991377915"
-              target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-sm font-semibold text-white"
-              style={{ backgroundColor: "#25D366" }}
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-              </svg>
-              Consultar por WhatsApp
-            </motion.a>
-          </div>
-        </AnimatedSection>
+          </motion.div>
+
+          {/* Scroll hint */}
+          <motion.div
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
+            style={{ opacity: hintOpacity }}
+          >
+            <span className="text-[9px] tracking-[0.25em] uppercase text-white/50">Scroll</span>
+            <div className="h-7 w-px" style={{ background: `linear-gradient(to bottom, ${BRAND}99, transparent)` }} />
+          </motion.div>
+        </div>
       </section>
 
       {/* ── Plans ────────────────────────────────────────────── */}
-      <section id="programas" className="px-4 pb-28 md:px-6">
+      <section id="programas" className="px-4 py-24 md:px-6" style={{ backgroundColor: "var(--bg)" }}>
         <div className="mx-auto max-w-[1260px]">
+
+          <AnimatedSection className="text-center mb-14">
+            <p className="mb-3 text-[11px] font-bold uppercase tracking-widest" style={{ color: BRAND }}>
+              Los programas
+            </p>
+            <h2 className="text-3xl font-semibold tracking-tight text-sky-50 md:text-4xl">
+              Elige el que se adapta a tus objetivos.
+            </h2>
+          </AnimatedSection>
+
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-start">
 
-            {/* ── PLAN METABÓLICO PRO ──────────────────────── */}
+            {/* ── PLAN METABÓLICO PRO ──────────────────── */}
             <AnimatedSection>
-              <div
-                className="rounded-3xl overflow-hidden flex flex-col"
+              <div className="rounded-3xl overflow-hidden flex flex-col"
                 style={{
                   border: "1px solid rgba(0,174,239,0.22)",
                   backgroundColor: "rgba(0,174,239,0.03)",
                   boxShadow: "0 0 60px rgba(0,174,239,0.06)",
-                }}
-              >
-                {/* Top accent bar */}
+                }}>
                 <div className="h-1 w-full" style={{ background: `linear-gradient(to right, transparent, ${BRAND}, transparent)` }} />
 
-                {/* Header */}
                 <div className="p-8 pb-7" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
                   <div className="mb-1 flex items-center gap-2">
                     <span className="rounded-full px-3 py-0.5 text-[10px] font-bold tracking-widest uppercase"
@@ -225,21 +360,18 @@ export function ProgramaMetabolicoClient() {
                       6 Sesiones
                     </span>
                     <span className="rounded-full px-3 py-0.5 text-[10px] font-bold tracking-widest uppercase"
-                      style={{ backgroundColor: "rgba(0,174,239,0.08)", color: "rgba(0,174,239,0.7)" }}>
+                      style={{ backgroundColor: "rgba(0,174,239,0.06)", color: "rgba(0,174,239,0.6)" }}>
                       1 hr c/u
                     </span>
                   </div>
-
                   <h2 className="mt-3 text-2xl font-bold text-white md:text-3xl">Plan Metabólico Pro</h2>
                   <p className="mt-1.5 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
                     2 Consultas médicas · 4 Consultas Nutricionales
                   </p>
-
                   <div className="mt-5 flex items-end gap-2">
                     <span className="text-4xl font-bold text-white">$330.000</span>
                     <span className="mb-1 text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>CLP</span>
                   </div>
-
                   <motion.a
                     href={AGENDA_URL}
                     className="mt-5 block w-full rounded-2xl py-3.5 text-center text-sm font-semibold text-white"
@@ -251,14 +383,11 @@ export function ProgramaMetabolicoClient() {
                   </motion.a>
                 </div>
 
-                {/* Includes label */}
                 <div className="px-8 pt-7 pb-3">
-                  <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: "rgba(0,174,239,0.6)" }}>
+                  <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: "rgba(0,174,239,0.55)" }}>
                     ¿Qué incluye?
                   </p>
                 </div>
-
-                {/* Features — accordion */}
                 <div className="px-8 pb-8 flex flex-col gap-2">
                   {proFeatures.map((feature) => (
                     <FeatureAccordion key={feature.title} feature={feature} color={BRAND} />
@@ -267,20 +396,16 @@ export function ProgramaMetabolicoClient() {
               </div>
             </AnimatedSection>
 
-            {/* ── PROGRAMA METABÓLICO DINÁMICS ─────────────── */}
+            {/* ── PROGRAMA METABÓLICO DINÁMICS ─────────── */}
             <AnimatedSection delay={0.12}>
-              <div
-                className="rounded-3xl overflow-hidden flex flex-col"
+              <div className="rounded-3xl overflow-hidden flex flex-col"
                 style={{
                   border: "1px solid rgba(167,139,250,0.22)",
                   backgroundColor: "rgba(167,139,250,0.02)",
                   boxShadow: "0 0 60px rgba(167,139,250,0.05)",
-                }}
-              >
-                {/* Top accent bar */}
+                }}>
                 <div className="h-1 w-full" style={{ background: `linear-gradient(to right, transparent, ${VIOLET}, transparent)` }} />
 
-                {/* Header */}
                 <div className="p-8 pb-7" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
                   <div className="mb-1 flex items-center gap-2">
                     <span className="rounded-full px-3 py-0.5 text-[10px] font-bold tracking-widest uppercase"
@@ -288,21 +413,18 @@ export function ProgramaMetabolicoClient() {
                       40 Sesiones
                     </span>
                     <span className="rounded-full px-3 py-0.5 text-[10px] font-bold tracking-widest uppercase"
-                      style={{ backgroundColor: "rgba(167,139,250,0.08)", color: "rgba(167,139,250,0.7)" }}>
+                      style={{ backgroundColor: "rgba(167,139,250,0.06)", color: "rgba(167,139,250,0.6)" }}>
                       1 hr c/u
                     </span>
                   </div>
-
                   <h2 className="mt-3 text-2xl font-bold text-white md:text-3xl">Programa Metabólico Dinámics</h2>
                   <p className="mt-1.5 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
                     Programa Metabólico Integral
                   </p>
-
                   <div className="mt-5 flex items-end gap-2">
                     <span className="text-4xl font-bold text-white">$380.000</span>
                     <span className="mb-1 text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>CLP</span>
                   </div>
-
                   <motion.a
                     href={AGENDA_URL}
                     className="mt-5 block w-full rounded-2xl py-3.5 text-center text-sm font-semibold text-white"
@@ -314,25 +436,22 @@ export function ProgramaMetabolicoClient() {
                   </motion.a>
                 </div>
 
-                {/* Content */}
                 <div className="p-8 flex flex-col gap-8">
-
-                  {/* Description */}
                   <AnimatedItem index={0}>
-                    <div className="rounded-2xl p-5" style={{ backgroundColor: "rgba(167,139,250,0.07)", border: "1px solid rgba(167,139,250,0.15)" }}>
+                    <div className="rounded-2xl p-5"
+                      style={{ backgroundColor: "rgba(167,139,250,0.07)", border: "1px solid rgba(167,139,250,0.15)" }}>
                       <p className="text-sm font-semibold text-white mb-2">
                         Un enfoque científico para reducir grasa corporal y transformar tu metabolismo.
                       </p>
                       <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
-                        Bajar de peso no debería depender de dietas restrictivas o métodos que no consideran cómo funciona realmente tu organismo. Cada persona tiene un metabolismo distinto, una composición corporal diferente y necesidades específicas.
+                        Bajar de peso no debería depender de dietas restrictivas o métodos que no consideran cómo funciona realmente tu organismo. Cada persona tiene un metabolismo distinto y necesidades específicas.
                       </p>
                     </div>
                   </AnimatedItem>
 
-                  {/* The Approach */}
                   <AnimatedItem index={1}>
                     <div>
-                      <p className="mb-4 text-[11px] font-bold uppercase tracking-widest" style={{ color: "rgba(167,139,250,0.7)" }}>
+                      <p className="mb-4 text-[11px] font-bold uppercase tracking-widest" style={{ color: "rgba(167,139,250,0.65)" }}>
                         El enfoque — primero evaluar, luego intervenir
                       </p>
                       <div className="flex flex-col gap-2">
@@ -350,10 +469,9 @@ export function ProgramaMetabolicoClient() {
                     </div>
                   </AnimatedItem>
 
-                  {/* Evaluations */}
                   <AnimatedItem index={2}>
                     <div>
-                      <p className="mb-4 text-[11px] font-bold uppercase tracking-widest" style={{ color: "rgba(167,139,250,0.7)" }}>
+                      <p className="mb-4 text-[11px] font-bold uppercase tracking-widest" style={{ color: "rgba(167,139,250,0.65)" }}>
                         Evaluaciones incluidas
                       </p>
                       <div className="flex flex-col gap-3">
@@ -370,10 +488,9 @@ export function ProgramaMetabolicoClient() {
                     </div>
                   </AnimatedItem>
 
-                  {/* Benefits */}
                   <AnimatedItem index={3}>
                     <div>
-                      <p className="mb-4 text-[11px] font-bold uppercase tracking-widest" style={{ color: "rgba(167,139,250,0.7)" }}>
+                      <p className="mb-4 text-[11px] font-bold uppercase tracking-widest" style={{ color: "rgba(167,139,250,0.65)" }}>
                         Los pacientes buscan
                       </p>
                       <ul className="flex flex-col gap-2.5">
@@ -386,7 +503,6 @@ export function ProgramaMetabolicoClient() {
                       </ul>
                     </div>
                   </AnimatedItem>
-
                 </div>
               </div>
             </AnimatedSection>
@@ -404,26 +520,25 @@ export function ProgramaMetabolicoClient() {
               ¿Por qué funciona este enfoque?
             </p>
             <h2 className="text-3xl font-semibold tracking-tight text-sky-50 md:text-4xl">
-              Intentar cambiar el cuerpo sin evaluarlo<br className="hidden md:block" /> suele llevar a resultados temporales.
+              Sin datos reales, cualquier plan es una suposición.
             </h2>
           </AnimatedSection>
-
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {[
               {
                 icon: "🔬",
                 title: "Datos reales",
-                desc: "Sin evaluaciones adecuadas, es imposible saber cuánto tejido adiposo necesitas reducir, cómo responde tu metabolismo o qué entrenamiento es más efectivo para ti.",
+                desc: "Sin evaluaciones adecuadas es imposible saber cuánto tejido adiposo necesitas reducir, cómo responde tu metabolismo o qué entrenamiento es más efectivo para ti.",
               },
               {
                 icon: "🎯",
                 title: "Plan personalizado",
-                desc: "Con los datos de tu evaluación, diseñamos una estrategia específica que genera cambios reales en tu composición corporal — no una dieta genérica.",
+                desc: "Con los datos de tu evaluación diseñamos una estrategia específica que genera cambios reales en tu composición corporal — no una dieta genérica.",
               },
               {
                 icon: "📈",
                 title: "Resultados sostenibles",
-                desc: "El seguimiento profesional continuo permite ajustar las estrategias cuando es necesario, garantizando que el proceso genere una transformación duradera.",
+                desc: "El seguimiento profesional continuo permite ajustar las estrategias cuando es necesario, garantizando una transformación duradera.",
               },
             ].map((item, i) => (
               <AnimatedItem key={item.title} index={i}>
@@ -473,8 +588,6 @@ export function ProgramaMetabolicoClient() {
               Consultar por WhatsApp
             </motion.a>
           </div>
-
-          {/* Trust signals */}
           <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-xs text-sky-200/28">
             {["Sin compromiso de permanencia", "Atención personalizada", "Equipo certificado"].map((item) => (
               <div key={item} className="flex items-center gap-2">
