@@ -6,7 +6,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const AGENDA_URL = "https://centrometabolico.site.agendapro.com/cl";
+const AGENDA_URL = "/agendar";
 const BRAND = "#00AEEF";
 
 const t = {
@@ -189,8 +189,6 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
               </ul>
               <a
                 href={AGENDA_URL}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="mt-5 inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold text-white"
                 style={{ backgroundColor: card.color }}
               >
@@ -225,8 +223,6 @@ export function EntrenamientoClient() {
         </Link>
         <a
           href={AGENDA_URL}
-          target="_blank"
-          rel="noopener noreferrer"
           className="rounded-xl px-5 py-2 text-sm font-semibold text-white"
           style={{ backgroundColor: BRAND }}
         >

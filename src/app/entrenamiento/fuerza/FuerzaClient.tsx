@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform, useMotionTemplate } from "framer-motio
 import Image from "next/image";
 import Link from "next/link";
 
-const AGENDA_URL = "https://centrometabolico.site.agendapro.com/cl";
+const AGENDA_URL = "/agendar";
 const BRAND = "#00AEEF";
 const ORANGE = "#F97316";
 
@@ -50,8 +50,6 @@ export function FuerzaClient() {
         </div>
         <a
           href={AGENDA_URL}
-          target="_blank"
-          rel="noopener noreferrer"
           className="rounded-xl px-4 py-2 text-xs font-bold text-white"
           style={{ backgroundColor: ORANGE }}
         >
@@ -145,8 +143,6 @@ export function FuerzaClient() {
             </p>
             <motion.a
               href={AGENDA_URL}
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-2xl px-10 py-4 text-base font-bold text-white"
               style={{ backgroundColor: ORANGE }}
               whileHover={{ scale: 1.05, boxShadow: "0 0 48px rgba(249,115,22,0.6)" }}
@@ -210,8 +206,6 @@ export function FuerzaClient() {
           </div>
           <a
             href={AGENDA_URL}
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-2xl px-10 py-4 text-base font-bold text-white"
             style={{ backgroundColor: ORANGE }}
           >

@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
-const AGENDA_URL = "https://centrometabolico.site.agendapro.com/cl";
+const AGENDA_URL = "/agendar";
 const BRAND = "#00AEEF";
 const BRAND_DARK = "#0090C5";
 
@@ -91,8 +91,6 @@ export function AsesoriaClient() {
 
           <a
             href={AGENDA_URL}
-            target="_blank"
-            rel="noopener noreferrer"
             className="hidden rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-all cursor-pointer md:block"
             style={{ backgroundColor: t.brand }}
             onMouseEnter={e => (e.currentTarget.style.backgroundColor = t.brandDark)}
@@ -267,8 +265,6 @@ export function AsesoriaClient() {
 
                 <motion.a
                   href={AGENDA_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-2xl px-7 py-3.5 text-sm font-semibold text-white cursor-pointer"
                   style={{ backgroundColor: t.brand }}
                   whileHover={{ scale: 1.02, backgroundColor: t.brandDark }}
@@ -412,8 +408,6 @@ export function AsesoriaClient() {
 
                 <motion.a
                   href={AGENDA_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-2xl px-7 py-3.5 text-sm font-semibold text-white cursor-pointer"
                   style={{ backgroundColor: t.teal }}
                   whileHover={{ scale: 1.02, backgroundColor: "#0F766E" }}
@@ -434,8 +428,6 @@ export function AsesoriaClient() {
         <div className="flex flex-wrap justify-center gap-4">
           <a
             href={AGENDA_URL}
-            target="_blank"
-            rel="noopener noreferrer"
             className="rounded-2xl px-6 py-3 text-sm font-semibold text-white transition-all cursor-pointer"
             style={{ backgroundColor: t.brand }}
             onMouseEnter={e => (e.currentTarget.style.backgroundColor = t.brandDark)}

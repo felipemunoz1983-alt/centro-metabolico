@@ -62,7 +62,7 @@ export function Navbar() {
           {/* CTA */}
           <div className="hidden md:flex items-center gap-3">
             <a
-              href="#contacto"
+              href="/agendar"
               className="rounded-xl px-5 py-2 text-sm font-semibold text-white transition-all"
               style={{ backgroundColor: "var(--brand)" }}
               onMouseEnter={(e) => {
@@ -124,7 +124,7 @@ export function Navbar() {
               </motion.a>
             ))}
             <motion.a
-              href="#contacto"
+              href="/agendar"
               className="mt-4 rounded-2xl px-8 py-3.5 font-semibold text-white"
               style={{ backgroundColor: "var(--brand)" }}
               onClick={() => setMenuOpen(false)}
