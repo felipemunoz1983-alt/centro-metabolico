@@ -5,10 +5,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 
 const navLinks = [
-  { label: "Asesoría", href: "#servicios" },
+  { label: "Consulta Médica y Nutricional", href: "/asesoria" },
   { label: "Reto 21 días", href: "#metodologia" },
-  { label: "Entrenamiento", href: "#equipo" },
-  { label: "Planes Metabólicos", href: "#testimonios" },
+  { label: "Entrenamiento", href: "/entrenamiento" },
+  { label: "Taller Nutricional", href: "https://felipemunoz1983-alt.github.io/tallernutricional/", external: true },
+  { label: "Programa Metabólico", href: "#testimonios" },
 ];
 
 export function Navbar() {
@@ -46,6 +47,7 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
+                {...("external" in link && link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="rounded-xl px-4 py-2 text-sm text-sky-100/50 hover:text-sky-100 transition-all"
                 style={{
                   ["--hover-bg" as string]: "rgba(0,174,239,0.08)",
@@ -111,6 +113,7 @@ export function Navbar() {
               <motion.a
                 key={link.href}
                 href={link.href}
+                {...("external" in link && link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="text-2xl font-semibold text-sky-50 transition-colors"
                 style={{ ["--hover" as string]: "var(--brand)" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "var(--brand)")}

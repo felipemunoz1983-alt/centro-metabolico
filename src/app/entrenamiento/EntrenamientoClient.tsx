@@ -25,11 +25,12 @@ const cards = [
     badge: "FUNCIONAL DINAFIT",
     name: "Entrenamiento\nFuncional",
     tagline: "Velocidad · Coordinación · Agilidad",
-    image: "/funcional.jpg",
+    image: "/funcional.webp",
+    href: "/entrenamiento/funcional",
     gradient: "linear-gradient(135deg, #0369A1 0%, #0EA5E9 100%)",
     color: BRAND,
-    sessions: "12 clases / mes",
-    price: "$80.000",
+    sessions: "4 clases / mes",
+    price: "$50.000",
     bullets: [
       "Luces de acción y reacción para mejorar tu respuesta neuromuscular",
       "Encoder deportivo para medir tu fuerza en tiempo real (1RM)",
@@ -42,8 +43,8 @@ const cards = [
     badge: "FUERZA IRONFIT",
     name: "Entrenamiento\nde Fuerza",
     tagline: "Potencia · Músculo · Rendimiento",
-    image: "/fuerza.webp",
-    focusPoint: "60% 62%",
+    image: "/fuerza3.webp",
+    focusPoint: "50% 30%",
     href: "/entrenamiento/fuerza",
     gradient: "linear-gradient(135deg, #1C1917 0%, #44403C 100%)",
     color: "#F97316",
@@ -58,10 +59,11 @@ const cards = [
   },
   {
     id: "movilidad",
-    badge: "MOVILIDAD & STRETCHING",
-    name: "Movilidad y\nStretching",
-    tagline: "Flexibilidad · Control · Bienestar",
-    image: "/movilidad.jpg",
+    badge: "MOVILIDAD",
+    name: "Movilidad\nArticular",
+    tagline: "Control · Estabilidad · Movimiento",
+    image: "/movilidad1.webp",
+    href: "/entrenamiento/movilidad",
     gradient: "linear-gradient(135deg, #064E3B 0%, #10B981 100%)",
     color: "#10B981",
     sessions: "4 sesiones / mes",
@@ -69,8 +71,26 @@ const cards = [
     bullets: [
       "Diseñado para personas +35 que quieren moverse sin dolor",
       "Movilidad articular, control motor y estabilidad funcional",
-      "Técnicas FNP para flexibilidad real y duradera",
       "Recuperación activa que potencia todos tus demás entrenamientos",
+      "Grupos reducidos con guía profesional en cada sesión",
+    ],
+  },
+  {
+    id: "stretching",
+    badge: "STRETCHING",
+    name: "Stretching\nFNP",
+    tagline: "Flexibilidad · Relajación · Bienestar",
+    image: "/movilidad1.webp",
+    href: "/entrenamiento/stretching",
+    gradient: "linear-gradient(135deg, #1E3A5F 0%, #6366F1 100%)",
+    color: "#6366F1",
+    sessions: "4 sesiones / mes",
+    price: "$50.000",
+    bullets: [
+      "Técnicas FNP para flexibilidad real y duradera",
+      "Reduce tensión muscular y mejora el rango de movimiento",
+      "Ideal para complementar cualquier programa de entrenamiento",
+      "Sesiones enfocadas en recuperación y bienestar corporal",
     ],
   },
 ];
@@ -106,7 +126,7 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
           fill
           className="object-cover"
           style={{ objectPosition: card.focusPoint ?? "center center" }}
-          sizes="(max-width: 768px) 100vw, 33vw"
+          sizes="(max-width: 768px) 50vw, 25vw"
           onError={() => {}}
         />
         {/* Gradient fallback always under the image */}
@@ -126,15 +146,19 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
         {/* Badge */}
         <span
           className="mb-4 rounded-full px-3 py-1 text-[10px] font-bold tracking-widest uppercase"
-          style={{ backgroundColor: "rgba(255,255,255,0.15)", color: "#ffffff", border: "1px solid rgba(255,255,255,0.3)" }}
+          style={{
+            backgroundColor: `${card.color}22`,
+            color: card.color,
+            border: `1px solid ${card.color}55`,
+          }}
         >
           {card.badge}
         </span>
 
         {/* Name */}
         <h2
-          className="mb-1 text-4xl leading-[1.05] text-white md:text-5xl"
-          style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", whiteSpace: "pre-line" }}
+          className="mb-1 text-2xl leading-[1.1] md:text-3xl"
+          style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", whiteSpace: "pre-line", color: card.color }}
         >
           {card.name}
         </h2>
@@ -154,7 +178,7 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
               className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-white transition-all"
               style={{ backgroundColor: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)" }}
             >
-              Ver más <span>→</span>
+              Ver más <span>+</span>
             </Link>
           ) : (
             <button
@@ -248,8 +272,8 @@ export function EntrenamientoClient() {
       </section>
 
       {/* ── Grid de tarjetas ────────────────────────────────────────── */}
-      <section className="px-6 py-16 md:px-10">
-        <div className="mx-auto max-w-[1200px] grid grid-cols-1 gap-5 md:grid-cols-3">
+      <section className="px-4 py-16 md:px-6">
+        <div className="mx-auto max-w-[1600px] grid grid-cols-2 gap-4 lg:grid-cols-4">
           {cards.map((card, i) => (
             <TrainingCard key={card.id} card={card} index={i} />
           ))}

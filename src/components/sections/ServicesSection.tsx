@@ -40,7 +40,7 @@ const services = [
       </svg>
     ),
     number: "03",
-    title: "Planes Metabólicos",
+    title: "Programa Metabólico",
     description:
       "VO₂ max, metabolismo basal, umbral anaeróbico y composición corporal (DEXA e impedanciometría). Datos precisos que son el punto de partida de toda transformación.",
     tags: ["VO₂ max", "Composición corporal", "DEXA"],

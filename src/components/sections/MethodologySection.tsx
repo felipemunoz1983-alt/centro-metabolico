@@ -11,7 +11,7 @@ const steps = [
     title: "Mide",
     subtitle: "Diagnóstico completo",
     description:
-      "Evaluación metabólica exhaustiva: VO₂ max, metabolismo basal en reposo, umbral anaeróbico y composición corporal. Datos, no suposiciones.",
+      "Descubrimos cómo funciona tu metabolismo: cuántas calorías quemas en reposo, cómo usa tu cuerpo la grasa como energía y cuál es tu composición corporal real. Con esos datos, sabemos exactamente qué ajustar para acelerar la pérdida de grasa y peso.",
     alpha: 1,
   },
   {
@@ -27,15 +27,15 @@ const steps = [
     title: "Planifica",
     subtitle: "Estrategia a medida",
     description:
-      "Diseñamos un plan integrado de nutrición y entrenamiento construido sobre tu biología real, con objetivos claros y medibles.",
+      "Diseñamos un plan integrado de nutrición y entrenamiento construido sobre tu biología real, con objetivos claros y medibles. Incluye acceso a nuestra aplicación nutricional para registrar y controlar cada comida, asegurando un seguimiento exacto de tu proceso.",
     alpha: 0.7,
   },
   {
     number: "04",
-    title: "Optimiza",
-    subtitle: "Mejora continua",
+    title: "Controles",
+    subtitle: "Seguimiento periódico",
     description:
-      "Monitoreo periódico, ajustes basados en datos y seguimiento cercano. Tu plan evoluciona con tu progreso.",
+      "Realizamos controles periódicos para verificar que estás perdiendo grasa y bajando de peso de forma sostenida. Comparamos tus mediciones, ajustamos el plan según los resultados y nos aseguramos de que cada etapa avance en la dirección correcta.",
     alpha: 0.55,
   },
 ];
@@ -62,7 +62,7 @@ export function MethodologySection() {
           <div>
             <EyebrowBadge>El método CM</EyebrowBadge>
             <h2 className="mt-5 text-4xl font-semibold tracking-tighter text-sky-50 md:text-5xl">
-              Ciencia aplicada en{" "}
+              Programa metabólico aplicado en{" "}
               <span className="gradient-text">4 pasos.</span>
             </h2>
           </div>
@@ -121,7 +121,7 @@ export function MethodologySection() {
                       </h3>
                       <span className="text-sm text-sky-200/35">{step.subtitle}</span>
                     </div>
-                    <p className="text-sm leading-relaxed text-sky-100/45 max-w-[60ch]">
+                    <p className="text-sm leading-relaxed text-white/80 max-w-[60ch]">
                       {step.description}
                     </p>
                   </div>

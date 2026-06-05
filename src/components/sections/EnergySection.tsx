@@ -1,12 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useMotionTemplate,
-} from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 
 export function EnergySection() {
@@ -17,50 +12,32 @@ export function EnergySection() {
     offset: ["start start", "end end"],
   });
 
-  // Image zoom toward the bright center
-  const scale = useTransform(scrollYProgress, [0, 1], [1.0, 1.65]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1.0, 1.55]);
 
-  // Brightness: dim → bright at center → dim again
-  const brightness = useTransform(
+  // Overlay oscuro en lugar de filter: brightness (GPU-composited)
+  const darkOverlay = useTransform(
     scrollYProgress,
     [0, 0.45, 0.55, 1],
-    [0.7, 1.4, 1.4, 0.85]
+    [0.35, 0.05, 0.05, 0.45]
   );
-  const filterValue = useMotionTemplate`brightness(${brightness})`;
 
-  // Vignette that opens up at the middle and closes again
   const vigOpacity = useTransform(
     scrollYProgress,
     [0, 0.3, 0.5, 0.7, 1],
-    [0.75, 0.25, 0.0, 0.25, 0.85]
+    [0.65, 0.2, 0.0, 0.2, 0.8]
   );
 
-  // ── Phase 1 ──────────────────────────────────────────────────────
-  const p1Opacity = useTransform(
-    scrollYProgress,
-    [0.04, 0.18, 0.34, 0.46],
-    [0, 1, 1, 0]
-  );
-  const p1Y = useTransform(scrollYProgress, [0.04, 0.46], [40, -40]);
+  // Fase 1 visible desde el inicio
+  const p1Opacity = useTransform(scrollYProgress, [0, 0.28, 0.40], [1, 1, 0]);
+  const p1Y = useTransform(scrollYProgress, [0, 0.40], [0, -50]);
 
-  // ── Phase 2 ──────────────────────────────────────────────────────
-  const p2Opacity = useTransform(
-    scrollYProgress,
-    [0.50, 0.62, 0.73, 0.83],
-    [0, 1, 1, 0]
-  );
-  const p2Y = useTransform(scrollYProgress, [0.50, 0.83], [40, -40]);
+  const p2Opacity = useTransform(scrollYProgress, [0.40, 0.52, 0.68, 0.78], [0, 1, 1, 0]);
+  const p2Y = useTransform(scrollYProgress, [0.40, 0.78], [50, -50]);
 
-  // ── Phase 3 ──────────────────────────────────────────────────────
-  const p3Opacity = useTransform(
-    scrollYProgress,
-    [0.86, 0.93, 1, 1],
-    [0, 1, 1, 1]
-  );
-  const p3Y = useTransform(scrollYProgress, [0.86, 1], [30, 0]);
+  const p3Opacity = useTransform(scrollYProgress, [0.78, 0.88, 1, 1], [0, 1, 1, 1]);
+  const p3Y = useTransform(scrollYProgress, [0.78, 0.88], [50, 0]);
 
-  // Scroll hint
-  const hintOpacity = useTransform(scrollYProgress, [0, 0.1], [0.5, 0]);
+  const hintOpacity = useTransform(scrollYProgress, [0, 0.10], [0.6, 0]);
 
   return (
     <section ref={sectionRef} style={{ height: "300vh" }} className="relative">
@@ -80,22 +57,25 @@ export function EnergySection() {
           }}
         />
 
-        {/* Real image on top — when energy.jpg is placed in /public */}
         <motion.div
           className="absolute inset-0"
-          style={{ scale, transformOrigin: "center center" }}
+          style={{ scale, transformOrigin: "center center", willChange: "transform" }}
         >
-          <motion.div className="absolute inset-0" style={{ filter: filterValue }}>
-            <Image
-              src="/energy.png"
-              alt="Ondas de energía metabólica"
-              fill
-              priority
-              className="object-cover object-center"
-              sizes="100vw"
-            />
-          </motion.div>
+          <Image
+            src="/energy.png"
+            alt="Ondas de energía metabólica"
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+          />
         </motion.div>
+
+        {/* Overlay de brillo (opacity en GPU, no filter) */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none bg-black"
+          style={{ opacity: darkOverlay }}
+        />
 
         {/* Vignette */}
         <motion.div
@@ -183,8 +163,8 @@ export function EnergySection() {
               className="mb-5 text-4xl leading-[1.05] text-white md:text-6xl lg:text-7xl"
               style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 8px rgba(0,0,0,0.9)" }}
             >
-              Agenda tu<br />
-              EVALUACIÓN HOY.
+              SALUD, ENTRENAMIENTO,<br />
+              NUTRICIÓN Y MEDICINA.
             </h2>
 
           </div>
