@@ -2,14 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 
 const navLinks = [
   { label: "Consulta Médica y Nutricional", href: "/asesoria" },
-  { label: "Reto 21 días", href: "#metodologia" },
+  { label: "Reto 21 días", href: "/#metodologia" },
   { label: "Entrenamiento", href: "/entrenamiento" },
   { label: "Taller Nutricional", href: "https://felipemunoz1983-alt.github.io/tallernutricional/", external: true },
-  { label: "Programa Metabólico", href: "#testimonios" },
+  { label: "Programa Metabólico", href: "/#testimonios" },
 ];
 
 export function Navbar() {
@@ -22,13 +23,16 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const linkClass = "rounded-xl px-4 py-2 text-sm text-sky-100/50 hover:text-sky-100 transition-all";
+  const linkStyle = (label: string) => ({
+    ...(label === "Reto 21 días" ? { fontFamily: "var(--font-reto)", fontSize: "1.05rem", letterSpacing: "0.06em" } : {}),
+  });
+
   return (
     <>
       <motion.header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "border-b"
-            : "bg-transparent"
+          scrolled ? "border-b" : "bg-transparent"
         }`}
         style={scrolled ? { backgroundColor: "rgba(3,8,15,0.85)", backdropFilter: "blur(20px)", borderColor: "rgba(0,174,239,0.1)" } : {}}
         initial={{ y: -100, opacity: 0 }}
@@ -37,33 +41,44 @@ export function Navbar() {
       >
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 md:px-8">
           {/* Logo */}
-          <a href="#" className="transition-opacity hover:opacity-80">
+          <Link href="/" className="transition-opacity hover:opacity-80">
             <BrandLogo size="sm" variant="full" />
-          </a>
+          </Link>
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                {...("external" in link && link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="rounded-xl px-4 py-2 text-sm text-sky-100/50 hover:text-sky-100 transition-all"
-                style={{
-                  ["--hover-bg" as string]: "rgba(0,174,239,0.08)",
-                  ...(link.label === "Reto 21 días" ? { fontFamily: "var(--font-reto)", fontSize: "1.05rem", letterSpacing: "0.06em" } : {}),
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,174,239,0.08)")}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              "external" in link && link.external ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={linkClass}
+                  style={linkStyle(link.label)}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,174,239,0.08)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={linkClass}
+                  style={linkStyle(link.label)}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,174,239,0.08)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
           </nav>
 
           {/* CTA */}
           <div className="hidden md:flex items-center gap-3">
-            <a
+            <Link
               href="/agendar"
               className="rounded-xl px-5 py-2 text-sm font-semibold text-white transition-all"
               style={{ backgroundColor: "var(--brand)" }}
@@ -77,7 +92,7 @@ export function Navbar() {
               }}
             >
               Agendar consulta
-            </a>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -109,34 +124,56 @@ export function Navbar() {
             >
               ✕ Cerrar
             </button>
-            {navLinks.map((link, i) => (
-              <motion.a
-                key={link.href}
-                href={link.href}
-                {...("external" in link && link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="text-2xl font-semibold text-sky-50 transition-colors"
-                style={{ ["--hover" as string]: "var(--brand)" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--brand)")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
-                onClick={() => setMenuOpen(false)}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.07 }}
-              >
-                {link.label}
-              </motion.a>
-            ))}
-            <motion.a
-              href="/agendar"
-              className="mt-4 rounded-2xl px-8 py-3.5 font-semibold text-white"
-              style={{ backgroundColor: "var(--brand)" }}
-              onClick={() => setMenuOpen(false)}
+            {navLinks.map((link, i) =>
+              "external" in link && link.external ? (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-2xl font-semibold text-sky-50 transition-colors"
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--brand)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+                  onClick={() => setMenuOpen(false)}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.07 }}
+                >
+                  {link.label}
+                </motion.a>
+              ) : (
+                <motion.div
+                  key={link.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.07 }}
+                >
+                  <Link
+                    href={link.href}
+                    className="text-2xl font-semibold text-sky-50 transition-colors"
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "var(--brand)")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              )
+            )}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              Agendar consulta
-            </motion.a>
+              <Link
+                href="/agendar"
+                className="mt-4 rounded-2xl px-8 py-3.5 font-semibold text-white inline-block"
+                style={{ backgroundColor: "var(--brand)" }}
+                onClick={() => setMenuOpen(false)}
+              >
+                Agendar consulta
+              </Link>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
