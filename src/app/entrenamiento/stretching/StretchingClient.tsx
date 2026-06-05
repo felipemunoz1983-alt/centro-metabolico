@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
+const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const AGENDA_URL = "/agendar";
 const BRAND = "#6366F1";
 
@@ -78,7 +79,7 @@ export function StretchingClient() {
             style={{ scale, transformOrigin: "50% 50%", willChange: "transform" }}
           >
             <Image
-              src="/movilidad1.webp"
+              src={`${BP}/movilidad1.webp`}
               alt="Stretching FNP"
               fill
               priority
@@ -241,7 +242,7 @@ export function StretchingClient() {
               style={{ y: imgY, willChange: "transform", scale: 1.15 }}
             >
               <Image
-                src="/movilidad1.webp"
+                src={`${BP}/movilidad1.webp`}
                 alt="Stretching FNP"
                 fill
                 className="object-cover"

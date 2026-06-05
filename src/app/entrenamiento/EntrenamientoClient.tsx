@@ -6,6 +6,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const AGENDA_URL = "/agendar";
 const BRAND = "#00AEEF";
 
@@ -25,7 +26,7 @@ const cards = [
     badge: "FUNCIONAL DINAFIT",
     name: "Entrenamiento\nFuncional",
     tagline: "Velocidad · Coordinación · Agilidad",
-    image: "/funcional.webp",
+    image: `${BP}/funcional.webp`,
     href: "/entrenamiento/funcional",
     gradient: "linear-gradient(135deg, #0369A1 0%, #0EA5E9 100%)",
     color: BRAND,
@@ -43,7 +44,7 @@ const cards = [
     badge: "FUERZA IRONFIT",
     name: "Entrenamiento\nde Fuerza",
     tagline: "Potencia · Músculo · Rendimiento",
-    image: "/fuerza3.webp",
+    image: `${BP}/fuerza3.webp`,
     focusPoint: "50% 30%",
     href: "/entrenamiento/fuerza",
     gradient: "linear-gradient(135deg, #1C1917 0%, #44403C 100%)",
@@ -62,7 +63,7 @@ const cards = [
     badge: "MOVILIDAD",
     name: "Movilidad\nArticular",
     tagline: "Control · Estabilidad · Movimiento",
-    image: "/movilidad1.webp",
+    image: `${BP}/movilidad1.webp`,
     href: "/entrenamiento/movilidad",
     gradient: "linear-gradient(135deg, #064E3B 0%, #10B981 100%)",
     color: "#10B981",
@@ -80,7 +81,7 @@ const cards = [
     badge: "STRETCHING",
     name: "Stretching\nFNP",
     tagline: "Flexibilidad · Relajación · Bienestar",
-    image: "/movilidad1.webp",
+    image: `${BP}/movilidad1.webp`,
     href: "/entrenamiento/stretching",
     gradient: "linear-gradient(135deg, #1E3A5F 0%, #6366F1 100%)",
     color: "#6366F1",

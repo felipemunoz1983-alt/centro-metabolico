@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
+const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const AGENDA_URL = "/agendar";
 const BRAND = "#00AEEF";
 const BRAND_DARK = "#0090C5";
@@ -80,7 +81,7 @@ export function FuncionalClient() {
             style={{ scale, transformOrigin: "50% 50%", willChange: "transform" }}
           >
             <Image
-              src="/funcional.webp"
+              src={`${BP}/funcional.webp`}
               alt="Entrenamiento Funcional DINAFIT"
               fill
               priority
@@ -241,7 +242,7 @@ export function FuncionalClient() {
               style={{ y: imgY, willChange: "transform", scale: 1.15 }}
             >
               <Image
-                src="/funcional2.webp"
+                src={`${BP}/funcional2.webp`}
                 alt="Entrenamiento Funcional DINAFIT"
                 fill
                 className="object-cover"

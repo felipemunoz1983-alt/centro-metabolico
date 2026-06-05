@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+
+const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 import { motion } from "framer-motion";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
 
@@ -276,7 +278,7 @@ function PhotoColumn({ member }: { member: typeof team[0] }) {
         >
           <div className="relative aspect-[3/4] w-full bg-gray-100">
             <Image
-              src={member.photo}
+              src={`${BP}${member.photo}`}
               alt={`${member.name} — ${member.role}`}
               fill
               className="object-cover object-top"

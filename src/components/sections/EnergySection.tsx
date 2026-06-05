@@ -4,6 +4,8 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 
+const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export function EnergySection() {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -62,7 +64,7 @@ export function EnergySection() {
           style={{ scale, transformOrigin: "center center", willChange: "transform" }}
         >
           <Image
-            src="/energy.png"
+            src={`${BP}/energy.png`}
             alt="Ondas de energía metabólica"
             fill
             priority

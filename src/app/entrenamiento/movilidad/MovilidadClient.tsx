@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
+const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const AGENDA_URL = "/agendar";
 const BRAND = "#00AEEF";
 const GREEN = "#10B981";
@@ -79,7 +80,7 @@ export function MovilidadClient() {
             style={{ scale, transformOrigin: "50% 50%", willChange: "transform" }}
           >
             <Image
-              src="/movilidad2.webp"
+              src={`${BP}/movilidad2.webp`}
               alt="Movilidad Articular"
               fill
               priority
@@ -241,7 +242,7 @@ export function MovilidadClient() {
               style={{ y: imgY, willChange: "transform", scale: 1.15 }}
             >
               <Image
-                src="/movilidad3.webp"
+                src={`${BP}/movilidad3.webp`}
                 alt="Movilidad Articular"
                 fill
                 className="object-cover"

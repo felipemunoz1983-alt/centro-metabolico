@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
+const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const AGENDA_URL = "/agendar";
 const BRAND = "#00AEEF";
 const ORANGE = "#F97316";
@@ -85,7 +86,7 @@ export function FuerzaClient() {
             style={{ scale, transformOrigin: "50% 30%", willChange: "transform" }}
           >
             <Image
-              src="/fuerza3.webp"
+              src={`${BP}/fuerza3.webp`}
               alt="Entrenamiento de Fuerza IRONFIT"
               fill
               priority
@@ -251,7 +252,7 @@ export function FuerzaClient() {
               style={{ y: imgY, willChange: "transform", scale: 1.15 }}
             >
               <Image
-                src="/kettebell.webp"
+                src={`${BP}/kettebell.webp`}
                 alt="Entrenamiento con kettlebell"
                 fill
                 className="object-cover"
