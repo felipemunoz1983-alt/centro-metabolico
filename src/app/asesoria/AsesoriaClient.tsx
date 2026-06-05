@@ -326,15 +326,15 @@ export function AsesoriaClient() {
                 {/* Valeska */}
                 <div className="relative overflow-hidden">
                   <Image
-                    src="/valeska.jpg"
-                    alt="Valeska Muñoz, Nutricionista Clínica y Deportiva"
+                    src="/valeska.png"
+                    alt="Valeska Vidal, Nutricionista Clínica y Deportiva"
                     fill
                     className="object-cover object-top"
                     sizes="360px"
                   />
                   <div className="absolute bottom-0 left-0 right-0 px-4 py-3"
                     style={{ background: "linear-gradient(to top, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.7) 50%, transparent 100%)" }}>
-                    <p className="text-xs font-bold" style={{ color: t.text }}>Valeska Muñoz</p>
+                    <p className="text-xs font-bold" style={{ color: t.text }}>Valeska Vidal</p>
                     <p className="text-[10px]" style={{ color: t.teal }}>Nutricionista Clínica y Deportiva</p>
                   </div>
                 </div>

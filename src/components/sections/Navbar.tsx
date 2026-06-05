@@ -47,7 +47,10 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className="rounded-xl px-4 py-2 text-sm text-sky-100/50 hover:text-sky-100 transition-all"
-                style={{ ["--hover-bg" as string]: "rgba(0,174,239,0.08)" }}
+                style={{
+                  ["--hover-bg" as string]: "rgba(0,174,239,0.08)",
+                  ...(link.label === "Reto 21 días" ? { fontFamily: "var(--font-reto)", fontSize: "1.05rem", letterSpacing: "0.06em" } : {}),
+                }}
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,174,239,0.08)")}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
               >

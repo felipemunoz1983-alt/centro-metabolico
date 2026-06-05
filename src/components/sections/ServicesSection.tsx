@@ -31,6 +31,7 @@ const services = [
     description:
       "Programas de ejercicio diseñados según tu perfil metabólico, composición corporal y metas. Cada sesión maximiza tu adaptación fisiológica y rendimiento.",
     tags: ["Programa adaptado", "Progresión guiada", "Alto rendimiento"],
+    href: "/entrenamiento",
   },
   {
     icon: (
@@ -39,7 +40,7 @@ const services = [
       </svg>
     ),
     number: "03",
-    title: "Evaluaciones",
+    title: "Planes Metabólicos",
     description:
       "VO₂ max, metabolismo basal, umbral anaeróbico y composición corporal (DEXA e impedanciometría). Datos precisos que son el punto de partida de toda transformación.",
     tags: ["VO₂ max", "Composición corporal", "DEXA"],
@@ -98,7 +99,10 @@ export function ServicesSection() {
                   </span>
                 </div>
 
-                <h3 className="mb-3 mt-5 text-xl font-semibold tracking-tight text-sky-50">
+                <h3
+                  className="mb-3 mt-5 text-xl font-semibold tracking-tight text-sky-50"
+                  style={service.title === "Reto 21 Días" ? { fontFamily: "var(--font-reto)", fontSize: "1.6rem", letterSpacing: "0.04em" } : {}}
+                >
                   {service.title}
                 </h3>
 

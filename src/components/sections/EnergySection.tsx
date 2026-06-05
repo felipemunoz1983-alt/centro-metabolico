@@ -187,21 +187,6 @@ export function EnergySection() {
               EVALUACIÓN HOY.
             </h2>
 
-            <motion.a
-              href="https://centrometabolico.site.agendapro.com/cl"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-sm font-semibold text-white"
-              style={{ backgroundColor: "var(--brand)" }}
-              whileHover={{
-                scale: 1.04,
-                boxShadow: "0 0 48px rgba(0,174,239,0.6)",
-                backgroundColor: "var(--brand-light)",
-              }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              Agenda tu evaluación gratuita →
-            </motion.a>
           </div>
         </motion.div>
 
