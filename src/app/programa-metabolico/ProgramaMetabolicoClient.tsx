@@ -49,14 +49,6 @@ const proFeatures = [
     ],
   },
   {
-    icon: "🔥",
-    title: "Calorimetría indirecta",
-    items: [
-      "Determinamos tu gasto energético en reposo (metabolismo basal) con precisión clínica.",
-      "Diseñamos tu plan alimentario ajustado a tus necesidades energéticas reales.",
-    ],
-  },
-  {
     icon: "🩺",
     title: "2 Consultas médicas",
     items: [
