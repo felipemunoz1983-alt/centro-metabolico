@@ -250,10 +250,6 @@ export function ProgramaMetabolicoClient() {
               Transforma tu cuerpo<br />
               <span style={{ color: BRAND }}>con ciencia real.</span>
             </h2>
-            <p className="mt-6 max-w-[46ch] text-base leading-relaxed md:text-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
-              Evaluamos tu metabolismo, composición corporal y capacidad física.<br />
-              Luego actuamos con precisión.
-            </p>
           </motion.div>
 
           {/* ── Phase 2 ─────────────────────────────── */}
