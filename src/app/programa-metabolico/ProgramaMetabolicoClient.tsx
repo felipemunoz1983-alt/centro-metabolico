@@ -153,6 +153,13 @@ function FeatureAccordion({ feature, color }: { feature: typeof proFeatures[0]; 
 /* ── Main component ─────────────────────────────────────────── */
 export function ProgramaMetabolicoClient() {
   const heroRef = useRef<HTMLElement>(null);
+  const proRef  = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress: proScroll } = useScroll({
+    target: proRef,
+    offset: ["start end", "end start"],
+  });
+  const imgY = useTransform(proScroll, [0, 1], ["8%", "-8%"]);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -321,8 +328,8 @@ export function ProgramaMetabolicoClient() {
       </section>
 
       {/* ── Plans ────────────────────────────────────────────── */}
-      <section id="programas" className="px-4 py-24 md:px-6" style={{ backgroundColor: "var(--bg)" }}>
-        <div className="mx-auto max-w-[1260px]">
+      <section id="programas" className="py-24" style={{ backgroundColor: "var(--bg)" }}>
+        <div className="mx-auto max-w-[1260px] px-4 md:px-6">
 
           <AnimatedSection className="text-center mb-14">
             <p className="mb-3 text-[11px] font-bold uppercase tracking-widest" style={{ color: BRAND }}>
@@ -333,60 +340,84 @@ export function ProgramaMetabolicoClient() {
             </h2>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-start">
+        </div>
 
-            {/* ── PLAN METABÓLICO PRO ──────────────────── */}
-            <AnimatedSection>
-              <div className="rounded-3xl overflow-hidden flex flex-col"
-                style={{
-                  border: "1px solid rgba(0,174,239,0.22)",
-                  backgroundColor: "rgba(0,174,239,0.03)",
-                  boxShadow: "0 0 60px rgba(0,174,239,0.06)",
-                }}>
-                <div className="h-1 w-full" style={{ background: `linear-gradient(to right, transparent, ${BRAND}, transparent)` }} />
+        {/* ── PLAN METABÓLICO PRO — full-width two-column ── */}
+        <div ref={proRef} className="relative overflow-hidden mb-6"
+          style={{ borderTop: "1px solid rgba(0,174,239,0.15)", borderBottom: "1px solid rgba(0,174,239,0.15)" }}>
 
-                <div className="p-8 pb-7" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                  <div className="mb-1 flex items-center gap-2">
-                    <span className="rounded-full px-3 py-0.5 text-[10px] font-bold tracking-widest uppercase"
-                      style={{ backgroundColor: "rgba(0,174,239,0.12)", color: BRAND, border: "1px solid rgba(0,174,239,0.25)" }}>
-                      6 Sesiones
-                    </span>
-                    <span className="rounded-full px-3 py-0.5 text-[10px] font-bold tracking-widest uppercase"
-                      style={{ backgroundColor: "rgba(0,174,239,0.06)", color: "rgba(0,174,239,0.6)" }}>
-                      1 hr c/u
-                    </span>
-                  </div>
-                  <h2 className="mt-3 text-2xl font-bold text-white md:text-3xl">Plan Metabólico Pro</h2>
-                  <p className="mt-1.5 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
-                    2 Consultas médicas · 4 Consultas Nutricionales
-                  </p>
-                  <div className="mt-5 flex items-end gap-2">
-                    <span className="text-4xl font-bold text-white">$330.000</span>
-                    <span className="mb-1 text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>CLP</span>
-                  </div>
-                  <motion.a
-                    href={AGENDA_URL}
-                    className="mt-5 block w-full rounded-2xl py-3.5 text-center text-sm font-semibold text-white"
-                    style={{ backgroundColor: BRAND }}
-                    whileHover={{ scale: 1.01, boxShadow: "0 0 28px rgba(0,174,239,0.4)" }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  >
-                    Agendar Plan Metabólico Pro →
-                  </motion.a>
+          <div className="flex flex-col lg:flex-row lg:items-stretch">
+
+            {/* Left: card content */}
+            <AnimatedSection className="flex-1 lg:max-w-[54%]">
+              <div className="flex flex-col h-full px-8 py-10 md:px-12 md:py-14"
+                style={{ backgroundColor: "rgba(0,174,239,0.025)" }}>
+                <div className="h-1 w-32 rounded-full mb-8" style={{ background: `linear-gradient(to right, ${BRAND}, transparent)` }} />
+
+                <div className="mb-1 flex items-center gap-2">
+                  <span className="rounded-full px-3 py-0.5 text-[10px] font-bold tracking-widest uppercase"
+                    style={{ backgroundColor: "rgba(0,174,239,0.12)", color: BRAND, border: "1px solid rgba(0,174,239,0.25)" }}>
+                    6 Sesiones
+                  </span>
+                  <span className="rounded-full px-3 py-0.5 text-[10px] font-bold tracking-widest uppercase"
+                    style={{ backgroundColor: "rgba(0,174,239,0.06)", color: "rgba(0,174,239,0.6)" }}>
+                    1 hr c/u
+                  </span>
                 </div>
+                <h2 className="mt-3 text-2xl font-bold text-white md:text-3xl">Plan Metabólico Pro</h2>
+                <p className="mt-1.5 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
+                  2 Consultas médicas · 4 Consultas Nutricionales
+                </p>
+                <div className="mt-5 flex items-end gap-2">
+                  <span className="text-4xl font-bold text-white">$330.000</span>
+                  <span className="mb-1 text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>CLP</span>
+                </div>
+                <motion.a
+                  href={AGENDA_URL}
+                  className="mt-5 block w-full rounded-2xl py-3.5 text-center text-sm font-semibold text-white"
+                  style={{ backgroundColor: BRAND }}
+                  whileHover={{ scale: 1.01, boxShadow: "0 0 28px rgba(0,174,239,0.4)" }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  Agendar Plan Metabólico Pro →
+                </motion.a>
 
-                <div className="px-8 pt-7 pb-3">
+                <div className="mt-8 mb-3">
                   <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: "rgba(0,174,239,0.55)" }}>
                     ¿Qué incluye?
                   </p>
                 </div>
-                <div className="px-8 pb-8 flex flex-col gap-2">
+                <div className="flex flex-col gap-2">
                   {proFeatures.map((feature) => (
                     <FeatureAccordion key={feature.title} feature={feature} color={BRAND} />
                   ))}
                 </div>
               </div>
             </AnimatedSection>
+
+            {/* Right: cm3 image with parallax */}
+            <div className="relative lg:flex-1 h-72 lg:h-auto overflow-hidden">
+              <motion.div className="absolute inset-0" style={{ y: imgY }}>
+                <Image
+                  src={`${BP}/cm3.webp`}
+                  alt="Plan Metabólico Pro"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </motion.div>
+              {/* left gradient blend */}
+              <div className="absolute inset-0 pointer-events-none hidden lg:block"
+                style={{ background: "linear-gradient(to right, rgba(3,8,15,0.9) 0%, rgba(3,8,15,0.3) 30%, transparent 60%)" }} />
+              {/* top gradient for mobile */}
+              <div className="absolute inset-0 pointer-events-none lg:hidden"
+                style={{ background: "linear-gradient(to bottom, rgba(3,8,15,0.8) 0%, transparent 40%)" }} />
+            </div>
+          </div>
+        </div>
+
+        <div className="mx-auto max-w-[1260px] px-4 md:px-6">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-1">
 
             {/* ── PROGRAMA METABÓLICO DINÁMICS ─────────── */}
             <AnimatedSection delay={0.12}>
