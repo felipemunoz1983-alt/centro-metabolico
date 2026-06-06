@@ -444,7 +444,7 @@ export function ProgramaMetabolicoClient() {
                   src={`${BP}/cm4.webp`}
                   alt="Programa Metabólico Dinámics"
                   fill
-                  className="object-cover object-left-bottom"
+                  className="object-cover object-center"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </motion.div>
