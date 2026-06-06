@@ -81,7 +81,7 @@ const cards = [
     badge: "STRETCHING",
     name: "Stretching\nFNP",
     tagline: "Flexibilidad · Relajación · Bienestar",
-    image: `${BP}/movilidad1.webp`,
+    image: `${BP}/movilidad3.webp`,
     href: "/entrenamiento/stretching",
     gradient: "linear-gradient(135deg, #1E3A5F 0%, #6366F1 100%)",
     color: "#6366F1",
@@ -117,7 +117,7 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
       viewport={{ once: true }}
       transition={{ delay: index * 0.12, duration: 0.6 }}
       className="relative overflow-hidden rounded-3xl"
-      style={{ height: "520px" }}
+      style={{ height: "clamp(420px, 60vw, 520px)" }}
     >
       {/* ── Background image with parallax ── */}
       <motion.div className="absolute inset-0" style={{ y, scale: 1.15 }}>
@@ -127,7 +127,7 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
           fill
           className="object-cover"
           style={{ objectPosition: card.focusPoint ?? "center center" }}
-          sizes="(max-width: 768px) 50vw, 25vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           onError={() => {}}
         />
         {/* Gradient fallback always under the image */}
@@ -274,7 +274,7 @@ export function EntrenamientoClient() {
 
       {/* ── Grid de tarjetas ────────────────────────────────────────── */}
       <section className="px-4 py-16 md:px-6">
-        <div className="mx-auto max-w-[1600px] grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <div className="mx-auto max-w-[1600px] grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {cards.map((card, i) => (
             <TrainingCard key={card.id} card={card} index={i} />
           ))}
