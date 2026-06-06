@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
 import Image from "next/image";
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -28,27 +27,34 @@ function buildHexGrid(width: number, height: number, count: number) {
   return positions.slice(0, count);
 }
 
+function interp(p: number, ins: number[], outs: number[]): number {
+  const n = ins.length;
+  if (p <= ins[0]) return outs[0];
+  if (p >= ins[n - 1]) return outs[n - 1];
+  for (let i = 0; i < n - 1; i++) {
+    if (p >= ins[i] && p <= ins[i + 1]) {
+      const t = (p - ins[i]) / (ins[i + 1] - ins[i]);
+      return outs[i] + t * (outs[i + 1] - outs[i]);
+    }
+  }
+  return outs[n - 1];
+}
+
 export function EnergySection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const canvasRef  = useRef<HTMLCanvasElement>(null);
-  const rafRef     = useRef(0);
-  const tickingRef = useRef(false);
+  const sectionRef  = useRef<HTMLElement>(null);
+  const canvasRef   = useRef<HTMLCanvasElement>(null);
+  const rafRef      = useRef(0);
+  const spRef       = useRef(0);
   const particlesRef = useRef<Particle[]>([]);
 
-  // Single source of truth: native scroll progress → MotionValue
-  const scrollMV = useMotionValue(0);
-
-  const scale       = useTransform(scrollMV, [0, 1],                     [1.0, 1.55]);
-  const darkOverlay = useTransform(scrollMV, [0, 0.45, 0.55, 1],         [0.35, 0.05, 0.05, 0.45]);
-  const vigOpacity  = useTransform(scrollMV, [0, 0.3, 0.5, 0.7, 1],      [0.65, 0.2, 0.0, 0.2, 0.8]);
-
-  const p1Opacity   = useTransform(scrollMV, [0, 0.28, 0.40],             [1, 1, 0]);
-  const p1Y         = useTransform(scrollMV, [0, 0.40],                   [0, -50]);
-  const p2Opacity   = useTransform(scrollMV, [0.40, 0.52, 0.68, 0.78],   [0, 1, 1, 0]);
-  const p2Y         = useTransform(scrollMV, [0.40, 0.78],                [50, -50]);
-  const p3Opacity   = useTransform(scrollMV, [0.78, 0.88, 1, 1],         [0, 1, 1, 1]);
-  const p3Y         = useTransform(scrollMV, [0.78, 0.88],                [50, 0]);
-  const hintOpacity = useTransform(scrollMV, [0, 0.10],                   [0.6, 0]);
+  // DOM refs for direct style manipulation
+  const bgImgRef = useRef<HTMLDivElement>(null);
+  const darkRef  = useRef<HTMLDivElement>(null);
+  const vigRef   = useRef<HTMLDivElement>(null);
+  const p1Ref    = useRef<HTMLDivElement>(null);
+  const p2Ref    = useRef<HTMLDivElement>(null);
+  const p3Ref    = useRef<HTMLDivElement>(null);
+  const hintRef  = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const canvas  = canvasRef.current;
@@ -121,43 +127,54 @@ export function EnergySection() {
       }
     };
 
-    let animTime = 0;
     const animate = (time: number) => {
-      animTime = time;
-      drawFrame(time, scrollMV.get());
-      rafRef.current = requestAnimationFrame(animate);
-    };
+      // Read scroll position every frame
+      const rect = section.getBoundingClientRect();
+      const scrollable = Math.max(1, section.offsetHeight - window.innerHeight);
+      const sp = Math.max(0, Math.min(1, -rect.top / scrollable));
+      spRef.current = sp;
 
-    const onScroll = () => {
-      if (tickingRef.current) return;
-      tickingRef.current = true;
-      requestAnimationFrame(() => {
-        const rect = section.getBoundingClientRect();
-        const scrollable = section.offsetHeight - window.innerHeight;
-        const p = Math.max(0, Math.min(1, -rect.top / scrollable));
-        scrollMV.set(p);   // drives both canvas and all motion transforms
-        tickingRef.current = false;
-      });
+      drawFrame(time, sp);
+
+      // Update JSX elements directly
+      if (bgImgRef.current) bgImgRef.current.style.transform = `scale(${interp(sp, [0,1], [1.0,1.55])})`;
+      if (darkRef.current)  darkRef.current.style.opacity   = String(interp(sp, [0,0.45,0.55,1], [0.35,0.05,0.05,0.45]));
+      if (vigRef.current)   vigRef.current.style.opacity    = String(interp(sp, [0,0.3,0.5,0.7,1], [0.65,0.2,0.0,0.2,0.8]));
+
+      if (p1Ref.current) {
+        const op = interp(sp, [0,0.28,0.40], [1,1,0]);
+        p1Ref.current.style.opacity   = String(op);
+        p1Ref.current.style.transform = `translateY(${interp(sp, [0,0.40], [0,-50])}px)`;
+      }
+      if (p2Ref.current) {
+        const op = interp(sp, [0.40,0.52,0.68,0.78], [0,1,1,0]);
+        p2Ref.current.style.opacity   = String(op);
+        p2Ref.current.style.transform = `translateY(${interp(sp, [0.40,0.78], [50,-50])}px)`;
+      }
+      if (p3Ref.current) {
+        const op = interp(sp, [0.78,0.88,1], [0,1,1]);
+        p3Ref.current.style.opacity   = String(op);
+        p3Ref.current.style.transform = `translateY(${interp(sp, [0.78,0.88], [50,0])}px)`;
+      }
+      if (hintRef.current) hintRef.current.style.opacity = String(interp(sp, [0,0.10], [0.6,0]));
+
+      rafRef.current = requestAnimationFrame(animate);
     };
 
     resize();
     window.addEventListener("resize", resize);
-    window.addEventListener("scroll", onScroll, { passive: true });
     rafRef.current = requestAnimationFrame(animate);
 
     return () => {
       cancelAnimationFrame(rafRef.current);
       window.removeEventListener("resize", resize);
-      window.removeEventListener("scroll", onScroll);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <section ref={sectionRef} style={{ height: "300vh" }} className="relative">
       <div className="sticky top-0 h-screen min-h-[100svh] overflow-hidden bg-[#03080F]" style={{ transform: "translateZ(0)" }}>
 
-        {/* CSS gradient base */}
         <div className="absolute inset-0" style={{
           background: `
             radial-gradient(ellipse 25% 45% at 50% 52%, rgba(0,220,255,0.22) 0%, transparent 60%),
@@ -169,17 +186,15 @@ export function EnergySection() {
 
         <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" />
 
-        {/* Background image with scale parallax */}
-        <motion.div className="absolute inset-0" style={{ scale, transformOrigin: "center center", willChange: "transform" }}>
+        <div ref={bgImgRef} className="absolute inset-0" style={{ transformOrigin: "center center", willChange: "transform" }}>
           <Image src={`${BP}/energy.png`} alt="Ondas de energía metabólica" fill priority className="object-cover object-center" sizes="100vw" />
-        </motion.div>
+        </div>
 
-        <motion.div className="absolute inset-0 pointer-events-none bg-black" style={{ opacity: darkOverlay }} />
-        <motion.div className="absolute inset-0 pointer-events-none" style={{ opacity: vigOpacity, background: "radial-gradient(ellipse 65% 65% at 50% 50%, transparent 0%, rgba(3,8,15,0.97) 100%)" }} />
+        <div ref={darkRef} className="absolute inset-0 pointer-events-none bg-black" style={{ opacity: 0.35 }} />
+        <div ref={vigRef}  className="absolute inset-0 pointer-events-none" style={{ opacity: 0.65, background: "radial-gradient(ellipse 65% 65% at 50% 50%, transparent 0%, rgba(3,8,15,0.97) 100%)" }} />
         <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(3,8,15,0.5) 0%, transparent 15%, transparent 85%, rgba(3,8,15,0.7) 100%)" }} />
 
-        {/* Phase 1 */}
-        <motion.div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none" style={{ opacity: p1Opacity, y: p1Y }}>
+        <div ref={p1Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none" style={{ opacity: 1, willChange: "opacity, transform" }}>
           <div className="flex flex-col items-center rounded-3xl px-6 py-7 md:px-10 md:py-8 backdrop-blur-md" style={{ backgroundColor: "rgba(3,8,15,0.92)" }}>
             <h2 className="mb-5 text-3xl leading-[1.05] text-white sm:text-4xl md:text-6xl lg:text-7xl"
               style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 8px rgba(0,0,0,0.9)" }}>
@@ -189,10 +204,9 @@ export function EnergySection() {
               Todo lo que necesitas para transformar tu cuerpo está dentro de ti.<br />Nosotros ponemos la ciencia.
             </p>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Phase 2 */}
-        <motion.div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none" style={{ opacity: p2Opacity, y: p2Y }}>
+        <div ref={p2Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none" style={{ opacity: 0, transform: "translateY(50px)", willChange: "opacity, transform" }}>
           <div className="flex flex-col items-center rounded-3xl px-6 py-7 md:px-10 md:py-8 backdrop-blur-md" style={{ backgroundColor: "rgba(3,8,15,0.92)" }}>
             <h2 className="mb-5 text-3xl leading-[1.05] text-white sm:text-4xl md:text-6xl lg:text-7xl"
               style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 8px rgba(0,0,0,0.9)" }}>
@@ -202,23 +216,21 @@ export function EnergySection() {
               VO₂ max · Metabolismo basal · Umbral anaeróbico<br />Datos reales para decisiones reales.
             </p>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Phase 3 */}
-        <motion.div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center" style={{ opacity: p3Opacity, y: p3Y }}>
+        <div ref={p3Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center" style={{ opacity: 0, transform: "translateY(50px)", willChange: "opacity, transform" }}>
           <div className="flex flex-col items-center rounded-3xl px-6 py-7 md:px-10 md:py-8 backdrop-blur-md" style={{ backgroundColor: "rgba(3,8,15,0.92)" }}>
             <h2 className="mb-5 text-3xl leading-[1.05] text-white sm:text-4xl md:text-6xl lg:text-7xl"
               style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 8px rgba(0,0,0,0.9)" }}>
               SALUD, ENTRENAMIENTO,<br />NUTRICIÓN Y MEDICINA.
             </h2>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Scroll hint */}
-        <motion.div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none" style={{ opacity: hintOpacity }}>
+        <div ref={hintRef} className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none" style={{ opacity: 0.6 }}>
           <span className="text-[9px] tracking-[0.25em] uppercase" style={{ color: "var(--brand)" }}>Scroll</span>
           <div className="h-7 w-px" style={{ background: "linear-gradient(to bottom, var(--brand), transparent)" }} />
-        </motion.div>
+        </div>
       </div>
     </section>
   );
