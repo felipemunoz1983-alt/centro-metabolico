@@ -33,7 +33,6 @@ function ChevronIcon({ open }: { open: boolean }) {
 /* ── Data ────────────────────────────────────────────────────── */
 const proFeatures = [
   {
-    icon: "🧬",
     title: "Evaluación de composición corporal (InBody)",
     items: [
       "Conocerás tu porcentaje de grasa, masa muscular y estado nutricional.",
@@ -41,7 +40,6 @@ const proFeatures = [
     ],
   },
   {
-    icon: "💨",
     title: "Evaluación de tu metabolismo",
     items: [
       "Mediremos tu capacidad aeróbica y nivel de condición física.",
@@ -49,7 +47,6 @@ const proFeatures = [
     ],
   },
   {
-    icon: "🩺",
     title: "2 Consultas médicas",
     items: [
       "Evaluación clínica inicial: anamnesis completa, análisis de antecedentes y diagnóstico metabólico.",
@@ -57,7 +54,6 @@ const proFeatures = [
     ],
   },
   {
-    icon: "🥗",
     title: "4 Consultas nutricionales",
     items: [
       "Educación alimentaria práctica para que entiendas tu alimentación.",
@@ -66,7 +62,6 @@ const proFeatures = [
     ],
   },
   {
-    icon: "📋",
     title: "Planificación alimentaria personalizada",
     items: [
       "Creada según tus objetivos, gustos y rutinas diarias.",
@@ -119,10 +114,7 @@ function FeatureAccordion({ feature, color }: { feature: typeof proFeatures[0]; 
       onClick={() => setOpen(!open)}
     >
       <div className="flex items-center justify-between gap-3 px-5 py-4">
-        <div className="flex items-center gap-3">
-          <span className="text-xl">{feature.icon}</span>
-          <span className="text-sm font-semibold text-white">{feature.title}</span>
-        </div>
+        <span className="text-base font-semibold text-white">{feature.title}</span>
         <span style={{ color: `${color}80` }}>
           <ChevronIcon open={open} />
         </span>
@@ -140,7 +132,7 @@ function FeatureAccordion({ feature, color }: { feature: typeof proFeatures[0]; 
               {feature.items.map((item) => (
                 <li key={item} className="flex items-start gap-2.5 pt-3">
                   <CheckIcon color={color} />
-                  <span className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>{item}</span>
+                  <span className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>{item}</span>
                 </li>
               ))}
             </ul>
