@@ -9,7 +9,7 @@ const navLinks = [
   { label: "Consulta Médica y Nutricional", href: "/asesoria" },
   { label: "Reto 21 días", href: "/#metodologia" },
   { label: "Entrenamiento", href: "/entrenamiento" },
-  { label: "Recovery", href: "/entrenamiento/recovery" },
+  { label: "Recovery", href: "/recovery" },
   { label: "Taller Nutricional", href: "https://felipemunoz1983-alt.github.io/tallernutricional/", external: true },
 ];
 

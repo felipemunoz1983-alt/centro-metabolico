@@ -12,7 +12,8 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
     if (
       pathname === "/" ||
       pathname?.match(/^\/entrenamiento\/.+/) ||
-      pathname?.startsWith("/programa-metabolico")
+      pathname?.startsWith("/programa-metabolico") ||
+      pathname?.startsWith("/recovery")
     ) return;
 
     const lenis = new Lenis({
