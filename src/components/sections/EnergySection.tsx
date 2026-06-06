@@ -43,7 +43,7 @@ export function EnergySection() {
 
   return (
     <section ref={sectionRef} style={{ height: "300vh" }} className="relative">
-      <div className="sticky top-0 h-screen overflow-hidden bg-[#03080F]">
+      <div className="sticky top-0 h-screen min-h-[100svh] overflow-hidden bg-[#03080F]" style={{ transform: "translateZ(0)" }}>
 
         {/* ── Background: CSS gradient fallback + real image ─────── */}
         {/* CSS energy gradient — always visible as base */}
@@ -104,11 +104,11 @@ export function EnergySection() {
           style={{ opacity: p1Opacity, y: p1Y }}
         >
           <div
-            className="flex flex-col items-center rounded-3xl px-10 py-8 backdrop-blur-md"
-            style={{ backgroundColor: "rgba(3,8,15,0.55)" }}
+            className="flex flex-col items-center rounded-3xl px-6 py-7 md:px-10 md:py-8 backdrop-blur-md"
+            style={{ backgroundColor: "rgba(3,8,15,0.90)" }}
           >
             <h2
-              className="mb-5 text-4xl leading-[1.05] text-white md:text-6xl lg:text-7xl"
+              className="mb-5 text-3xl leading-[1.05] text-white sm:text-4xl md:text-6xl lg:text-7xl"
               style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 8px rgba(0,0,0,0.9)" }}
             >
               Tu metabolismo<br />
@@ -131,11 +131,11 @@ export function EnergySection() {
           style={{ opacity: p2Opacity, y: p2Y }}
         >
           <div
-            className="flex flex-col items-center rounded-3xl px-10 py-8 backdrop-blur-md"
-            style={{ backgroundColor: "rgba(3,8,15,0.55)" }}
+            className="flex flex-col items-center rounded-3xl px-6 py-7 md:px-10 md:py-8 backdrop-blur-md"
+            style={{ backgroundColor: "rgba(3,8,15,0.90)" }}
           >
             <h2
-              className="mb-5 text-4xl leading-[1.05] text-white md:text-6xl lg:text-7xl"
+              className="mb-5 text-3xl leading-[1.05] text-white sm:text-4xl md:text-6xl lg:text-7xl"
               style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 8px rgba(0,0,0,0.9)" }}
             >
               Medimos lo que<br />
@@ -158,11 +158,11 @@ export function EnergySection() {
           style={{ opacity: p3Opacity, y: p3Y }}
         >
           <div
-            className="flex flex-col items-center rounded-3xl px-10 py-8 backdrop-blur-md"
-            style={{ backgroundColor: "rgba(3,8,15,0.55)" }}
+            className="flex flex-col items-center rounded-3xl px-6 py-7 md:px-10 md:py-8 backdrop-blur-md"
+            style={{ backgroundColor: "rgba(3,8,15,0.90)" }}
           >
             <h2
-              className="mb-5 text-4xl leading-[1.05] text-white md:text-6xl lg:text-7xl"
+              className="mb-5 text-3xl leading-[1.05] text-white sm:text-4xl md:text-6xl lg:text-7xl"
               style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 8px rgba(0,0,0,0.9)" }}
             >
               SALUD, ENTRENAMIENTO,<br />
