@@ -57,6 +57,14 @@ const proFeatures = [
     ],
   },
   {
+    icon: "🩺",
+    title: "2 Consultas médicas",
+    items: [
+      "Evaluación clínica inicial: anamnesis completa, análisis de antecedentes y diagnóstico metabólico.",
+      "Consulta de seguimiento: revisión de resultados, ajuste de indicaciones y orientación terapéutica.",
+    ],
+  },
+  {
     icon: "🥗",
     title: "4 Consultas nutricionales",
     items: [
