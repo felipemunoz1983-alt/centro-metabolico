@@ -282,7 +282,7 @@ export function AsesoriaClient() {
                 {/* Valeska */}
                 <div className="relative overflow-hidden">
                   <Image
-                    src={`${BP}/VALE_WEB.jpg`}
+                    src={`${BP}/VALE_WEB.webp`}
                     alt="Valeska Vidal, Nutricionista Clínica y Deportiva"
                     fill
                     className="object-cover object-top"
