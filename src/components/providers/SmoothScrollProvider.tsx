@@ -9,7 +9,11 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     // Pages that use Framer Motion useScroll — skip Lenis there
-    if (pathname?.match(/^\/entrenamiento\/.+/) || pathname?.startsWith("/programa-metabolico")) return;
+    if (
+      pathname === "/" ||
+      pathname?.match(/^\/entrenamiento\/.+/) ||
+      pathname?.startsWith("/programa-metabolico")
+    ) return;
 
     const lenis = new Lenis({
       lerp: 0.08,
