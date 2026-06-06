@@ -14,7 +14,7 @@ const team = [
     name: "Valeska Vidal",
     role: "Nutricionista Clínica y Deportiva",
     registro: "Reg. 12.845",
-    photo: "/valeska.png",
+    photo: "/VALE_WEB.jpg",
     photoSide: "right" as const,
     bio: "Especialista en evaluación metabólica avanzada y nutrición de precisión. Combina ciencia y práctica clínica para diseñar intervenciones que transforman la salud desde la biología de cada paciente.",
     statValue: "8+",
