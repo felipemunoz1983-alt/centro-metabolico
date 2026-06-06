@@ -131,7 +131,7 @@ export function FuncionalClient() {
               Despierta tu<br /><span style={{ color: BRAND }}>potencial.</span>
             </h2>
             <p className="mt-6 max-w-[44ch] text-base leading-relaxed md:text-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
-              Velocidad, coordinación y agilidad trabajadas con método.<br />Guía profesional en cada sesión para sacar lo mejor de ti.
+              No es solo moverte. Es forjarte.<br />Alta intensidad, guía real, resultados que se sienten en cada rep.
             </p>
           </div>
 
