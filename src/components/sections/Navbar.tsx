@@ -48,7 +48,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) =>
               "external" in link && link.external ? (
                 <a
@@ -79,7 +79,7 @@ export function Navbar() {
           </nav>
 
           {/* CTA */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <Link
               href={PROGRAMA_HREF}
               className="rounded-xl px-5 py-2 text-sm font-semibold text-white transition-all"
@@ -114,7 +114,7 @@ export function Navbar() {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden flex items-center gap-1.5 rounded-xl px-3 py-2 text-sky-300 text-xs font-medium border"
+            className="lg:hidden flex items-center gap-1.5 rounded-xl px-3 py-2 text-sky-300 text-xs font-medium border"
             style={{ borderColor: "rgba(0,174,239,0.2)", backgroundColor: "rgba(0,174,239,0.08)" }}
             onClick={() => setMenuOpen(!menuOpen)}
           >

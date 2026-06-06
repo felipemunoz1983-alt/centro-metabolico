@@ -233,7 +233,7 @@ export function EntrenamientoClient() {
     <div style={{ backgroundColor: t.bg, minHeight: "100vh" }}>
 
       {/* ── Hero ────────────────────────────────────────────────────── */}
-      <section className="px-6 py-16 md:px-10 md:py-20 text-center" style={{ backgroundColor: t.bgSoft, borderBottom: `1px solid ${t.border}` }}>
+      <section className="px-6 pt-28 pb-16 md:px-10 md:pt-32 md:pb-20 text-center" style={{ backgroundColor: t.bgSoft, borderBottom: `1px solid ${t.border}` }}>
         <p className="mb-3 text-xs font-semibold uppercase tracking-widest" style={{ color: BRAND }}>
           Entrenamiento Personalizado
         </p>

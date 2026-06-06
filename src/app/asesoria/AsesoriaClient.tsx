@@ -239,7 +239,7 @@ export function AsesoriaClient() {
               <div className="relative hidden lg:flex flex-col" style={{ borderLeft: `1px solid ${t.border}` }}>
                 <div className="relative flex-1 overflow-hidden" style={{ minHeight: 400 }}>
                   <Image
-                    src={`${BP}/barbara.png`}
+                    src={`${BP}/barbara.webp`}
                     alt="Dra. Bárbara Plass Villanueva, Médico Cirujano"
                     fill
                     className="object-cover object-top"
@@ -297,7 +297,7 @@ export function AsesoriaClient() {
                 {/* Felipe */}
                 <div className="relative overflow-hidden" style={{ borderTop: `1px solid ${t.border}` }}>
                   <Image
-                    src={`${BP}/felipe.png`}
+                    src={`${BP}/felipe.webp`}
                     alt="Felipe Muñoz Zambrano, Nutricionista Deportivo"
                     fill
                     className="object-cover object-top"

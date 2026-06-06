@@ -11,7 +11,8 @@ interface Particle {
   phase: number; speed: number;
 }
 
-const PARTICLE_COUNT = 90;
+const PARTICLE_COUNT_DESKTOP = 90;
+const PARTICLE_COUNT_MOBILE  = 30;
 
 function buildHexGrid(width: number, height: number, count: number) {
   const cols = Math.round(Math.sqrt(count * (width / height)) * 1.1);
@@ -63,14 +64,16 @@ export function EnergySection() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const isMobile = window.innerWidth < 768;
+    const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2);
 
     const resize = () => {
       const w = window.innerWidth, h = window.innerHeight;
       canvas.width  = w * dpr; canvas.height = h * dpr;
       canvas.style.width = w + "px"; canvas.style.height = h + "px";
       ctx.scale(dpr, dpr);
-      const grid = buildHexGrid(w, h, PARTICLE_COUNT);
+      const count = w < 768 ? PARTICLE_COUNT_MOBILE : PARTICLE_COUNT_DESKTOP;
+      const grid = buildHexGrid(w, h, count);
       particlesRef.current = grid.map((pos) => ({
         x: Math.random() * w, y: Math.random() * h,
         targetX: pos.x, targetY: pos.y,
@@ -187,7 +190,7 @@ export function EnergySection() {
         <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" />
 
         <div ref={bgImgRef} className="absolute inset-0" style={{ transformOrigin: "center center", willChange: "transform" }}>
-          <Image src={`${BP}/energy.png`} alt="Ondas de energía metabólica" fill priority className="object-cover object-center" sizes="100vw" />
+          <Image src={`${BP}/energy.webp`} alt="Ondas de energía metabólica" fill priority className="object-cover object-center" sizes="100vw" />
         </div>
 
         <div ref={darkRef} className="absolute inset-0 pointer-events-none bg-black" style={{ opacity: 0.35 }} />

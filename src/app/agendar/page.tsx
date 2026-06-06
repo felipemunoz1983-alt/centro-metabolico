@@ -10,7 +10,7 @@ export default function AgendarPage() {
     <div style={{ backgroundColor: "#03080F", minHeight: "100vh" }}>
 
       {/* Hero */}
-      <div className="px-6 py-12 text-center">
+      <div className="px-6 pt-24 pb-10 text-center">
         <p className="mb-2 text-xs font-semibold uppercase tracking-widest" style={{ color: "#00AEEF" }}>
           Reserva tu hora
         </p>
