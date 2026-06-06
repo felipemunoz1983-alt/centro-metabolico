@@ -266,10 +266,6 @@ export function ProgramaMetabolicoClient() {
               Primero evaluar.<br />
               <span style={{ color: VIOLET }}>Luego transformar.</span>
             </h2>
-            <p className="mt-6 max-w-[46ch] text-base leading-relaxed md:text-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
-              InBody · VO₂máx · Calorimetría indirecta · Evaluación de fuerza.<br />
-              Datos reales para decisiones reales.
-            </p>
           </motion.div>
 
           {/* ── Phase 3 CTA ─────────────────────────── */}
