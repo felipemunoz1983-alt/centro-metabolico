@@ -177,29 +177,6 @@ export function Navbar() {
                 </motion.div>
               )
             )}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="flex flex-col items-center gap-3"
-            >
-              <Link
-                href={PROGRAMA_HREF}
-                className="rounded-2xl px-8 py-3.5 font-semibold text-white inline-block"
-                style={{ backgroundColor: "var(--brand)" }}
-                onClick={() => setMenuOpen(false)}
-              >
-                Programa Metabólico
-              </Link>
-              <Link
-                href="/agendar"
-                className="rounded-2xl px-8 py-3.5 font-semibold text-white inline-block"
-                style={{ backgroundColor: "var(--brand)" }}
-                onClick={() => setMenuOpen(false)}
-              >
-                Agendar consulta
-              </Link>
-            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
