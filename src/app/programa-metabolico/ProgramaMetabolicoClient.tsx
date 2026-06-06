@@ -42,7 +42,7 @@ const proFeatures = [
   },
   {
     icon: "💨",
-    title: "Evaluación de VO₂máx",
+    title: "Evaluación de tu metabolismo",
     items: [
       "Mediremos tu capacidad aeróbica y nivel de condición física.",
       "Planificamos entrenamientos más eficientes y adaptados a tu nivel.",
