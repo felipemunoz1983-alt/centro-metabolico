@@ -71,6 +71,7 @@ const proFeatures = [
     items: [
       "Creada según tus objetivos, gustos y rutinas diarias.",
       "Diseñada para pérdida de grasa, ganancia muscular o equilibrio metabólico.",
+      "Incluye acceso a aplicación nutricional para llevar el control de tu alimentación en tiempo real.",
     ],
   },
 ];
