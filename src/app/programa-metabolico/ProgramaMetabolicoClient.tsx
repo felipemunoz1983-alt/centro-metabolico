@@ -160,14 +160,21 @@ function FeatureAccordion({ feature, color }: { feature: typeof proFeatures[0]; 
 
 /* ── Main component ─────────────────────────────────────────── */
 export function ProgramaMetabolicoClient() {
-  const heroRef = useRef<HTMLElement>(null);
-  const proRef  = useRef<HTMLDivElement>(null);
+  const heroRef     = useRef<HTMLElement>(null);
+  const proRef      = useRef<HTMLDivElement>(null);
+  const dinamicsRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress: proScroll } = useScroll({
     target: proRef,
     offset: ["start end", "end start"],
   });
   const imgY = useTransform(proScroll, [0, 1], ["8%", "-8%"]);
+
+  const { scrollYProgress: dinamicsScroll } = useScroll({
+    target: dinamicsRef,
+    offset: ["start end", "end start"],
+  });
+  const imgY2 = useTransform(dinamicsScroll, [0, 1], ["8%", "-8%"]);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -424,122 +431,131 @@ export function ProgramaMetabolicoClient() {
           </div>
         </div>
 
-        <div className="mx-auto max-w-[1260px] px-4 md:px-6">
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-1">
+        {/* ── PROGRAMA METABÓLICO DINÁMICS — full-width two-column ── */}
+        <div ref={dinamicsRef} className="relative overflow-hidden mt-6"
+          style={{ borderTop: "1px solid rgba(167,139,250,0.15)", borderBottom: "1px solid rgba(167,139,250,0.15)" }}>
 
-            {/* ── PROGRAMA METABÓLICO DINÁMICS ─────────── */}
-            <AnimatedSection delay={0.12}>
-              <div className="rounded-3xl overflow-hidden flex flex-col"
-                style={{
-                  border: "1px solid rgba(167,139,250,0.22)",
-                  backgroundColor: "rgba(167,139,250,0.02)",
-                  boxShadow: "0 0 60px rgba(167,139,250,0.05)",
-                }}>
-                <div className="h-1 w-full" style={{ background: `linear-gradient(to right, transparent, ${VIOLET}, transparent)` }} />
+          <div className="flex flex-col lg:flex-row lg:items-stretch">
 
-                <div className="p-8 pb-7" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                  <div className="mb-1 flex items-center gap-2">
-                    <span className="rounded-full px-3 py-0.5 text-[10px] font-bold tracking-widest uppercase"
-                      style={{ backgroundColor: "rgba(167,139,250,0.12)", color: VIOLET, border: "1px solid rgba(167,139,250,0.25)" }}>
-                      40 Sesiones
-                    </span>
-                    <span className="rounded-full px-3 py-0.5 text-[10px] font-bold tracking-widest uppercase"
-                      style={{ backgroundColor: "rgba(167,139,250,0.06)", color: "rgba(167,139,250,0.6)" }}>
-                      1 hr c/u
-                    </span>
-                  </div>
-                  <h2 className="mt-3 text-2xl font-bold text-white md:text-3xl">Programa Metabólico Dinámics</h2>
-                  <p className="mt-1.5 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
-                    Programa Metabólico Integral
-                  </p>
-                  <div className="mt-5 flex items-end gap-2">
-                    <span className="text-4xl font-bold text-white">$380.000</span>
-                    <span className="mb-1 text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>CLP</span>
-                  </div>
-                  <motion.a
-                    href={AGENDA_URL}
-                    className="mt-5 block w-full rounded-2xl py-3.5 text-center text-sm font-semibold text-white"
-                    style={{ backgroundColor: VIOLET }}
-                    whileHover={{ scale: 1.01, boxShadow: "0 0 28px rgba(167,139,250,0.4)" }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  >
-                    Agendar Metabólico Dinámics →
-                  </motion.a>
+            {/* Left: cm4 image with parallax */}
+            <div className="relative lg:flex-1 h-72 lg:h-auto overflow-hidden order-2 lg:order-1">
+              <motion.div className="absolute inset-0" style={{ y: imgY2 }}>
+                <Image
+                  src={`${BP}/cm4.webp`}
+                  alt="Programa Metabólico Dinámics"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </motion.div>
+              {/* right gradient blend */}
+              <div className="absolute inset-0 pointer-events-none hidden lg:block"
+                style={{ background: "linear-gradient(to left, rgba(3,8,15,0.9) 0%, rgba(3,8,15,0.3) 30%, transparent 60%)" }} />
+              {/* bottom gradient for mobile */}
+              <div className="absolute inset-0 pointer-events-none lg:hidden"
+                style={{ background: "linear-gradient(to top, rgba(3,8,15,0.8) 0%, transparent 40%)" }} />
+            </div>
+
+            {/* Right: card content */}
+            <AnimatedSection className="flex-1 lg:max-w-[54%] order-1 lg:order-2">
+              <div className="flex flex-col h-full px-8 py-10 md:px-12 md:py-14"
+                style={{ backgroundColor: "rgba(167,139,250,0.02)" }}>
+                <div className="h-1 w-32 rounded-full mb-8" style={{ background: `linear-gradient(to right, ${VIOLET}, transparent)` }} />
+
+                <div className="mb-1 flex items-center gap-2">
+                  <span className="rounded-full px-3 py-0.5 text-[10px] font-bold tracking-widest uppercase"
+                    style={{ backgroundColor: "rgba(167,139,250,0.12)", color: VIOLET, border: "1px solid rgba(167,139,250,0.25)" }}>
+                    40 Sesiones
+                  </span>
+                  <span className="rounded-full px-3 py-0.5 text-[10px] font-bold tracking-widest uppercase"
+                    style={{ backgroundColor: "rgba(167,139,250,0.06)", color: "rgba(167,139,250,0.6)" }}>
+                    1 hr c/u
+                  </span>
                 </div>
+                <h2 className="mt-3 text-2xl font-bold text-white md:text-3xl">Programa Metabólico Dinámics</h2>
+                <p className="mt-1.5 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
+                  Programa Metabólico Integral
+                </p>
+                <div className="mt-5 flex items-end gap-2">
+                  <span className="text-4xl font-bold text-white">$380.000</span>
+                  <span className="mb-1 text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>CLP</span>
+                </div>
+                <motion.a
+                  href={AGENDA_URL}
+                  className="mt-5 block w-full rounded-2xl py-3.5 text-center text-sm font-semibold text-white"
+                  style={{ backgroundColor: VIOLET }}
+                  whileHover={{ scale: 1.01, boxShadow: "0 0 28px rgba(167,139,250,0.4)" }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  Agendar Metabólico Dinámics →
+                </motion.a>
 
-                <div className="p-8 flex flex-col gap-8">
-                  <AnimatedItem index={0}>
-                    <div className="rounded-2xl p-5"
-                      style={{ backgroundColor: "rgba(167,139,250,0.07)", border: "1px solid rgba(167,139,250,0.15)" }}>
-                      <p className="text-sm font-semibold text-white mb-2">
-                        Un enfoque científico para reducir grasa corporal y transformar tu metabolismo.
-                      </p>
-                      <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
-                        Bajar de peso no debería depender de dietas restrictivas o métodos que no consideran cómo funciona realmente tu organismo. Cada persona tiene un metabolismo distinto y necesidades específicas.
-                      </p>
+                <div className="mt-8 flex flex-col gap-8">
+                  <div className="rounded-2xl p-5"
+                    style={{ backgroundColor: "rgba(167,139,250,0.07)", border: "1px solid rgba(167,139,250,0.15)" }}>
+                    <p className="text-sm font-semibold text-white mb-2">
+                      Un enfoque científico para reducir grasa corporal y transformar tu metabolismo.
+                    </p>
+                    <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
+                      Bajar de peso no debería depender de dietas restrictivas o métodos que no consideran cómo funciona realmente tu organismo. Cada persona tiene un metabolismo distinto y necesidades específicas.
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="mb-4 text-[11px] font-bold uppercase tracking-widest" style={{ color: "rgba(167,139,250,0.65)" }}>
+                      El enfoque — primero evaluar, luego intervenir
+                    </p>
+                    <div className="flex flex-col gap-2">
+                      {dinamicsApproach.map((item, i) => (
+                        <div key={item} className="flex items-center gap-3 rounded-xl px-4 py-3"
+                          style={{ backgroundColor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                          <span className="flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold shrink-0"
+                            style={{ backgroundColor: "rgba(167,139,250,0.15)", color: VIOLET }}>
+                            {i + 1}
+                          </span>
+                          <span className="text-sm" style={{ color: "rgba(255,255,255,0.75)" }}>{item}</span>
+                        </div>
+                      ))}
                     </div>
-                  </AnimatedItem>
+                  </div>
 
-                  <AnimatedItem index={1}>
-                    <div>
-                      <p className="mb-4 text-[11px] font-bold uppercase tracking-widest" style={{ color: "rgba(167,139,250,0.65)" }}>
-                        El enfoque — primero evaluar, luego intervenir
-                      </p>
-                      <div className="flex flex-col gap-2">
-                        {dinamicsApproach.map((item, i) => (
-                          <div key={item} className="flex items-center gap-3 rounded-xl px-4 py-3"
-                            style={{ backgroundColor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-                            <span className="flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold shrink-0"
-                              style={{ backgroundColor: "rgba(167,139,250,0.15)", color: VIOLET }}>
-                              {i + 1}
-                            </span>
-                            <span className="text-sm" style={{ color: "rgba(255,255,255,0.75)" }}>{item}</span>
+                  <div>
+                    <p className="mb-4 text-[11px] font-bold uppercase tracking-widest" style={{ color: "rgba(167,139,250,0.65)" }}>
+                      Evaluaciones incluidas
+                    </p>
+                    <div className="flex flex-col gap-3">
+                      {dinamicsEvaluations.map((ev) => (
+                        <div key={ev.title} className="flex gap-4">
+                          <span className="text-xl shrink-0 mt-0.5">{ev.icon}</span>
+                          <div>
+                            <p className="text-sm font-semibold text-white">{ev.title}</p>
+                            <p className="mt-0.5 text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.48)" }}>{ev.desc}</p>
                           </div>
-                        ))}
-                      </div>
+                        </div>
+                      ))}
                     </div>
-                  </AnimatedItem>
+                  </div>
 
-                  <AnimatedItem index={2}>
-                    <div>
-                      <p className="mb-4 text-[11px] font-bold uppercase tracking-widest" style={{ color: "rgba(167,139,250,0.65)" }}>
-                        Evaluaciones incluidas
-                      </p>
-                      <div className="flex flex-col gap-3">
-                        {dinamicsEvaluations.map((ev) => (
-                          <div key={ev.title} className="flex gap-4">
-                            <span className="text-xl shrink-0 mt-0.5">{ev.icon}</span>
-                            <div>
-                              <p className="text-sm font-semibold text-white">{ev.title}</p>
-                              <p className="mt-0.5 text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.48)" }}>{ev.desc}</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </AnimatedItem>
-
-                  <AnimatedItem index={3}>
-                    <div>
-                      <p className="mb-4 text-[11px] font-bold uppercase tracking-widest" style={{ color: "rgba(167,139,250,0.65)" }}>
-                        Los pacientes buscan
-                      </p>
-                      <ul className="flex flex-col gap-2.5">
-                        {dinamicsBenefits.map((b) => (
-                          <li key={b} className="flex items-start gap-2.5">
-                            <CheckIcon color={VIOLET} />
-                            <span className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>{b}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </AnimatedItem>
+                  <div>
+                    <p className="mb-4 text-[11px] font-bold uppercase tracking-widest" style={{ color: "rgba(167,139,250,0.65)" }}>
+                      Los pacientes buscan
+                    </p>
+                    <ul className="flex flex-col gap-2.5">
+                      {dinamicsBenefits.map((b) => (
+                        <li key={b} className="flex items-start gap-2.5">
+                          <CheckIcon color={VIOLET} />
+                          <span className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </AnimatedSection>
 
           </div>
         </div>
+
       </section>
 
       {/* ── Why section ──────────────────────────────────────── */}
