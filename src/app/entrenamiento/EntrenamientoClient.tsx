@@ -232,29 +232,6 @@ export function EntrenamientoClient() {
   return (
     <div style={{ backgroundColor: t.bg, minHeight: "100vh" }}>
 
-      {/* ── Navbar mini ─────────────────────────────────────────────── */}
-      <header
-        className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 md:px-10"
-        style={{ backgroundColor: "rgba(255,255,255,0.95)", backdropFilter: "blur(12px)", borderBottom: `1px solid ${t.border}` }}
-      >
-        <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-70">
-          <span className="text-lg font-bold" style={{ color: BRAND, fontFamily: "var(--font-display)" }}>C</span>
-          <div className="h-5 w-px" style={{ backgroundColor: BRAND }} />
-          <span className="text-lg font-bold" style={{ color: BRAND, fontFamily: "var(--font-display)" }}>M</span>
-          <div className="ml-1 flex flex-col leading-none">
-            <span className="text-[9px] font-semibold tracking-[0.18em] uppercase" style={{ color: t.textMuted }}>Centro</span>
-            <span className="text-[9px] font-bold tracking-[0.12em] uppercase" style={{ color: BRAND }}>Metabólico</span>
-          </div>
-        </Link>
-        <a
-          href={AGENDA_URL}
-          className="rounded-xl px-5 py-2 text-sm font-semibold text-white"
-          style={{ backgroundColor: BRAND }}
-        >
-          Agendar →
-        </a>
-      </header>
-
       {/* ── Hero ────────────────────────────────────────────────────── */}
       <section className="px-6 py-16 md:px-10 md:py-20 text-center" style={{ backgroundColor: t.bgSoft, borderBottom: `1px solid ${t.border}` }}>
         <p className="mb-3 text-xs font-semibold uppercase tracking-widest" style={{ color: BRAND }}>

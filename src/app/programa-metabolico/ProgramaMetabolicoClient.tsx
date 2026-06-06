@@ -3,7 +3,6 @@
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
 import { Footer } from "@/components/sections/Footer";
 
@@ -183,28 +182,6 @@ export function ProgramaMetabolicoClient() {
 
   return (
     <div style={{ backgroundColor: "var(--bg)", color: "white", minHeight: "100vh" }}>
-
-      {/* ── Fixed mini header ────────────────────────────────── */}
-      <header
-        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 md:px-10"
-        style={{ backgroundColor: "rgba(3,8,15,0.55)", backdropFilter: "blur(18px)" }}
-      >
-        <Link href="/" className="flex items-center gap-2 text-white/70 hover:text-white transition-colors text-sm">
-          ← Inicio
-        </Link>
-        <div className="flex items-center gap-2">
-          <span className="text-base font-bold" style={{ color: BRAND, fontFamily: "var(--font-display)" }}>C</span>
-          <div className="h-4 w-px" style={{ backgroundColor: BRAND, opacity: 0.4 }} />
-          <span className="text-base font-bold" style={{ color: BRAND, fontFamily: "var(--font-display)" }}>M</span>
-        </div>
-        <a
-          href={AGENDA_URL}
-          className="rounded-xl px-4 py-2 text-xs font-bold text-white"
-          style={{ backgroundColor: BRAND }}
-        >
-          Agendar →
-        </a>
-      </header>
 
       {/* ── Scroll hero ─────────────────────────────────────── */}
       <section ref={heroRef} style={{ height: "320vh" }} className="relative">

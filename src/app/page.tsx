@@ -1,4 +1,3 @@
-import { Navbar } from "@/components/sections/Navbar";
 import { EnergySection } from "@/components/sections/EnergySection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { MethodologySection } from "@/components/sections/MethodologySection";
@@ -11,7 +10,6 @@ import { Footer } from "@/components/sections/Footer";
 export default function Home() {
   return (
     <>
-      <Navbar />
       <main>
         <EnergySection />
         <ServicesSection />

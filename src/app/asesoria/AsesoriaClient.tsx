@@ -61,47 +61,6 @@ export function AsesoriaClient() {
   return (
     <div style={{ backgroundColor: t.bg, color: t.text }} className="min-h-screen font-sans">
 
-      {/* ── Navbar ─────────────────────────────────────────────────── */}
-      <header
-        className="fixed top-0 left-0 right-0 z-50"
-        style={{ backgroundColor: "rgba(255,255,255,0.95)", backdropFilter: "blur(12px)", borderBottom: `1px solid ${t.border}` }}
-      >
-        <div className="mx-auto flex max-w-[1300px] items-center justify-between px-6 py-4 md:px-8">
-          <Link
-            href="/"
-            className="flex items-center gap-2 text-sm font-medium transition-colors cursor-pointer"
-            style={{ color: t.textMid }}
-            aria-label="Volver al inicio"
-          >
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4" aria-hidden="true">
-              <path d="M12 4L6 10l6 6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            Volver al inicio
-          </Link>
-
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <span className="text-lg font-bold" style={{ color: t.brand }}>C</span>
-            <div className="h-5 w-px" style={{ backgroundColor: t.brand }} />
-            <span className="text-lg font-bold" style={{ color: t.brand }}>M</span>
-            <div className="ml-2 flex flex-col">
-              <span className="text-[9px] font-normal tracking-[0.18em] uppercase" style={{ color: t.textMuted }}>Centro</span>
-              <span className="text-[9px] font-bold tracking-[0.1em] uppercase" style={{ color: t.brand }}>Metabólico</span>
-            </div>
-          </div>
-
-          <a
-            href={AGENDA_URL}
-            className="hidden rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-all cursor-pointer md:block"
-            style={{ backgroundColor: t.brand }}
-            onMouseEnter={e => (e.currentTarget.style.backgroundColor = t.brandDark)}
-            onMouseLeave={e => (e.currentTarget.style.backgroundColor = t.brand)}
-          >
-            Agendar
-          </a>
-        </div>
-      </header>
-
       {/* ── Hero ───────────────────────────────────────────────────── */}
       <section className="pt-32 pb-14 px-6 text-center md:px-8" style={{ backgroundColor: t.bgSoft }}>
         <motion.div

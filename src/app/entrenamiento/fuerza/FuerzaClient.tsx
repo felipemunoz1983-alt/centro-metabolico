@@ -3,7 +3,6 @@
 import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const AGENDA_URL = "/agendar";
@@ -88,20 +87,6 @@ export function FuerzaClient() {
 
   return (
     <div>
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 md:px-10"
-        style={{ backgroundColor: "rgba(0,0,0,0.4)", backdropFilter: "blur(16px)" }}>
-        <Link href="/entrenamiento" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm">← Programas</Link>
-        <div className="flex items-center gap-2">
-          <span className="text-base font-bold" style={{ color: BRAND, fontFamily: "var(--font-display)" }}>C</span>
-          <div className="h-4 w-px" style={{ backgroundColor: BRAND, opacity: 0.4 }} />
-          <span className="text-base font-bold" style={{ color: BRAND, fontFamily: "var(--font-display)" }}>M</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Link href="/programa-metabolico" className="hidden sm:block rounded-xl px-4 py-2 text-xs font-bold text-white" style={{ backgroundColor: BRAND }}>Programa Metabólico</Link>
-          <a href={AGENDA_URL} className="rounded-xl px-4 py-2 text-xs font-bold text-white" style={{ backgroundColor: ORANGE }}>Agendar →</a>
-        </div>
-      </header>
-
       <section ref={heroRef} style={{ height: "320vh" }} className="relative">
         <div className="sticky top-0 h-screen min-h-[100svh] overflow-hidden bg-[#0A0A0A]" style={{ transform: "translateZ(0)" }}>
           <div ref={bgImgRef} className="absolute inset-0" style={{ transformOrigin: "50% 30%", willChange: "transform" }}>

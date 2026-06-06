@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Montserrat, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+import { Navbar } from "@/components/sections/Navbar";
 
 const geistSans = Geist({
   variable: "--font-sans",
@@ -44,7 +45,10 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${bebasNeue.variable} h-full`}
     >
       <body className="min-h-full">
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        <SmoothScrollProvider>
+          <Navbar />
+          {children}
+        </SmoothScrollProvider>
       </body>
     </html>
   );
