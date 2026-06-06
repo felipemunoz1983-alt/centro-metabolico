@@ -167,28 +167,24 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
         {/* Tagline */}
         <p className="mb-5 text-sm font-medium text-white/70">{card.tagline}</p>
 
-        {/* Price + expand */}
-        <div className="flex w-full items-center justify-between">
-          <div>
-            <span className="text-2xl font-bold text-white">{card.price}</span>
-            <span className="ml-2 text-xs text-white/60">{card.sessions}</span>
-          </div>
+        {/* Expand */}
+        <div className="flex w-full items-center justify-center">
           {card.href ? (
             <Link
               href={card.href}
-              className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-white transition-all"
-              style={{ backgroundColor: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)" }}
+              className="flex items-center justify-center gap-2 rounded-2xl px-8 py-3.5 text-base font-bold text-white w-full transition-all"
+              style={{ backgroundColor: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.35)" }}
             >
-              Ver más <span>+</span>
+              Ver más <span className="text-lg">+</span>
             </Link>
           ) : (
             <button
               onClick={() => setOpen(!open)}
-              className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-white transition-all"
-              style={{ backgroundColor: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)" }}
+              className="flex items-center justify-center gap-2 rounded-2xl px-8 py-3.5 text-base font-bold text-white w-full transition-all"
+              style={{ backgroundColor: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.35)" }}
             >
               {open ? "Cerrar" : "Ver más"}
-              <span style={{ transform: open ? "rotate(45deg)" : "rotate(0)", display: "inline-block", transition: "transform 0.2s" }}>+</span>
+              <span className="text-lg" style={{ transform: open ? "rotate(45deg)" : "rotate(0)", display: "inline-block", transition: "transform 0.2s" }}>+</span>
             </button>
           )}
         </div>
