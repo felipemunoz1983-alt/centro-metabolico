@@ -94,24 +94,6 @@ const cards = [
       "Sesiones enfocadas en recuperación y bienestar corporal",
     ],
   },
-  {
-    id: "recovery",
-    badge: "RECOVERY",
-    name: "Recovery\nActivo",
-    tagline: "Regeneración · Descanso · Rendimiento",
-    image: `${BP}/cm4.webp`,
-    href: "/entrenamiento/recovery",
-    gradient: "linear-gradient(135deg, #881337 0%, #F43F5E 100%)",
-    color: "#F43F5E",
-    sessions: "4 sesiones / mes",
-    price: "$50.000",
-    bullets: [
-      "Técnicas de recuperación activa para deportistas y personas activas",
-      "Reduce la fatiga muscular y acelera la regeneración tisular",
-      "Optimiza tu rendimiento potenciando la calidad del descanso",
-      "Grupos reducidos con guía profesional en cada sesión",
-    ],
-  },
 ];
 
 /* ── Tarjeta con parallax independiente ─────────────────────────── */
@@ -286,7 +268,7 @@ export function EntrenamientoClient() {
           <span style={{ color: BRAND }}>Transforma tu cuerpo.</span>
         </h1>
         <p className="mx-auto max-w-[50ch] text-base leading-relaxed" style={{ color: t.textMid }}>
-          Cinco programas con tecnología de precisión y metodología basada en evidencia. Cada uno diseñado para un objetivo específico.
+          Cuatro programas con tecnología de precisión y metodología basada en evidencia. Cada uno diseñado para un objetivo específico.
         </p>
       </section>
 

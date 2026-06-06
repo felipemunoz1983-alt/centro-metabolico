@@ -10,7 +10,6 @@ const navLinks = [
   { label: "Reto 21 días", href: "/#metodologia" },
   { label: "Entrenamiento", href: "/entrenamiento" },
   { label: "Taller Nutricional", href: "https://felipemunoz1983-alt.github.io/tallernutricional/", external: true },
-  { label: "Recovery", href: "/entrenamiento/recovery" },
   { label: "Programa Metabólico", href: "/programa-metabolico" },
 ];
 
