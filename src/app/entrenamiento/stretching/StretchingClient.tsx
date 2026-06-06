@@ -95,7 +95,10 @@ export function StretchingClient() {
           <div className="h-4 w-px" style={{ backgroundColor: BRAND, opacity: 0.4 }} />
           <span className="text-base font-bold" style={{ color: BRAND, fontFamily: "var(--font-display)" }}>M</span>
         </div>
-        <a href={AGENDA_URL} className="rounded-xl px-4 py-2 text-xs font-bold text-white" style={{ backgroundColor: BRAND }}>Agendar →</a>
+        <div className="flex items-center gap-2">
+          <Link href="/programa-metabolico" className="hidden sm:block rounded-xl px-4 py-2 text-xs font-bold text-white" style={{ backgroundColor: BRAND }}>Programa Metabólico</Link>
+          <a href={AGENDA_URL} className="rounded-xl px-4 py-2 text-xs font-bold text-white" style={{ backgroundColor: BRAND }}>Agendar →</a>
+        </div>
       </header>
 
       <section ref={heroRef} style={{ height: "320vh" }} className="relative">
