@@ -10,8 +10,9 @@ const navLinks = [
   { label: "Reto 21 días", href: "/#metodologia" },
   { label: "Entrenamiento", href: "/entrenamiento" },
   { label: "Taller Nutricional", href: "https://felipemunoz1983-alt.github.io/tallernutricional/", external: true },
-  { label: "Programa Metabólico", href: "/programa-metabolico" },
 ];
+
+const PROGRAMA_HREF = "/programa-metabolico";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -78,6 +79,21 @@ export function Navbar() {
 
           {/* CTA */}
           <div className="hidden md:flex items-center gap-3">
+            <Link
+              href={PROGRAMA_HREF}
+              className="rounded-xl px-5 py-2 text-sm font-semibold text-white transition-all"
+              style={{ backgroundColor: "var(--brand)" }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "var(--brand-light)";
+                e.currentTarget.style.boxShadow = "0 0 20px rgba(0,174,239,0.35)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "var(--brand)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            >
+              Programa Metabólico
+            </Link>
             <Link
               href="/agendar"
               className="rounded-xl px-5 py-2 text-sm font-semibold text-white transition-all"
@@ -164,10 +180,19 @@ export function Navbar() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
+              className="flex flex-col items-center gap-3"
             >
               <Link
+                href={PROGRAMA_HREF}
+                className="rounded-2xl px-8 py-3.5 font-semibold text-white inline-block"
+                style={{ backgroundColor: "var(--brand)" }}
+                onClick={() => setMenuOpen(false)}
+              >
+                Programa Metabólico
+              </Link>
+              <Link
                 href="/agendar"
-                className="mt-4 rounded-2xl px-8 py-3.5 font-semibold text-white inline-block"
+                className="rounded-2xl px-8 py-3.5 font-semibold text-white inline-block"
                 style={{ backgroundColor: "var(--brand)" }}
                 onClick={() => setMenuOpen(false)}
               >
