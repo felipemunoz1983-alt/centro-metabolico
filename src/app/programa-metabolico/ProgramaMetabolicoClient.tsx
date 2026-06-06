@@ -208,7 +208,7 @@ export function ProgramaMetabolicoClient() {
 
       {/* ── Scroll hero ─────────────────────────────────────── */}
       <section ref={heroRef} style={{ height: "320vh" }} className="relative">
-        <div className="sticky top-0 h-screen overflow-hidden bg-[#03080F]">
+        <div className="sticky top-0 h-screen min-h-[100svh] overflow-hidden bg-[#03080F]" style={{ transform: "translateZ(0)" }}>
 
           {/* Background image */}
           <motion.div
@@ -245,14 +245,14 @@ export function ProgramaMetabolicoClient() {
 
           {/* ── Phase 1 ─────────────────────────────── */}
           <motion.div
-            className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none"
+            className="absolute inset-0 flex flex-col items-center justify-center px-6 pt-16 text-center pointer-events-none"
             style={{ opacity: p1Opacity, y: p1Y }}
           >
             <span className="mb-5 rounded-full px-5 py-2 text-xs font-bold tracking-widest uppercase"
               style={{ backgroundColor: "rgba(0,174,239,0.18)", color: BRAND, border: "1px solid rgba(0,174,239,0.35)" }}>
               Programa Metabólico
             </span>
-            <h2 className="text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl"
+            <h2 className="text-4xl leading-[1.05] text-white sm:text-5xl md:text-7xl lg:text-8xl"
               style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
               Transforma tu cuerpo<br />
               <span style={{ color: BRAND }}>con ciencia real.</span>
@@ -261,14 +261,14 @@ export function ProgramaMetabolicoClient() {
 
           {/* ── Phase 2 ─────────────────────────────── */}
           <motion.div
-            className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none"
+            className="absolute inset-0 flex flex-col items-center justify-center px-6 pt-16 text-center pointer-events-none"
             style={{ opacity: p2Opacity, y: p2Y }}
           >
             <span className="mb-5 rounded-full px-5 py-2 text-xs font-bold tracking-widest uppercase"
               style={{ backgroundColor: "rgba(167,139,250,0.18)", color: VIOLET, border: "1px solid rgba(167,139,250,0.35)" }}>
               El enfoque
             </span>
-            <h2 className="text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl"
+            <h2 className="text-4xl leading-[1.05] text-white sm:text-5xl md:text-7xl lg:text-8xl"
               style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
               Primero evaluar.<br />
               <span style={{ color: VIOLET }}>Luego transformar.</span>
@@ -277,21 +277,21 @@ export function ProgramaMetabolicoClient() {
 
           {/* ── Phase 3 CTA ─────────────────────────── */}
           <motion.div
-            className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center"
+            className="absolute inset-0 flex flex-col items-center justify-center px-6 pt-16 text-center"
             style={{ opacity: p3Opacity, y: p3Y }}
           >
-            <div className="flex flex-col items-center gap-4 mb-8">
+            <div className="flex flex-col items-center gap-4 mb-6">
               <span className="rounded-full px-5 py-2 text-xs font-bold tracking-widest uppercase"
                 style={{ backgroundColor: "rgba(0,174,239,0.18)", color: BRAND, border: "1px solid rgba(0,174,239,0.35)" }}>
                 Dos programas · Un objetivo
               </span>
-              <h2 className="text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl"
+              <h2 className="text-4xl leading-[1.05] text-white sm:text-5xl md:text-7xl lg:text-8xl"
                 style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
                 Elige tu camino<br />
                 <span style={{ color: BRAND }}>hacia el cambio.</span>
               </h2>
             </div>
-            <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <div className="flex flex-col items-stretch gap-3 w-full max-w-xs sm:max-w-none sm:flex-row sm:justify-center sm:items-center">
               <div className="rounded-2xl px-6 py-3 text-center"
                 style={{ backgroundColor: "rgba(0,174,239,0.12)", border: "1px solid rgba(0,174,239,0.3)" }}>
                 <div className="text-xs font-bold tracking-widest uppercase" style={{ color: BRAND }}>Plan Metabólico Pro</div>
@@ -307,7 +307,7 @@ export function ProgramaMetabolicoClient() {
             </div>
             <motion.a
               href={AGENDA_URL}
-              className="mt-8 inline-flex items-center gap-2 rounded-2xl px-10 py-4 text-base font-bold text-white"
+              className="mt-6 w-full max-w-xs sm:w-auto inline-flex items-center justify-center gap-2 rounded-2xl px-10 py-4 text-base font-bold text-white"
               style={{ backgroundColor: BRAND }}
               whileHover={{ scale: 1.05, boxShadow: "0 0 48px rgba(0,174,239,0.6)" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -396,7 +396,7 @@ export function ProgramaMetabolicoClient() {
             </AnimatedSection>
 
             {/* Right: cm3 image with parallax */}
-            <div className="relative lg:flex-1 h-72 lg:h-auto overflow-hidden">
+            <div className="relative lg:flex-1 h-80 sm:h-96 lg:h-auto overflow-hidden">
               <motion.div className="absolute inset-0" style={{ y: imgY }}>
                 <Image
                   src={`${BP}/cm3.webp`}
@@ -423,7 +423,7 @@ export function ProgramaMetabolicoClient() {
           <div className="flex flex-col lg:flex-row lg:items-stretch">
 
             {/* Left: cm4 image with parallax */}
-            <div className="relative lg:flex-1 h-72 lg:h-auto overflow-hidden order-2 lg:order-1">
+            <div className="relative lg:flex-1 h-80 sm:h-96 lg:h-auto overflow-hidden order-1 lg:order-1">
               <motion.div className="absolute inset-0" style={{ y: imgY2 }}>
                 <Image
                   src={`${BP}/cm4.webp`}
@@ -442,7 +442,7 @@ export function ProgramaMetabolicoClient() {
             </div>
 
             {/* Right: card content */}
-            <AnimatedSection className="flex-1 lg:max-w-[54%] order-1 lg:order-2">
+            <AnimatedSection className="flex-1 lg:max-w-[54%] order-2 lg:order-2">
               <div className="flex flex-col h-full px-8 py-10 md:px-12 md:py-14"
                 style={{ backgroundColor: "rgba(167,139,250,0.02)" }}>
                 <div className="h-1 w-32 rounded-full mb-8" style={{ background: `linear-gradient(to right, ${VIOLET}, transparent)` }} />
@@ -596,10 +596,10 @@ export function ProgramaMetabolicoClient() {
           <p className="mb-10 mx-auto max-w-[44ch] text-lg leading-relaxed text-sky-100/45">
             Agenda una evaluación inicial y nuestro equipo te orientará hacia el programa más adecuado para tus objetivos.
           </p>
-          <div className="flex flex-col gap-3 items-center sm:flex-row sm:justify-center">
+          <div className="flex flex-col gap-3 items-stretch sm:items-center sm:flex-row sm:justify-center">
             <motion.a
               href={AGENDA_URL}
-              className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-sm font-semibold text-white"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl px-8 py-4 text-sm font-semibold text-white"
               style={{ backgroundColor: BRAND }}
               whileHover={{ scale: 1.02, boxShadow: "0 0 40px rgba(0,174,239,0.45)" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -609,7 +609,7 @@ export function ProgramaMetabolicoClient() {
             <motion.a
               href="https://wa.me/56991377915"
               target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-sm font-semibold text-white"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl px-8 py-4 text-sm font-semibold text-white"
               style={{ backgroundColor: "#25D366" }}
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
