@@ -42,8 +42,8 @@ const proFeatures = [
   {
     title: "Evaluación de tu metabolismo",
     items: [
-      "Mediremos tu capacidad aeróbica y nivel de condición física.",
-      "Planificamos entrenamientos más eficientes y adaptados a tu nivel.",
+      "Conocerás cómo funciona tu metabolismo y cuánta energía consume tu cuerpo en reposo.",
+      "Determinaremos cuánta grasa quemas en reposo para diseñar un plan nutricional preciso y efectivo.",
     ],
   },
   {
