@@ -97,8 +97,8 @@ export function ServicesSection() {
                     {/* Felipe — imagen pre-recortada, sin zoom CSS */}
                     <div className="relative flex-1 overflow-hidden" style={{ backgroundColor: "rgba(0,20,40,0.32)" }}>
                       <Image src={`${BP}/felipe.webp`} alt="" fill className="object-cover"
-                        style={{ objectPosition: "50% 20%", filter: "grayscale(25%) contrast(1.05) brightness(0.78)" }} sizes="25vw" />
-                      <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,20,40,0.32)" }} />
+                        style={{ objectPosition: "50% 0%", filter: "grayscale(20%) contrast(1.05) brightness(0.90)" }} sizes="25vw" />
+                      <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,20,40,0.18)" }} />
                     </div>
                     {/* Global gradient overlay — stronger on left third for text */}
                     <div className="absolute inset-0" style={{
