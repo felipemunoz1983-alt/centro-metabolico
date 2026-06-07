@@ -96,7 +96,7 @@ export function ServicesSection() {
                     </div>
                     {/* Felipe — zoom 2.4× para eliminar márgenes blancos */}
                     <div className="relative flex-1 overflow-hidden" style={{ backgroundColor: "rgba(0,20,40,0.32)" }}>
-                      <div className="absolute inset-0" style={{ transform: "scale(1.7)", transformOrigin: "50% 25%" }}>
+                      <div className="absolute inset-0" style={{ transform: "scale(3.2)", transformOrigin: "50% 38%" }}>
                         <Image src={`${BP}/felipe.webp`} alt="" fill className="object-cover object-top"
                           style={{ filter: "grayscale(25%) contrast(1.05) brightness(0.78)" }} sizes="25vw" />
                       </div>
