@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
 import { EyebrowBadge } from "@/components/ui/EyebrowBadge";
+
+const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const services = [
   {
@@ -73,10 +76,28 @@ export function ServicesSection() {
           {services.map((service, i) => (
             <AnimatedItem key={service.title} index={i}>
               <motion.div
-                className="card-surface group h-full cursor-default p-7 transition-all duration-300"
+                className="card-surface group h-full cursor-default p-7 transition-all duration-300 relative overflow-hidden"
                 whileHover={{ y: -4, borderColor: "rgba(0,174,239,0.28)" }}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
               >
+                {/* Doctor photos background — card 01 only */}
+                {i === 0 && (
+                  <div className="absolute inset-0 flex pointer-events-none">
+                    <div className="relative flex-1 overflow-hidden">
+                      <Image src={`${BP}/barbara.webp`} alt="" fill className="object-cover object-top" sizes="25vw" />
+                    </div>
+                    <div className="relative flex-1 overflow-hidden">
+                      <Image src={`${BP}/VALE_WEB.webp`} alt="" fill className="object-cover object-top" sizes="25vw" />
+                    </div>
+                    <div className="relative flex-1 overflow-hidden">
+                      <Image src={`${BP}/felipe.webp`} alt="" fill className="object-cover object-top" sizes="25vw" />
+                    </div>
+                    {/* Dark overlay for text readability */}
+                    <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(3,8,20,0.82) 0%, rgba(3,8,20,0.65) 50%, rgba(3,8,20,0.88) 100%)" }} />
+                  </div>
+                )}
+
+                <div className="relative z-10">
                 <div className="flex items-start gap-5">
                   {/* Icon */}
                   <div
@@ -134,6 +155,7 @@ export function ServicesSection() {
                     </a>
                   )}
                 </div>
+                </div>{/* end relative z-10 */}
               </motion.div>
             </AnimatedItem>
           ))}
