@@ -94,10 +94,10 @@ export function ServicesSection() {
                         style={{ objectPosition: "50% 8%", filter: "grayscale(25%) contrast(1.05) brightness(0.78)" }} sizes="25vw" />
                       <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,20,40,0.32)" }} />
                     </div>
-                    {/* Felipe — imagen pre-recortada, sin zoom CSS */}
+                    {/* Felipe — ligero zoom para cubrir espacio blanco inferior */}
                     <div className="relative flex-1 overflow-hidden" style={{ backgroundColor: "rgba(0,20,40,0.32)" }}>
                       <Image src={`${BP}/felipe.webp`} alt="" fill className="object-cover"
-                        style={{ objectPosition: "50% 0%", filter: "grayscale(20%) contrast(1.05) brightness(0.90)" }} sizes="25vw" />
+                        style={{ objectPosition: "50% 0%", filter: "grayscale(20%) contrast(1.05) brightness(0.90)", transform: "scale(1.15)", transformOrigin: "50% 0%" }} sizes="25vw" />
                       <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,20,40,0.18)" }} />
                     </div>
                     {/* Global gradient overlay — stronger on left third for text */}
