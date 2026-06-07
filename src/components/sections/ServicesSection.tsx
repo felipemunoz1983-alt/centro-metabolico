@@ -83,17 +83,34 @@ export function ServicesSection() {
                 {/* Doctor photos background — card 01 only */}
                 {i === 0 && (
                   <div className="absolute inset-0 flex pointer-events-none">
-                    <div className="relative flex-1 overflow-hidden">
-                      <Image src={`${BP}/barbara.webp`} alt="" fill className="object-cover object-top" sizes="25vw" />
-                    </div>
-                    <div className="relative flex-1 overflow-hidden">
-                      <Image src={`${BP}/VALE_WEB.webp`} alt="" fill className="object-cover object-top" sizes="25vw" />
-                    </div>
-                    <div className="relative flex-1 overflow-hidden">
-                      <Image src={`${BP}/felipe.webp`} alt="" fill className="object-cover object-top" sizes="25vw" />
-                    </div>
-                    {/* Dark overlay for text readability */}
-                    <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(3,8,20,0.82) 0%, rgba(3,8,20,0.65) 50%, rgba(3,8,20,0.88) 100%)" }} />
+                    {[
+                      { src: `${BP}/barbara.webp`, pos: "50% 10%" },
+                      { src: `${BP}/VALE_WEB.webp`, pos: "50% 8%"  },
+                      { src: `${BP}/felipe.webp`,   pos: "50% 5%"  },
+                    ].map(({ src, pos }, idx) => (
+                      <div key={idx} className="relative flex-1 overflow-hidden">
+                        <Image
+                          src={src}
+                          alt=""
+                          fill
+                          className="object-cover"
+                          style={{
+                            objectPosition: pos,
+                            filter: "grayscale(25%) contrast(1.05) brightness(0.78)",
+                          }}
+                          sizes="25vw"
+                        />
+                        {/* Per-column brand tint */}
+                        <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,20,40,0.32)" }} />
+                      </div>
+                    ))}
+                    {/* Global gradient overlay */}
+                    <div className="absolute inset-0" style={{
+                      background: "linear-gradient(to bottom, rgba(3,8,20,0.72) 0%, rgba(3,8,20,0.42) 40%, rgba(3,8,20,0.80) 100%)",
+                    }} />
+                    {/* Vertical separators */}
+                    <div className="absolute inset-y-0" style={{ left: "33.33%", width: 1, backgroundColor: "rgba(0,174,239,0.15)" }} />
+                    <div className="absolute inset-y-0" style={{ left: "66.66%", width: 1, backgroundColor: "rgba(0,174,239,0.15)" }} />
                   </div>
                 )}
 
