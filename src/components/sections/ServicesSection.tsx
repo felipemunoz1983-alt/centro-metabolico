@@ -102,9 +102,12 @@ export function ServicesSection() {
                       </div>
                       <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,20,40,0.32)" }} />
                     </div>
-                    {/* Global gradient overlay */}
+                    {/* Global gradient overlay — stronger on left third for text */}
                     <div className="absolute inset-0" style={{
-                      background: "linear-gradient(to bottom, rgba(3,8,20,0.72) 0%, rgba(3,8,20,0.42) 40%, rgba(3,8,20,0.80) 100%)",
+                      background: "linear-gradient(to right, rgba(3,8,20,0.88) 0%, rgba(3,8,20,0.72) 33%, rgba(3,8,20,0.55) 100%)",
+                    }} />
+                    <div className="absolute inset-0" style={{
+                      background: "linear-gradient(to bottom, rgba(3,8,20,0.60) 0%, rgba(3,8,20,0.30) 50%, rgba(3,8,20,0.75) 100%)",
                     }} />
                     {/* Vertical separators */}
                     <div className="absolute inset-y-0" style={{ left: "33.33%", width: 1, backgroundColor: "rgba(0,174,239,0.15)" }} />
@@ -114,13 +117,15 @@ export function ServicesSection() {
 
                 <div className="relative z-10">
                 <div className="flex items-start gap-5">
-                  {/* Icon */}
-                  <div
-                    className="mt-0.5 flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl"
-                    style={{ backgroundColor: "rgba(0,174,239,0.12)", color: "var(--brand)" }}
-                  >
-                    {service.icon}
-                  </div>
+                  {/* Icon — hidden on card 01 (has photo background) */}
+                  {i !== 0 && (
+                    <div
+                      className="mt-0.5 flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl"
+                      style={{ backgroundColor: "rgba(0,174,239,0.12)", color: "var(--brand)" }}
+                    >
+                      {service.icon}
+                    </div>
+                  )}
 
                   {/* Number */}
                   <span
@@ -138,7 +143,7 @@ export function ServicesSection() {
                   {service.title}
                 </h3>
 
-                <p className="mb-5 text-sm leading-relaxed text-sky-100/45">
+                <p className={`mb-5 text-sm leading-relaxed ${i === 0 ? "text-sky-100/80" : "text-sky-100/45"}`}>
                   {service.description}
                 </p>
 
