@@ -146,7 +146,7 @@ export function ServicesSection() {
                 </p>
 
                 {/* Button */}
-                <div className="mt-6">
+                <div className={`mt-6 ${i === 0 ? "flex justify-center" : ""}`}>
                   {(service as typeof service & { href?: string }).href ? (
                     <Link
                       href={(service as typeof service & { href?: string }).href!}
@@ -157,7 +157,7 @@ export function ServicesSection() {
                         color: "var(--brand-light)",
                       }}
                     >
-                      Más información →
+                      Más información
                     </Link>
                   ) : (
                     <a
@@ -169,7 +169,7 @@ export function ServicesSection() {
                         color: "var(--brand-light)",
                       }}
                     >
-                      Más información →
+                      Más información
                     </a>
                   )}
                 </div>
