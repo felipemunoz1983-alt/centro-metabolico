@@ -84,20 +84,25 @@ export function ServicesSection() {
                 {i === 0 && (
                   <div className="absolute inset-0 flex pointer-events-none">
                     {[
-                      { src: `${BP}/barbara.webp`, pos: "50% 10%", bg: "#ffffff",        filter: "contrast(1.05) brightness(1.0)"                   },
-                      { src: `${BP}/VALE_WEB.webp`, pos: "50% 8%",  bg: "rgba(0,20,40,0.32)", filter: "grayscale(25%) contrast(1.05) brightness(0.78)" },
-                      { src: `${BP}/felipe.webp`,   pos: "50% 5%",  bg: "rgba(0,20,40,0.32)", filter: "grayscale(25%) contrast(1.05) brightness(0.78)" },
-                    ].map(({ src, pos, bg, filter }, idx) => (
+                      // Barbara: body shot, face ~18% from top → zoom 1.7x anchored at face
+                      { src: `${BP}/barbara.webp`,  bg: "#ffffff",             filter: "contrast(1.05) brightness(1.0)",                    scale: 1.7,  origin: "50% 16%" },
+                      // Valeska: selfie, face already large → mild zoom, anchor at face
+                      { src: `${BP}/VALE_WEB.webp`, bg: "rgba(0,20,40,0.32)", filter: "grayscale(25%) contrast(1.05) brightness(0.78)",    scale: 1.25, origin: "50% 22%" },
+                      // Felipe: padded photo, face at ~38% → heavy zoom to cut white margins
+                      { src: `${BP}/felipe.webp`,   bg: "rgba(0,20,40,0.32)", filter: "grayscale(25%) contrast(1.05) brightness(0.78)",    scale: 2.4,  origin: "50% 40%" },
+                    ].map(({ src, bg, filter, scale, origin }, idx) => (
                       <div key={idx} className="relative flex-1 overflow-hidden" style={{ backgroundColor: bg }}>
-                        <Image
-                          src={src}
-                          alt=""
-                          fill
-                          className="object-cover"
-                          style={{ objectPosition: pos, filter }}
-                          sizes="25vw"
-                        />
-                        {/* Per-column tint */}
+                        <div className="absolute inset-0" style={{ transform: `scale(${scale})`, transformOrigin: origin }}>
+                          <Image
+                            src={src}
+                            alt=""
+                            fill
+                            className="object-cover object-top"
+                            style={{ filter }}
+                            sizes="25vw"
+                          />
+                        </div>
+                        {/* Per-column tint for dark photos */}
                         {idx > 0 && <div className="absolute inset-0" style={{ backgroundColor: bg }} />}
                       </div>
                     ))}
