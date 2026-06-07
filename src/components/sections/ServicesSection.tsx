@@ -83,29 +83,25 @@ export function ServicesSection() {
                 {/* Doctor photos background — card 01 only */}
                 {i === 0 && (
                   <div className="absolute inset-0 flex pointer-events-none">
-                    {[
-                      // Barbara: body shot, face ~18% from top → zoom 1.7x anchored at face
-                      { src: `${BP}/barbara.webp`,  bg: "#ffffff",             filter: "contrast(1.05) brightness(1.0)",                    scale: 1.7,  origin: "50% 16%" },
-                      // Valeska: selfie, face already large → mild zoom, anchor at face
-                      { src: `${BP}/VALE_WEB.webp`, bg: "rgba(0,20,40,0.32)", filter: "grayscale(25%) contrast(1.05) brightness(0.78)",    scale: 1.25, origin: "50% 22%" },
-                      // Felipe: padded photo, face at ~38% → heavy zoom to cut white margins
-                      { src: `${BP}/felipe.webp`,   bg: "rgba(0,20,40,0.32)", filter: "grayscale(25%) contrast(1.05) brightness(0.78)",    scale: 2.4,  origin: "50% 40%" },
-                    ].map(({ src, bg, filter, scale, origin }, idx) => (
-                      <div key={idx} className="relative flex-1 overflow-hidden" style={{ backgroundColor: bg }}>
-                        <div className="absolute inset-0" style={{ transform: `scale(${scale})`, transformOrigin: origin }}>
-                          <Image
-                            src={src}
-                            alt=""
-                            fill
-                            className="object-cover object-top"
-                            style={{ filter }}
-                            sizes="25vw"
-                          />
-                        </div>
-                        {/* Per-column tint for dark photos */}
-                        {idx > 0 && <div className="absolute inset-0" style={{ backgroundColor: bg }} />}
+                    {/* Bárbara — sin zoom */}
+                    <div className="relative flex-1 overflow-hidden" style={{ backgroundColor: "#ffffff" }}>
+                      <Image src={`${BP}/barbara.webp`} alt="" fill className="object-cover"
+                        style={{ objectPosition: "50% 10%", filter: "contrast(1.05) brightness(1.0)" }} sizes="25vw" />
+                    </div>
+                    {/* Valeska — sin zoom */}
+                    <div className="relative flex-1 overflow-hidden" style={{ backgroundColor: "rgba(0,20,40,0.32)" }}>
+                      <Image src={`${BP}/VALE_WEB.webp`} alt="" fill className="object-cover"
+                        style={{ objectPosition: "50% 8%", filter: "grayscale(25%) contrast(1.05) brightness(0.78)" }} sizes="25vw" />
+                      <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,20,40,0.32)" }} />
+                    </div>
+                    {/* Felipe — zoom 2.4× para eliminar márgenes blancos */}
+                    <div className="relative flex-1 overflow-hidden" style={{ backgroundColor: "rgba(0,20,40,0.32)" }}>
+                      <div className="absolute inset-0" style={{ transform: "scale(2.4)", transformOrigin: "50% 40%" }}>
+                        <Image src={`${BP}/felipe.webp`} alt="" fill className="object-cover object-top"
+                          style={{ filter: "grayscale(25%) contrast(1.05) brightness(0.78)" }} sizes="25vw" />
                       </div>
-                    ))}
+                      <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,20,40,0.32)" }} />
+                    </div>
                     {/* Global gradient overlay */}
                     <div className="absolute inset-0" style={{
                       background: "linear-gradient(to bottom, rgba(3,8,20,0.72) 0%, rgba(3,8,20,0.42) 40%, rgba(3,8,20,0.80) 100%)",
