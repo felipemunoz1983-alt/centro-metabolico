@@ -165,6 +165,22 @@ export function AsesoriaClient() {
             )}
 
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px]">
+              {/* Bárbara photo — mobile only */}
+              <div className="relative lg:hidden h-56 overflow-hidden" style={{ borderBottom: `1px solid ${t.border}` }}>
+                <Image
+                  src={`${BP}/barbara.webp`}
+                  alt="Dra. Bárbara Plass Villanueva, Médico Cirujano"
+                  fill
+                  className="object-cover object-top"
+                  sizes="100vw"
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-4"
+                  style={{ background: "linear-gradient(to top, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.7) 50%, transparent 100%)" }}>
+                  <p className="font-bold text-sm" style={{ color: t.text }}>Dra. Bárbara Plass Villanueva</p>
+                  <p className="text-xs mt-0.5" style={{ color: t.brand }}>Médico Cirujano · UDD Distinción Máxima</p>
+                </div>
+              </div>
+
               {/* Content */}
               <div className="p-8 md:p-12">
                 {/* Header */}
@@ -277,7 +293,39 @@ export function AsesoriaClient() {
             )}
 
             <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr]">
-              {/* Fotos Valeska + Felipe */}
+              {/* Fotos Valeska + Felipe — mobile only */}
+              <div className="lg:hidden flex h-44 overflow-hidden" style={{ borderBottom: `1px solid ${t.border}` }}>
+                <div className="relative flex-1 overflow-hidden">
+                  <Image
+                    src={`${BP}/VALE_WEB.webp`}
+                    alt="Valeska Vidal, Nutricionista"
+                    fill
+                    className="object-cover object-top"
+                    sizes="50vw"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 px-3 py-2"
+                    style={{ background: "linear-gradient(to top, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.7) 50%, transparent 100%)" }}>
+                    <p className="text-xs font-bold" style={{ color: t.text }}>Valeska Vidal</p>
+                    <p className="text-[10px]" style={{ color: t.teal }}>Nutricionista</p>
+                  </div>
+                </div>
+                <div className="relative flex-1 overflow-hidden" style={{ borderLeft: `1px solid ${t.border}` }}>
+                  <Image
+                    src={`${BP}/felipe.webp`}
+                    alt="Felipe Muñoz Zambrano, Nutricionista"
+                    fill
+                    className="object-cover object-top"
+                    sizes="50vw"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 px-3 py-2"
+                    style={{ background: "linear-gradient(to top, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.7) 50%, transparent 100%)" }}>
+                    <p className="text-xs font-bold" style={{ color: t.text }}>Felipe Muñoz</p>
+                    <p className="text-[10px]" style={{ color: t.teal }}>Nutricionista</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Fotos Valeska + Felipe — desktop */}
               <div className="relative hidden lg:grid grid-rows-2" style={{ borderRight: `1px solid ${t.border}` }}>
                 {/* Valeska */}
                 <div className="relative overflow-hidden">
