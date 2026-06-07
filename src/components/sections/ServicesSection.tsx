@@ -84,24 +84,21 @@ export function ServicesSection() {
                 {i === 0 && (
                   <div className="absolute inset-0 flex pointer-events-none">
                     {[
-                      { src: `${BP}/barbara.webp`, pos: "50% 10%" },
-                      { src: `${BP}/VALE_WEB.webp`, pos: "50% 8%"  },
-                      { src: `${BP}/felipe.webp`,   pos: "50% 5%"  },
-                    ].map(({ src, pos }, idx) => (
-                      <div key={idx} className="relative flex-1 overflow-hidden">
+                      { src: `${BP}/barbara.webp`, pos: "50% 10%", bg: "#ffffff",        filter: "contrast(1.05) brightness(1.0)"                   },
+                      { src: `${BP}/VALE_WEB.webp`, pos: "50% 8%",  bg: "rgba(0,20,40,0.32)", filter: "grayscale(25%) contrast(1.05) brightness(0.78)" },
+                      { src: `${BP}/felipe.webp`,   pos: "50% 5%",  bg: "rgba(0,20,40,0.32)", filter: "grayscale(25%) contrast(1.05) brightness(0.78)" },
+                    ].map(({ src, pos, bg, filter }, idx) => (
+                      <div key={idx} className="relative flex-1 overflow-hidden" style={{ backgroundColor: bg }}>
                         <Image
                           src={src}
                           alt=""
                           fill
                           className="object-cover"
-                          style={{
-                            objectPosition: pos,
-                            filter: "grayscale(25%) contrast(1.05) brightness(0.78)",
-                          }}
+                          style={{ objectPosition: pos, filter }}
                           sizes="25vw"
                         />
-                        {/* Per-column brand tint */}
-                        <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,20,40,0.32)" }} />
+                        {/* Per-column tint */}
+                        {idx > 0 && <div className="absolute inset-0" style={{ backgroundColor: bg }} />}
                       </div>
                     ))}
                     {/* Global gradient overlay */}
