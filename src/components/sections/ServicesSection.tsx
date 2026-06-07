@@ -17,7 +17,6 @@ const services = [
     title: "Consulta Médica y Nutricional",
     description:
       "Atención personalizada con médico y nutricionista. Evaluamos tu historial, hábitos y objetivos para diseñar una estrategia clínica basada en tu biología real.",
-    tags: ["Medicina preventiva", "Nutrición clínica", "Plan personalizado"],
     href: "/asesoria",
   },
   {
@@ -30,7 +29,6 @@ const services = [
     title: "Entrenamiento Personalizado",
     description:
       "Programas de ejercicio diseñados según tu perfil metabólico, composición corporal y metas. Cada sesión maximiza tu adaptación fisiológica y rendimiento.",
-    tags: ["Programa adaptado", "Progresión guiada", "Alto rendimiento"],
     href: "/entrenamiento",
   },
   {
@@ -43,7 +41,6 @@ const services = [
     title: "Programa Metabólico",
     description:
       "VO₂ max, metabolismo basal, umbral anaeróbico y composición corporal (DEXA e impedanciometría). Datos precisos que son el punto de partida de toda transformación.",
-    tags: ["VO₂ max", "Composición corporal", "DEXA"],
   },
   {
     icon: (
@@ -55,7 +52,6 @@ const services = [
     title: "Reto 21 Días",
     description:
       "Un programa intensivo e integral de 3 semanas que combina evaluación metabólica, plan nutricional y entrenamiento guiado para crear hábitos que se mantienen.",
-    tags: ["21 días", "Método CM", "Resultados medibles"],
   },
 ];
 
@@ -109,23 +105,6 @@ export function ServicesSection() {
                 <p className="mb-5 text-sm leading-relaxed text-sky-100/45">
                   {service.description}
                 </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {service.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full px-3 py-1 text-[11px] font-medium"
-                      style={{
-                        border: "1px solid rgba(255,255,255,0.2)",
-                        backgroundColor: "rgba(255,255,255,0.07)",
-                        color: "#ffffff",
-                      }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
 
                 {/* Button */}
                 <div className="mt-6">
