@@ -100,7 +100,7 @@ export function Reto21DiasClient() {
 
         {/* Content */}
         <motion.div
-          className="absolute inset-0 flex flex-col items-center justify-center px-6 pt-20 text-center"
+          className="absolute inset-0 flex flex-col items-end justify-center pr-10 md:pr-16 lg:pr-24 pt-20 text-right"
           style={{ y: textY, opacity: textOp }}
         >
           <span className="mb-5 rounded-full px-5 py-2 text-xs font-bold tracking-widest uppercase"
@@ -120,12 +120,12 @@ export function Reto21DiasClient() {
             RETO
           </h1>
           <div className="flex items-center gap-4">
-            <div className="h-px flex-1" style={{ backgroundColor: `${BRAND}60`, maxWidth: 120 }} />
+            <div className="h-px" style={{ backgroundColor: `${BRAND}60`, width: 80 }} />
             <span
               className="text-white"
               style={{
                 fontFamily: "var(--font-reto)",
-                fontSize: "clamp(6rem, 22vw, 16rem)",
+                fontSize: "clamp(6rem, 20vw, 14rem)",
                 letterSpacing: "0.02em",
                 lineHeight: 0.85,
                 textShadow: `0 0 80px ${BRAND}55, 0 4px 40px rgba(0,0,0,0.9)`,
@@ -134,7 +134,6 @@ export function Reto21DiasClient() {
             >
               21
             </span>
-            <div className="h-px flex-1" style={{ backgroundColor: `${BRAND}60`, maxWidth: 120 }} />
           </div>
           <h2
             className="text-white mb-6"
@@ -148,7 +147,7 @@ export function Reto21DiasClient() {
             — DÍAS —
           </h2>
 
-          <p className="mb-8 max-w-[38ch] text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
+          <p className="mb-8 max-w-[32ch] text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
             21 días para cambiar hábitos.<br />
             <strong style={{ color: "rgba(255,255,255,0.9)" }}>Resultados que duran mucho más.</strong>
           </p>
