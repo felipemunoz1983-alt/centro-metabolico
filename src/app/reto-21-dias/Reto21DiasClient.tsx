@@ -180,21 +180,6 @@ export function Reto21DiasClient() {
         <div className="mx-auto max-w-[1260px] px-6 md:px-8">
           <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-16">
 
-            {/* Infografía */}
-            <AnimatedItem index={0} className="lg:w-[52%]">
-              <div className="relative rounded-2xl overflow-hidden"
-                style={{ border: "1px solid rgba(0,174,239,0.18)", backgroundColor: "rgba(255,255,255,0.96)" }}>
-                <Image
-                  src={`${BP}/reto21dias1.webp`}
-                  alt="Reto 21 Días — Programa de Transformación"
-                  width={900}
-                  height={506}
-                  className="w-full h-auto"
-                  sizes="(max-width: 1024px) 100vw, 52vw"
-                />
-              </div>
-            </AnimatedItem>
-
             {/* Texto */}
             <AnimatedSection className="lg:w-[48%]">
               <p className="mb-3 text-[11px] font-bold uppercase tracking-widest" style={{ color: BRAND }}>
@@ -224,6 +209,22 @@ export function Reto21DiasClient() {
                 ))}
               </div>
             </AnimatedSection>
+
+            {/* Infografía */}
+            <AnimatedItem index={1} className="lg:w-[52%]">
+              <div className="relative rounded-2xl overflow-hidden"
+                style={{ border: "1px solid rgba(0,174,239,0.18)", backgroundColor: "rgba(255,255,255,0.96)" }}>
+                <Image
+                  src={`${BP}/reto21dias1.webp`}
+                  alt="Reto 21 Días — Programa de Transformación"
+                  width={900}
+                  height={506}
+                  className="w-full h-auto"
+                  sizes="(max-width: 1024px) 100vw, 52vw"
+                />
+              </div>
+            </AnimatedItem>
+
           </div>
         </div>
       </section>
