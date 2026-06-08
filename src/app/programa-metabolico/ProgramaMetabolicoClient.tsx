@@ -88,19 +88,44 @@ const dinamicsEvaluations = [
   },
 ];
 
-const dinamicsApproach = [
-  "Evaluación fisiológica completa",
-  "Nutrición basada en evidencia científica",
-  "Entrenamiento estructurado — 40 sesiones",
-  "Seguimiento profesional durante todo el proceso",
-];
-
-const dinamicsBenefits = [
-  "Reducir grasa corporal de manera sostenible",
-  "Mejorar tu metabolismo",
-  "Aumentar tu capacidad física",
-  "Comprender cómo funciona realmente tu organismo",
-  "Desarrollar hábitos que puedas mantener en el tiempo",
+const dinamicsFeatures = [
+  {
+    title: "Evaluación de composición corporal (InBody)",
+    items: [
+      "Conocerás tu porcentaje de grasa, masa muscular y estado nutricional.",
+      "Identificaremos zonas críticas como grasa visceral que impacta en diabetes, hipertensión y síndrome metabólico.",
+    ],
+  },
+  {
+    title: "Evaluación metabólica",
+    items: [
+      "Conocerás cómo funciona tu metabolismo y cuánta energía consume tu cuerpo en reposo.",
+      "Determinaremos cuánta grasa quemas en reposo para diseñar un plan nutricional preciso y efectivo.",
+    ],
+  },
+  {
+    title: "Evaluación de fuerza",
+    items: [
+      "Determina tu condición física inicial y orienta la planificación del entrenamiento.",
+      "Te permite saber cuál es tu nivel de rendimiento para diseñar sesiones progresivas y efectivas.",
+    ],
+  },
+  {
+    title: "Entrenamiento personalizado — 2 veces por semana",
+    items: [
+      "40 sesiones estructuradas de 1 hora cada una, diseñadas según tu perfil metabólico.",
+      "Progresión guiada por un entrenador certificado para maximizar la pérdida de grasa y ganancia muscular.",
+      "Adaptado a tu nivel inicial y ajustado semana a semana según tus resultados.",
+    ],
+  },
+  {
+    title: "Nutrición y seguimiento profesional",
+    items: [
+      "Plan alimentario personalizado basado en tu metabolismo y objetivos.",
+      "Seguimiento continuo con ajustes progresivos para garantizar resultados sostenibles.",
+      "Educación nutricional práctica para que entiendas y controles tu alimentación.",
+    ],
+  },
 ];
 
 /* ── Feature accordion ──────────────────────────────────────── */
@@ -434,7 +459,7 @@ export function ProgramaMetabolicoClient() {
                 </div>
                 <h2 className="mt-3 text-2xl font-bold text-white md:text-3xl">Plan Metabólico Pro</h2>
                 <p className="mt-1.5 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
-                  Programa Metabólico Integral
+                  2 Consultas médicas · 4 Consultas Nutricionales · 40 sesiones de entrenamiento
                 </p>
                 <div className="mt-5 flex items-end gap-2">
                   <span className="text-4xl font-bold text-white">$380.000</span>
@@ -447,68 +472,18 @@ export function ProgramaMetabolicoClient() {
                   whileHover={{ scale: 1.01, boxShadow: "0 0 28px rgba(167,139,250,0.4)" }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  Agendar Metabólico Dinámics →
+                  Agendar Plan Metabólico Pro →
                 </motion.a>
 
-                <div className="mt-8 flex flex-col gap-8">
-                  <div className="rounded-2xl p-5"
-                    style={{ backgroundColor: "rgba(167,139,250,0.07)", border: "1px solid rgba(167,139,250,0.15)" }}>
-                    <p className="text-sm font-semibold text-white mb-2">
-                      Un enfoque científico para reducir grasa corporal y transformar tu metabolismo.
-                    </p>
-                    <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
-                      Bajar de peso no debería depender de dietas restrictivas o métodos que no consideran cómo funciona realmente tu organismo. Cada persona tiene un metabolismo distinto y necesidades específicas.
-                    </p>
-                  </div>
-
-                  <div>
-                    <p className="mb-4 text-[11px] font-bold uppercase tracking-widest" style={{ color: "rgba(167,139,250,0.65)" }}>
-                      El enfoque — primero evaluar, luego intervenir
-                    </p>
-                    <div className="flex flex-col gap-2">
-                      {dinamicsApproach.map((item, i) => (
-                        <div key={item} className="flex items-center gap-3 rounded-xl px-4 py-3"
-                          style={{ backgroundColor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-                          <span className="flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold shrink-0"
-                            style={{ backgroundColor: "rgba(167,139,250,0.15)", color: VIOLET }}>
-                            {i + 1}
-                          </span>
-                          <span className="text-sm" style={{ color: "rgba(255,255,255,0.75)" }}>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <p className="mb-4 text-[11px] font-bold uppercase tracking-widest" style={{ color: "rgba(167,139,250,0.65)" }}>
-                      Evaluaciones incluidas
-                    </p>
-                    <div className="flex flex-col gap-3">
-                      {dinamicsEvaluations.map((ev) => (
-                        <div key={ev.title} className="flex gap-4">
-                          <span className="text-xl shrink-0 mt-0.5">{ev.icon}</span>
-                          <div>
-                            <p className="text-sm font-semibold text-white">{ev.title}</p>
-                            <p className="mt-0.5 text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.48)" }}>{ev.desc}</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <p className="mb-4 text-[11px] font-bold uppercase tracking-widest" style={{ color: "rgba(167,139,250,0.65)" }}>
-                      Los pacientes buscan
-                    </p>
-                    <ul className="flex flex-col gap-2.5">
-                      {dinamicsBenefits.map((b) => (
-                        <li key={b} className="flex items-start gap-2.5">
-                          <CheckIcon color={VIOLET} />
-                          <span className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                <div className="mt-8 mb-3">
+                  <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: "rgba(167,139,250,0.55)" }}>
+                    ¿Qué incluye?
+                  </p>
+                </div>
+                <div className="flex flex-col gap-2">
+                  {dinamicsFeatures.map((feature) => (
+                    <FeatureAccordion key={feature.title} feature={feature} color={VIOLET} />
+                  ))}
                 </div>
               </div>
             </AnimatedSection>
