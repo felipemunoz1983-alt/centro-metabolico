@@ -128,6 +128,20 @@ export function ServicesSection() {
                   </div>
                 )}
 
+                {/* Reto 21 días banner — card 04 only */}
+                {i === 3 && (
+                  <div className="absolute inset-0 pointer-events-none">
+                    <Image src={`${BP}/reto21diasbanner.webp`} alt="" fill className="object-cover"
+                      style={{ objectPosition: "50% 50%", filter: "brightness(0.85)" }} sizes="50vw" />
+                    <div className="absolute inset-0" style={{
+                      background: "linear-gradient(to right, rgba(3,8,20,0.90) 0%, rgba(3,8,20,0.75) 45%, rgba(3,8,20,0.35) 100%)",
+                    }} />
+                    <div className="absolute inset-0" style={{
+                      background: "linear-gradient(to bottom, rgba(3,8,20,0.50) 0%, rgba(3,8,20,0.10) 50%, rgba(3,8,20,0.65) 100%)",
+                    }} />
+                  </div>
+                )}
+
                 {/* Training photo background — card 02 only */}
                 {i === 1 && (
                   <div className="absolute inset-0 pointer-events-none">
@@ -141,8 +155,8 @@ export function ServicesSection() {
 
                 <div className="relative z-10">
                 <div className="flex items-start gap-5">
-                  {/* Icon — hidden on cards 01, 02 and 03 */}
-                  {i !== 0 && i !== 1 && i !== 2 && (
+                  {/* Icon — hidden on all cards with photo backgrounds */}
+                  {false && (
                     <div
                       className="mt-0.5 flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl"
                       style={{ backgroundColor: "rgba(0,174,239,0.12)", color: "var(--brand)" }}
@@ -151,8 +165,8 @@ export function ServicesSection() {
                     </div>
                   )}
 
-                  {/* Number — hidden on cards 01, 02 and 03 */}
-                  {i !== 0 && i !== 1 && i !== 2 && (
+                  {/* Number — hidden on all cards */}
+                  {false && (
                     <span
                       className="ml-auto text-xs font-mono font-semibold"
                       style={{ color: "rgba(0,174,239,0.35)" }}
@@ -169,12 +183,12 @@ export function ServicesSection() {
                   {service.title}
                 </h3>
 
-                <p className={`mb-5 text-sm leading-relaxed ${i <= 2 ? "text-sky-100/80" : "text-sky-100/45"}`}>
+                <p className="mb-5 text-sm leading-relaxed text-sky-100/80">
                   {service.description}
                 </p>
 
                 {/* Button */}
-                <div className={`mt-6 ${i === 0 || i === 1 || i === 2 ? "flex justify-center" : ""}`}>
+                <div className="mt-6 flex justify-center">
                   {(service as typeof service & { href?: string }).href ? (
                     <Link
                       href={(service as typeof service & { href?: string }).href!}
