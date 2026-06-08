@@ -106,21 +106,6 @@ export function Navbar() {
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
-              href={PROGRAMA_HREF}
-              className="rounded-xl px-5 py-2 text-sm font-semibold text-white transition-all"
-              style={{ backgroundColor: "var(--brand)" }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "var(--brand-light)";
-                e.currentTarget.style.boxShadow = "0 0 20px rgba(0,174,239,0.35)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "var(--brand)";
-                e.currentTarget.style.boxShadow = "none";
-              }}
-            >
-              Programa Metabólico
-            </Link>
-            <Link
               href="/agendar"
               className="rounded-xl px-5 py-2 text-sm font-semibold text-white transition-all"
               style={{ backgroundColor: "var(--brand)" }}
