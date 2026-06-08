@@ -271,12 +271,12 @@ export function ProgramaMetabolicoClient() {
             <div className="flex flex-col items-stretch gap-3 w-full max-w-xs sm:max-w-none sm:flex-row sm:justify-center sm:items-center">
               <div className="rounded-2xl px-6 py-3 text-center"
                 style={{ backgroundColor: "rgba(0,174,239,0.12)", border: "1px solid rgba(0,174,239,0.3)" }}>
-                <div className="text-xs font-bold tracking-widest uppercase" style={{ color: BRAND }}>Plan Metabólico</div>
+                <div className="text-xs font-bold tracking-widest uppercase" style={{ color: BRAND }}>Plan Metabólico Básico</div>
                 <div className="text-2xl font-bold text-white mt-1">$330.000</div>
               </div>
               <div className="rounded-2xl px-6 py-3 text-center"
                 style={{ backgroundColor: "rgba(167,139,250,0.12)", border: "1px solid rgba(167,139,250,0.3)" }}>
-                <div className="text-xs font-bold tracking-widest uppercase" style={{ color: VIOLET }}>Metabólico Dinámics</div>
+                <div className="text-xs font-bold tracking-widest uppercase" style={{ color: VIOLET }}>Plan Metabólico Pro</div>
                 <div className="text-2xl font-bold text-white mt-1">$380.000</div>
               </div>
             </div>
@@ -339,7 +339,7 @@ export function ProgramaMetabolicoClient() {
                     1 hr c/u
                   </span>
                 </div>
-                <h2 className="mt-3 text-2xl font-bold text-white md:text-3xl">Plan Metabólico</h2>
+                <h2 className="mt-3 text-2xl font-bold text-white md:text-3xl">Plan Metabólico Básico</h2>
                 <p className="mt-1.5 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
                   2 Consultas médicas · 4 Consultas Nutricionales
                 </p>
@@ -432,7 +432,7 @@ export function ProgramaMetabolicoClient() {
                     1 hr c/u
                   </span>
                 </div>
-                <h2 className="mt-3 text-2xl font-bold text-white md:text-3xl">Programa Metabólico Dinámics</h2>
+                <h2 className="mt-3 text-2xl font-bold text-white md:text-3xl">Plan Metabólico Pro</h2>
                 <p className="mt-1.5 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
                   Programa Metabólico Integral
                 </p>
