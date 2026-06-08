@@ -43,7 +43,7 @@ const services = [
     number: "03",
     title: "Programa Metabólico",
     description:
-      "VO₂ max, metabolismo basal, umbral anaeróbico y composición corporal (DEXA e impedanciometría). Datos precisos que son el punto de partida de toda transformación.",
+      "Evaluación de composición corporal (InBody), consulta médica y nutricional integradas en un solo programa. Medimos lo que importa para diseñar tu transformación con datos reales.",
     href: "/programa-metabolico",
   },
   {
@@ -118,9 +118,12 @@ export function ServicesSection() {
                 {i === 2 && (
                   <div className="absolute inset-0 pointer-events-none">
                     <Image src={`${BP}/evaluacion_metabolica.webp`} alt="" fill className="object-cover"
-                      style={{ objectPosition: "50% 40%", filter: "brightness(0.90)" }} sizes="50vw" />
+                      style={{ objectPosition: "50% 40%", filter: "brightness(0.85)" }} sizes="50vw" />
                     <div className="absolute inset-0" style={{
-                      background: "linear-gradient(to right, rgba(3,8,20,0.82) 0%, rgba(3,8,20,0.50) 50%, rgba(3,8,20,0.25) 100%)",
+                      background: "linear-gradient(to right, rgba(3,8,20,0.90) 0%, rgba(3,8,20,0.75) 45%, rgba(3,8,20,0.35) 100%)",
+                    }} />
+                    <div className="absolute inset-0" style={{
+                      background: "linear-gradient(to bottom, rgba(3,8,20,0.50) 0%, rgba(3,8,20,0.10) 50%, rgba(3,8,20,0.65) 100%)",
                     }} />
                   </div>
                 )}
@@ -166,7 +169,7 @@ export function ServicesSection() {
                   {service.title}
                 </h3>
 
-                <p className={`mb-5 text-sm leading-relaxed ${i === 0 || i === 1 ? "text-sky-100/80" : "text-sky-100/45"}`}>
+                <p className={`mb-5 text-sm leading-relaxed ${i <= 2 ? "text-sky-100/80" : "text-sky-100/45"}`}>
                   {service.description}
                 </p>
 
