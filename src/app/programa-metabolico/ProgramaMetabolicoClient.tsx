@@ -272,7 +272,7 @@ export function ProgramaMetabolicoClient() {
               <div className="rounded-2xl px-6 py-3 text-center"
                 style={{ backgroundColor: "rgba(0,174,239,0.12)", border: "1px solid rgba(0,174,239,0.3)" }}>
                 <div className="text-xs font-bold tracking-widest uppercase" style={{ color: BRAND }}>Plan Metabólico Básico</div>
-                <div className="text-2xl font-bold text-white mt-1">$330.000</div>
+                <div className="text-2xl font-bold text-white mt-1">$360.000</div>
               </div>
               <div className="rounded-2xl px-6 py-3 text-center"
                 style={{ backgroundColor: "rgba(167,139,250,0.12)", border: "1px solid rgba(167,139,250,0.3)" }}>
@@ -344,7 +344,7 @@ export function ProgramaMetabolicoClient() {
                   2 Consultas médicas · 4 Consultas Nutricionales
                 </p>
                 <div className="mt-5 flex items-end gap-2">
-                  <span className="text-4xl font-bold text-white">$330.000</span>
+                  <span className="text-4xl font-bold text-white">$360.000</span>
                   <span className="mb-1 text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>CLP</span>
                 </div>
                 <motion.a
