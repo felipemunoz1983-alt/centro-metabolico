@@ -7,7 +7,7 @@ import { BrandLogo } from "@/components/ui/BrandLogo";
 
 const navLinks = [
   { label: "Consulta Médica y Nutricional", href: "/asesoria" },
-  { label: "Reto 21 días", href: "/#metodologia" },
+  { label: "Reto 21 días", href: "/reto-21-dias" },
   { label: "Entrenamiento", href: "/entrenamiento" },
   { label: "Recovery", href: "/recovery" },
   { label: "Taller Nutricional", href: "https://felipemunoz1983-alt.github.io/tallernutricional/", external: true },

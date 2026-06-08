@@ -56,6 +56,7 @@ const services = [
     title: "Reto 21 Días",
     description:
       "Un programa intensivo e integral de 3 semanas que combina evaluación metabólica, plan nutricional y entrenamiento guiado para crear hábitos que se mantienen.",
+    href: "/reto-21-dias",
   },
 ];
 
