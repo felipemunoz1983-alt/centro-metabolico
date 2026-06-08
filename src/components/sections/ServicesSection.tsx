@@ -113,6 +113,17 @@ export function ServicesSection() {
                   </div>
                 )}
 
+                {/* Metabolic eval photo background — card 03 only */}
+                {i === 2 && (
+                  <div className="absolute inset-0 pointer-events-none">
+                    <Image src={`${BP}/evaluacion_metabolica.webp`} alt="" fill className="object-cover"
+                      style={{ objectPosition: "50% 40%", filter: "brightness(0.90)" }} sizes="50vw" />
+                    <div className="absolute inset-0" style={{
+                      background: "linear-gradient(to right, rgba(3,8,20,0.82) 0%, rgba(3,8,20,0.50) 50%, rgba(3,8,20,0.25) 100%)",
+                    }} />
+                  </div>
+                )}
+
                 {/* Training photo background — card 02 only */}
                 {i === 1 && (
                   <div className="absolute inset-0 pointer-events-none">
