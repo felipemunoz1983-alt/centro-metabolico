@@ -44,6 +44,7 @@ const services = [
     title: "Programa Metabólico",
     description:
       "VO₂ max, metabolismo basal, umbral anaeróbico y composición corporal (DEXA e impedanciometría). Datos precisos que son el punto de partida de toda transformación.",
+    href: "/programa-metabolico",
   },
   {
     icon: (
