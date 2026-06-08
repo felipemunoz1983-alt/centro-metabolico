@@ -100,7 +100,7 @@ export function Reto21DiasClient() {
 
         {/* Content */}
         <motion.div
-          className="absolute inset-0 flex flex-col items-start justify-center pl-10 md:pl-16 lg:pl-24 pt-20 text-left"
+          className="absolute inset-0 flex flex-col items-start justify-center pl-10 md:pl-16 lg:pl-24 text-left"
           style={{ y: textY, opacity: textOp }}
         >
           <span className="mb-5 rounded-full px-5 py-2 text-xs font-bold tracking-widest uppercase"
