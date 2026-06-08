@@ -115,8 +115,8 @@ export function ServicesSection() {
 
                 <div className="relative z-10">
                 <div className="flex items-start gap-5">
-                  {/* Icon — hidden on card 01 (has photo background) */}
-                  {i !== 0 && (
+                  {/* Icon — hidden on cards 01 and 02 */}
+                  {i !== 0 && i !== 1 && (
                     <div
                       className="mt-0.5 flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl"
                       style={{ backgroundColor: "rgba(0,174,239,0.12)", color: "var(--brand)" }}
@@ -125,13 +125,15 @@ export function ServicesSection() {
                     </div>
                   )}
 
-                  {/* Number */}
-                  <span
-                    className="ml-auto text-xs font-mono font-semibold"
-                    style={{ color: "rgba(0,174,239,0.35)" }}
-                  >
-                    {service.number}
-                  </span>
+                  {/* Number — hidden on cards 01 and 02 */}
+                  {i !== 0 && i !== 1 && (
+                    <span
+                      className="ml-auto text-xs font-mono font-semibold"
+                      style={{ color: "rgba(0,174,239,0.35)" }}
+                    >
+                      {service.number}
+                    </span>
+                  )}
                 </div>
 
                 <h3
@@ -146,7 +148,7 @@ export function ServicesSection() {
                 </p>
 
                 {/* Button */}
-                <div className={`mt-6 ${i === 0 ? "flex justify-center" : ""}`}>
+                <div className={`mt-6 ${i === 0 || i === 1 ? "flex justify-center" : ""}`}>
                   {(service as typeof service & { href?: string }).href ? (
                     <Link
                       href={(service as typeof service & { href?: string }).href!}
