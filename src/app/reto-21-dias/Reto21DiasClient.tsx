@@ -100,7 +100,7 @@ export function Reto21DiasClient() {
 
         {/* Content */}
         <motion.div
-          className="absolute inset-0 flex flex-col items-end justify-center pr-10 md:pr-16 lg:pr-24 pt-20 text-right"
+          className="absolute inset-0 flex flex-col items-start justify-center pl-10 md:pl-16 lg:pl-24 pt-20 text-left"
           style={{ y: textY, opacity: textOp }}
         >
           <span className="mb-5 rounded-full px-5 py-2 text-xs font-bold tracking-widest uppercase"
@@ -120,7 +120,6 @@ export function Reto21DiasClient() {
             RETO
           </h1>
           <div className="flex items-center gap-4">
-            <div className="h-px" style={{ backgroundColor: `${BRAND}60`, width: 80 }} />
             <span
               className="text-white"
               style={{
@@ -134,6 +133,7 @@ export function Reto21DiasClient() {
             >
               21
             </span>
+            <div className="h-px" style={{ backgroundColor: `${BRAND}60`, width: 60 }} />
           </div>
           <h2
             className="text-white mb-6"
