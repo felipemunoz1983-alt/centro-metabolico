@@ -6,7 +6,7 @@ import Link from "next/link";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 
 const navLinks = [
-  { label: "Consulta Médica y Nutricional", href: "/asesoria" },
+
   { label: "Reto 21 días", href: "/reto-21-dias" },
   { label: "Entrenamiento", href: "/entrenamiento" },
   { label: "Recovery", href: "/recovery" },
