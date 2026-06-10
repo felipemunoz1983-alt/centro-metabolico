@@ -133,17 +133,30 @@ export default function ConsultaMedicaPage() {
                   <span className="text-xs" style={{ color: "rgba(200,230,255,0.55)" }}>{p.badge} · {p.registro}</span>
                 </div>
 
-                {/* CTA */}
-                <Link
-                  href="/agendar"
-                  className="mt-1 flex items-center justify-center gap-2 rounded-2xl py-3 text-sm font-semibold text-white transition-all"
-                  style={{ backgroundColor: "var(--brand)" }}
-                >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  Reservar hora
-                </Link>
+                {/* CTAs */}
+                <div className="mt-1 flex flex-col gap-2">
+                  <Link
+                    href={`/#${p.id}`}
+                    className="flex items-center justify-center gap-2 rounded-2xl py-2.5 text-sm font-medium transition-all"
+                    style={{
+                      border: "1px solid rgba(0,174,239,0.25)",
+                      backgroundColor: "rgba(0,174,239,0.07)",
+                      color: "var(--brand-light)",
+                    }}
+                  >
+                    Ver perfil completo
+                  </Link>
+                  <Link
+                    href="/agendar"
+                    className="flex items-center justify-center gap-2 rounded-2xl py-2.5 text-sm font-semibold text-white transition-all"
+                    style={{ backgroundColor: "var(--brand)" }}
+                  >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    Reservar hora
+                  </Link>
+                </div>
               </div>
             </div>
           ))}

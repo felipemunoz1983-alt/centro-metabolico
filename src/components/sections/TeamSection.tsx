@@ -346,7 +346,7 @@ export function TeamSection() {
 
       <div className="mx-auto max-w-[1400px] px-6 md:px-8">
         {team.map((member, idx) => (
-          <div key={member.id}>
+          <div key={member.id} id={member.id}>
             {/* Divider between members */}
             {idx > 0 && (
               <div className="mx-auto h-px max-w-[800px]" style={{ background: "linear-gradient(to right, transparent, rgba(0,174,239,0.15), transparent)" }} />
