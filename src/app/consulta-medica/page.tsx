@@ -96,7 +96,7 @@ export default function ConsultaMedicaPage() {
                 />
                 <div className="absolute bottom-4 left-4 right-4">
                   <p className="text-base font-semibold text-white leading-tight">{p.name}</p>
-                  <p className="text-sm mt-0.5" style={{ color: "var(--brand-light)" }}>{p.role}</p>
+                  <p className="text-sm mt-0.5 text-white/80">{p.role}</p>
                 </div>
               </div>
 
