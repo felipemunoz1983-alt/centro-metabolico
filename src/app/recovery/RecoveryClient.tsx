@@ -170,101 +170,58 @@ export function RecoveryClient() {
         </div>
       </section>
 
-      {/* ── PRESOTERAPIA ──────────────────────────────────────────── */}
-      <section className="relative bg-[#0A0A0A]">
-
-        {/* Video hero */}
-        <div className="relative h-screen overflow-hidden">
-          <video
-            autoPlay muted loop playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-            src={`${BP}/botas.mp4`}
-          />
-          <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(105deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.55) 55%, rgba(10,10,10,0.18) 100%)" }} />
-          <div className="absolute inset-0 flex flex-col justify-center px-6 sm:px-12 md:px-20">
-            <motion.span
-              initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }} viewport={{ once: true }}
-              className="mb-6 self-start rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase"
-              style={{ backgroundColor: "rgba(0,174,239,0.18)", color: "#00AEEF", border: "1px solid rgba(0,174,239,0.4)" }}
-            >
-              Presoterapia
-            </motion.span>
-            <motion.h2
-              initial={{ opacity: 0, y: 36 }} whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, delay: 0.1 }} viewport={{ once: true }}
-              className="text-5xl sm:text-6xl md:text-8xl leading-[0.95] text-white mb-6 max-w-3xl"
-              style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}
-            >
-              Recuperación<br /><span style={{ color: "#00AEEF" }}>Elite.</span>
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.25 }} viewport={{ once: true }}
-              className="text-base md:text-lg leading-relaxed max-w-md"
-              style={{ color: "rgba(255,255,255,0.65)" }}
-            >
-              Compresión neumática secuencial para acelerar tu recuperación hasta 3× más rápido. Para atletas que no se detienen.
-            </motion.p>
-          </div>
-        </div>
-
-        {/* Benefits bento strip */}
-        <div className="border-t border-white/10">
-          <div className="max-w-6xl mx-auto px-6 sm:px-10 md:px-16 grid grid-cols-2 md:grid-cols-4">
-            {[
-              { n: "01", t: "Elimina\nácido láctico", b: "Drena el lactato que genera dolor y rigidez después de cada entreno." },
-              { n: "02", t: "Reduce\ninflamación",    b: "Activa el retorno venoso y reduce el edema muscular de inmediato." },
-              { n: "03", t: "Activa la\ncirculación", b: "Mejora el flujo sanguíneo hacia los músculos para reparar fibras." },
-              { n: "04", t: "Alivia\nel dolor",       b: "60 min que dejan las piernas ligeras y listas para el próximo entreno." },
-            ].map(({ n, t, b }, i) => (
-              <motion.div
-                key={n}
-                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.1 }} viewport={{ once: true }}
-                className={[
-                  "py-10",
-                  i === 0 ? "pr-6 md:pr-8" : i === 3 ? "pl-6 md:pl-8" : "px-6 md:px-8",
-                  i < 3 ? "md:border-r border-white/10" : "",
-                  i < 2 ? "border-b border-white/10 md:border-b-0" : "",
-                ].join(" ")}
-              >
-                <span className="block leading-none mb-4" style={{ fontFamily: "var(--font-reto)", fontSize: "clamp(3.5rem,6vw,5rem)", color: "#00AEEF", letterSpacing: "-0.02em" }}>
-                  {n}
-                </span>
-                <div className="w-7 h-0.5 mb-4" style={{ backgroundColor: "#00AEEF" }} />
-                <h3 className="font-bold uppercase text-white mb-3 whitespace-pre-line"
-                  style={{ fontFamily: "var(--font-reto)", fontSize: "clamp(1.1rem,2vw,1.4rem)", letterSpacing: "0.04em", lineHeight: 1.1 }}>
-                  {t}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>{b}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Booking iframe */}
-        <div className="max-w-6xl mx-auto px-6 sm:px-10 md:px-16 py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }} viewport={{ once: true }}
+      {/* ── SERVICIOS ─────────────────────────────────────────────── */}
+      <section className="bg-[#0A0A0A] py-24 px-6 sm:px-10 md:px-16">
+        <div className="max-w-6xl mx-auto">
+          <motion.p
+            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }} viewport={{ once: true }}
+            className="mb-3 text-sm font-bold uppercase tracking-widest" style={{ color: ROSE }}
           >
-            <p className="mb-3 text-sm font-bold uppercase tracking-widest" style={{ color: "#00AEEF" }}>Reserva tu sesión</p>
-            <h3 className="mb-10 text-4xl md:text-5xl text-white"
-              style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", lineHeight: "1.1" }}>
-              Elige tu horario.
-            </h3>
-            <div className="rounded-2xl overflow-hidden">
-              <iframe
-                src="https://agendapro.com/iframe/overview/51643841-fc06-42db-bcb5-78232dc5802a"
-                title="Reservar sesión de Presoterapia — Centro Metabólico"
-                style={{ width: "100%", minHeight: "620px", border: "none", display: "block" }}
-                scrolling="yes"
+            Servicios de Recovery
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }} viewport={{ once: true }}
+            className="mb-12 text-4xl md:text-5xl text-white"
+            style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", lineHeight: "1.1" }}
+          >
+            Elige tu protocolo.
+          </motion.h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <motion.a
+              href={`${BP}/recovery/presoterapia/`}
+              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }} viewport={{ once: true }}
+              className="group relative overflow-hidden rounded-2xl block"
+              style={{ cursor: "pointer" }}
+            >
+              <video
+                autoPlay muted loop playsInline
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                src={`${BP}/botas.mp4`}
               />
-            </div>
-          </motion.div>
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.45) 60%, rgba(10,10,10,0.15) 100%)" }} />
+              <div className="relative z-10 p-8 pt-48">
+                <span className="mb-3 inline-block rounded-full px-3 py-1 text-[10px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(0,174,239,0.2)", color: "#00AEEF", border: "1px solid rgba(0,174,239,0.4)" }}>
+                  Presoterapia
+                </span>
+                <h3 className="text-3xl text-white mb-2" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em" }}>
+                  Recuperación Elite
+                </h3>
+                <p className="text-sm leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.6)" }}>
+                  Compresión neumática secuencial. Elimina lactato, reduce inflamación y activa la circulación en 60 minutos.
+                </p>
+                <span className="inline-flex items-center gap-2 text-sm font-bold" style={{ color: "#00AEEF" }}>
+                  Ver servicio
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transition-transform duration-200 group-hover:translate-x-1">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+            </motion.a>
+          </div>
         </div>
-
       </section>
     </div>
   );
