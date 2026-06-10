@@ -111,11 +111,10 @@ export default function ConsultaMedicaPage() {
                   {p.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full px-3 py-1 text-xs font-medium"
+                      className="rounded-full px-3 py-1 text-xs font-medium text-white/80"
                       style={{
-                        backgroundColor: "rgba(0,174,239,0.1)",
-                        color: "var(--brand-light)",
-                        border: "1px solid rgba(0,174,239,0.2)",
+                        backgroundColor: "rgba(255,255,255,0.07)",
+                        border: "1px solid rgba(255,255,255,0.15)",
                       }}
                     >
                       {tag}
@@ -128,21 +127,20 @@ export default function ConsultaMedicaPage() {
                   className="flex items-center gap-2 rounded-xl px-3 py-2 mt-auto"
                   style={{ backgroundColor: "rgba(0,174,239,0.06)", border: "1px solid rgba(0,174,239,0.12)" }}
                 >
-                  <svg className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "var(--brand)" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg className="w-3.5 h-3.5 flex-shrink-0 text-white/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
-                  <span className="text-xs" style={{ color: "rgba(200,230,255,0.55)" }}>{p.badge} · {p.registro}</span>
+                  <span className="text-xs text-white/50">{p.badge} · {p.registro}</span>
                 </div>
 
                 {/* CTAs */}
                 <div className="mt-1 flex flex-col gap-2">
                   <Link
                     href={`/#${p.id}`}
-                    className="flex items-center justify-center gap-2 rounded-2xl py-2.5 text-sm font-medium transition-all"
+                    className="flex items-center justify-center gap-2 rounded-2xl py-2.5 text-sm font-medium text-white/70 transition-all"
                     style={{
-                      border: "1px solid rgba(0,174,239,0.25)",
-                      backgroundColor: "rgba(0,174,239,0.07)",
-                      color: "var(--brand-light)",
+                      border: "1px solid rgba(255,255,255,0.15)",
+                      backgroundColor: "rgba(255,255,255,0.05)",
                     }}
                   >
                     Ver perfil completo
