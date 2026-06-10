@@ -5,8 +5,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 
-const navLinks = [
+const medicinaItems = [
+  { label: "Consulta Médica", href: "/consulta-medica" },
   { label: "Consulta Nutricional", href: "/asesoria" },
+  { label: "Evaluaciones", href: "/evaluaciones" },
+];
+
+const navLinks = [
   { label: "Reto 21 días", href: "/reto-21-dias" },
   { label: "Entrenamiento", href: "/entrenamiento" },
   { label: "Recovery", href: "/recovery" },
@@ -16,7 +21,10 @@ const navLinks = [
 const PROGRAMA_HREF = "/programa-metabolico";
 
 export function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen]       = useState(false);
+  const [medicinaOpen, setMedicinaOpen] = useState(false);
+  const [medicinaMobileOpen, setMedicinaMobileOpen] = useState(false);
+  const medicinaRef = useRef<HTMLDivElement>(null);
   const bgRef     = useRef<HTMLDivElement>(null);
   const borderRef = useRef<HTMLDivElement>(null);
 
@@ -74,6 +82,60 @@ export function Navbar() {
 
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-1">
+            {/* Medicina dropdown */}
+            <div
+              ref={medicinaRef}
+              className="relative"
+              onMouseEnter={() => setMedicinaOpen(true)}
+              onMouseLeave={() => setMedicinaOpen(false)}
+            >
+              <button
+                className={linkClass + " flex items-center gap-1.5"}
+                style={{ backgroundColor: medicinaOpen ? "rgba(0,174,239,0.08)" : "transparent" }}
+              >
+                Medicina
+                <svg
+                  className="w-3 h-3 transition-transform"
+                  style={{ transform: medicinaOpen ? "rotate(180deg)" : "rotate(0deg)", color: "rgba(125,217,249,0.6)" }}
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              <AnimatePresence>
+                {medicinaOpen && (
+                  <motion.div
+                    className="absolute top-full left-0 mt-1 min-w-[200px] rounded-2xl overflow-hidden"
+                    style={{
+                      backgroundColor: "rgba(6,14,26,0.97)",
+                      backdropFilter: "blur(20px)",
+                      border: "1px solid rgba(0,174,239,0.18)",
+                      boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
+                    }}
+                    initial={{ opacity: 0, y: -6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    {medicinaItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="block px-5 py-3 text-sm text-sky-100/70 hover:text-sky-100 transition-colors"
+                        style={{}}
+                        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,174,239,0.1)")}
+                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+                        onClick={() => setMedicinaOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             {navLinks.map((link) =>
               "external" in link && link.external ? (
                 <a
@@ -151,6 +213,50 @@ export function Navbar() {
             >
               ✕ Cerrar
             </button>
+            {/* Medicina accordion */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0 }}
+              className="flex flex-col items-center gap-2"
+            >
+              <button
+                className="flex items-center gap-2 text-2xl font-semibold text-sky-50"
+                onClick={() => setMedicinaMobileOpen(!medicinaMobileOpen)}
+              >
+                Medicina
+                <svg
+                  className="w-5 h-5 transition-transform"
+                  style={{ transform: medicinaMobileOpen ? "rotate(180deg)" : "rotate(0deg)", color: "var(--brand)" }}
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <AnimatePresence>
+                {medicinaMobileOpen && (
+                  <motion.div
+                    className="flex flex-col items-center gap-2"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {medicinaItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="text-lg text-sky-300/80 hover:text-sky-100 transition-colors"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+
             {navLinks.map((link, i) =>
               "external" in link && link.external ? (
                 <motion.a
@@ -164,7 +270,7 @@ export function Navbar() {
                   onClick={() => setMenuOpen(false)}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.06 }}
+                  transition={{ delay: (i + 1) * 0.06 }}
                 >
                   {link.label}
                 </motion.a>
@@ -173,7 +279,7 @@ export function Navbar() {
                   key={link.href}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.06 }}
+                  transition={{ delay: (i + 1) * 0.06 }}
                 >
                   <Link
                     href={link.href}

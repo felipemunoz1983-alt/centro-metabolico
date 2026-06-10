@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://felipemunoz1983-alt.github.io/centro-metabolico/sitemap.xml

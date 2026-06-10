@@ -1,8 +1,33 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Agendar — Centro Metabólico",
-  description: "Agenda tu consulta médica, nutricional o evaluación en Centro Metabólico.",
+  title: "Agendar Consulta",
+  description:
+    "Agenda tu consulta médica, nutricional o evaluación metabólica en Centro Metabólico. Selecciona el servicio y el horario que mejor se adapte a ti.",
+  alternates: {
+    canonical: "/centro-metabolico/agendar/",
+  },
+  openGraph: {
+    title: "Agendar Consulta — Centro Metabólico",
+    description:
+      "Agenda tu consulta médica, nutricional o evaluación metabólica en Centro Metabólico.",
+    url: "https://felipemunoz1983-alt.github.io/centro-metabolico/agendar/",
+    images: [
+      {
+        url: "/centro-metabolico/energy.webp",
+        width: 1200,
+        height: 630,
+        alt: "Agendar Consulta — Centro Metabólico",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Agendar Consulta — Centro Metabólico",
+    description:
+      "Agenda tu consulta médica, nutricional o evaluación metabólica.",
+    images: ["/centro-metabolico/energy.webp"],
+  },
 };
 
 export default function AgendarPage() {

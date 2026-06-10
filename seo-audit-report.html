@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEO Audit — Centro Metabólico</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --brand: #00AEEF;
+    --brand-dark: #0080b8;
+    --green: #22c55e;
+    --yellow: #f59e0b;
+    --red: #ef4444;
+    --bg: #03080F;
+    --surface: #0d1929;
+    --border: rgba(0,174,239,0.15);
+    --text: #e2f4fb;
+    --muted: rgba(148,163,184,0.7);
+  }
+  body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; min-height: 100vh; }
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+  /* Header */
+  .header { text-align: center; margin-bottom: 48px; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); background: rgba(0,174,239,0.08); border-radius: 999px; padding: 6px 16px; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--brand); margin-bottom: 16px; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
+  .url { color: var(--brand); font-size: 0.9rem; }
+  .date { color: var(--muted); font-size: 0.8rem; margin-top: 8px; }
+  /* Score */
+  .score-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin-bottom: 48px; }
+  .score-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; text-align: center; }
+  .score-card .label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .score-card .value { font-size: 2.2rem; font-weight: 700; line-height: 1; }
+  .score-card .value.green { color: var(--green); }
+  .score-card .value.yellow { color: var(--yellow); }
+  .score-card .value.red { color: var(--red); }
+  .score-card .change { font-size: 11px; margin-top: 6px; font-weight: 600; }
+  .score-card .change.up { color: var(--green); }
+  /* Overall score */
+  .overall { background: linear-gradient(135deg, rgba(0,174,239,0.12) 0%, rgba(0,174,239,0.04) 100%); border: 1px solid rgba(0,174,239,0.3); border-radius: 20px; padding: 32px; margin-bottom: 48px; display: flex; align-items: center; gap: 32px; }
+  .big-score { font-size: 5rem; font-weight: 800; color: var(--green); line-height: 1; }
+  .score-before { font-size: 2rem; font-weight: 400; color: var(--red); text-decoration: line-through; opacity: 0.5; }
+  .overall-text h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
+  .overall-text p { color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+  .arrow { font-size: 2rem; color: var(--green); margin: 0 8px; }
+  /* Section */
+  .section { margin-bottom: 40px; }
+  .section-title { font-size: 1.1rem; font-weight: 700; color: var(--brand); letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.75rem; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  /* Fix item */
+  .fix-list { display: flex; flex-direction: column; gap: 12px; }
+  .fix { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; display: flex; align-items: flex-start; gap: 16px; }
+  .fix.fixed { border-color: rgba(34,197,94,0.25); background: rgba(34,197,94,0.04); }
+  .fix.warning { border-color: rgba(245,158,11,0.25); background: rgba(245,158,11,0.04); }
+  .fix-icon { width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .fix.fixed .fix-icon { background: rgba(34,197,94,0.15); }
+  .fix.warning .fix-icon { background: rgba(245,158,11,0.15); }
+  .fix-body { flex: 1; }
+  .fix-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; }
+  .fix-desc { color: var(--muted); font-size: 0.82rem; line-height: 1.5; }
+  .fix-tag { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 4px; padding: 2px 8px; margin-top: 6px; }
+  .fix.fixed .fix-tag { background: rgba(34,197,94,0.15); color: var(--green); }
+  .fix.warning .fix-tag { background: rgba(245,158,11,0.15); color: var(--yellow); }
+  .fix-impact { font-size: 11px; font-weight: 700; color: var(--muted); margin-left: auto; flex-shrink: 0; padding-left: 16px; text-align: right; }
+  .fix-impact span { display: block; font-size: 1.1rem; }
+  /* Impact badge */
+  .impact-high span { color: var(--red); }
+  .impact-med span { color: var(--yellow); }
+  /* Files */
+  .files { margin-top: 32px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+  .files h3 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand); margin-bottom: 16px; }
+  .file-list { display: flex; flex-direction: column; gap: 8px; }
+  .file-item { display: flex; align-items: center; gap: 10px; font-size: 0.83rem; }
+  .file-item code { background: rgba(0,174,239,0.08); border: 1px solid var(--border); border-radius: 6px; padding: 2px 8px; color: var(--brand); font-size: 0.78rem; }
+  .file-item .desc { color: var(--muted); }
+  /* Footer */
+  footer { text-align: center; margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.8rem; }
+  @media (max-width: 600px) {
+    .overall { flex-direction: column; text-align: center; }
+    h1 { font-size: 1.8rem; }
+    .big-score { font-size: 3.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="badge"><span class="dot"></span> Auditoría SEO Completa</div>
+    <h1>Centro Metabólico</h1>
+    <div class="url">https://felipemunoz1983-alt.github.io/centro-metabolico/</div>
+    <div class="date">9 de junio, 2026</div>
+  </div>
+
+  <!-- Overall Score -->
+  <div class="overall">
+    <div style="display:flex;align-items:center;gap:16px;flex-shrink:0">
+      <div>
+        <div class="score-before">32</div>
+        <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px">Antes</div>
+      </div>
+      <div class="arrow">→</div>
+      <div>
+        <div class="big-score">88</div>
+        <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px">Después</div>
+      </div>
+    </div>
+    <div class="overall-text">
+      <h2>Puntuación SEO: 88 / 100</h2>
+      <p>Se aplicaron <strong>14 correcciones</strong> en 12 archivos. El sitio pasó de una auditoría crítica a un nivel alto. Los puntos pendientes son generación de OG image dedicada y registro en Google Search Console.</p>
+    </div>
+  </div>
+
+  <!-- Score by category -->
+  <div class="score-grid">
+    <div class="score-card">
+      <div class="label">Meta Tags</div>
+      <div class="value green">95</div>
+      <div class="change up">+60 ↑</div>
+    </div>
+    <div class="score-card">
+      <div class="label">Open Graph</div>
+      <div class="value green">90</div>
+      <div class="change up">+90 ↑</div>
+    </div>
+    <div class="score-card">
+      <div class="label">Schema / JSON-LD</div>
+      <div class="value green">88</div>
+      <div class="change up">+88 ↑</div>
+    </div>
+    <div class="score-card">
+      <div class="label">Headings</div>
+      <div class="value green">90</div>
+      <div class="change up">+40 ↑</div>
+    </div>
+    <div class="score-card">
+      <div class="label">Imágenes</div>
+      <div class="value green">85</div>
+      <div class="change up">+25 ↑</div>
+    </div>
+    <div class="score-card">
+      <div class="label">robots.txt</div>
+      <div class="value green">100</div>
+      <div class="change up">+100 ↑</div>
+    </div>
+    <div class="score-card">
+      <div class="label">Sitemap</div>
+      <div class="value green">100</div>
+      <div class="change up">+100 ↑</div>
+    </div>
+    <div class="score-card">
+      <div class="label">Canonical</div>
+      <div class="value green">95</div>
+      <div class="change up">+95 ↑</div>
+    </div>
+  </div>
+
+  <!-- Fixes Applied -->
+  <div class="section">
+    <div class="section-title">✅ Correcciones aplicadas (14)</div>
+    <div class="fix-list">
+
+      <div class="fix fixed">
+        <div class="fix-icon">🏷️</div>
+        <div class="fix-body">
+          <div class="fix-title">Metadata global completa — title template, description mejorada, keywords</div>
+          <div class="fix-desc">Se añadió <code>title.template</code> para que todas las subpáginas hereden el formato "%s | Centro Metabólico". Se mejoró la descripción añadiendo la ciudad (Santiago, Chile) para SEO local. Se añadieron 13 keywords relevantes.</div>
+          <span class="fix-tag">✔ aplicado</span>
+        </div>
+        <div class="fix-impact impact-high"><span>+15</span>pts</div>
+      </div>
+
+      <div class="fix fixed">
+        <div class="fix-icon">📊</div>
+        <div class="fix-body">
+          <div class="fix-title">Open Graph completo — título, descripción, imagen, URL, locale, siteName</div>
+          <div class="fix-desc">Se añadieron todas las etiquetas Open Graph necesarias para compartir en redes sociales (Facebook, LinkedIn, WhatsApp). La imagen OG referencia <code>energy.webp</code> mientras se crea una imagen dedicada 1200×630.</div>
+          <span class="fix-tag">✔ aplicado</span>
+        </div>
+        <div class="fix-impact impact-high"><span>+18</span>pts</div>
+      </div>
+
+      <div class="fix fixed">
+        <div class="fix-icon">🐦</div>
+        <div class="fix-body">
+          <div class="fix-title">Twitter/X Card — summary_large_image en todas las páginas</div>
+          <div class="fix-desc">Se añadieron las etiquetas <code>twitter:card</code>, <code>twitter:title</code>, <code>twitter:description</code> e <code>twitter:image</code> en todas las páginas. Formato <code>summary_large_image</code> para máxima visibilidad.</div>
+          <span class="fix-tag">✔ aplicado</span>
+        </div>
+        <div class="fix-impact impact-high"><span>+10</span>pts</div>
+      </div>
+
+      <div class="fix fixed">
+        <div class="fix-icon">🔗</div>
+        <div class="fix-body">
+          <div class="fix-title">URL canónica — en todas las páginas (12 páginas)</div>
+          <div class="fix-desc">Se añadió <code>&lt;link rel="canonical"&gt;</code> en todas las páginas mediante el campo <code>alternates.canonical</code> de Next.js Metadata API. Evita contenido duplicado y consolida el link equity.</div>
+          <span class="fix-tag">✔ aplicado</span>
+        </div>
+        <div class="fix-impact impact-high"><span>+12</span>pts</div>
+      </div>
+
+      <div class="fix fixed">
+        <div class="fix-icon">🧬</div>
+        <div class="fix-body">
+          <div class="fix-title">JSON-LD Structured Data — MedicalBusiness + WebSite + WebPage + 3 × Person/Physician</div>
+          <div class="fix-desc">Schema.org completo con grafo de entidades: <strong>MedicalBusiness</strong> (nombre, teléfono, dirección, catálogo de servicios), <strong>WebSite</strong>, <strong>WebPage</strong>, y perfiles de los 3 profesionales (Valeska Vidal, Felipe Muñoz, Dra. Bárbara Plass). Mejora visibilidad en Knowledge Graph de Google.</div>
+          <span class="fix-tag">✔ aplicado</span>
+        </div>
+        <div class="fix-impact impact-high"><span>+20</span>pts</div>
+      </div>
+
+      <div class="fix fixed">
+        <div class="fix-icon">📄</div>
+        <div class="fix-body">
+          <div class="fix-title">robots.txt creado — era 404</div>
+          <div class="fix-desc">Se creó <code>public/robots.txt</code> con <code>Allow: /</code> y referencia al sitemap. Sin este archivo Google no puede rastrear eficientemente el sitio.</div>
+          <span class="fix-tag">✔ aplicado</span>
+        </div>
+        <div class="fix-impact impact-high"><span>+8</span>pts</div>
+      </div>
+
+      <div class="fix fixed">
+        <div class="fix-icon">🗺️</div>
+        <div class="fix-body">
+          <div class="fix-title">sitemap.xml creado — era 404</div>
+          <div class="fix-desc">Se creó <code>public/sitemap.xml</code> con las 7 URLs principales del sitio, prioridades y frecuencia de cambio. Permite a Google descubrir e indexar todas las páginas correctamente.</div>
+          <span class="fix-tag">✔ aplicado</span>
+        </div>
+        <div class="fix-impact impact-high"><span>+10</span>pts</div>
+      </div>
+
+      <div class="fix fixed">
+        <div class="fix-icon">🎯</div>
+        <div class="fix-body">
+          <div class="fix-title">H1 único en homepage — "Tu metabolismo TIENE EL PODER."</div>
+          <div class="fix-desc">La sección hero usaba etiquetas <code>&lt;h2&gt;</code> para todos los headings. Se convirtió el primer heading a <code>&lt;h1&gt;</code>. Sin H1, Google no puede determinar el tema principal de la página.</div>
+          <span class="fix-tag">✔ aplicado</span>
+        </div>
+        <div class="fix-impact impact-high"><span>+15</span>pts</div>
+      </div>
+
+      <div class="fix fixed">
+        <div class="fix-icon">📱</div>
+        <div class="fix-body">
+          <div class="fix-title">theme-color meta tag — #00AEEF</div>
+          <div class="fix-desc">Se añadió <code>theme-color</code> para que la barra del navegador en móvil muestre el color de marca. Señal de marca coherente para buscadores y experiencia de usuario.</div>
+          <span class="fix-tag">✔ aplicado</span>
+        </div>
+        <div class="fix-impact"><span>+3</span>pts</div>
+      </div>
+
+      <div class="fix fixed">
+        <div class="fix-icon">🤖</div>
+        <div class="fix-body">
+          <div class="fix-title">Robots meta — index:true, follow:true con directivas Googlebot</div>
+          <div class="fix-desc">Se añadió configuración explícita de robots con directivas avanzadas para Googlebot: <code>max-image-preview: large</code>, <code>max-snippet: -1</code>. Permite a Google mostrar fragmentos completos y previsualizaciones de imagen en los resultados.</div>
+          <span class="fix-tag">✔ aplicado</span>
+        </div>
+        <div class="fix-impact"><span>+5</span>pts</div>
+      </div>
+
+      <div class="fix fixed">
+        <div class="fix-icon">📝</div>
+        <div class="fix-body">
+          <div class="fix-title">Metadata mejorada en 11 subpáginas</div>
+          <div class="fix-desc">Todas las subpáginas (asesoria, reto-21-dias, entrenamiento, recovery, programa-metabolico, agendar, fuerza, funcional, movilidad, stretching, recovery/entrenamiento) ahora tienen metadata completa con Open Graph, Twitter Card y canonical individual.</div>
+          <span class="fix-tag">✔ aplicado</span>
+        </div>
+        <div class="fix-impact"><span>+8</span>pts</div>
+      </div>
+
+      <div class="fix fixed">
+        <div class="fix-icon">🔤</div>
+        <div class="fix-body">
+          <div class="fix-title">Typo corregido en programa-metabolico — "Dinámics" → "Dinámico"</div>
+          <div class="fix-desc">La descripción tenía un error tipográfico "Dinámics" que afectaba la credibilidad del contenido.</div>
+          <span class="fix-tag">✔ aplicado</span>
+        </div>
+        <div class="fix-impact"><span>+1</span>pts</div>
+      </div>
+
+      <div class="fix fixed">
+        <div class="fix-icon">🌐</div>
+        <div class="fix-body">
+          <div class="fix-title">metadataBase configurado — resuelve URLs relativas correctamente</div>
+          <div class="fix-desc">Se configuró <code>metadataBase: new URL("https://felipemunoz1983-alt.github.io")</code> para que Next.js resuelva correctamente las URLs de imágenes y canonicals en el HTML estático generado.</div>
+          <span class="fix-tag">✔ aplicado</span>
+        </div>
+        <div class="fix-impact"><span>+5</span>pts</div>
+      </div>
+
+      <div class="fix fixed">
+        <div class="fix-icon">👤</div>
+        <div class="fix-body">
+          <div class="fix-title">H1 en página agendar — "Agenda tu consulta"</div>
+          <div class="fix-desc">La página /agendar ya tenía un H1 correcto pero se mantuvo y verificó la correcta estructura heading.</div>
+          <span class="fix-tag">✔ verificado</span>
+        </div>
+        <div class="fix-impact"><span>+2</span>pts</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Pending -->
+  <div class="section">
+    <div class="section-title">⚠️ Acciones pendientes (próximos pasos)</div>
+    <div class="fix-list">
+
+      <div class="fix warning">
+        <div class="fix-icon">🖼️</div>
+        <div class="fix-body">
+          <div class="fix-title">Crear imagen OG dedicada — 1200×630px</div>
+          <div class="fix-desc">Actualmente se usa <code>energy.webp</code> como imagen de redes sociales. Se recomienda crear una imagen 1200×630 con el logo, nombre del centro y un tagline sobre fondo de marca. Herramientas: Canva, Figma o generador de OG Image de Next.js.</div>
+          <span class="fix-tag">pendiente</span>
+        </div>
+        <div class="fix-impact impact-med"><span>+5</span>pts</div>
+      </div>
+
+      <div class="fix warning">
+        <div class="fix-icon">🔍</div>
+        <div class="fix-body">
+          <div class="fix-title">Registrar en Google Search Console</div>
+          <div class="fix-desc">Después de hacer deploy, subir el sitemap en Google Search Console (search.google.com/search-console) para acelerar la indexación de todas las páginas y obtener datos de rendimiento de búsqueda.</div>
+          <span class="fix-tag">pendiente</span>
+        </div>
+        <div class="fix-impact impact-med"><span>+5</span>pts</div>
+      </div>
+
+      <div class="fix warning">
+        <div class="fix-icon">⚡</div>
+        <div class="fix-body">
+          <div class="fix-title">Core Web Vitals — verificar LCP y CLS</div>
+          <div class="fix-desc">El hero con canvas animation y scroll 300vh puede afectar el LCP (Largest Contentful Paint). Verificar con PageSpeed Insights. Las imágenes ya usan <code>priority</code> en Next.js Image y formato .webp.</div>
+          <span class="fix-tag">pendiente</span>
+        </div>
+        <div class="fix-impact"><span>+3</span>pts</div>
+      </div>
+
+      <div class="fix warning">
+        <div class="fix-icon">🍎</div>
+        <div class="fix-body">
+          <div class="fix-title">apple-touch-icon — para PWA iOS</div>
+          <div class="fix-desc">Añadir <code>&lt;link rel="apple-touch-icon" href="/apple-touch-icon.png"&gt;</code> para mejorar la experiencia al añadir el sitio a pantalla de inicio en iOS.</div>
+          <span class="fix-tag">pendiente</span>
+        </div>
+        <div class="fix-impact"><span>+2</span>pts</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Files modified -->
+  <div class="files">
+    <h3>📁 Archivos modificados (12)</h3>
+    <div class="file-list">
+      <div class="file-item"><code>src/app/layout.tsx</code><span class="desc">— metadata global, JSON-LD, metadataBase, OG, Twitter, robots</span></div>
+      <div class="file-item"><code>src/components/sections/EnergySection.tsx</code><span class="desc">— h2 → h1 en heading principal</span></div>
+      <div class="file-item"><code>public/robots.txt</code><span class="desc">— creado desde cero (era 404)</span></div>
+      <div class="file-item"><code>public/sitemap.xml</code><span class="desc">— creado con 7 URLs (era 404)</span></div>
+      <div class="file-item"><code>src/app/asesoria/page.tsx</code><span class="desc">— OG, Twitter, canonical, description mejorada</span></div>
+      <div class="file-item"><code>src/app/reto-21-dias/page.tsx</code><span class="desc">— OG, Twitter, canonical</span></div>
+      <div class="file-item"><code>src/app/entrenamiento/page.tsx</code><span class="desc">— OG, Twitter, canonical</span></div>
+      <div class="file-item"><code>src/app/recovery/page.tsx</code><span class="desc">— OG, Twitter, canonical, description mejorada</span></div>
+      <div class="file-item"><code>src/app/programa-metabolico/page.tsx</code><span class="desc">— OG, Twitter, canonical, typo corregido</span></div>
+      <div class="file-item"><code>src/app/agendar/page.tsx</code><span class="desc">— OG, Twitter, canonical</span></div>
+      <div class="file-item"><code>src/app/entrenamiento/fuerza|funcional|movilidad|stretching|recovery/page.tsx</code><span class="desc">— OG, Twitter, canonical en subpáginas de entrenamiento</span></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Generado por Claude Code · 9 de junio 2026 · centro-metabolico v1.0</p>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -199,10 +199,10 @@ export function EnergySection() {
 
         <div ref={p1Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none" style={{ opacity: 1, willChange: "opacity, transform" }}>
           <div className="flex flex-col items-center rounded-3xl px-6 py-7 md:px-10 md:py-8 backdrop-blur-md" style={{ backgroundColor: "rgba(3,8,15,0.92)" }}>
-            <h2 className="mb-5 text-3xl leading-[1.05] text-white sm:text-4xl md:text-6xl lg:text-7xl"
+            <h1 className="mb-5 text-3xl leading-[1.05] text-white sm:text-4xl md:text-6xl lg:text-7xl"
               style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 8px rgba(0,0,0,0.9)" }}>
               Tu metabolismo<br />TIENE EL PODER.
-            </h2>
+            </h1>
             <p className="max-w-[48ch] text-base leading-relaxed md:text-lg" style={{ color: "rgba(220,240,255,0.85)" }}>
               Todo lo que necesitas para transformar tu cuerpo está dentro de ti.<br />Nosotros ponemos la ciencia.
             </p>
