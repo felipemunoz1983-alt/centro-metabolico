@@ -8,7 +8,7 @@ const ACCENT = "#00AEEF";
 const BENEFITS = [
   {
     n: "01",
-    t: "Elimina\nácido láctico",
+    t: "Elimina",
     b: "Drena el lactato que genera dolor y rigidez después de cada entreno intenso.",
   },
   {
