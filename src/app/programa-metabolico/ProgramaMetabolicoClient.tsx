@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
@@ -9,7 +9,7 @@ import { Footer } from "@/components/sections/Footer";
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const BRAND = "#00AEEF";
 const VIOLET = "#A78BFA";
-const AGENDA_URL = "/agendar";
+const AGENDA_URL = `${BP}/agendar`;
 
 /* ── Icons ──────────────────────────────────────────────────── */
 function CheckIcon({ color }: { color: string }) {

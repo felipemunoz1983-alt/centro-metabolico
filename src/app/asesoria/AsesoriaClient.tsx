@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const AGENDA_URL = "/agendar";
+const AGENDA_URL = `${BP}/agendar`;
 const BRAND = "#00AEEF";
 const BRAND_DARK = "#0090C5";
 
