@@ -18,6 +18,7 @@ const profesionales = [
     especialidad: "Nutrición Clínica y Medicina Metabólica",
     registro: "UDD Distinción Máxima · EUNACOM",
     photo: "/barbara.webp",
+    photoBg: "#ffffff",
     tags: ["Medicina Metabólica", "Nutrición Clínica", "Obesidad"],
     badge: "Hospital Padre Hurtado",
   },
@@ -81,7 +82,7 @@ export default function ConsultaMedicaPage() {
               }}
             >
               {/* Photo */}
-              <div className="relative w-full" style={{ aspectRatio: "3/3.5", backgroundColor: "rgba(11,22,40,0.8)" }}>
+              <div className="relative w-full" style={{ aspectRatio: "3/3.5", backgroundColor: p.photoBg ?? "rgba(11,22,40,0.8)" }}>
                 <Image
                   src={`${BP}${p.photo}`}
                   alt={p.name}
