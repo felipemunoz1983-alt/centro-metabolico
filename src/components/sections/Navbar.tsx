@@ -49,7 +49,7 @@ export function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 overflow-hidden">
+      <header className="fixed top-0 left-0 right-0 z-50">
         {/* Background — fills left → right on scroll */}
         <div
           ref={bgRef}
