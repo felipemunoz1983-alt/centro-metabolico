@@ -217,7 +217,7 @@ export function PresoterapiaClient() {
       </section>
 
       {/* ── BOOKING ────────────────────────────────────────────────── */}
-      <section id="reservar" className="bg-[#050505] py-24 px-6 sm:px-10 md:px-16">
+      <section id="reservar" className="bg-white py-24 px-6 sm:px-10 md:px-16">
         <div className="max-w-6xl mx-auto">
           <motion.p
             initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
@@ -229,8 +229,8 @@ export function PresoterapiaClient() {
           <motion.h2
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }} viewport={{ once: true }}
-            className="mb-10 text-4xl md:text-5xl text-white"
-            style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", lineHeight: "1.1" }}
+            className="mb-10 text-4xl md:text-5xl"
+            style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", lineHeight: "1.1", color: "#0A0A0A" }}
           >
             Elige tu horario.
           </motion.h2>
@@ -238,6 +238,7 @@ export function PresoterapiaClient() {
             initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }} viewport={{ once: true }}
             className="rounded-2xl overflow-hidden"
+            style={{ boxShadow: "0 4px 32px rgba(0,0,0,0.08)" }}
           >
             <iframe
               src="https://agendapro.com/iframe/overview/51643841-fc06-42db-bcb5-78232dc5802a"
