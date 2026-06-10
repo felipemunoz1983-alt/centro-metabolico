@@ -8,21 +8,16 @@ const ACCENT = "#00AEEF";
 const BENEFITS = [
   {
     n: "01",
-    t: "Elimina",
-    b: "Drena el lactato que genera dolor y rigidez después de cada entreno intenso.",
-  },
-  {
-    n: "02",
     t: "Reduce\ninflamación",
     b: "Activa el retorno venoso y reduce el edema muscular de forma inmediata.",
   },
   {
-    n: "03",
+    n: "02",
     t: "Activa la\ncirculación",
     b: "Mejora el flujo sanguíneo hacia los músculos cargados, acelerando la reparación de fibras.",
   },
   {
-    n: "04",
+    n: "03",
     t: "Alivia\nel dolor",
     b: "60 minutos que dejan las piernas ligeras y listas para el próximo entrenamiento.",
   },
@@ -114,7 +109,7 @@ export function PresoterapiaClient() {
 
       {/* ── BENEFITS BENTO ─────────────────────────────────────────── */}
       <section className="border-t border-white/10">
-        <div className="max-w-6xl mx-auto px-6 sm:px-10 md:px-16 grid grid-cols-2 md:grid-cols-4">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 md:px-16 grid grid-cols-1 md:grid-cols-3">
           {BENEFITS.map(({ n, t, b }, i) => (
             <motion.div
               key={n}
@@ -122,8 +117,8 @@ export function PresoterapiaClient() {
               transition={{ duration: 0.6, delay: i * 0.1 }} viewport={{ once: true }}
               className={[
                 "py-10",
-                i === 0 ? "pr-6 md:pr-8" : i === 3 ? "pl-6 md:pl-8" : "px-6 md:px-8",
-                i < 3 ? "md:border-r border-white/10" : "",
+                i === 0 ? "pr-6 md:pr-8" : i === 2 ? "pl-6 md:pl-8" : "px-6 md:px-8",
+                i < 2 ? "md:border-r border-white/10" : "",
                 i < 2 ? "border-b border-white/10 md:border-b-0" : "",
               ].join(" ")}
             >
