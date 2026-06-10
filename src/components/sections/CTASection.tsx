@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
@@ -51,7 +51,7 @@ export function CTASection() {
 
           <div className="flex flex-col gap-3 items-center sm:flex-row sm:justify-center">
             <motion.a
-              href={`${BP}/agendar`}
+              href={"https://agendapro.com/overview/51643841-fc06-42db-bcb5-78232dc5802a"}
               className="group inline-flex items-center gap-2.5 rounded-2xl px-8 py-4 text-sm font-semibold text-white"
               style={{ backgroundColor: "var(--brand)" }}
               whileHover={{

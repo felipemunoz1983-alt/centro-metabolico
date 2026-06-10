@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -33,7 +33,7 @@ export default function Vo2maxPage() {
           Medición del consumo máximo de oxígeno y umbral anaeróbico. Define tus zonas de entrenamiento con datos precisos y optimiza tu rendimiento aeróbico.
         </p>
         <Link
-          href="/agendar"
+          href={"https://agendapro.com/overview/51643841-fc06-42db-bcb5-78232dc5802a"}
           className="inline-flex items-center gap-2 rounded-2xl px-7 py-3.5 text-sm font-semibold text-white transition-all"
           style={{ backgroundColor: "var(--brand)" }}
         >

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -231,8 +231,10 @@ export function Navbar() {
 
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-3">
-            <Link
-              href="/agendar"
+            <a
+              href={"https://agendapro.com/overview/51643841-fc06-42db-bcb5-78232dc5802a"}
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-xl px-5 py-2 text-sm font-semibold text-white transition-all"
               style={{ backgroundColor: "var(--brand)" }}
               onMouseEnter={(e) => {
@@ -245,7 +247,7 @@ export function Navbar() {
               }}
             >
               Agendar consulta
-            </Link>
+            </a>
           </div>
 
           {/* Mobile menu button */}
