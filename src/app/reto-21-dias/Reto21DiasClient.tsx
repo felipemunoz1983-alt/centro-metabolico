@@ -284,35 +284,53 @@ export function Reto21DiasClient() {
       </section>
 
       {/* ── 3 Semanas ────────────────────────────────────────── */}
-      <section className="py-24 px-6 md:px-8"
-        style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-        <div className="mx-auto max-w-[900px]">
-          <AnimatedSection className="text-center mb-14">
+      <section className="px-6 md:px-8" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="mx-auto max-w-[1260px]">
+          <AnimatedSection className="pt-24 pb-14">
             <p className="mb-3 text-[11px] font-bold uppercase tracking-widest" style={{ color: BRAND }}>
               Semana a semana
             </p>
-            <h2 className="text-3xl font-semibold tracking-tight text-sky-50 md:text-4xl">
-              Cómo funciona el reto.
+            <h2 className="text-4xl md:text-6xl text-white leading-[1.0]"
+              style={{ fontFamily: "var(--font-reto)", letterSpacing: "0.02em" }}>
+              Cómo funciona<br />el reto.
             </h2>
           </AnimatedSection>
 
-          <div className="flex flex-col gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 border-t" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
             {steps.map((s, i) => (
               <AnimatedItem key={s.day} index={i}>
-                <div className="flex gap-5 rounded-2xl p-6"
-                  style={{ border: "1px solid rgba(255,255,255,0.07)", backgroundColor: "rgba(255,255,255,0.025)" }}>
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold"
-                    style={{ backgroundColor: "rgba(0,174,239,0.15)", color: BRAND }}>
-                    {i + 1}
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: "rgba(0,174,239,0.6)" }}>
-                      {s.day}
-                    </p>
-                    <h3 className="mb-1.5 text-base font-semibold text-white">{s.title}</h3>
-                    <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>{s.desc}</p>
-                  </div>
-                </div>
+                <motion.div
+                  className={[
+                    "group pb-14 pt-10",
+                    i === 0 ? "pr-0 md:pr-8" : i === 2 ? "pl-0 md:pl-8" : "pl-0 md:px-8",
+                    i < 2 ? "md:border-r" : "",
+                    i < 2 ? "border-b md:border-b-0" : "",
+                  ].join(" ")}
+                  style={{ borderColor: "rgba(255,255,255,0.08)" }}
+                >
+                  <span
+                    className="block leading-none mb-5"
+                    style={{ fontFamily: "var(--font-reto)", fontSize: "clamp(3.5rem,6vw,5.5rem)", color: BRAND, letterSpacing: "-0.02em" }}
+                  >
+                    0{i + 1}
+                  </span>
+                  <motion.div
+                    className="h-0.5 mb-5"
+                    style={{ backgroundColor: BRAND, width: "28px" }}
+                    whileHover={{ width: "48px" }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <span className="mb-3 block text-[10px] font-bold tracking-[0.2em] uppercase" style={{ color: BRAND }}>
+                    {s.day}
+                  </span>
+                  <h3
+                    className="mb-3 text-white uppercase leading-[1.1]"
+                    style={{ fontFamily: "var(--font-reto)", fontSize: "clamp(1.2rem,2vw,1.5rem)", letterSpacing: "0.04em" }}
+                  >
+                    {s.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>{s.desc}</p>
+                </motion.div>
               </AnimatedItem>
             ))}
           </div>
