@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 
 const evaluacionesItems = [
@@ -26,6 +27,9 @@ const navLinks = [
 const PROGRAMA_HREF = "/programa-metabolico";
 
 export function Navbar() {
+  const pathname = usePathname();
+  const isHome   = pathname === "/" || pathname === "";
+
   const [menuOpen, setMenuOpen]                   = useState(false);
   const [medicinaOpen, setMedicinaOpen]           = useState(false);
   const [evaluacionesOpen, setEvaluacionesOpen]   = useState(false);
@@ -35,6 +39,11 @@ export function Navbar() {
   const borderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!isHome) {
+      if (bgRef.current)     bgRef.current.style.transform = "scaleX(1)";
+      if (borderRef.current) borderRef.current.style.transform = "scaleX(1)";
+      return;
+    }
     const FILL_PX = 260;
     const onScroll = () => {
       const p = Math.min(1, window.scrollY / FILL_PX);
@@ -44,7 +53,7 @@ export function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isHome]);
 
   const linkClass = "rounded-xl px-4 py-2 text-sm text-sky-100/70 hover:text-sky-100 transition-all";
   const linkStyle = (label: string) => ({
