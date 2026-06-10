@@ -229,36 +229,53 @@ export function Reto21DiasClient() {
       </section>
 
       {/* ── 4 Pilares ────────────────────────────────────────── */}
-      <section className="py-24 px-6 md:px-8"
-        style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+      <section className="px-6 md:px-8" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
         <div className="mx-auto max-w-[1260px]">
-          <AnimatedSection className="text-center mb-14">
+          <AnimatedSection className="pt-24 pb-14">
             <p className="mb-3 text-[11px] font-bold uppercase tracking-widest" style={{ color: BRAND }}>
               Metodología
             </p>
-            <h2 className="text-3xl font-semibold tracking-tight text-sky-50 md:text-4xl">
-              Cuatro pilares. Un resultado.
+            <h2 className="text-4xl md:text-6xl text-white leading-[1.0]"
+              style={{ fontFamily: "var(--font-reto)", letterSpacing: "0.02em" }}>
+              Cuatro pilares.<br />Un resultado.
             </h2>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 border-t" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
             {pillars.map((p, i) => (
               <AnimatedItem key={p.label} index={i}>
                 <motion.div
-                  className="rounded-2xl p-6 h-full"
-                  style={{ border: "1px solid rgba(0,174,239,0.12)", backgroundColor: "rgba(0,174,239,0.04)" }}
-                  whileHover={{ y: -4, borderColor: "rgba(0,174,239,0.30)" }}
-                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                  className={[
+                    "group pb-14",
+                    i === 0 ? "pt-10 pr-0 md:pr-8" : i === 3 ? "pt-10 pl-6 md:pl-8" : "pt-10 px-6 md:px-8",
+                    i < 3 ? "md:border-r" : "",
+                    i < 2 ? "border-b md:border-b-0" : "",
+                  ].join(" ")}
+                  style={{ borderColor: "rgba(255,255,255,0.08)" }}
+                  whileHover={{}}
                 >
-                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl"
-                    style={{ backgroundColor: "rgba(0,174,239,0.12)", color: BRAND }}>
-                    {p.icon}
-                  </div>
-                  <span className="mb-2 block text-xs font-bold tracking-widest uppercase" style={{ color: BRAND }}>
+                  <span
+                    className="block leading-none mb-5"
+                    style={{ fontFamily: "var(--font-reto)", fontSize: "clamp(3.5rem,6vw,5.5rem)", color: BRAND, letterSpacing: "-0.02em" }}
+                  >
+                    0{i + 1}
+                  </span>
+                  <motion.div
+                    className="h-0.5 mb-5"
+                    style={{ backgroundColor: BRAND, width: "28px" }}
+                    whileHover={{ width: "48px" }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <span className="mb-3 block text-[10px] font-bold tracking-[0.2em] uppercase" style={{ color: BRAND }}>
                     {p.label}
                   </span>
-                  <h3 className="mb-3 text-base font-semibold text-white">{p.title}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>{p.desc}</p>
+                  <h3
+                    className="mb-3 text-white uppercase leading-[1.1]"
+                    style={{ fontFamily: "var(--font-reto)", fontSize: "clamp(1.2rem,2vw,1.5rem)", letterSpacing: "0.04em" }}
+                  >
+                    {p.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>{p.desc}</p>
                 </motion.div>
               </AnimatedItem>
             ))}
