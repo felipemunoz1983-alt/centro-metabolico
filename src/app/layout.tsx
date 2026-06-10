@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Montserrat, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { Navbar } from "@/components/sections/Navbar";
+import { AgendaModal } from "@/components/ui/AgendaModal";
 
 const BASE_URL = "https://felipemunoz1983-alt.github.io";
 const BASE_PATH = "/centro-metabolico";
@@ -202,6 +203,7 @@ export default function RootLayout({
         <SmoothScrollProvider>
           <Navbar />
           {children}
+          <AgendaModal />
         </SmoothScrollProvider>
       </body>
     </html>
