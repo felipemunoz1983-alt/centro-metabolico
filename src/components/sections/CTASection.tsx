@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 
+const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export function CTASection() {
   return (
     <section id="contacto" className="px-6 py-28 md:px-8 md:py-36 relative overflow-hidden" style={{ backgroundColor: "var(--bg)" }}>
@@ -49,7 +51,7 @@ export function CTASection() {
 
           <div className="flex flex-col gap-3 items-center sm:flex-row sm:justify-center">
             <motion.a
-              href="/agendar"
+              href={`${BP}/agendar`}
               className="group inline-flex items-center gap-2.5 rounded-2xl px-8 py-4 text-sm font-semibold text-white"
               style={{ backgroundColor: "var(--brand)" }}
               whileHover={{
