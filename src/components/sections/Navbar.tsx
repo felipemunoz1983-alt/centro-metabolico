@@ -12,8 +12,7 @@ const evaluacionesItems = [
 ];
 
 const medicinaItems: { label: string; href: string; children?: typeof evaluacionesItems }[] = [
-  { label: "Consulta Médica", href: "/consulta-medica" },
-  { label: "Consulta Nutricional", href: "/asesoria" },
+  { label: "Consulta Médica Nutricional", href: "/consulta-medica" },
   { label: "Evaluaciones", href: "/evaluaciones", children: evaluacionesItems },
   { label: "Recovery", href: "/recovery" },
 ];
