@@ -58,9 +58,12 @@ export default function AgendarPage() {
         >
           <iframe
             src="https://agendapro.com/iframe/overview/51643841-fc06-42db-bcb5-78232dc5802a"
-            width="100%"
-            style={{ minHeight: "700px", border: "none", display: "block" }}
+            width="810"
+            marginWidth={0}
+            marginHeight={0}
+            frameBorder={0}
             scrolling="yes"
+            style={{ border: "none", display: "block", width: "100%", minHeight: "700px" }}
             title="Agendar en Centro Metabólico"
           />
         </div>
