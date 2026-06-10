@@ -5,10 +5,16 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 
-const medicinaItems = [
+const evaluacionesItems = [
+  { label: "Evaluación Metabólica", href: "/evaluaciones/metabolica" },
+  { label: "InBody", href: "/evaluaciones/inbody" },
+  { label: "VO2max", href: "/evaluaciones/vo2max" },
+];
+
+const medicinaItems: { label: string; href: string; children?: typeof evaluacionesItems }[] = [
   { label: "Consulta Médica", href: "/consulta-medica" },
   { label: "Consulta Nutricional", href: "/asesoria" },
-  { label: "Evaluaciones", href: "/evaluaciones" },
+  { label: "Evaluaciones", href: "/evaluaciones", children: evaluacionesItems },
 ];
 
 const navLinks = [
@@ -21,22 +27,21 @@ const navLinks = [
 const PROGRAMA_HREF = "/programa-metabolico";
 
 export function Navbar() {
-  const [menuOpen, setMenuOpen]       = useState(false);
-  const [medicinaOpen, setMedicinaOpen] = useState(false);
-  const [medicinaMobileOpen, setMedicinaMobileOpen] = useState(false);
-  const medicinaRef = useRef<HTMLDivElement>(null);
+  const [menuOpen, setMenuOpen]                   = useState(false);
+  const [medicinaOpen, setMedicinaOpen]           = useState(false);
+  const [evaluacionesOpen, setEvaluacionesOpen]   = useState(false);
+  const [medicinaMobileOpen, setMedicinaMobileOpen]       = useState(false);
+  const [evaluacionesMobileOpen, setEvaluacionesMobileOpen] = useState(false);
   const bgRef     = useRef<HTMLDivElement>(null);
   const borderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const FILL_PX = 260; // scroll distance to reach full opacity
-
+    const FILL_PX = 260;
     const onScroll = () => {
       const p = Math.min(1, window.scrollY / FILL_PX);
       if (bgRef.current)     bgRef.current.style.transform     = `scaleX(${p})`;
       if (borderRef.current) borderRef.current.style.transform = `scaleX(${p})`;
     };
-
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
@@ -84,10 +89,9 @@ export function Navbar() {
           <nav className="hidden lg:flex items-center gap-1">
             {/* Medicina dropdown */}
             <div
-              ref={medicinaRef}
               className="relative"
               onMouseEnter={() => setMedicinaOpen(true)}
-              onMouseLeave={() => setMedicinaOpen(false)}
+              onMouseLeave={() => { setMedicinaOpen(false); setEvaluacionesOpen(false); }}
             >
               <button
                 className={linkClass + " flex items-center gap-1.5"}
@@ -106,7 +110,7 @@ export function Navbar() {
               <AnimatePresence>
                 {medicinaOpen && (
                   <motion.div
-                    className="absolute top-full left-0 mt-1 min-w-[200px] rounded-2xl overflow-hidden"
+                    className="absolute top-full left-0 mt-1 min-w-[210px] rounded-2xl py-1"
                     style={{
                       backgroundColor: "rgba(6,14,26,0.97)",
                       backdropFilter: "blur(20px)",
@@ -118,19 +122,71 @@ export function Navbar() {
                     exit={{ opacity: 0, y: -6 }}
                     transition={{ duration: 0.15 }}
                   >
-                    {medicinaItems.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="block px-5 py-3 text-sm text-sky-100/70 hover:text-sky-100 transition-colors"
-                        style={{}}
-                        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,174,239,0.1)")}
-                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
-                        onClick={() => setMedicinaOpen(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
+                    {medicinaItems.map((item) =>
+                      item.children ? (
+                        /* Evaluaciones row with flyout */
+                        <div
+                          key={item.href}
+                          className="relative"
+                          onMouseEnter={() => setEvaluacionesOpen(true)}
+                          onMouseLeave={() => setEvaluacionesOpen(false)}
+                        >
+                          <div
+                            className="flex items-center justify-between px-5 py-3 text-sm text-sky-100/70 hover:text-sky-100 cursor-default transition-colors"
+                            style={{}}
+                            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,174,239,0.1)")}
+                            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+                          >
+                            {item.label}
+                            <svg className="w-3 h-3 ml-3 flex-shrink-0" style={{ color: "rgba(125,217,249,0.5)" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </div>
+
+                          <AnimatePresence>
+                            {evaluacionesOpen && (
+                              <motion.div
+                                className="absolute top-0 left-full ml-1 min-w-[210px] rounded-2xl py-1"
+                                style={{
+                                  backgroundColor: "rgba(6,14,26,0.97)",
+                                  backdropFilter: "blur(20px)",
+                                  border: "1px solid rgba(0,174,239,0.18)",
+                                  boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
+                                }}
+                                initial={{ opacity: 0, x: -6 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -6 }}
+                                transition={{ duration: 0.12 }}
+                              >
+                                {item.children.map((sub) => (
+                                  <Link
+                                    key={sub.href}
+                                    href={sub.href}
+                                    className="block px-5 py-3 text-sm text-sky-100/70 hover:text-sky-100 transition-colors"
+                                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,174,239,0.1)")}
+                                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+                                    onClick={() => { setMedicinaOpen(false); setEvaluacionesOpen(false); }}
+                                  >
+                                    {sub.label}
+                                  </Link>
+                                ))}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      ) : (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="block px-5 py-3 text-sm text-sky-100/70 hover:text-sky-100 transition-colors"
+                          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,174,239,0.1)")}
+                          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+                          onClick={() => setMedicinaOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      )
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -199,7 +255,7 @@ export function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-6"
+            className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-6 overflow-y-auto py-20"
             style={{ backgroundColor: "rgba(3,8,15,0.97)", backdropFilter: "blur(20px)" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -213,12 +269,13 @@ export function Navbar() {
             >
               ✕ Cerrar
             </button>
+
             {/* Medicina accordion */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0 }}
-              className="flex flex-col items-center gap-2"
+              className="flex flex-col items-center gap-2 w-full px-8"
             >
               <button
                 className="flex items-center gap-2 text-2xl font-semibold text-sky-50"
@@ -233,25 +290,66 @@ export function Navbar() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
+
               <AnimatePresence>
                 {medicinaMobileOpen && (
                   <motion.div
-                    className="flex flex-col items-center gap-2"
+                    className="flex flex-col items-center gap-1 w-full"
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    {medicinaItems.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="text-lg text-sky-300/80 hover:text-sky-100 transition-colors"
-                        onClick={() => setMenuOpen(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
+                    {medicinaItems.map((item) =>
+                      item.children ? (
+                        <div key={item.href} className="flex flex-col items-center gap-1 w-full">
+                          <button
+                            className="flex items-center gap-2 text-lg text-sky-300/80 hover:text-sky-100 transition-colors"
+                            onClick={() => setEvaluacionesMobileOpen(!evaluacionesMobileOpen)}
+                          >
+                            {item.label}
+                            <svg
+                              className="w-4 h-4 transition-transform"
+                              style={{ transform: evaluacionesMobileOpen ? "rotate(180deg)" : "rotate(0deg)", color: "var(--brand)" }}
+                              fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </button>
+                          <AnimatePresence>
+                            {evaluacionesMobileOpen && (
+                              <motion.div
+                                className="flex flex-col items-center gap-1"
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.18 }}
+                              >
+                                {item.children.map((sub) => (
+                                  <Link
+                                    key={sub.href}
+                                    href={sub.href}
+                                    className="text-base text-sky-200/60 hover:text-sky-100 transition-colors py-1"
+                                    onClick={() => setMenuOpen(false)}
+                                  >
+                                    {sub.label}
+                                  </Link>
+                                ))}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      ) : (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="text-lg text-sky-300/80 hover:text-sky-100 transition-colors py-1"
+                          onClick={() => setMenuOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      )
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>
