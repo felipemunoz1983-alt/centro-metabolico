@@ -15,12 +15,12 @@ const medicinaItems: { label: string; href: string; children?: typeof evaluacion
   { label: "Consulta Médica", href: "/consulta-medica" },
   { label: "Consulta Nutricional", href: "/asesoria" },
   { label: "Evaluaciones", href: "/evaluaciones", children: evaluacionesItems },
+  { label: "Recovery", href: "/recovery" },
 ];
 
 const navLinks = [
   { label: "Reto 21 días", href: "/reto-21-dias" },
   { label: "Entrenamiento", href: "/entrenamiento" },
-  { label: "Recovery", href: "/recovery" },
   { label: "Taller Nutricional", href: "https://felipemunoz1983-alt.github.io/tallernutricional/", external: true },
 ];
 
