@@ -94,16 +94,16 @@ export function Reto21DiasClient() {
 
         {/* Overlays */}
         <div className="absolute inset-0 pointer-events-none"
-          style={{ background: "linear-gradient(to bottom, rgba(3,8,20,0.55) 0%, rgba(3,8,20,0.30) 50%, rgba(3,8,20,0.80) 100%)" }} />
+          style={{ background: "linear-gradient(to bottom, rgba(3,8,20,0.60) 0%, rgba(3,8,20,0.20) 40%, rgba(3,8,20,0.90) 100%)" }} />
         <div className="absolute inset-0 pointer-events-none"
-          style={{ background: "linear-gradient(to right, rgba(3,8,20,0.60) 0%, transparent 60%)" }} />
+          style={{ background: "linear-gradient(to right, rgba(3,8,20,0.65) 0%, transparent 65%)" }} />
 
         {/* Content */}
         <motion.div
-          className="absolute inset-0 flex flex-col items-end justify-center pr-6 md:pr-12 lg:pr-16 text-right"
+          className="absolute inset-0 flex flex-col items-start justify-end px-6 pb-14 md:items-end md:justify-center md:px-0 md:pr-12 lg:pr-16 md:text-right"
           style={{ y: textY, opacity: textOp }}
         >
-          <span className="mb-5 rounded-full px-5 py-2 text-xs font-bold tracking-widest uppercase"
+          <span className="mb-4 self-start rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase md:self-auto md:mb-5 md:px-5 md:py-2 md:text-xs"
             style={{ backgroundColor: "rgba(0,174,239,0.18)", color: BRAND, border: "1px solid rgba(0,174,239,0.35)" }}>
             Programa de Transformación
           </span>
@@ -112,19 +112,19 @@ export function Reto21DiasClient() {
             className="leading-none text-white"
             style={{
               fontFamily: "var(--font-reto)",
-              fontSize: "clamp(4.5rem, 14vw, 11rem)",
+              fontSize: "clamp(3.8rem, 14vw, 11rem)",
               letterSpacing: "0.06em",
               textShadow: "0 4px 40px rgba(0,0,0,0.9)",
             }}
           >
             RETO
           </h1>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 md:flex-row-reverse">
             <span
               className="text-white"
               style={{
                 fontFamily: "var(--font-reto)",
-                fontSize: "clamp(6rem, 20vw, 14rem)",
+                fontSize: "clamp(5rem, 20vw, 14rem)",
                 letterSpacing: "0.02em",
                 lineHeight: 0.85,
                 textShadow: `0 0 80px ${BRAND}55, 0 4px 40px rgba(0,0,0,0.9)`,
@@ -136,10 +136,10 @@ export function Reto21DiasClient() {
             <div className="h-px" style={{ backgroundColor: `${BRAND}60`, width: 60 }} />
           </div>
           <h2
-            className="text-white mb-6"
+            className="text-white mb-4 md:mb-6"
             style={{
               fontFamily: "var(--font-reto)",
-              fontSize: "clamp(2rem, 6vw, 4rem)",
+              fontSize: "clamp(1.6rem, 6vw, 4rem)",
               letterSpacing: "0.18em",
               textShadow: "0 4px 40px rgba(0,0,0,0.9)",
             }}
@@ -147,14 +147,14 @@ export function Reto21DiasClient() {
             — DÍAS —
           </h2>
 
-          <p className="mb-8 max-w-[32ch] text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
+          <p className="mb-6 text-sm leading-relaxed md:mb-8 md:max-w-[32ch] md:text-base" style={{ color: "rgba(255,255,255,0.65)" }}>
             21 días para cambiar hábitos.<br />
             <strong style={{ color: "rgba(255,255,255,0.9)" }}>Resultados que duran mucho más.</strong>
           </p>
 
           <motion.a
             href="#inscribirse"
-            className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-sm font-bold text-white"
+            className="self-start inline-flex items-center gap-2 rounded-2xl px-7 py-3.5 text-sm font-bold text-white md:self-auto md:px-8 md:py-4"
             style={{ backgroundColor: BRAND }}
             whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(0,174,239,0.55)" }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
