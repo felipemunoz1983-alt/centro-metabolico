@@ -116,15 +116,15 @@ export function PresoterapiaClient() {
               initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.1 }} viewport={{ once: true }}
               className={[
-                "py-10",
-                i === 0 ? "pr-6 md:pr-8" : i === 2 ? "pl-6 md:pl-8" : "px-6 md:px-8",
+                "py-7 md:py-10",
+                i === 0 ? "md:pr-8" : i === 2 ? "md:pl-8" : "md:px-8",
                 i < 2 ? "md:border-r border-white/10" : "",
                 i < 2 ? "border-b border-white/10 md:border-b-0" : "",
               ].join(" ")}
             >
               <span
-                className="block leading-none mb-4"
-                style={{ fontFamily: "var(--font-reto)", fontSize: "clamp(3.5rem,6vw,5rem)", color: ACCENT, letterSpacing: "-0.02em" }}
+                className="block leading-none mb-3"
+                style={{ fontFamily: "var(--font-reto)", fontSize: "clamp(3rem,8vw,5rem)", color: ACCENT, letterSpacing: "-0.02em" }}
               >
                 {n}
               </span>
@@ -166,22 +166,23 @@ export function PresoterapiaClient() {
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: i * 0.12 }} viewport={{ once: true }}
                 className={[
-                  "py-10",
-                  i === 0 ? "pr-8" : i === 2 ? "pl-8" : "px-8",
+                  "py-7 md:py-10",
+                  "px-0 md:px-0",
+                  i === 0 ? "md:pr-8" : i === 2 ? "md:pl-8" : "md:px-8",
                   i < 2 ? "md:border-r border-white/10" : "",
                   i < 2 ? "border-b border-white/10 md:border-b-0" : "",
                 ].join(" ")}
               >
                 <span
-                  className="block leading-none mb-4"
-                  style={{ fontFamily: "var(--font-reto)", fontSize: "clamp(3.5rem,6vw,5rem)", color: ACCENT, letterSpacing: "-0.02em" }}
+                  className="block leading-none mb-3"
+                  style={{ fontFamily: "var(--font-reto)", fontSize: "clamp(3rem,8vw,5rem)", color: ACCENT, letterSpacing: "-0.02em" }}
                 >
                   {n}
                 </span>
-                <div className="w-7 h-0.5 mb-4" style={{ backgroundColor: ACCENT }} />
+                <div className="w-7 h-0.5 mb-3" style={{ backgroundColor: ACCENT }} />
                 <h3
-                  className="font-bold uppercase text-white mb-3 whitespace-pre-line"
-                  style={{ fontFamily: "var(--font-reto)", fontSize: "clamp(1.1rem,2vw,1.4rem)", letterSpacing: "0.04em", lineHeight: 1.1 }}
+                  className="font-bold uppercase text-white mb-2 whitespace-pre-line"
+                  style={{ fontFamily: "var(--font-reto)", fontSize: "clamp(1rem,4vw,1.4rem)", letterSpacing: "0.04em", lineHeight: 1.1 }}
                 >
                   {t}
                 </h3>
