@@ -8,7 +8,7 @@ import { BrandLogo } from "@/components/ui/BrandLogo";
 
 const evaluacionesItems = [
   { label: "Evaluación Metabólica", href: "/evaluaciones/metabolica" },
-  { label: "InBody", href: "/evaluaciones/inbody" },
+  { label: "InBody", href: "https://felipemunoz1983-alt.github.io/centro-metabolico/inbody/" },
   { label: "VO2max", href: "/evaluaciones/vo2max" },
 ];
 
