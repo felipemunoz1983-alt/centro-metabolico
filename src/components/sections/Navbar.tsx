@@ -252,11 +252,15 @@ export function Navbar() {
 
           {/* Mobile menu button */}
           <button
-            className="lg:hidden flex items-center gap-1.5 rounded-xl px-3 py-2 text-sky-300 text-xs font-medium border"
-            style={{ borderColor: "rgba(0,174,239,0.2)", backgroundColor: "rgba(0,174,239,0.08)" }}
+            className="lg:hidden flex items-center justify-center rounded-xl px-3 py-2 text-sky-300 text-xs font-medium border transition-all"
+            style={{ borderColor: "rgba(0,174,239,0.2)", backgroundColor: "rgba(0,174,239,0.08)", minWidth: 56 }}
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            Menú
+            {menuOpen ? (
+              <span className="text-base leading-none" style={{ color: "var(--brand)" }}>✕</span>
+            ) : (
+              "Menú"
+            )}
           </button>
         </div>
       </header>
@@ -272,14 +276,6 @@ export function Navbar() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
           >
-            <button
-              className="absolute top-6 right-6 text-sm"
-              style={{ color: "var(--brand)" }}
-              onClick={() => setMenuOpen(false)}
-            >
-              ✕ Cerrar
-            </button>
-
             {/* Medicina accordion */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
