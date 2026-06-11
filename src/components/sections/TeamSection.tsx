@@ -361,8 +361,8 @@ export function TeamSection() {
                   </>
                 ) : (
                   <>
-                    <CurriculumColumn member={member} />
-                    <PhotoColumn member={member} />
+                    <div className="order-first lg:order-last"><PhotoColumn member={member} /></div>
+                    <div className="order-last lg:order-first"><CurriculumColumn member={member} /></div>
                   </>
                 )}
               </div>
