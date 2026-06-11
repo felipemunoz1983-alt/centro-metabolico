@@ -191,14 +191,14 @@ export function ProgramaMetabolicoClient() {
   });
 
   const scale       = useTransform(scrollYProgress, [0, 1], [1.0, 1.45]);
-  const darkOverlay = useTransform(scrollYProgress, [0, 0.15, 0.55, 1], [0.50, 0.40, 0.40, 0.70]);
-  const vigOpacity  = useTransform(scrollYProgress, [0, 0.3, 0.6, 1], [0.40, 0.15, 0.25, 0.85]);
+  const darkOverlay = useTransform(scrollYProgress, [0, 0.15, 0.55, 1], [0.68, 0.62, 0.62, 0.82]);
+  const vigOpacity  = useTransform(scrollYProgress, [0, 0.3, 0.6, 1], [0.50, 0.35, 0.40, 0.90]);
 
-  const p1Opacity = useTransform(scrollYProgress, [0, 0.25, 0.38], [1, 1, 0]);
-  const p1Y       = useTransform(scrollYProgress, [0, 0.38], [0, -60]);
+  const p1Opacity = useTransform(scrollYProgress, [0, 0.22, 0.33], [1, 1, 0]);
+  const p1Y       = useTransform(scrollYProgress, [0, 0.33], [0, -60]);
 
-  const p2Opacity = useTransform(scrollYProgress, [0.38, 0.50, 0.65, 0.74], [0, 1, 1, 0]);
-  const p2Y       = useTransform(scrollYProgress, [0.38, 0.74], [60, -60]);
+  const p2Opacity = useTransform(scrollYProgress, [0.42, 0.52, 0.65, 0.74], [0, 1, 1, 0]);
+  const p2Y       = useTransform(scrollYProgress, [0.42, 0.74], [60, -60]);
 
   const p3Opacity = useTransform(scrollYProgress, [0.74, 0.85, 1, 1], [0, 1, 1, 1]);
   const p3Y       = useTransform(scrollYProgress, [0.74, 0.85], [60, 0]);
