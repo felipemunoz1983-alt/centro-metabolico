@@ -79,6 +79,9 @@ export default function ConsultaMedicaPage() {
                 backgroundColor: "var(--card)",
                 border: "1px solid var(--border)",
                 boxShadow: "var(--card-shadow)",
+                transform: "translateZ(0)",
+                WebkitTransform: "translateZ(0)",
+                isolation: "isolate",
               }}
             >
               {/* Photo */}
