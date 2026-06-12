@@ -1,2 +1,2 @@
-:HL["/centro-metabolico/inbody/_next/static/chunks/0gdph5e.74pak.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"vXsmRNbEN5qya5u4-CaTs"}
+:HL["/centro-metabolico/inbody/_next/static/chunks/13j_rkiae_bd-.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"-BjiiRuwa2nZJMj0LbGIU"}
