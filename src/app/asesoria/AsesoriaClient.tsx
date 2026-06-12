@@ -146,6 +146,7 @@ export function AsesoriaClient() {
         <div className="mx-auto flex max-w-[1300px] flex-col gap-8">
 
           {/* ── CARD 1: Consulta Médica — content left, Bárbara right ─ */}
+          {selected !== "nutricional" && (
           <motion.article
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -272,8 +273,10 @@ export function AsesoriaClient() {
               </div>
             </div>
           </motion.article>
+          )}
 
           {/* ── CARD 2: Consulta Nutricional — fotos left, content right ─ */}
+          {selected !== "medica" && (
           <motion.article
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -427,6 +430,7 @@ export function AsesoriaClient() {
               </div>
             </div>
           </motion.article>
+          )}
         </div>
       </section>
 
