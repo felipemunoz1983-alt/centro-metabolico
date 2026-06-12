@@ -172,7 +172,7 @@ export function AsesoriaClient() {
                   src={`${BP}/barbara.webp`}
                   alt="Dra. Bárbara Plass Villanueva, Médico Cirujano"
                   fill
-                  className="object-cover object-top"
+                  className="object-cover object-[center_18%]"
                   sizes="100vw"
                 />
                 <div className="absolute bottom-0 left-0 right-0 p-4"
@@ -302,12 +302,12 @@ export function AsesoriaClient() {
                 )}
 
                 {/* Photo header */}
-                <div className="relative h-72 overflow-hidden md:h-80" style={{ borderBottom: `1px solid ${t.border}` }}>
+                <div className="relative aspect-[4/5] overflow-hidden md:aspect-[3/4]" style={{ borderBottom: `1px solid ${t.border}` }}>
                   <Image
                     src={`${BP}/${pro.photo}`}
                     alt={`${pro.name}, ${pro.role}`}
                     fill
-                    className="object-cover object-top"
+                    className="object-cover object-[center_22%]"
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
                   <div
