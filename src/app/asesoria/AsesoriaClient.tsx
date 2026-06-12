@@ -279,8 +279,8 @@ export function AsesoriaClient() {
           {selected !== "medica" && (
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             {[
-              { name: "Valeska Vidal", firstName: "Valeska", role: "Nutricionista Clínica y Deportiva", photo: "VALE_WEB.webp" },
-              { name: "Felipe Muñoz Zambrano", firstName: "Felipe", role: "Nutricionista Deportivo · Clínica Alemana", photo: "felipe.webp" },
+              { name: "Valeska Vidal", firstName: "Valeska", role: "Nutricionista Clínica y Deportiva", photo: "VALE_WEB.webp", focus: "center 30%", zoom: 1.0 },
+              { name: "Felipe Muñoz Zambrano", firstName: "Felipe", role: "Nutricionista Deportivo · Clínica Alemana", photo: "felipe.webp", focus: "center 55%", zoom: 1.15 },
             ].map((pro, idx) => (
               <motion.article
                 key={pro.name}
@@ -302,12 +302,13 @@ export function AsesoriaClient() {
                 )}
 
                 {/* Photo header */}
-                <div className="relative h-72 overflow-hidden md:h-80" style={{ borderBottom: `1px solid ${t.border}` }}>
+                <div className="relative h-56 overflow-hidden md:h-64" style={{ borderBottom: `1px solid ${t.border}` }}>
                   <Image
                     src={`${BP}/${pro.photo}`}
                     alt={`${pro.name}, ${pro.role}`}
                     fill
-                    className="object-cover object-[center_22%]"
+                    className="object-cover"
+                    style={{ objectPosition: pro.focus, transform: `scale(${pro.zoom})`, transformOrigin: "center" }}
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
                   <div
