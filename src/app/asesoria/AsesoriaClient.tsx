@@ -302,7 +302,7 @@ export function AsesoriaClient() {
                 )}
 
                 {/* Photo header */}
-                <div className="relative aspect-[4/5] overflow-hidden md:aspect-[3/4]" style={{ borderBottom: `1px solid ${t.border}` }}>
+                <div className="relative h-72 overflow-hidden md:h-80" style={{ borderBottom: `1px solid ${t.border}` }}>
                   <Image
                     src={`${BP}/${pro.photo}`}
                     alt={`${pro.name}, ${pro.role}`}
