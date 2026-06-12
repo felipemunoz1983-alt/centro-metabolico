@@ -24,7 +24,7 @@ const team = [
     credentials: [
       {
         label: "Formación",
-        value: "Nutricionista Dietista — Universidad Mayor",
+        value: "Nutricionista Dietista",
         icon: "degree",
       },
       {
@@ -58,7 +58,7 @@ const team = [
     registro: "Reg. U. Mayor 2011",
     photo: "/felipe.webp",
     photoSide: "left" as const,
-    bio: "Nutricionista deportivo titulado de la Universidad Mayor con más de 15 años de experiencia clínica. Especialista en estrategias nutricionales para el rendimiento atlético, pérdida de grasa y optimización metabólica. Docente universitario y profesional asociado a Clínica Alemana.",
+    bio: "Nutricionista deportivo con más de 15 años de experiencia clínica. Especialista en estrategias nutricionales para el rendimiento atlético, pérdida de grasa y optimización metabólica. Docente universitario y profesional asociado a Clínica Alemana.",
     statValue: "15+",
     statLabel: "años de\nexperiencia",
     badge: "Clínica Alemana",
@@ -66,7 +66,7 @@ const team = [
     credentials: [
       {
         label: "Formación",
-        value: "Nutricionista — Universidad Mayor (titulado enero 2011)",
+        value: "Nutricionista (titulado enero 2011)",
         icon: "degree",
       },
       {
