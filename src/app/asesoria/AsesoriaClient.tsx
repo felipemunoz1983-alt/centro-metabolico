@@ -279,8 +279,8 @@ export function AsesoriaClient() {
           {selected !== "medica" && (
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             {[
-              { name: "Valeska Vidal", firstName: "Valeska", role: "Nutricionista Clínica y Deportiva", photo: "VALE_WEB.webp", focus: "center 30%", zoom: 1.0 },
-              { name: "Felipe Muñoz Zambrano", firstName: "Felipe", role: "Nutricionista Deportivo · Clínica Alemana", photo: "felipe.webp", focus: "center 55%", zoom: 1.15 },
+              { name: "Valeska Vidal", firstName: "Valeska", role: "Nutricionista Clínica y Deportiva", photo: "VALE_WEB.webp", focus: "center 35%", zoom: 1.0 },
+              { name: "Felipe Muñoz Zambrano", firstName: "Felipe", role: "Nutricionista Deportivo · Clínica Alemana", photo: "felipe.webp", focus: "center 75%", zoom: 1.0 },
             ].map((pro, idx) => (
               <motion.article
                 key={pro.name}
