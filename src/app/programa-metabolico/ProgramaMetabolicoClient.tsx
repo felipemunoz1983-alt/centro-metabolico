@@ -208,8 +208,57 @@ export function ProgramaMetabolicoClient() {
   return (
     <div style={{ backgroundColor: "var(--bg)", color: "white", minHeight: "100vh" }}>
 
-      {/* ── Scroll hero ─────────────────────────────────────── */}
-      <section ref={heroRef} style={{ height: "320vh" }} className="relative">
+      {/* ── Static mobile hero (replaces the scroll animation on mobile) ─── */}
+      <section className="relative md:hidden overflow-hidden bg-[#03080F]">
+        <div className="absolute inset-0">
+          <Image
+            src={`${BP}/pm1.webp`}
+            alt="Programa Metabólico — Centro Metabólico"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-black/70" />
+          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 70% 70% at 50% 50%, transparent 0%, rgba(0,0,0,0.85) 100%)" }} />
+        </div>
+
+        <div className="relative flex flex-col items-center px-6 pt-28 pb-20 text-center">
+          <span className="mb-5 rounded-full px-5 py-2 text-[10px] font-bold tracking-widest uppercase"
+            style={{ backgroundColor: "rgba(0,174,239,0.18)", color: BRAND, border: "1px solid rgba(0,174,239,0.35)" }}>
+            Dos programas · Un objetivo
+          </span>
+          <h2 className="text-4xl leading-[1.05] text-white"
+            style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95)" }}>
+            Elige tu camino<br />
+            <span style={{ color: BRAND }}>hacia el cambio.</span>
+          </h2>
+
+          <div className="mt-8 flex w-full max-w-xs flex-col items-stretch gap-3">
+            <div className="rounded-2xl px-6 py-3 text-center"
+              style={{ backgroundColor: "rgba(0,174,239,0.12)", border: "1px solid rgba(0,174,239,0.3)" }}>
+              <div className="text-xs font-bold tracking-widest uppercase" style={{ color: BRAND }}>Plan Metabólico Básico</div>
+              <div className="text-2xl font-bold text-white mt-1">$360.000</div>
+            </div>
+            <div className="rounded-2xl px-6 py-3 text-center"
+              style={{ backgroundColor: "rgba(167,139,250,0.12)", border: "1px solid rgba(167,139,250,0.3)" }}>
+              <div className="text-xs font-bold tracking-widest uppercase" style={{ color: VIOLET }}>Plan Metabólico Pro</div>
+              <div className="text-2xl font-bold text-white mt-1">$380.000</div>
+            </div>
+          </div>
+
+          <a
+            href={AGENDA_URL}
+            className="mt-6 inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-2xl px-10 py-4 text-base font-bold text-white"
+            style={{ backgroundColor: BRAND }}
+          >
+            Agendar evaluación →
+          </a>
+        </div>
+      </section>
+
+      {/* ── Scroll hero (desktop only — scroll-based phases unreliable on mobile) ─── */}
+      <section ref={heroRef} style={{ height: "320vh" }} className="relative hidden md:block">
         <div className="sticky top-0 h-screen min-h-[100svh] overflow-hidden bg-[#03080F]" style={{ transform: "translateZ(0)" }}>
 
           {/* Background image */}
