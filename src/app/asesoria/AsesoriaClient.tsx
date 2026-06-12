@@ -277,159 +277,104 @@ export function AsesoriaClient() {
 
           {/* ── CARD 2: Consulta Nutricional — fotos left, content right ─ */}
           {selected !== "medica" && (
-          <motion.article
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.12 }}
-            className="overflow-hidden rounded-3xl"
-            style={{
-              backgroundColor: t.bgCard,
-              border: `2px solid ${selected === "nutricional" ? t.teal : t.border}`,
-              boxShadow: selected === "nutricional"
-                ? `0 0 0 4px ${t.teal}18, 0 8px 40px rgba(0,0,0,0.08)`
-                : "0 2px 12px rgba(0,0,0,0.06), 0 8px 40px rgba(0,0,0,0.04)",
-              transition: "border-color 0.35s, box-shadow 0.35s",
-            }}
-          >
-            {selected === "nutricional" && (
-              <div className="h-1 w-full" style={{ background: `linear-gradient(to right, transparent, ${t.teal}, transparent)` }} />
-            )}
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            {[
+              { name: "Valeska Vidal", firstName: "Valeska", role: "Nutricionista Clínica y Deportiva", photo: "VALE_WEB.webp" },
+              { name: "Felipe Muñoz Zambrano", firstName: "Felipe", role: "Nutricionista Deportivo · Clínica Alemana", photo: "felipe.webp" },
+            ].map((pro, idx) => (
+              <motion.article
+                key={pro.name}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.12 + idx * 0.08 }}
+                className="flex flex-col overflow-hidden rounded-3xl"
+                style={{
+                  backgroundColor: t.bgCard,
+                  border: `2px solid ${selected === "nutricional" ? t.teal : t.border}`,
+                  boxShadow: selected === "nutricional"
+                    ? `0 0 0 4px ${t.teal}18, 0 8px 40px rgba(0,0,0,0.08)`
+                    : "0 2px 12px rgba(0,0,0,0.06), 0 8px 40px rgba(0,0,0,0.04)",
+                  transition: "border-color 0.35s, box-shadow 0.35s",
+                }}
+              >
+                {selected === "nutricional" && (
+                  <div className="h-1 w-full" style={{ background: `linear-gradient(to right, transparent, ${t.teal}, transparent)` }} />
+                )}
 
-            <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr]">
-              {/* Fotos Valeska + Felipe — mobile only */}
-              <div className="lg:hidden flex h-44 overflow-hidden" style={{ borderBottom: `1px solid ${t.border}` }}>
-                <div className="relative flex-1 overflow-hidden">
+                {/* Photo header */}
+                <div className="relative h-72 overflow-hidden md:h-80" style={{ borderBottom: `1px solid ${t.border}` }}>
                   <Image
-                    src={`${BP}/VALE_WEB.webp`}
-                    alt="Valeska Vidal, Nutricionista"
+                    src={`${BP}/${pro.photo}`}
+                    alt={`${pro.name}, ${pro.role}`}
                     fill
                     className="object-cover object-top"
-                    sizes="50vw"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                   />
-                  <div className="absolute bottom-0 left-0 right-0 px-3 py-2"
-                    style={{ background: "linear-gradient(to top, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.7) 50%, transparent 100%)" }}>
-                    <p className="text-xs font-bold" style={{ color: t.text }}>Valeska Vidal</p>
-                    <p className="text-[10px]" style={{ color: t.teal }}>Nutricionista</p>
+                  <div
+                    className="absolute bottom-0 left-0 right-0 px-5 py-4"
+                    style={{ background: "linear-gradient(to top, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.7) 60%, transparent 100%)" }}
+                  >
+                    <p className="text-base font-bold" style={{ color: t.text }}>{pro.name}</p>
+                    <p className="text-xs font-semibold" style={{ color: t.teal }}>{pro.role}</p>
                   </div>
                 </div>
-                <div className="relative flex-1 overflow-hidden" style={{ borderLeft: `1px solid ${t.border}` }}>
-                  <Image
-                    src={`${BP}/felipe.webp`}
-                    alt="Felipe Muñoz Zambrano, Nutricionista"
-                    fill
-                    className="object-cover object-top"
-                    sizes="50vw"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 px-3 py-2"
-                    style={{ background: "linear-gradient(to top, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.7) 50%, transparent 100%)" }}>
-                    <p className="text-xs font-bold" style={{ color: t.text }}>Felipe Muñoz</p>
-                    <p className="text-[10px]" style={{ color: t.teal }}>Nutricionista</p>
-                  </div>
-                </div>
-              </div>
 
-              {/* Fotos Valeska + Felipe — desktop */}
-              <div className="relative hidden lg:grid grid-rows-2" style={{ borderRight: `1px solid ${t.border}` }}>
-                {/* Valeska */}
-                <div className="relative overflow-hidden">
-                  <Image
-                    src={`${BP}/VALE_WEB.webp`}
-                    alt="Valeska Vidal, Nutricionista Clínica y Deportiva"
-                    fill
-                    className="object-cover object-top"
-                    sizes="360px"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 px-4 py-3"
-                    style={{ background: "linear-gradient(to top, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.7) 50%, transparent 100%)" }}>
-                    <p className="text-xs font-bold" style={{ color: t.text }}>Valeska Vidal</p>
-                    <p className="text-[10px]" style={{ color: t.teal }}>Nutricionista Clínica y Deportiva</p>
+                {/* Content */}
+                <div className="flex flex-1 flex-col p-6 md:p-8">
+                  <div className="mb-5 flex flex-wrap items-center gap-3">
+                    <span
+                      className="rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest"
+                      style={{ backgroundColor: t.tealBg, color: t.teal, border: `1px solid ${t.teal}30` }}
+                    >
+                      Consulta Nutricional
+                    </span>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-2xl font-bold" style={{ color: t.text }}>$40.000</span>
+                      <span className="text-sm" style={{ color: t.textMuted }}>· 45 min</span>
+                    </div>
                   </div>
-                </div>
-                {/* Felipe */}
-                <div className="relative overflow-hidden" style={{ borderTop: `1px solid ${t.border}` }}>
-                  <Image
-                    src={`${BP}/felipe.webp`}
-                    alt="Felipe Muñoz Zambrano, Nutricionista Deportivo"
-                    fill
-                    className="object-cover object-top"
-                    sizes="360px"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 px-4 py-3"
-                    style={{ background: "linear-gradient(to top, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.7) 50%, transparent 100%)" }}>
-                    <p className="text-xs font-bold" style={{ color: t.text }}>Felipe Muñoz Zambrano</p>
-                    <p className="text-[10px]" style={{ color: t.teal }}>Nutricionista Deportivo · Clínica Alemana</p>
-                  </div>
-                </div>
-              </div>
 
-              {/* Content */}
-              <div className="p-8 md:p-12">
-                <div className="mb-7 flex flex-wrap items-center gap-4">
-                  <span className="rounded-full px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-widest"
-                    style={{ backgroundColor: t.tealBg, color: t.teal, border: `1px solid ${t.teal}30` }}>
+                  <h2 className="mb-2 text-2xl font-bold tracking-tight md:text-3xl" style={{ color: t.text }}>
                     Consulta Nutricional
-                  </span>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-bold" style={{ color: t.text }}>$40.000</span>
-                    <span className="text-sm" style={{ color: t.textMuted }}>· 45 min</span>
+                  </h2>
+                  <p className="mb-4 text-sm font-medium italic" style={{ color: t.teal }}>
+                    &ldquo;Una evaluación precisa y un plan realmente adaptado a ti.&rdquo;
+                  </p>
+                  <p className="mb-6 text-sm leading-relaxed" style={{ color: t.textMid }}>
+                    Evaluamos tu composición corporal con InBody y diseñamos un plan alimentario personalizado ajustado a tus objetivos, estilo de vida y preferencias.
+                  </p>
+
+                  <p className="mb-3 text-[11px] font-bold uppercase tracking-widest" style={{ color: t.textMuted }}>Incluye</p>
+                  <ul className="mb-6 flex flex-col gap-2.5" role="list">
+                    {[
+                      "Evaluación de composición corporal con InBody.",
+                      "Análisis e interpretación experta de tus datos.",
+                      "Planificación alimentaria personalizada.",
+                      "Estrategia adaptada a tus objetivos.",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-2.5">
+                        <CheckIcon color={t.teal} />
+                        <span className="text-sm leading-relaxed" style={{ color: t.textMid }}>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-auto">
+                    <motion.a
+                      href={AGENDA_URL}
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-2xl px-7 py-3.5 text-sm font-semibold text-white cursor-pointer"
+                      style={{ backgroundColor: t.teal }}
+                      whileHover={{ scale: 1.02, backgroundColor: "#0F766E" }}
+                      transition={{ duration: 0.2 }}
+                      aria-label={`Agendar Consulta Nutricional con ${pro.name}`}
+                    >
+                      Agendar con {pro.firstName} →
+                    </motion.a>
                   </div>
                 </div>
-
-                <h2 className="mb-2 text-3xl font-bold tracking-tight md:text-4xl" style={{ color: t.text }}>
-                  Consulta Nutricional
-                </h2>
-                <p className="mb-6 text-base font-medium italic" style={{ color: t.teal }}>
-                  &ldquo;Una evaluación precisa y un plan realmente adaptado a ti.&rdquo;
-                </p>
-                <p className="mb-8 text-base leading-relaxed max-w-[55ch]" style={{ color: t.textMid }}>
-                  Evaluamos tu composición corporal con InBody y diseñamos un plan alimentario personalizado ajustado a tus objetivos, estilo de vida y preferencias.
-                </p>
-
-                <p className="mb-4 text-[11px] font-bold uppercase tracking-widest" style={{ color: t.textMuted }}>Incluye</p>
-                <ul className="mb-8 flex flex-col gap-3" role="list">
-                  {[
-                    "Evaluación de composición corporal con InBody (% grasa, masa muscular, distribución regional).",
-                    "Análisis e interpretación experta de tus datos corporales.",
-                    "Planificación alimentaria personalizada, sostenible y sin restricciones innecesarias.",
-                    "Estrategia adaptada a tus objetivos: rendimiento, composición o salud metabólica.",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <CheckIcon color={t.teal} />
-                      <span className="text-sm leading-relaxed" style={{ color: t.textMid }}>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mb-7 rounded-2xl p-5" style={{ backgroundColor: t.tealBg, border: `1px solid ${t.teal}25` }}>
-                  <p className="mb-2 text-[11px] font-bold uppercase tracking-widest" style={{ color: t.teal }}>Ideal para</p>
-                  <p className="text-sm leading-relaxed" style={{ color: "#0F766E" }}>
-                    Quienes buscan mejorar su composición corporal, rendimiento o salud sin dietas genéricas. El objetivo no es solo cambiar lo que comes, sino transformar tu cuerpo desde adentro.
-                  </p>
-                </div>
-
-                <p className="mb-8 text-sm leading-relaxed italic max-w-[55ch]" style={{ color: t.textMuted }}>
-                  Enfoque profesional y basado en datos: tu plan evoluciona contigo a medida que tu cuerpo cambia y mejora.
-                </p>
-
-                <div className="mb-8 flex flex-wrap gap-2">
-                  {["InBody", "Composición corporal", "Plan alimentario", "Rendimiento"].map((tag) => (
-                    <Tag key={tag} color={t.teal} bg={t.tealBg}>{tag}</Tag>
-                  ))}
-                </div>
-
-                <motion.a
-                  href={AGENDA_URL}
-                  className="inline-flex items-center gap-2 rounded-2xl px-7 py-3.5 text-sm font-semibold text-white cursor-pointer"
-                  style={{ backgroundColor: t.teal }}
-                  whileHover={{ scale: 1.02, backgroundColor: "#0F766E" }}
-                  transition={{ duration: 0.2 }}
-                  aria-label="Agendar Consulta Nutricional en AgendaPro"
-                >
-                  Agendar Consulta Nutricional →
-                </motion.a>
-              </div>
-            </div>
-          </motion.article>
+              </motion.article>
+            ))}
+          </div>
           )}
         </div>
       </section>
