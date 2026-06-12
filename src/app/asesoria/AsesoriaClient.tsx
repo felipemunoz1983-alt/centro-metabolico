@@ -405,3 +405,4 @@ export function AsesoriaClient() {
     </div>
   );
 }
+relative h-40 overflow-hidden md:h-48
