@@ -301,22 +301,21 @@ export function AsesoriaClient() {
                   <div className="h-1 w-full" style={{ background: `linear-gradient(to right, transparent, ${t.teal}, transparent)` }} />
                 )}
 
-                {/* Photo header */}
-                <div className="relative h-40 overflow-hidden md:h-48" style={{ borderBottom: `1px solid ${t.border}` }}>
-                  <Image
-                    src={`${BP}/${pro.photo}`}
-                    alt={`${pro.name}, ${pro.role}`}
-                    fill
-                    className="object-cover"
-                    style={{ objectPosition: pro.focus, transform: `scale(${pro.zoom})`, transformOrigin: "center" }}
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                  <div
-                    className="absolute bottom-0 left-0 right-0 px-5 py-4"
-                    style={{ background: "linear-gradient(to top, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.7) 60%, transparent 100%)" }}
-                  >
-                    <p className="text-base font-bold" style={{ color: t.text }}>{pro.name}</p>
-                    <p className="text-xs font-semibold" style={{ color: t.teal }}>{pro.role}</p>
+                {/* Photo header — avatar style */}
+                <div className="flex items-center gap-4 px-6 py-5" style={{ borderBottom: `1px solid ${t.border}` }}>
+                  <div className="relative size-16 shrink-0 overflow-hidden rounded-full md:size-20" style={{ border: `2px solid ${t.teal}25` }}>
+                    <Image
+                      src={`${BP}/${pro.photo}`}
+                      alt={`${pro.name}, ${pro.role}`}
+                      fill
+                      className="object-cover"
+                      style={{ objectPosition: pro.focus, transform: `scale(${pro.zoom})`, transformOrigin: "center" }}
+                      sizes="80px"
+                    />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-base font-bold" style={{ color: t.text }}>{pro.name}</p>
+                    <p className="truncate text-xs font-semibold" style={{ color: t.teal }}>{pro.role}</p>
                   </div>
                 </div>
 
