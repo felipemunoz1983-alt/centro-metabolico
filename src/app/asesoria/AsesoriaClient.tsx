@@ -165,20 +165,22 @@ export function AsesoriaClient() {
               <div className="h-1 w-full" style={{ background: `linear-gradient(to right, transparent, ${t.brand}, transparent)` }} />
             )}
 
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px]">
-              {/* Bárbara photo — mobile only */}
-              <div className="relative lg:hidden h-56 overflow-hidden" style={{ borderBottom: `1px solid ${t.border}` }}>
-                <Image
-                  src={`${BP}/barbara.webp`}
-                  alt="Dra. Bárbara Plass Villanueva, Médico Cirujano"
-                  fill
-                  className="object-cover object-[center_18%]"
-                  sizes="100vw"
-                />
-                <div className="absolute bottom-0 left-0 right-0 p-4"
-                  style={{ background: "linear-gradient(to top, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.7) 50%, transparent 100%)" }}>
-                  <p className="font-bold text-sm" style={{ color: t.text }}>Dra. Bárbara Plass Villanueva</p>
-                  <p className="text-xs mt-0.5" style={{ color: t.brand }}>Médico Cirujano · UDD Distinción Máxima</p>
+            <div>
+              {/* Bárbara photo — avatar style */}
+              <div className="flex items-center gap-4 px-6 py-5" style={{ borderBottom: `1px solid ${t.border}` }}>
+                <div className="relative size-24 shrink-0 overflow-hidden rounded-full md:size-28" style={{ border: `2px solid ${t.brand}25` }}>
+                  <Image
+                    src={`${BP}/barbara.webp`}
+                    alt="Dra. Bárbara Plass Villanueva, Médico Cirujano"
+                    fill
+                    className="object-cover"
+                    style={{ objectPosition: "center 22%" }}
+                    sizes="112px"
+                  />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-base font-bold" style={{ color: t.text }}>Dra. Bárbara Plass Villanueva</p>
+                  <p className="truncate text-xs font-semibold" style={{ color: t.brand }}>Médico Cirujano · UDD Distinción Máxima</p>
                 </div>
               </div>
 
@@ -252,25 +254,7 @@ export function AsesoriaClient() {
                 </motion.a>
               </div>
 
-              {/* Bárbara photo */}
-              <div className="relative hidden lg:flex flex-col" style={{ borderLeft: `1px solid ${t.border}` }}>
-                <div className="relative flex-1 overflow-hidden" style={{ minHeight: 400 }}>
-                  <Image
-                    src={`${BP}/barbara.webp`}
-                    alt="Dra. Bárbara Plass Villanueva, Médico Cirujano"
-                    fill
-                    className="object-cover object-top"
-                    sizes="360px"
-                  />
-                  <div className="absolute inset-0" style={{
-                    background: "linear-gradient(to right, rgba(255,255,255,0.15) 0%, transparent 25%, transparent 75%, rgba(255,255,255,0.05) 100%)",
-                  }} />
-                </div>
-                <div className="p-5" style={{ borderTop: `1px solid ${t.border}`, backgroundColor: t.bgSoft }}>
-                  <p className="font-bold text-sm" style={{ color: t.text }}>Dra. Bárbara Plass Villanueva</p>
-                  <p className="text-xs mt-0.5" style={{ color: t.brand }}>Médico Cirujano · UDD Distinción Máxima</p>
-                </div>
-              </div>
+
             </div>
           </motion.article>
           )}
@@ -303,14 +287,14 @@ export function AsesoriaClient() {
 
                 {/* Photo header — avatar style */}
                 <div className="flex items-center gap-4 px-6 py-5" style={{ borderBottom: `1px solid ${t.border}` }}>
-                  <div className="relative size-16 shrink-0 overflow-hidden rounded-full md:size-20" style={{ border: `2px solid ${t.teal}25` }}>
+                  <div className="relative size-24 shrink-0 overflow-hidden rounded-full md:size-28" style={{ border: `2px solid ${t.teal}25` }}>
                     <Image
                       src={`${BP}/${pro.photo}`}
                       alt={`${pro.name}, ${pro.role}`}
                       fill
                       className="object-cover"
                       style={{ objectPosition: pro.focus, transform: `scale(${pro.zoom})`, transformOrigin: "center" }}
-                      sizes="80px"
+                      sizes="112px"
                     />
                   </div>
                   <div className="min-w-0 flex-1">
