@@ -146,220 +146,186 @@ export function AsesoriaClient() {
         <div className="mx-auto flex max-w-[1300px] flex-col gap-8">
 
           {/* ── CARD 1: Consulta Médica — content left, Bárbara right ─ */}
-          {selected !== "nutricional" && (
-          <motion.article
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65 }}
-            className="overflow-hidden rounded-3xl"
-            style={{
-              backgroundColor: t.bgCard,
-              border: `2px solid ${selected === "medica" ? t.brand : t.border}`,
-              boxShadow: selected === "medica"
-                ? `0 0 0 4px ${t.brand}18, 0 8px 40px rgba(0,0,0,0.08)`
-                : "0 2px 12px rgba(0,0,0,0.06), 0 8px 40px rgba(0,0,0,0.04)",
-              transition: "border-color 0.35s, box-shadow 0.35s",
-            }}
-          >
-            {selected === "medica" && (
-              <div className="h-1 w-full" style={{ background: `linear-gradient(to right, transparent, ${t.brand}, transparent)` }} />
-            )}
+          {(() => {
+            const professionals = [
+              {
+                id: "barbara",
+                type: "medica" as const,
+                name: "Dra. Bárbara Plass Villanueva",
+                firstName: "Bárbara",
+                role: "Médico Cirujano · UDD Distinción Máxima",
+                photo: "barbara.webp",
+                focus: "center 22%",
+                badge: "Consulta Médica",
+                price: "$60.000",
+                duration: "1 hora",
+                title: "Consulta Médica Integral",
+                quote: "Más que un chequeo, es una inversión en tu salud.",
+                description:
+                  "Una consulta médica completa donde evaluamos tu estado de salud, metabolismo y hábitos para darte un enfoque claro, personalizado y basado en datos.",
+                includes: [
+                  "Revisión de tu estado de salud y antecedentes.",
+                  "Análisis de tus exámenes de laboratorio.",
+                  "Evaluación de tu metabolismo.",
+                  "Consejos en alimentación, ejercicio y prevención.",
+                ],
+              },
+              {
+                id: "valeska",
+                type: "nutricional" as const,
+                name: "Valeska Vidal",
+                firstName: "Valeska",
+                role: "Nutricionista Clínica y Deportiva",
+                photo: "VALE_WEB.webp",
+                focus: "center 35%",
+                badge: "Consulta Nutricional",
+                price: "$40.000",
+                duration: "45 min",
+                title: "Consulta Nutricional",
+                quote: "Una evaluación precisa y un plan realmente adaptado a ti.",
+                description:
+                  "Evaluamos tu composición corporal con InBody y diseñamos un plan alimentario personalizado ajustado a tus objetivos, estilo de vida y preferencias.",
+                includes: [
+                  "Evaluación de composición corporal con InBody.",
+                  "Análisis e interpretación experta de tus datos.",
+                  "Planificación alimentaria personalizada.",
+                  "Estrategia adaptada a tus objetivos.",
+                ],
+              },
+              {
+                id: "felipe",
+                type: "nutricional" as const,
+                name: "Felipe Muñoz Zambrano",
+                firstName: "Felipe",
+                role: "Nutricionista Deportivo · Clínica Alemana",
+                photo: "felipe.webp",
+                focus: "center 75%",
+                badge: "Consulta Nutricional",
+                price: "$40.000",
+                duration: "45 min",
+                title: "Consulta Nutricional",
+                quote: "Una evaluación precisa y un plan realmente adaptado a ti.",
+                description:
+                  "Evaluamos tu composición corporal con InBody y diseñamos un plan alimentario personalizado ajustado a tus objetivos, estilo de vida y preferencias.",
+                includes: [
+                  "Evaluación de composición corporal con InBody.",
+                  "Análisis e interpretación experta de tus datos.",
+                  "Planificación alimentaria personalizada.",
+                  "Estrategia adaptada a tus objetivos.",
+                ],
+              },
+            ];
 
-            <div>
-              {/* Bárbara photo — avatar style */}
-              <div className="flex items-center gap-4 px-6 py-5" style={{ borderBottom: `1px solid ${t.border}` }}>
-                <div className="relative size-24 shrink-0 overflow-hidden rounded-full md:size-28" style={{ border: `2px solid ${t.brand}25` }}>
-                  <Image
-                    src={`${BP}/barbara.webp`}
-                    alt="Dra. Bárbara Plass Villanueva, Médico Cirujano"
-                    fill
-                    className="object-cover"
-                    style={{ objectPosition: "center 22%" }}
-                    sizes="112px"
-                  />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-base font-bold" style={{ color: t.text }}>Dra. Bárbara Plass Villanueva</p>
-                  <p className="truncate text-xs font-semibold" style={{ color: t.brand }}>Médico Cirujano · UDD Distinción Máxima</p>
-                </div>
-              </div>
+            const visible = professionals.filter((p) => !selected || p.type === selected);
 
-              {/* Content */}
-              <div className="p-8 md:p-12">
-                {/* Header */}
-                <div className="mb-7 flex flex-wrap items-center gap-4">
-                  <span className="rounded-full px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-widest"
-                    style={{ backgroundColor: t.brandBg, color: t.brand, border: `1px solid ${t.brand}30` }}>
-                    Consulta Médica
-                  </span>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-bold" style={{ color: t.text }}>$60.000</span>
-                    <span className="text-sm" style={{ color: t.textMuted }}>· 1 hora</span>
-                  </div>
-                </div>
+            return (
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {visible.map((pro, idx) => {
+                  const accent = pro.type === "medica" ? t.brand : t.teal;
+                  const accentBg = pro.type === "medica" ? t.brandBg : t.tealBg;
+                  const accentDark = pro.type === "medica" ? t.brandDark : "#0F766E";
+                  const isHighlighted = selected === pro.type;
 
-                <h2 className="mb-2 text-3xl font-bold tracking-tight md:text-4xl" style={{ color: t.text }}>
-                  Consulta Médica Integral
-                </h2>
-                <p className="mb-6 text-base font-medium italic" style={{ color: t.brand }}>
-                  &ldquo;Más que un chequeo, es una inversión en tu salud.&rdquo;
-                </p>
-                <p className="mb-8 text-base leading-relaxed max-w-[55ch]" style={{ color: t.textMid }}>
-                  Una consulta médica completa donde evaluamos tu estado de salud, metabolismo y hábitos para darte un enfoque claro, personalizado y basado en datos.
-                </p>
-
-                {/* Includes */}
-                <p className="mb-4 text-[11px] font-bold uppercase tracking-widest" style={{ color: t.textMuted }}>Incluye</p>
-                <ul className="mb-8 flex flex-col gap-3" role="list">
-                  {[
-                    "Revisión de tu estado de salud y antecedentes.",
-                    "Análisis y explicación clara de tus exámenes de laboratorio.",
-                    "Evaluación de tu metabolismo para entender cómo funciona tu cuerpo.",
-                    "Consejos prácticos en alimentación, ejercicio y prevención de enfermedades.",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <CheckIcon />
-                      <span className="text-sm leading-relaxed" style={{ color: t.textMid }}>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Ideal para */}
-                <div className="mb-7 rounded-2xl p-5" style={{ backgroundColor: t.brandBg, border: `1px solid ${t.brand}20` }}>
-                  <p className="mb-2 text-[11px] font-bold uppercase tracking-widest" style={{ color: t.brand }}>Ideal para</p>
-                  <p className="text-sm leading-relaxed" style={{ color: "#0369A1" }}>
-                    Personas mayores de 30 años que quieren prevenir patologías como hipertensión, diabetes o sarcopenia, y ganar energía y vitalidad en su día a día.
-                  </p>
-                </div>
-
-                <p className="mb-8 text-sm leading-relaxed italic max-w-[55ch]" style={{ color: t.textMuted }}>
-                  Nuestro compromiso: acompañarte con un enfoque cercano, claro y personalizado, para que entiendas tu cuerpo y cuides tu salud de forma sostenible.
-                </p>
-
-                <div className="mb-8 flex flex-wrap gap-2">
-                  {["Medicina preventiva", "Exámenes laboratorio", "Metabolismo", "Prevención"].map((tag) => (
-                    <Tag key={tag}>{tag}</Tag>
-                  ))}
-                </div>
-
-                <motion.a
-                  href={AGENDA_URL}
-                  className="inline-flex items-center gap-2 rounded-2xl px-7 py-3.5 text-sm font-semibold text-white cursor-pointer"
-                  style={{ backgroundColor: t.brand }}
-                  whileHover={{ scale: 1.02, backgroundColor: t.brandDark }}
-                  transition={{ duration: 0.2 }}
-                  aria-label="Agendar Consulta Médica en AgendaPro"
-                >
-                  Agendar Consulta Médica →
-                </motion.a>
-              </div>
-
-
-            </div>
-          </motion.article>
-          )}
-
-          {/* ── CARD 2: Consulta Nutricional — fotos left, content right ─ */}
-          {selected !== "medica" && (
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            {[
-              { name: "Valeska Vidal", firstName: "Valeska", role: "Nutricionista Clínica y Deportiva", photo: "VALE_WEB.webp", focus: "center 35%", zoom: 1.0 },
-              { name: "Felipe Muñoz Zambrano", firstName: "Felipe", role: "Nutricionista Deportivo · Clínica Alemana", photo: "felipe.webp", focus: "center 75%", zoom: 1.0 },
-            ].map((pro, idx) => (
-              <motion.article
-                key={pro.name}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.12 + idx * 0.08 }}
-                className="flex flex-col overflow-hidden rounded-3xl"
-                style={{
-                  backgroundColor: t.bgCard,
-                  border: `2px solid ${selected === "nutricional" ? t.teal : t.border}`,
-                  boxShadow: selected === "nutricional"
-                    ? `0 0 0 4px ${t.teal}18, 0 8px 40px rgba(0,0,0,0.08)`
-                    : "0 2px 12px rgba(0,0,0,0.06), 0 8px 40px rgba(0,0,0,0.04)",
-                  transition: "border-color 0.35s, box-shadow 0.35s",
-                }}
-              >
-                {selected === "nutricional" && (
-                  <div className="h-1 w-full" style={{ background: `linear-gradient(to right, transparent, ${t.teal}, transparent)` }} />
-                )}
-
-                {/* Photo header — avatar style */}
-                <div className="flex items-center gap-4 px-6 py-5" style={{ borderBottom: `1px solid ${t.border}` }}>
-                  <div className="relative size-24 shrink-0 overflow-hidden rounded-full md:size-28" style={{ border: `2px solid ${t.teal}25` }}>
-                    <Image
-                      src={`${BP}/${pro.photo}`}
-                      alt={`${pro.name}, ${pro.role}`}
-                      fill
-                      className="object-cover"
-                      style={{ objectPosition: pro.focus, transform: `scale(${pro.zoom})`, transformOrigin: "center" }}
-                      sizes="112px"
-                    />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-base font-bold" style={{ color: t.text }}>{pro.name}</p>
-                    <p className="truncate text-xs font-semibold" style={{ color: t.teal }}>{pro.role}</p>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="flex flex-1 flex-col p-6 md:p-8">
-                  <div className="mb-5 flex flex-wrap items-center gap-3">
-                    <span
-                      className="rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest"
-                      style={{ backgroundColor: t.tealBg, color: t.teal, border: `1px solid ${t.teal}30` }}
+                  return (
+                    <motion.article
+                      key={pro.id}
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.1 + idx * 0.08 }}
+                      className="flex flex-col overflow-hidden rounded-3xl"
+                      style={{
+                        backgroundColor: t.bgCard,
+                        border: `2px solid ${isHighlighted ? accent : t.border}`,
+                        boxShadow: isHighlighted
+                          ? `0 0 0 4px ${accent}18, 0 8px 40px rgba(0,0,0,0.08)`
+                          : "0 2px 12px rgba(0,0,0,0.06), 0 8px 40px rgba(0,0,0,0.04)",
+                        transition: "border-color 0.35s, box-shadow 0.35s",
+                      }}
                     >
-                      Consulta Nutricional
-                    </span>
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-2xl font-bold" style={{ color: t.text }}>$40.000</span>
-                      <span className="text-sm" style={{ color: t.textMuted }}>· 45 min</span>
-                    </div>
-                  </div>
+                      {isHighlighted && (
+                        <div
+                          className="h-1 w-full"
+                          style={{ background: `linear-gradient(to right, transparent, ${accent}, transparent)` }}
+                        />
+                      )}
 
-                  <h2 className="mb-2 text-2xl font-bold tracking-tight md:text-3xl" style={{ color: t.text }}>
-                    Consulta Nutricional
-                  </h2>
-                  <p className="mb-4 text-sm font-medium italic" style={{ color: t.teal }}>
-                    &ldquo;Una evaluación precisa y un plan realmente adaptado a ti.&rdquo;
-                  </p>
-                  <p className="mb-6 text-sm leading-relaxed" style={{ color: t.textMid }}>
-                    Evaluamos tu composición corporal con InBody y diseñamos un plan alimentario personalizado ajustado a tus objetivos, estilo de vida y preferencias.
-                  </p>
+                      {/* Avatar header */}
+                      <div className="flex items-center gap-4 px-6 py-5" style={{ borderBottom: `1px solid ${t.border}` }}>
+                        <div
+                          className="relative size-24 shrink-0 overflow-hidden rounded-full md:size-28"
+                          style={{ border: `2px solid ${accent}25` }}
+                        >
+                          <Image
+                            src={`${BP}/${pro.photo}`}
+                            alt={`${pro.name}, ${pro.role}`}
+                            fill
+                            className="object-cover"
+                            style={{ objectPosition: pro.focus }}
+                            sizes="112px"
+                          />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate text-base font-bold" style={{ color: t.text }}>{pro.name}</p>
+                          <p className="truncate text-xs font-semibold" style={{ color: accent }}>{pro.role}</p>
+                        </div>
+                      </div>
 
-                  <p className="mb-3 text-[11px] font-bold uppercase tracking-widest" style={{ color: t.textMuted }}>Incluye</p>
-                  <ul className="mb-6 flex flex-col gap-2.5" role="list">
-                    {[
-                      "Evaluación de composición corporal con InBody.",
-                      "Análisis e interpretación experta de tus datos.",
-                      "Planificación alimentaria personalizada.",
-                      "Estrategia adaptada a tus objetivos.",
-                    ].map((item) => (
-                      <li key={item} className="flex items-start gap-2.5">
-                        <CheckIcon color={t.teal} />
-                        <span className="text-sm leading-relaxed" style={{ color: t.textMid }}>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                      {/* Content */}
+                      <div className="flex flex-1 flex-col p-6 md:p-7">
+                        <div className="mb-5 flex flex-wrap items-center gap-3">
+                          <span
+                            className="rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest"
+                            style={{ backgroundColor: accentBg, color: accent, border: `1px solid ${accent}30` }}
+                          >
+                            {pro.badge}
+                          </span>
+                          <div className="flex items-baseline gap-1.5">
+                            <span className="text-2xl font-bold" style={{ color: t.text }}>{pro.price}</span>
+                            <span className="text-xs" style={{ color: t.textMuted }}>· {pro.duration}</span>
+                          </div>
+                        </div>
 
-                  <div className="mt-auto">
-                    <motion.a
-                      href={AGENDA_URL}
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-2xl px-7 py-3.5 text-sm font-semibold text-white cursor-pointer"
-                      style={{ backgroundColor: t.teal }}
-                      whileHover={{ scale: 1.02, backgroundColor: "#0F766E" }}
-                      transition={{ duration: 0.2 }}
-                      aria-label={`Agendar Consulta Nutricional con ${pro.name}`}
-                    >
-                      Agendar con {pro.firstName} →
-                    </motion.a>
-                  </div>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-          )}
+                        <h2 className="mb-2 text-2xl font-bold tracking-tight" style={{ color: t.text }}>
+                          {pro.title}
+                        </h2>
+                        <p className="mb-4 text-sm font-medium italic" style={{ color: accent }}>
+                          &ldquo;{pro.quote}&rdquo;
+                        </p>
+                        <p className="mb-6 text-sm leading-relaxed" style={{ color: t.textMid }}>
+                          {pro.description}
+                        </p>
+
+                        <p className="mb-3 text-[11px] font-bold uppercase tracking-widest" style={{ color: t.textMuted }}>
+                          Incluye
+                        </p>
+                        <ul className="mb-6 flex flex-col gap-2.5" role="list">
+                          {pro.includes.map((item) => (
+                            <li key={item} className="flex items-start gap-2.5">
+                              <CheckIcon color={accent} />
+                              <span className="text-sm leading-relaxed" style={{ color: t.textMid }}>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        <div className="mt-auto">
+                          <motion.a
+                            href={AGENDA_URL}
+                            className="inline-flex w-full items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-sm font-semibold text-white cursor-pointer"
+                            style={{ backgroundColor: accent }}
+                            whileHover={{ scale: 1.02, backgroundColor: accentDark }}
+                            transition={{ duration: 0.2 }}
+                            aria-label={`Agendar ${pro.title} con ${pro.name}`}
+                          >
+                            Agendar con {pro.firstName} →
+                          </motion.a>
+                        </div>
+                      </div>
+                    </motion.article>
+                  );
+                })}
+              </div>
+            );
+          })()}
         </div>
       </section>
 
