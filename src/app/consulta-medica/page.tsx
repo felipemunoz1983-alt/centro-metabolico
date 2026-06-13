@@ -149,7 +149,7 @@ export default function ConsultaMedicaPage() {
                     Ver perfil completo
                   </Link>
                   <Link
-                    href={"https://agendapro.com/overview/51643841-fc06-42db-bcb5-78232dc5802a"}
+                    href={"https://centrometabolico.site.agendapro.com/cl/sucursal/364121"}
                     className="flex items-center justify-center gap-2 rounded-2xl py-2.5 text-sm font-semibold text-white transition-all"
                     style={{ backgroundColor: "var(--brand)" }}
                   >

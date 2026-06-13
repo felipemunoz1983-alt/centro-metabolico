@@ -33,7 +33,7 @@ export default function EvaluacionMetabolicaPage() {
           Medición precisa de tu metabolismo basal, tasa de oxidación de sustratos y parámetros fisiológicos clave. Datos reales para diseñar tu plan nutricional y de entrenamiento.
         </p>
         <Link
-          href={"https://agendapro.com/overview/51643841-fc06-42db-bcb5-78232dc5802a"}
+          href={"https://centrometabolico.site.agendapro.com/cl/sucursal/364121"}
           className="inline-flex items-center gap-2 rounded-2xl px-7 py-3.5 text-sm font-semibold text-white transition-all"
           style={{ backgroundColor: "var(--brand)" }}
         >

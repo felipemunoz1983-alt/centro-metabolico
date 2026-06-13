@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const AGENDA_URL = "https://agendapro.com/overview/51643841-fc06-42db-bcb5-78232dc5802a";
+const AGENDA_URL = "https://centrometabolico.site.agendapro.com/cl/sucursal/364121";
 const BRAND = "#6366F1";
 
 function interp(p: number, ins: number[], outs: number[]): number {

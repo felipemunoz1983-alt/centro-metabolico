@@ -355,7 +355,7 @@ export function Reto21DiasClient() {
           </p>
           <div className="flex flex-col gap-3 items-stretch sm:items-center sm:flex-row sm:justify-center">
             <motion.a
-              href={"https://agendapro.com/overview/51643841-fc06-42db-bcb5-78232dc5802a"}
+              href={"https://centrometabolico.site.agendapro.com/cl/sucursal/364121"}
               className="inline-flex items-center justify-center gap-2 rounded-2xl px-8 py-4 text-sm font-semibold text-white"
               style={{ backgroundColor: BRAND }}
               whileHover={{ scale: 1.02, boxShadow: "0 0 40px rgba(0,174,239,0.45)" }}

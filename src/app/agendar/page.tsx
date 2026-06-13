@@ -57,7 +57,7 @@ export default function AgendarPage() {
           style={{ border: "1px solid rgba(0,174,239,0.15)", backgroundColor: "#ffffff" }}
         >
           <iframe
-            src="https://agendapro.com/iframe/overview/51643841-fc06-42db-bcb5-78232dc5802a"
+            src="https://centrometabolico.site.agendapro.com/cl/iframe/sucursal/364121"
             width="810"
             marginWidth={0}
             marginHeight={0}

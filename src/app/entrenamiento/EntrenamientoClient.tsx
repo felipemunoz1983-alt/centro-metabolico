@@ -7,7 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const AGENDA_URL = "https://agendapro.com/overview/51643841-fc06-42db-bcb5-78232dc5802a";
+const AGENDA_URL = "https://centrometabolico.site.agendapro.com/cl/sucursal/364121";
 const BRAND = "#00AEEF";
 
 const t = {

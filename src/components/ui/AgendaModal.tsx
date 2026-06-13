@@ -9,7 +9,7 @@ export function AgendaModal() {
     // Intercept all clicks on AgendaPro links → open modal instead
     const handleClick = (e: MouseEvent) => {
       const anchor = (e.target as HTMLElement).closest("a");
-      if (anchor?.href?.includes("agendapro.com/overview")) {
+      if (anchor?.href?.includes("agendapro.com")) {
         e.preventDefault();
         setOpen(true);
       }
@@ -51,7 +51,7 @@ export function AgendaModal() {
           ✕
         </button>
         <iframe
-          src="https://agendapro.com/iframe/overview/51643841-fc06-42db-bcb5-78232dc5802a"
+          src="https://centrometabolico.site.agendapro.com/cl/iframe/sucursal/364121"
           width="810"
           frameBorder={0}
           scrolling="yes"
