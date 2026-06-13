@@ -250,7 +250,7 @@ export function AsesoriaClient() {
                       )}
 
                       {/* Avatar header */}
-                      <div className="flex items-center gap-4 px-6 py-5" style={{ borderBottom: `1px solid ${t.border}` }}>
+                      <div className="flex flex-col items-center gap-3 px-6 py-6 text-center" style={{ borderBottom: `1px solid ${t.border}` }}>
                         <div
                           className="relative size-24 shrink-0 overflow-hidden rounded-full md:size-28"
                           style={{ border: `2px solid ${accent}25` }}
@@ -264,9 +264,9 @@ export function AsesoriaClient() {
                             sizes="112px"
                           />
                         </div>
-                        <div className="min-w-0 flex-1">
-                          <p className="truncate text-base font-bold" style={{ color: t.text }}>{pro.name}</p>
-                          <p className="truncate text-xs font-semibold" style={{ color: accent }}>{pro.role}</p>
+                        <div className="w-full">
+                          <p className="text-base font-bold" style={{ color: t.text }}>{pro.name}</p>
+                          <p className="mt-0.5 text-xs font-semibold" style={{ color: accent }}>{pro.role}</p>
                         </div>
                       </div>
 
