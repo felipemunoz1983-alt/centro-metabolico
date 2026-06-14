@@ -46,7 +46,7 @@ export function Vo2maxClient() {
     <div className="bg-[#050505] min-h-screen">
 
       {/* ── HERO ───────────────────────────────────────────────────── */}
-      <section className="relative h-screen overflow-hidden">
+      <section className="relative h-screen min-h-[100svh] overflow-hidden">
         <video
           autoPlay muted loop playsInline
           className="absolute inset-0 w-full h-full object-cover"
@@ -85,7 +85,7 @@ export function Vo2maxClient() {
           <motion.h1
             initial={{ opacity: 0, y: 36 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 0.2 }}
-            className="text-5xl sm:text-6xl md:text-8xl leading-[0.95] text-white mb-6 max-w-3xl"
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[0.95] text-white mb-6 max-w-3xl"
             style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}
           >
             El número que<br /><span style={{ color: ACCENT }}>te predice.</span>
@@ -157,7 +157,7 @@ export function Vo2maxClient() {
           <motion.h2
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }} viewport={{ once: true }}
-            className="mb-12 text-4xl md:text-5xl text-white"
+            className="mb-12 text-3xl sm:text-4xl md:text-5xl text-white"
             style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", lineHeight: "1.1" }}
           >
             15 minutos.<br />Supervisión clínica.
@@ -197,8 +197,8 @@ export function Vo2maxClient() {
       </section>
 
       {/* ── STATS ──────────────────────────────────────────────────── */}
-      <section style={{ backgroundColor: ACCENT }} className="py-20">
-        <div className="max-w-6xl mx-auto px-6 sm:px-10 md:px-16 grid grid-cols-3 gap-8 text-center">
+      <section style={{ backgroundColor: ACCENT }} className="py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 md:px-16 grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-8 text-center">
           {[
             { num: "15", suffix: "min", label: "duración del test" },
             { num: "#1", suffix: "", label: "predictor de mortalidad" },
