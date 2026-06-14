@@ -29,33 +29,47 @@ const PROGRAMA_HREF = "/programa-metabolico";
 export function Navbar() {
   const pathname = usePathname();
   const isHome   = pathname === "/" || pathname === "";
+  const isVo2maxLanding =
+    pathname === "/evaluaciones/vo2max" || pathname === "/evaluaciones/vo2max/";
+  const useScrollFade = isHome || isVo2maxLanding;
 
   const [menuOpen, setMenuOpen]                   = useState(false);
   const [medicinaOpen, setMedicinaOpen]           = useState(false);
   const [evaluacionesOpen, setEvaluacionesOpen]   = useState(false);
   const [medicinaMobileOpen, setMedicinaMobileOpen]       = useState(false);
   const [evaluacionesMobileOpen, setEvaluacionesMobileOpen] = useState(false);
+  const [scrolledPast, setScrolledPast] = useState(false);
   const bgRef     = useRef<HTMLDivElement>(null);
   const borderRef = useRef<HTMLDivElement>(null);
 
+  // On VO2max landing the navbar fades from transparent to WHITE; everywhere
+  // else it stays the original dark navy. `lightMode` flips link/icon colors
+  // to dark once the fill is mostly opaque.
+  const lightMode = isVo2maxLanding && scrolledPast;
+
   useEffect(() => {
-    if (!isHome) {
+    if (!useScrollFade) {
       if (bgRef.current)     bgRef.current.style.transform = "scaleX(1)";
       if (borderRef.current) borderRef.current.style.transform = "scaleX(1)";
       return;
     }
-    const FILL_PX = 260;
+    const FILL_PX = isVo2maxLanding ? 360 : 260;
     const onScroll = () => {
       const p = Math.min(1, window.scrollY / FILL_PX);
       if (bgRef.current)     bgRef.current.style.transform     = `scaleX(${p})`;
       if (borderRef.current) borderRef.current.style.transform = `scaleX(${p})`;
+      setScrolledPast(p >= 0.5);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, [isHome]);
+  }, [useScrollFade, isVo2maxLanding]);
 
-  const linkClass = "rounded-xl px-4 py-2 text-sm text-sky-100/70 hover:text-sky-100 transition-all";
+  const linkClass = `rounded-xl px-4 py-2 text-sm transition-all ${
+    lightMode
+      ? "text-[#0A1628]/75 hover:text-[#0A1628]"
+      : "text-sky-100/70 hover:text-sky-100"
+  }`;
   const linkStyle = (label: string) => ({
     ...(label === "Reto 21 días" ? { fontFamily: "var(--font-reto)", fontSize: "1.05rem", letterSpacing: "0.06em" } : {}),
   });
@@ -68,7 +82,7 @@ export function Navbar() {
           ref={bgRef}
           className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundColor: "rgba(3,8,15,0.96)",
+            backgroundColor: isVo2maxLanding ? "rgba(255,255,255,0.97)" : "rgba(3,8,15,0.96)",
             backdropFilter: "blur(20px)",
             transformOrigin: "left center",
             transform: "scaleX(0)",
@@ -80,7 +94,7 @@ export function Navbar() {
           ref={borderRef}
           className="absolute bottom-0 left-0 right-0 h-px pointer-events-none"
           style={{
-            backgroundColor: "rgba(0,174,239,0.18)",
+            backgroundColor: isVo2maxLanding ? "rgba(10,22,40,0.08)" : "rgba(0,174,239,0.18)",
             transformOrigin: "left center",
             transform: "scaleX(0)",
             willChange: "transform",
@@ -108,7 +122,10 @@ export function Navbar() {
                 Medicina
                 <svg
                   className="w-3 h-3 transition-transform"
-                  style={{ transform: medicinaOpen ? "rotate(180deg)" : "rotate(0deg)", color: "rgba(125,217,249,0.6)" }}
+                  style={{
+                    transform: medicinaOpen ? "rotate(180deg)" : "rotate(0deg)",
+                    color: lightMode ? "rgba(10,22,40,0.55)" : "rgba(125,217,249,0.6)",
+                  }}
                   fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -252,8 +269,13 @@ export function Navbar() {
 
           {/* Mobile menu button */}
           <button
-            className="lg:hidden flex items-center justify-center rounded-xl px-3 py-2 text-sky-300 text-xs font-medium border transition-all"
-            style={{ borderColor: "rgba(0,174,239,0.2)", backgroundColor: "rgba(0,174,239,0.08)", minWidth: 56 }}
+            className="lg:hidden flex items-center justify-center rounded-xl px-3 py-2 text-xs font-medium border transition-all"
+            style={{
+              borderColor: lightMode ? "rgba(10,22,40,0.18)" : "rgba(0,174,239,0.2)",
+              backgroundColor: lightMode ? "rgba(10,22,40,0.04)" : "rgba(0,174,239,0.08)",
+              color: lightMode ? "#0A1628" : "#7DD9F9",
+              minWidth: 56,
+            }}
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? (

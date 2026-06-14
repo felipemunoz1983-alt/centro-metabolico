@@ -1,45 +1,36 @@
-﻿import type { Metadata } from "next";
-import Link from "next/link";
+import type { Metadata } from "next";
+import { Vo2maxClient } from "./Vo2maxClient";
 
 export const metadata: Metadata = {
   title: "VO2max — Capacidad Aeróbica | Centro Metabólico",
-  description: "Test de VO2max para medir tu capacidad aeróbica máxima y umbral anaeróbico. Define tus zonas de entrenamiento con precisión científica.",
+  description:
+    "Prueba de VO2max con análisis directo de gases: conoce tu máximo uso de grasa (FATmax), tu gasto calórico real a cada intensidad y obtén un plan de entrenamiento personalizado según tus objetivos.",
+  alternates: {
+    canonical: "/centro-metabolico/evaluaciones/vo2max/",
+  },
+  openGraph: {
+    title: "VO2max — Centro Metabólico",
+    description:
+      "Tu FATmax, tu gasto calórico real y un plan de entrenamiento personalizado. Análisis directo de gases en 15 minutos.",
+    url: "https://felipemunoz1983-alt.github.io/centro-metabolico/evaluaciones/vo2max/",
+    images: [
+      {
+        url: "/centro-metabolico/energy.webp",
+        width: 1200,
+        height: 630,
+        alt: "VO2max — Centro Metabólico",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "VO2max — Centro Metabólico",
+    description:
+      "Tu FATmax, tu gasto calórico real y un plan de entrenamiento personalizado. Análisis directo de gases en 15 minutos.",
+    images: ["/centro-metabolico/energy.webp"],
+  },
 };
 
 export default function Vo2maxPage() {
-  return (
-    <main className="min-h-screen flex flex-col items-center justify-center px-6 text-center" style={{ paddingTop: "6rem" }}>
-      <div
-        className="max-w-xl w-full rounded-3xl px-8 py-12"
-        style={{
-          backgroundColor: "rgba(6,14,26,0.9)",
-          border: "1px solid rgba(0,174,239,0.18)",
-          boxShadow: "0 8px 40px rgba(0,0,0,0.5)",
-        }}
-      >
-        <div
-          className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-6"
-          style={{ border: "1px solid rgba(0,174,239,0.25)", backgroundColor: "rgba(0,174,239,0.08)" }}
-        >
-          <span className="h-1.5 w-1.5 rounded-full animate-pulse-dot" style={{ backgroundColor: "var(--brand)" }} />
-          <span className="text-[11px] font-medium tracking-widest uppercase" style={{ color: "var(--brand-light)" }}>
-            Evaluaciones
-          </span>
-        </div>
-        <h1 className="text-3xl font-semibold text-sky-50 mb-4 leading-tight">
-          VO2max
-        </h1>
-        <p className="text-sky-100/60 leading-relaxed mb-8">
-          Medición del consumo máximo de oxígeno y umbral anaeróbico. Define tus zonas de entrenamiento con datos precisos y optimiza tu rendimiento aeróbico.
-        </p>
-        <Link
-          href={"https://centrometabolico.site.agendapro.com/cl/sucursal/364121"}
-          className="inline-flex items-center gap-2 rounded-2xl px-7 py-3.5 text-sm font-semibold text-white transition-all"
-          style={{ backgroundColor: "var(--brand)" }}
-        >
-          Agendar VO2max →
-        </Link>
-      </div>
-    </main>
-  );
+  return <Vo2maxClient />;
 }
