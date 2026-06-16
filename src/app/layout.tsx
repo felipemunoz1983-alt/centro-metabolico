@@ -109,19 +109,36 @@ const jsonLd = {
       "@id": `${BASE_URL}${BASE_PATH}/#organization`,
       name: "Centro Metabólico",
       url: `${BASE_URL}${BASE_PATH}/`,
-      logo: `${BASE_URL}${BASE_PATH}/favicon.ico`,
+      logo: `${BASE_URL}${BASE_PATH}/logo123.png`,
+      image: `${BASE_URL}${BASE_PATH}/energy.webp`,
       description:
         "Centro especializado en evaluación metabólica avanzada, nutrición de precisión, entrenamiento personalizado y medicina deportiva en Santiago, Chile.",
       telephone: "+56991377915",
       address: {
         "@type": "PostalAddress",
-        addressLocality: "Las Condes",
+        streetAddress: "Suárez Mujica 950",
+        addressLocality: "Ñuñoa",
         addressRegion: "Región Metropolitana",
         addressCountry: "CL",
       },
       areaServed: "Santiago, Chile",
-      sameAs: [],
-      openingHoursSpecification: [],
+      sameAs: ["https://www.instagram.com/centrometabolicpro/"],
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+          ],
+          opens: "08:00",
+          closes: "21:00",
+        },
+      ],
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "Servicios Centro Metabólico",
@@ -190,7 +207,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="es"
+      lang="es-CL"
       className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${bebasNeue.variable} h-full`}
     >
       <head>
