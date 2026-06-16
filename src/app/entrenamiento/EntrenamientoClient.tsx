@@ -61,7 +61,7 @@ const cards = [
   {
     id: "movilidad",
     badge: "MOVILIDAD",
-    name: "Movilidad\nArticular",
+    name: "Movilidad",
     tagline: "Control · Estabilidad · Movimiento",
     image: `${BP}/movilidad1.webp`,
     href: "/entrenamiento/movilidad",
@@ -79,7 +79,7 @@ const cards = [
   {
     id: "stretching",
     badge: "STRETCHING",
-    name: "Stretching\nFNP",
+    name: "Stretching",
     tagline: "Flexibilidad · Relajación · Bienestar",
     image: `${BP}/movilidad3.webp`,
     href: "/entrenamiento/stretching",
