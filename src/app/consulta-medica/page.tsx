@@ -2,10 +2,39 @@
 import Link from "next/link";
 import Image from "next/image";
 
+const BASE_PATH = "/centro-metabolico";
+
 export const metadata: Metadata = {
-  title: "Consulta Médica — Centro Metabólico",
+  title: "Consulta Médica con Equipo Especializado",
   description:
-    "Consulta Médica con nuestro equipo de profesionales especializados en salud metabólica, nutrición clínica y medicina deportiva en Centro Metabólico, Santiago.",
+    "Consulta Médica con nuestro equipo de profesionales especializados en salud metabólica, nutrición clínica y medicina deportiva en Santiago, Chile.",
+  keywords: [
+    "consulta médica",
+    "nutrición clínica",
+    "medicina metabólica",
+    "medicina deportiva",
+    "Santiago",
+    "Centro Metabólico",
+  ],
+  alternates: {
+    canonical: `${BASE_PATH}/consulta-medica/`,
+  },
+  openGraph: {
+    type: "website",
+    locale: "es_CL",
+    url: `${BASE_PATH}/consulta-medica/`,
+    siteName: "Centro Metabólico",
+    title: "Consulta Médica — Centro Metabólico",
+    description:
+      "Consulta Médica con equipo especializado en salud metabólica, nutrición clínica y medicina deportiva.",
+    images: [{ url: `${BASE_PATH}/barbara.webp`, width: 1200, height: 630, alt: "Consulta Médica — Centro Metabólico" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Consulta Médica — Centro Metabólico",
+    description: "Equipo especializado en salud metabólica y nutrición clínica.",
+    images: [`${BASE_PATH}/barbara.webp`],
+  },
 };
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";

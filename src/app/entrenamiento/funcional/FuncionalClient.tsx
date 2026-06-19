@@ -114,7 +114,7 @@ export function FuncionalClient() {
               Despierta tu<br /><span style={{ color: BRAND }}>potencial.</span>
             </h2>
             <p className="mt-6 max-w-[44ch] text-base leading-relaxed md:text-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
-              No es solo moverte. Es forjarte.<br />Alta intensidad, guía real, resultados que se sienten en cada rep.
+              No es solo moverte. Es entrenarte de verdad.<br />Alta intensidad, guía real, resultados que se sienten en cada repetición.
             </p>
           </div>
 
@@ -124,10 +124,10 @@ export function FuncionalClient() {
               Quema grasa · Transforma tu cuerpo
             </span>
             <h2 className="text-4xl sm:text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
-              Clases que activan<br /><span style={{ color: BRAND }}>y bajan tu grasa corporal.</span>
+              Clases que activan tu metabolismo<br /><span style={{ color: BRAND }}>y ayudan a reducir grasa.</span>
             </h2>
             <p className="mt-6 max-w-[44ch] text-base leading-relaxed md:text-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
-              Entrena con energía, quema grasa corporal y disfruta cada sesión.<br />Resultados reales con clases que te van a motivar a volver.
+              Entrena con energía, activa tu metabolismo y disfruta cada sesión.<br />Resultados medibles, clase a clase.
             </p>
           </div>
 

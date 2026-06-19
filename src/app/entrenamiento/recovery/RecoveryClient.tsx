@@ -124,17 +124,17 @@ export function RecoveryClient() {
               Descansa bien,<br /><span style={{ color: ROSE }}>rinde mejor.</span>
             </h2>
             <p className="mt-6 max-w-[44ch] text-base leading-relaxed md:text-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
-              Reducimos la fatiga muscular y aceleramos la regeneración tisular.<br />Tu rendimiento depende de cuánto te recuperas.
+              Reducimos la fatiga muscular y aceleramos la recuperación muscular.<br />Tu rendimiento depende de cuánto te recuperas.
             </p>
           </div>
 
           <div ref={p3Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center" style={{ opacity: 0, transform: "translateY(60px)", willChange: "opacity, transform" }}>
-            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(244,63,94,0.2)", color: ROSE, border: "1px solid rgba(244,63,94,0.4)" }}>Planes desde $50.000 · Sesiones desde $20.000</span>
+            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(244,63,94,0.2)", color: ROSE, border: "1px solid rgba(244,63,94,0.4)" }}>Planes desde $50.000 · Add-on desde $20.000</span>
             <h2 className="text-4xl sm:text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
               Tu recuperación<br /><span style={{ color: ROSE }}>empieza hoy.</span>
             </h2>
             <p className="mt-6 mb-8 max-w-[44ch] text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
-              Grupos reducidos · Profesor en cada sesión · Resultados desde el primer día.
+              Grupos reducidos · Profesor en cada sesión · Beneficios desde la primera sesión.
             </p>
             <motion.a href={AGENDA_URL} className="inline-flex items-center gap-2 rounded-2xl px-10 py-4 text-base font-bold text-white" style={{ backgroundColor: ROSE }} whileHover={{ scale: 1.05, boxShadow: "0 0 48px rgba(244,63,94,0.6)" }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
               Agendar Recovery →

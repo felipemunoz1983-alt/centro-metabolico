@@ -121,7 +121,7 @@ export function StretchingClient() {
               Tu cuerpo merece<br /><span style={{ color: BRAND }}>descansar bien.</span>
             </h2>
             <p className="mt-6 mb-8 max-w-[44ch] text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
-              Grupos reducidos · Profesor en cada sesión · Resultados medibles desde el primer día.
+              Grupos reducidos · Profesor en cada sesión · Beneficios desde la primera sesión.
             </p>
             <motion.a href={AGENDA_URL} className="inline-flex items-center gap-2 rounded-2xl px-10 py-4 text-base font-bold text-white" style={{ backgroundColor: BRAND }} whileHover={{ scale: 1.05, boxShadow: "0 0 48px rgba(99,102,241,0.6)" }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
               Agendar Stretching →

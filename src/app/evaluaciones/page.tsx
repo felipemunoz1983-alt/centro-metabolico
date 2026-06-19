@@ -1,10 +1,40 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
 
+const BASE_PATH = "/centro-metabolico";
+
 export const metadata: Metadata = {
-  title: "Evaluaciones Metabólicas — Centro Metabólico",
+  title: "Evaluaciones Metabólicas de Precisión",
   description:
-    "Evaluaciones metabólicas de precisión: VO₂ max, metabolismo basal, umbral anaeróbico y composición corporal en Centro Metabólico, Santiago.",
+    "Evaluaciones metabólicas de precisión: VO₂ max, metabolismo basal, umbral anaeróbico y composición corporal en Santiago, Chile.",
+  keywords: [
+    "evaluación metabólica",
+    "VO2 max",
+    "metabolismo basal",
+    "umbral anaeróbico",
+    "composición corporal",
+    "InBody",
+    "Santiago",
+  ],
+  alternates: {
+    canonical: `${BASE_PATH}/evaluaciones/`,
+  },
+  openGraph: {
+    type: "website",
+    locale: "es_CL",
+    url: `${BASE_PATH}/evaluaciones/`,
+    siteName: "Centro Metabólico",
+    title: "Evaluaciones Metabólicas — Centro Metabólico",
+    description:
+      "Mediciones de precisión: VO₂ max, metabolismo basal, umbral anaeróbico y composición corporal.",
+    images: [{ url: `${BASE_PATH}/evaluacion_metabolica.webp`, width: 1200, height: 630, alt: "Evaluaciones Metabólicas — Centro Metabólico" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Evaluaciones Metabólicas — Centro Metabólico",
+    description: "Mediciones de precisión basadas en evidencia.",
+    images: [`${BASE_PATH}/evaluacion_metabolica.webp`],
+  },
 };
 
 export default function EvaluacionesPage() {

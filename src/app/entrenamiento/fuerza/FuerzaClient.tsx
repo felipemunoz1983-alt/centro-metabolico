@@ -99,7 +99,7 @@ export function FuerzaClient() {
           <div ref={p1Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none" style={{ opacity: 1, willChange: "opacity, transform" }}>
             <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(249,115,22,0.2)", color: ORANGE, border: "1px solid rgba(249,115,22,0.4)" }}>Fuerza IRONFIT</span>
             <h2 className="text-4xl sm:text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
-              Construye la fuerza<br /><span style={{ color: ORANGE }}>que mereces.</span>
+              Construye la fuerza<br /><span style={{ color: ORANGE }}>que buscas.</span>
             </h2>
             <p className="mt-6 max-w-[44ch] text-base leading-relaxed md:text-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
               Con guía profesional en cada sesión y tecnología de precisión,<br />alcanzar tus objetivos es cuestión de método.
@@ -112,7 +112,7 @@ export function FuerzaClient() {
               Cada repetición<br /><span style={{ color: ORANGE }}>trabaja para ti.</span>
             </h2>
             <p className="mt-6 max-w-[44ch] text-base leading-relaxed md:text-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
-              Medimos tu fuerza, tu progreso y tu fatiga en tiempo real.<br />Cada sesión ajustada exactamente a lo que tu cuerpo necesita.
+              Medimos tu fuerza, tu progreso y tu fatiga en tiempo real.<br />Cada sesión ajustada a tu nivel medido de fuerza y fatiga.
             </p>
           </div>
 
@@ -141,7 +141,7 @@ export function FuerzaClient() {
           <div className="relative z-10 flex h-full w-full lg:w-1/2 flex-col justify-center px-6 sm:px-10 md:px-16">
             <div ref={blk1Ref} className="absolute inset-x-6 sm:inset-x-10 md:inset-x-16" style={{ opacity: 0, willChange: "opacity, transform" }}>
               <p className="mb-4 text-lg font-bold uppercase tracking-widest" style={{ color: ORANGE }}>El método</p>
-              <h3 className="mb-6 text-4xl text-white md:text-5xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", lineHeight: "1.1" }}>Entrena fuerza<br />de verdad.</h3>
+              <h3 className="mb-6 text-4xl text-white md:text-5xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", lineHeight: "1.1" }}>Entrena fuerza<br />con medición.</h3>
               <p className="text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>Clases exclusivas de máximo 7 personas. Un profesor que te guía en cada movimiento para que alcances tus objetivos de manera segura y efectiva.</p>
             </div>
             <div ref={blk3Ref} className="absolute inset-x-6 sm:inset-x-10 md:inset-x-16" style={{ opacity: 0, willChange: "opacity, transform" }}>

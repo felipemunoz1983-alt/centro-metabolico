@@ -1,9 +1,40 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
 
+const BASE_PATH = "/centro-metabolico";
+
 export const metadata: Metadata = {
-  title: "InBody — Composición Corporal | Centro Metabólico",
-  description: "Análisis de composición corporal InBody: masa muscular, grasa corporal, agua intracelular y extracelular. Resultados en minutos.",
+  title: "InBody — Composición Corporal",
+  description:
+    "Análisis InBody de composición corporal: masa muscular segmentaria, grasa corporal, agua intra y extracelular. Resultados en minutos, en Santiago.",
+  keywords: [
+    "InBody",
+    "composición corporal",
+    "bioimpedancia",
+    "masa muscular",
+    "grasa corporal",
+    "Santiago",
+    "Centro Metabólico",
+  ],
+  alternates: {
+    canonical: `${BASE_PATH}/evaluaciones/inbody/`,
+  },
+  openGraph: {
+    type: "website",
+    locale: "es_CL",
+    url: `${BASE_PATH}/evaluaciones/inbody/`,
+    siteName: "Centro Metabólico",
+    title: "InBody — Composición Corporal | Centro Metabólico",
+    description:
+      "Análisis InBody: masa muscular segmentaria, grasa corporal, agua intra y extracelular. Resultados en minutos.",
+    images: [{ url: `${BASE_PATH}/energy.webp`, width: 1200, height: 630, alt: "InBody — Centro Metabólico" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "InBody — Composición Corporal | Centro Metabólico",
+    description: "Análisis de bioimpedancia con resultados en minutos.",
+    images: [`${BASE_PATH}/energy.webp`],
+  },
 };
 
 export default function InBodyPage() {

@@ -87,18 +87,18 @@ export function ServicesSection() {
                   <div className="absolute inset-0 flex pointer-events-none">
                     {/* Bárbara — sin zoom */}
                     <div className="relative flex-1 overflow-hidden" style={{ backgroundColor: "#ffffff" }}>
-                      <Image src={`${BP}/barbara.webp`} alt="" fill className="object-cover"
+                      <Image src={`${BP}/barbara.webp`} alt="Dra. Bárbara Plass — Médico Cirujano del Centro Metabólico" fill className="object-cover"
                         style={{ objectPosition: "50% 10%", filter: "contrast(1.05) brightness(1.0)" }} sizes="25vw" />
                     </div>
                     {/* Valeska — sin zoom */}
                     <div className="relative flex-1 overflow-hidden" style={{ backgroundColor: "rgba(0,20,40,0.32)" }}>
-                      <Image src={`${BP}/VALE_WEB.webp`} alt="" fill className="object-cover"
+                      <Image src={`${BP}/VALE_WEB.webp`} alt="Valeska Vidal — Nutricionista Clínica y Deportiva del Centro Metabólico" fill className="object-cover"
                         style={{ objectPosition: "50% 8%", filter: "grayscale(25%) contrast(1.05) brightness(0.78)" }} sizes="25vw" />
                       <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,20,40,0.32)" }} />
                     </div>
                     {/* Felipe — imagen pre-recortada, sin zoom CSS */}
                     <div className="relative flex-1 overflow-hidden" style={{ backgroundColor: "rgba(0,20,40,0.32)" }}>
-                      <Image src={`${BP}/felipe.webp`} alt="" fill className="object-cover"
+                      <Image src={`${BP}/felipe.webp`} alt="Felipe Muñoz Zambrano — Nutricionista Deportivo del Centro Metabólico" fill className="object-cover"
                         style={{ objectPosition: "50% 0%", filter: "grayscale(20%) contrast(1.05) brightness(0.90)" }} sizes="25vw" />
                       <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,20,40,0.18)" }} />
                     </div>
@@ -118,7 +118,7 @@ export function ServicesSection() {
                 {/* Metabolic eval photo background — card 03 only */}
                 {i === 2 && (
                   <div className="absolute inset-0 pointer-events-none">
-                    <Image src={`${BP}/evaluacion_metabolica.webp`} alt="" fill className="object-cover"
+                    <Image src={`${BP}/evaluacion_metabolica.webp`} alt="Evaluación metabólica con calorimetría indirecta en el Centro Metabólico" fill className="object-cover"
                       style={{ objectPosition: "50% 40%", filter: "brightness(0.85)" }} sizes="50vw" />
                     <div className="absolute inset-0" style={{
                       background: "linear-gradient(to right, rgba(3,8,20,0.90) 0%, rgba(3,8,20,0.75) 45%, rgba(3,8,20,0.35) 100%)",
@@ -132,7 +132,7 @@ export function ServicesSection() {
                 {/* Reto 21 días banner — card 04 only */}
                 {i === 3 && (
                   <div className="absolute inset-0 pointer-events-none">
-                    <Image src={`${BP}/reto21diasbanner.webp`} alt="" fill className="object-cover"
+                    <Image src={`${BP}/reto21diasbanner.webp`} alt="Reto 21 Días — programa de transformación metabólica del Centro Metabólico" fill className="object-cover"
                       style={{ objectPosition: "50% 50%", filter: "brightness(0.85)" }} sizes="50vw" />
                     <div className="absolute inset-0" style={{
                       background: "linear-gradient(to right, rgba(3,8,20,0.90) 0%, rgba(3,8,20,0.75) 45%, rgba(3,8,20,0.35) 100%)",
@@ -146,7 +146,7 @@ export function ServicesSection() {
                 {/* Training photo background — card 02 only */}
                 {i === 1 && (
                   <div className="absolute inset-0 pointer-events-none">
-                    <Image src={`${BP}/entrenamiento_funcional2.webp`} alt="" fill className="object-cover"
+                    <Image src={`${BP}/entrenamiento_funcional2.webp`} alt="Entrenamiento funcional con tecnología DINAFIT en el Centro Metabólico" fill className="object-cover"
                       style={{ objectPosition: "50% 40%", filter: "brightness(0.90)" }} sizes="50vw" />
                     <div className="absolute inset-0" style={{
                       background: "linear-gradient(to right, rgba(3,8,20,0.82) 0%, rgba(3,8,20,0.50) 50%, rgba(3,8,20,0.25) 100%)",

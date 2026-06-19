@@ -1,9 +1,40 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
 
+const BASE_PATH = "/centro-metabolico";
+
 export const metadata: Metadata = {
-  title: "Evaluación Metabólica — Centro Metabólico",
-  description: "Evaluación metabólica completa: medición del metabolismo basal, composición corporal y parámetros fisiológicos clave para optimizar tu salud.",
+  title: "Evaluación Metabólica Completa",
+  description:
+    "Evaluación metabólica completa: medición del metabolismo basal, oxidación de sustratos y parámetros fisiológicos clave por calorimetría indirecta, en Santiago.",
+  keywords: [
+    "evaluación metabólica",
+    "metabolismo basal",
+    "calorimetría indirecta",
+    "oxidación de sustratos",
+    "composición corporal",
+    "Santiago",
+    "Centro Metabólico",
+  ],
+  alternates: {
+    canonical: `${BASE_PATH}/evaluaciones/metabolica/`,
+  },
+  openGraph: {
+    type: "website",
+    locale: "es_CL",
+    url: `${BASE_PATH}/evaluaciones/metabolica/`,
+    siteName: "Centro Metabólico",
+    title: "Evaluación Metabólica — Centro Metabólico",
+    description:
+      "Calorimetría indirecta para medir metabolismo basal, oxidación de sustratos y parámetros clave.",
+    images: [{ url: `${BASE_PATH}/evaluacion_metabolica.webp`, width: 1200, height: 630, alt: "Evaluación Metabólica — Centro Metabólico" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Evaluación Metabólica — Centro Metabólico",
+    description: "Medición por calorimetría indirecta.",
+    images: [`${BASE_PATH}/evaluacion_metabolica.webp`],
+  },
 };
 
 export default function EvaluacionMetabolicaPage() {

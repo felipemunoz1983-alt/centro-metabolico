@@ -165,7 +165,12 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
         </h2>
 
         {/* Tagline */}
-        <p className="mb-5 text-sm font-medium text-white/70">{card.tagline}</p>
+        <p className="mb-3 text-sm font-medium text-white/70">{card.tagline}</p>
+
+        {/* Price */}
+        <p className="mb-5 text-xs font-semibold uppercase tracking-widest" style={{ color: card.color }}>
+          {card.price}
+        </p>
 
         {/* Expand */}
         <div className="flex w-full items-center justify-center">

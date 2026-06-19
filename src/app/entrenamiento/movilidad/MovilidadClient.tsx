@@ -122,7 +122,7 @@ export function MovilidadClient() {
               Tu cuerpo merece<br /><span style={{ color: GREEN }}>moverse bien.</span>
             </h2>
             <p className="mt-6 mb-8 max-w-[44ch] text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
-              Grupos reducidos · Profesor en cada sesión · Resultados medibles desde el primer día.
+              Grupos reducidos · Profesor en cada sesión · Beneficios desde la primera sesión.
             </p>
             <motion.a href={AGENDA_URL} className="inline-flex items-center gap-2 rounded-2xl px-10 py-4 text-base font-bold text-white" style={{ backgroundColor: GREEN }} whileHover={{ scale: 1.05, boxShadow: "0 0 48px rgba(16,185,129,0.6)" }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
               Agendar Movilidad →
@@ -142,7 +142,7 @@ export function MovilidadClient() {
             <div ref={blk1Ref} className="absolute inset-x-6 sm:inset-x-10 md:inset-x-16" style={{ opacity: 0, willChange: "opacity, transform" }}>
               <p className="mb-4 text-lg font-bold uppercase tracking-widest" style={{ color: GREEN }}>El método</p>
               <h3 className="mb-6 text-4xl text-white md:text-5xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", lineHeight: "1.1" }}>El dolor no tiene<br />que ser tu nueva<br />normalidad.</h3>
-              <p className="text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>Si sientes rigidez al levantarte, dolor en las rodillas o te cuesta hacer lo que antes hacías con facilidad — no es inevitable. Con el método correcto puedes recuperar tu movimiento y vivir sin miedo a lastimarte.</p>
+              <p className="text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>Si sientes rigidez al levantarte, dolor en las rodillas o te cuesta hacer lo que antes hacías con facilidad — no es inevitable. Con el método correcto puedes recuperar tu movimiento y moverte con más confianza.</p>
             </div>
             <div ref={blk2Ref} className="absolute inset-x-6 sm:inset-x-10 md:inset-x-16" style={{ opacity: 0, willChange: "opacity, transform" }}>
               <p className="mb-4 text-lg font-bold uppercase tracking-widest" style={{ color: GREEN }}>Planes Movilidad</p>
