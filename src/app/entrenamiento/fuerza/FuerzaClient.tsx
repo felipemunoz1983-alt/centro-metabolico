@@ -117,7 +117,7 @@ export function FuerzaClient() {
           </div>
 
           <div ref={p3Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center" style={{ opacity: 0, transform: "translateY(60px)", willChange: "opacity, transform" }}>
-            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(249,115,22,0.2)", color: ORANGE, border: "1px solid rgba(249,115,22,0.4)" }}>4 clases / mes · $50.000</span>
+            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(249,115,22,0.2)", color: ORANGE, border: "1px solid rgba(249,115,22,0.4)" }}>Planes desde $50.000</span>
             <h2 className="text-4xl sm:text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
               Tu mejor versión<br /><span style={{ color: ORANGE }}>empieza hoy.</span>
             </h2>
@@ -145,15 +145,23 @@ export function FuerzaClient() {
               <p className="text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>Clases exclusivas de máximo 7 personas. Un profesor que te guía en cada movimiento para que alcances tus objetivos de manera segura y efectiva.</p>
             </div>
             <div ref={blk3Ref} className="absolute inset-x-6 sm:inset-x-10 md:inset-x-16" style={{ opacity: 0, willChange: "opacity, transform" }}>
-              <p className="mb-4 text-lg font-bold uppercase tracking-widest" style={{ color: ORANGE }}>4 clases / mes · $50.000</p>
+              <p className="mb-4 text-lg font-bold uppercase tracking-widest" style={{ color: ORANGE }}>Planes IRONFIT</p>
               <h3 className="mb-6 text-4xl text-white md:text-5xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", lineHeight: "1.1" }}>Tu fuerza está<br />más cerca.</h3>
-              <ul className="mb-8 space-y-3">
-                {["Grupos de máximo 7 personas.", "Profesor en cada sesión.", "Resultados medibles desde el primer día."].map(item => (
-                  <li key={item} className="flex items-start gap-3 text-base" style={{ color: "rgba(255,255,255,0.75)" }}>
-                    <span className="shrink-0" style={{ color: ORANGE }}>✓</span>{item}
+              <ul className="mb-5 space-y-3">
+                {[
+                  { clases: "4 clases / mes", precio: "$50.000" },
+                  { clases: "8 clases / mes", precio: "$70.000" },
+                  { clases: "12 clases / mes", precio: "$80.000" },
+                ].map(plan => (
+                  <li key={plan.clases} className="flex items-baseline justify-between gap-3 border-b border-white/10 pb-2 text-base" style={{ color: "rgba(255,255,255,0.85)" }}>
+                    <span className="flex items-center gap-3"><span className="shrink-0" style={{ color: ORANGE }}>✓</span>{plan.clases}</span>
+                    <span className="font-bold" style={{ color: ORANGE }}>{plan.precio}</span>
                   </li>
                 ))}
               </ul>
+              <div className="mb-8 rounded-xl px-4 py-3 text-sm" style={{ backgroundColor: "rgba(249,115,22,0.08)", border: "1px solid rgba(249,115,22,0.25)", color: "rgba(255,255,255,0.85)" }}>
+                <span className="font-bold" style={{ color: ORANGE }}>+ $20.000:</span> 3 sesiones de Recovery de 30 minutos.
+              </div>
               <a href={AGENDA_URL} className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-base font-bold text-white" style={{ backgroundColor: ORANGE, boxShadow: "0 0 32px rgba(249,115,22,0.35)" }}>Agendar Fuerza IRONFIT →</a>
             </div>
           </div>

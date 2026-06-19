@@ -129,7 +129,7 @@ export function RecoveryClient() {
           </div>
 
           <div ref={p3Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center" style={{ opacity: 0, transform: "translateY(60px)", willChange: "opacity, transform" }}>
-            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(244,63,94,0.2)", color: ROSE, border: "1px solid rgba(244,63,94,0.4)" }}>4 sesiones / mes · $50.000</span>
+            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(244,63,94,0.2)", color: ROSE, border: "1px solid rgba(244,63,94,0.4)" }}>Planes desde $50.000 · Sesiones desde $20.000</span>
             <h2 className="text-4xl sm:text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
               Tu recuperación<br /><span style={{ color: ROSE }}>empieza hoy.</span>
             </h2>
@@ -157,20 +157,23 @@ export function RecoveryClient() {
               <p className="text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>El descanso activo y la recuperación guiada son tan importantes como el entrenamiento mismo. Con nuestro programa de Recovery acortamos los tiempos de recuperación, reducimos lesiones y optimizamos tu rendimiento de forma sostenida.</p>
             </div>
             <div ref={blk2Ref} className="absolute inset-x-6 sm:inset-x-10 md:inset-x-16" style={{ opacity: 0, willChange: "opacity, transform" }}>
-              <p className="mb-4 text-lg font-bold uppercase tracking-widest" style={{ color: ROSE }}>4 sesiones / mes · $50.000</p>
+              <p className="mb-4 text-lg font-bold uppercase tracking-widest" style={{ color: ROSE }}>Planes Recovery</p>
               <h3 className="mb-6 text-4xl text-white md:text-5xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", lineHeight: "1.1" }}>Rinde más<br />recuperándote<br />mejor.</h3>
-              <ul className="mb-8 space-y-3">
+              <ul className="mb-5 space-y-3">
                 {[
-                  "Técnicas de recuperación activa para deportistas y personas activas.",
-                  "Reduce la fatiga muscular y acelera la regeneración tisular.",
-                  "Optimiza tu rendimiento potenciando la calidad del descanso.",
-                  "Grupos reducidos con guía profesional en cada sesión.",
-                ].map(item => (
-                  <li key={item} className="flex items-start gap-3 text-base" style={{ color: "rgba(255,255,255,0.75)" }}>
-                    <span className="shrink-0" style={{ color: ROSE }}>✓</span>{item}
+                  { clases: "4 sesiones / mes", precio: "$50.000" },
+                  { clases: "8 sesiones / mes", precio: "$70.000" },
+                  { clases: "12 sesiones / mes", precio: "$80.000" },
+                ].map(plan => (
+                  <li key={plan.clases} className="flex items-baseline justify-between gap-3 border-b border-white/10 pb-2 text-base" style={{ color: "rgba(255,255,255,0.85)" }}>
+                    <span className="flex items-center gap-3"><span className="shrink-0" style={{ color: ROSE }}>✓</span>{plan.clases}</span>
+                    <span className="font-bold" style={{ color: ROSE }}>{plan.precio}</span>
                   </li>
                 ))}
               </ul>
+              <div className="mb-8 rounded-xl px-4 py-3 text-sm" style={{ backgroundColor: "rgba(244,63,94,0.08)", border: "1px solid rgba(244,63,94,0.25)", color: "rgba(255,255,255,0.85)" }}>
+                <span className="font-bold" style={{ color: ROSE }}>+ $20.000:</span> Pack de 3 sesiones de 30 minutos (ideal como complemento de otros entrenamientos).
+              </div>
               <a href={AGENDA_URL} className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-base font-bold text-white" style={{ backgroundColor: ROSE, boxShadow: "0 0 32px rgba(244,63,94,0.35)" }}>Agendar Recovery →</a>
             </div>
           </div>

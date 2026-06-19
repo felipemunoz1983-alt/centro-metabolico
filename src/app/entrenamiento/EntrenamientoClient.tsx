@@ -31,7 +31,7 @@ const cards = [
     gradient: "linear-gradient(135deg, #0369A1 0%, #0EA5E9 100%)",
     color: BRAND,
     sessions: "4 clases / mes",
-    price: "$50.000",
+    price: "Desde $50.000",
     bullets: [
       "Luces de acción y reacción para mejorar tu respuesta neuromuscular",
       "Encoder deportivo para medir tu fuerza en tiempo real (1RM)",
@@ -50,7 +50,7 @@ const cards = [
     gradient: "linear-gradient(135deg, #1C1917 0%, #44403C 100%)",
     color: "#F97316",
     sessions: "4 clases / mes",
-    price: "$50.000",
+    price: "Desde $50.000",
     bullets: [
       "Máximo 7 personas por clase para atención personalizada",
       "Medición en tiempo real de tu nivel de fuerza y fatiga",
@@ -68,7 +68,7 @@ const cards = [
     gradient: "linear-gradient(135deg, #064E3B 0%, #10B981 100%)",
     color: "#10B981",
     sessions: "4 sesiones / mes",
-    price: "$50.000",
+    price: "Desde $50.000",
     bullets: [
       "Diseñado para personas +35 que quieren moverse sin dolor",
       "Movilidad articular, control motor y estabilidad funcional",
@@ -86,7 +86,7 @@ const cards = [
     gradient: "linear-gradient(135deg, #1E3A5F 0%, #6366F1 100%)",
     color: "#6366F1",
     sessions: "4 sesiones / mes",
-    price: "$50.000",
+    price: "Desde $50.000",
     bullets: [
       "Técnicas FNP para flexibilidad real y duradera",
       "Reduce tensión muscular y mejora el rango de movimiento",
