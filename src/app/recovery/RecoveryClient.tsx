@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const AGENDA_URL = "https://centrometabolico.site.agendapro.com/cl/sucursal/364121";
+const AGENDA_URL = "https://centro-metabolico-agenda.vercel.app/reservar";
 const ROSE = "#F43F5E";
 
 function interp(p: number, ins: number[], outs: number[]): number {

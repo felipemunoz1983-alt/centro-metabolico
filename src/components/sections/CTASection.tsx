@@ -51,7 +51,7 @@ export function CTASection() {
 
           <div className="flex flex-col gap-3 items-center sm:flex-row sm:justify-center">
             <motion.a
-              href={"https://centrometabolico.site.agendapro.com/cl/sucursal/364121"}
+              href={"https://centro-metabolico-agenda.vercel.app/reservar"}
               className="group inline-flex items-center gap-2.5 rounded-2xl px-8 py-4 text-sm font-semibold text-white"
               style={{ backgroundColor: "var(--brand)" }}
               whileHover={{
