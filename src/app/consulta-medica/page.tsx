@@ -50,6 +50,7 @@ const profesionales = [
     photoBg: "#ffffff",
     tags: ["Medicina Metabólica", "Nutrición Clínica", "Obesidad"],
     badge: "Hospital Padre Hurtado",
+    service: "Consulta Médica Integral",
   },
   {
     id: "valeska",
@@ -60,6 +61,7 @@ const profesionales = [
     photo: "/VALE_WEB.webp",
     tags: ["Nutrición Clínica", "Composición Corporal", "Metabolismo"],
     badge: "Colegio de Nutricionistas",
+    service: "Consulta Nutricional",
   },
   {
     id: "felipe",
@@ -70,6 +72,7 @@ const profesionales = [
     photo: "/felipe.webp",
     tags: ["Nutrición Deportiva", "Pérdida de Grasa", "Rendimiento"],
     badge: "Clínica Alemana",
+    service: "Consulta Nutricional",
   },
 ];
 
@@ -178,7 +181,7 @@ export default function ConsultaMedicaPage() {
                     Ver perfil completo
                   </Link>
                   <Link
-                    href={"https://centro-metabolico-agendamiento.vercel.app/reservar?servicio=Consulta%20M%C3%A9dica%20Integral"}
+                    href={`https://centro-metabolico-agendamiento.vercel.app/reservar?servicio=${encodeURIComponent(p.service)}&pro=${encodeURIComponent(p.name)}`}
                     className="flex items-center justify-center gap-2 rounded-2xl py-2.5 text-sm font-semibold text-white transition-all"
                     style={{ backgroundColor: "var(--brand)" }}
                   >
