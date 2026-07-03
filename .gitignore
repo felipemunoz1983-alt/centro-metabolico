@@ -42,3 +42,6 @@ next-env.d.ts
 
 # editor / dropbox temp files
 *.tmp.*
+
+live.html
+*.tmp.html
