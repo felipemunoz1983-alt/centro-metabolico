@@ -355,7 +355,7 @@ export function Reto21DiasClient() {
           </p>
           <div className="flex flex-col gap-3 items-stretch sm:items-center sm:flex-row sm:justify-center">
             <motion.a
-              href={"https://centro-metabolico-agenda.vercel.app/reservar"}
+              href={"https://centro-metabolico-agendamiento.vercel.app/reservar"}
               className="inline-flex items-center justify-center gap-2 rounded-2xl px-8 py-4 text-sm font-semibold text-white"
               style={{ backgroundColor: BRAND }}
               whileHover={{ scale: 1.02, boxShadow: "0 0 40px rgba(0,174,239,0.45)" }}

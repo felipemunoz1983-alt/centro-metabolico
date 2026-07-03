@@ -9,7 +9,7 @@ export function AgendaModal() {
     // Intercept all clicks on AgendaPro links → open modal instead
     const handleClick = (e: MouseEvent) => {
       const anchor = (e.target as HTMLElement).closest("a");
-      if (anchor?.href?.includes("centro-metabolico-agenda.vercel.app")) {
+      if (anchor?.href?.includes("centro-metabolico-agendamiento.vercel.app")) {
         e.preventDefault();
         setOpen(true);
       }
@@ -51,7 +51,7 @@ export function AgendaModal() {
           ✕
         </button>
         <iframe
-          src="https://centro-metabolico-agenda.vercel.app/reservar"
+          src="https://centro-metabolico-agendamiento.vercel.app/reservar"
           width="810"
           frameBorder={0}
           scrolling="yes"

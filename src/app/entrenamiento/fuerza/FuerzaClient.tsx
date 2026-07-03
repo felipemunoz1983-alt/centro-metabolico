@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const AGENDA_URL = "https://centro-metabolico-agenda.vercel.app/reservar";
+const AGENDA_URL = "https://centro-metabolico-agendamiento.vercel.app/reservar";
 const BRAND = "#00AEEF";
 const ORANGE = "#F97316";
 

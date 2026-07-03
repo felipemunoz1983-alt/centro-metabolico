@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const AGENDA_URL = "https://centro-metabolico-agenda.vercel.app/reservar";
+const AGENDA_URL = "https://centro-metabolico-agendamiento.vercel.app/reservar";
 const BRAND = "#00AEEF";
 const BRAND_DARK = "#0090C5";
 
