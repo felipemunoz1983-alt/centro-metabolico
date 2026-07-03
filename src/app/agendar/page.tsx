@@ -57,7 +57,7 @@ export default function AgendarPage() {
           style={{ border: "1px solid rgba(0,174,239,0.15)", backgroundColor: "#ffffff" }}
         >
           <iframe
-            src="https://centrometabolico.site.agendapro.com/cl/iframe/sucursal/364121"
+            src="https://centro-metabolico-agendamiento.vercel.app/reservar"
             width="810"
             marginWidth={0}
             marginHeight={0}

@@ -9,7 +9,7 @@ import { Footer } from "@/components/sections/Footer";
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const BRAND = "#00AEEF";
 const VIOLET = "#A78BFA";
-const AGENDA_URL = "https://centrometabolico.site.agendapro.com/cl/sucursal/364121";
+const AGENDA_URL = "https://centro-metabolico-agendamiento.vercel.app/reservar";
 
 /* ── Icons ──────────────────────────────────────────────────── */
 function CheckIcon({ color }: { color: string }) {

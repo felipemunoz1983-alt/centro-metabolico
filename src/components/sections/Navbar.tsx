@@ -249,7 +249,7 @@ export function Navbar() {
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <a
-              href={"https://centrometabolico.site.agendapro.com/cl/sucursal/364121"}
+              href={"https://centro-metabolico-agendamiento.vercel.app/reservar"}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-xl px-5 py-2 text-sm font-semibold text-white transition-all"
