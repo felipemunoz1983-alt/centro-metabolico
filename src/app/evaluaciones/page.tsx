@@ -65,7 +65,7 @@ export default function EvaluacionesPage() {
           Datos reales para decisiones reales.
         </p>
         <Link
-          href={"https://centro-metabolico-agendamiento.vercel.app/reservar"}
+          href={"https://centro-metabolico-agendamiento.vercel.app/reservar?cat=Evaluaciones"}
           className="inline-flex items-center gap-2 rounded-2xl px-7 py-3.5 text-sm font-semibold text-white transition-all"
           style={{ backgroundColor: "var(--brand)" }}
         >

@@ -237,7 +237,7 @@ export function PresoterapiaClient() {
             style={{ boxShadow: "0 4px 32px rgba(0,0,0,0.08)" }}
           >
             <iframe
-              src="https://centro-metabolico-agendamiento.vercel.app/reservar"
+              src="https://centro-metabolico-agendamiento.vercel.app/reservar?cat=Recovery"
               title="Reservar sesión de Presoterapia — Centro Metabólico"
               style={{ width: "100%", minHeight: "620px", border: "none", display: "block" }}
               scrolling="yes"

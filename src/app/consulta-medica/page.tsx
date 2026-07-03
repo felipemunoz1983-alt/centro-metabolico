@@ -178,7 +178,7 @@ export default function ConsultaMedicaPage() {
                     Ver perfil completo
                   </Link>
                   <Link
-                    href={"https://centro-metabolico-agendamiento.vercel.app/reservar"}
+                    href={"https://centro-metabolico-agendamiento.vercel.app/reservar?servicio=Consulta%20M%C3%A9dica%20Integral"}
                     className="flex items-center justify-center gap-2 rounded-2xl py-2.5 text-sm font-semibold text-white transition-all"
                     style={{ backgroundColor: "var(--brand)" }}
                   >

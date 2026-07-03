@@ -64,7 +64,7 @@ export default function InBodyPage() {
           Análisis de composición corporal por bioimpedancia: masa muscular segmentaria, porcentaje de grasa, agua corporal total y puntuación InBody. En minutos, sin agujas.
         </p>
         <Link
-          href={"https://centro-metabolico-agendamiento.vercel.app/reservar"}
+          href={"https://centro-metabolico-agendamiento.vercel.app/reservar?servicio=InBody%20%E2%80%94%20Composici%C3%B3n%20Corporal"}
           className="inline-flex items-center gap-2 rounded-2xl px-7 py-3.5 text-sm font-semibold text-white transition-all"
           style={{ backgroundColor: "var(--brand)" }}
         >
