@@ -2,20 +2,28 @@
 
 import { useState, useEffect } from "react";
 
+const DEFAULT_URL = "https://centro-metabolico-agendamiento.vercel.app/reservar";
+
 export function AgendaModal() {
   const [open, setOpen] = useState(false);
+  const [url, setUrl] = useState(DEFAULT_URL);
 
   useEffect(() => {
-    // Intercept all clicks on AgendaPro links → open modal instead
+    // Intercepta clics a la agenda → abre el modal con el enlace específico
+    // (permite deep-links por profesional/servicio: /reservar?servicio=..&pro=..)
     const handleClick = (e: MouseEvent) => {
       const anchor = (e.target as HTMLElement).closest("a");
       if (anchor?.href?.includes("centro-metabolico-agendamiento.vercel.app")) {
         e.preventDefault();
+        setUrl(anchor.href);
         setOpen(true);
       }
     };
-    // Also listen for programmatic open
-    const handleEvent = () => setOpen(true);
+    // Apertura programática (usa el enlace por defecto)
+    const handleEvent = () => {
+      setUrl(DEFAULT_URL);
+      setOpen(true);
+    };
 
     document.addEventListener("click", handleClick, true);
     window.addEventListener("open-agenda-modal", handleEvent);
@@ -51,7 +59,8 @@ export function AgendaModal() {
           ✕
         </button>
         <iframe
-          src="https://centro-metabolico-agendamiento.vercel.app/reservar"
+          src={url}
+          key={url}
           width="810"
           frameBorder={0}
           scrolling="yes"

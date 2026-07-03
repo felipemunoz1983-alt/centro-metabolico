@@ -309,7 +309,7 @@ export function AsesoriaClient() {
 
                         <div className="mt-auto">
                           <motion.a
-                            href={AGENDA_URL}
+                            href={`${AGENDA_URL}?servicio=${encodeURIComponent(pro.title)}&pro=${encodeURIComponent(pro.name)}`}
                             className="inline-flex w-full items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-sm font-semibold text-white cursor-pointer"
                             style={{ backgroundColor: accent }}
                             whileHover={{ scale: 1.02, backgroundColor: accentDark }}
