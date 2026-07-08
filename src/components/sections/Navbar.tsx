@@ -25,6 +25,7 @@ const navLinks = [
 ];
 
 const PROGRAMA_HREF = "/programa-metabolico";
+const PORTAL_URL = "https://centro-metabolico-agendamiento.vercel.app/portal";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -249,6 +250,16 @@ export function Navbar() {
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <a
+              href={PORTAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={linkClass + " font-medium"}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,174,239,0.08)")}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+            >
+              Portal clientes
+            </a>
+            <a
               href={"https://centro-metabolico-agendamiento.vercel.app/reservar"}
               target="_blank"
               rel="noopener noreferrer"
@@ -419,6 +430,22 @@ export function Navbar() {
                 </motion.div>
               )
             )}
+
+            {/* Portal clientes */}
+            <motion.a
+              href={PORTAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-2xl font-semibold text-sky-50 transition-colors"
+              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--brand)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+              onClick={() => setMenuOpen(false)}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: (navLinks.length + 1) * 0.06 }}
+            >
+              Portal clientes
+            </motion.a>
           </motion.div>
         )}
       </AnimatePresence>
