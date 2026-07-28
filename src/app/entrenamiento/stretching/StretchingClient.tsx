@@ -146,19 +146,43 @@ export function StretchingClient() {
             <div ref={blk2Ref} className="absolute inset-x-6 sm:inset-x-10 md:inset-x-16" style={{ opacity: 0, willChange: "opacity, transform" }}>
               <p className="mb-4 text-lg font-bold uppercase tracking-widest" style={{ color: BRAND }}>Planes Stretching</p>
               <h3 className="mb-6 text-4xl text-white md:text-5xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", lineHeight: "1.1" }}>Tu cuerpo merece<br />descansar bien.</h3>
-              <ul className="mb-5 space-y-3">
+              <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.4)" }}>Planes mensuales</p>
+              <ul className="mb-4 space-y-2.5">
                 {[
-                  { clases: "4 sesiones / mes", precio: "$50.000" },
-                  { clases: "8 sesiones / mes", precio: "$70.000" },
-                  { clases: "12 sesiones / mes", precio: "$80.000" },
+                  { freq: "1× semana", clases: "4 sesiones / mes", precio: "$50.000" },
+                  { freq: "2× semana", clases: "8 sesiones / mes", precio: "$70.000" },
+                  { freq: "3× semana", clases: "12 sesiones / mes", precio: "$80.000" },
                 ].map(plan => (
-                  <li key={plan.clases} className="flex items-baseline justify-between gap-3 border-b border-white/10 pb-2 text-base" style={{ color: "rgba(255,255,255,0.85)" }}>
-                    <span className="flex items-center gap-3"><span className="shrink-0" style={{ color: BRAND }}>✓</span>{plan.clases}</span>
-                    <span className="font-bold" style={{ color: BRAND }}>{plan.precio}</span>
+                  <li key={plan.clases} className="flex items-baseline justify-between gap-3 border-b border-white/10 pb-2 text-base">
+                    <span className="flex items-center gap-3">
+                      <span className="shrink-0" style={{ color: BRAND }}>✓</span>
+                      <span className="font-semibold text-white">{plan.freq}</span>
+                      <span className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>{plan.clases}</span>
+                    </span>
+                    <span className="font-bold" style={{ color: BRAND }}>{plan.precio}<span className="ml-0.5 text-xs font-normal" style={{ color: "rgba(255,255,255,0.4)" }}>/mes</span></span>
                   </li>
                 ))}
               </ul>
-              <div className="mb-8 rounded-xl px-4 py-3 text-sm" style={{ backgroundColor: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.25)", color: "rgba(255,255,255,0.85)" }}>
+
+              <div className="relative mb-4 overflow-hidden rounded-2xl px-5 py-4" style={{ background: "linear-gradient(135deg, rgba(99,102,241,0.20), rgba(99,102,241,0.05))", border: "1px solid rgba(99,102,241,0.5)", boxShadow: "0 0 44px rgba(99,102,241,0.20)" }}>
+                <span className="mb-2.5 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-white" style={{ backgroundColor: BRAND }}>★ Mejor valor</span>
+                <div className="flex items-end justify-between gap-3">
+                  <div>
+                    <p className="text-lg font-bold text-white">Plan Trimestral</p>
+                    <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>3× semana · 36 sesiones en 3 meses</p>
+                  </div>
+                  <div className="shrink-0 text-right">
+                    <p className="text-2xl font-extrabold leading-none" style={{ color: BRAND }}>$190.000</p>
+                    <p className="mt-1 text-[11px]" style={{ color: "rgba(255,255,255,0.5)" }}>pago único / 3 meses</p>
+                  </div>
+                </div>
+                <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-white/10 pt-3 text-sm">
+                  <span className="font-semibold text-white">Equivale a $63.333/mes</span>
+                  <span className="rounded-md px-2 py-0.5 text-xs font-bold" style={{ backgroundColor: "rgba(99,102,241,0.22)", color: BRAND }}>Ahorras $50.000</span>
+                </div>
+              </div>
+
+              <div className="mb-6 rounded-xl px-4 py-3 text-sm" style={{ backgroundColor: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.25)", color: "rgba(255,255,255,0.85)" }}>
                 <span className="font-bold" style={{ color: BRAND }}>+ $20.000:</span> 3 sesiones de Recovery de 30 minutos.
               </div>
               <a href={AGENDA_URL} className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-base font-bold text-white" style={{ backgroundColor: BRAND, boxShadow: "0 0 32px rgba(99,102,241,0.35)" }}>Agendar Stretching →</a>
