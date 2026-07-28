@@ -177,24 +177,6 @@ export function RecoveryClient() {
                 ))}
               </ul>
 
-              <div className="relative mb-4 overflow-hidden rounded-2xl px-5 py-4" style={{ background: "linear-gradient(135deg, rgba(244,63,94,0.20), rgba(244,63,94,0.05))", border: "1px solid rgba(244,63,94,0.5)", boxShadow: "0 0 44px rgba(244,63,94,0.20)" }}>
-                <span className="mb-2.5 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-white" style={{ backgroundColor: ROSE }}>★ Mejor valor</span>
-                <div className="flex items-end justify-between gap-3">
-                  <div>
-                    <p className="text-lg font-bold text-white">Plan Trimestral</p>
-                    <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>3× semana · 36 sesiones en 3 meses</p>
-                  </div>
-                  <div className="shrink-0 text-right">
-                    <p className="text-2xl font-extrabold leading-none" style={{ color: ROSE }}>$190.000</p>
-                    <p className="mt-1 text-[11px]" style={{ color: "rgba(255,255,255,0.5)" }}>pago único / 3 meses</p>
-                  </div>
-                </div>
-                <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-white/10 pt-3 text-sm">
-                  <span className="font-semibold text-white">Equivale a $63.333/mes</span>
-                  <span className="rounded-md px-2 py-0.5 text-xs font-bold" style={{ backgroundColor: "rgba(244,63,94,0.22)", color: ROSE }}>Ahorras $50.000</span>
-                </div>
-              </div>
-
               <div className="mb-6 rounded-xl px-4 py-3 text-sm" style={{ backgroundColor: "rgba(244,63,94,0.08)", border: "1px solid rgba(244,63,94,0.25)", color: "rgba(255,255,255,0.85)" }}>
                 <span className="font-bold" style={{ color: ROSE }}>+ $20.000:</span> Pack de 3 sesiones de 30 minutos (ideal como complemento de otros entrenamientos).
               </div>
