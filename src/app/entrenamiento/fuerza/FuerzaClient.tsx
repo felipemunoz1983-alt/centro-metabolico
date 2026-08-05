@@ -147,10 +147,11 @@ export function FuerzaClient() {
             <div ref={blk3Ref} className="absolute inset-x-6 sm:inset-x-10 md:inset-x-16" style={{ opacity: 0, willChange: "opacity, transform" }}>
               <p className="mb-3 text-lg font-bold uppercase tracking-widest" style={{ color: ORANGE }}>Planes IRONFIT</p>
               <h3 className="mb-5 text-4xl text-white md:text-5xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", lineHeight: "1.1" }}>Tu fuerza está<br />más cerca.</h3>
-              <div className="mb-4 flex items-start gap-3 rounded-xl px-4 py-3" style={{ backgroundColor: "rgba(249,115,22,0.10)", border: "1px solid rgba(249,115,22,0.30)" }}>
-                <span className="mt-0.5 shrink-0 text-base font-bold" style={{ color: ORANGE }}>✓</span>
+              <div className="mb-4 flex items-center gap-3 rounded-xl px-4 py-3" style={{ backgroundColor: "rgba(249,115,22,0.10)", border: "1px solid rgba(249,115,22,0.30)" }}>
+                <span className="shrink-0 text-base font-bold" style={{ color: ORANGE }}>✓</span>
                 <p className="text-sm leading-snug" style={{ color: "rgba(255,255,255,0.85)" }}>
-                  <span className="font-bold" style={{ color: ORANGE }}>Evaluación InBody incluida.</span> Cada pack de 4 clases incluye una evaluación InBody para medir tu progreso — una aprox. cada 4 semanas, en todos los planes.
+                  Cada pack de clases incluye evaluación{" "}
+                  <img src={`${BP}/inbody-logo.png`} alt="InBody" className="inline-block align-[-0.12em]" style={{ height: "1.05em", width: "auto", filter: "brightness(0) invert(1)" }} />.
                 </p>
               </div>
               <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.4)" }}>Planes mensuales</p>
