@@ -175,6 +175,12 @@ export function FuncionalClient() {
               <h3 className="mb-6 text-4xl text-white md:text-5xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", lineHeight: "1.1" }}>
                 Tu mejor versión<br />empieza aquí.
               </h3>
+              <div className="mb-4 flex items-start gap-3 rounded-xl px-4 py-3" style={{ backgroundColor: "rgba(0,174,239,0.10)", border: "1px solid rgba(0,174,239,0.30)" }}>
+                <span className="mt-0.5 shrink-0 text-base font-bold" style={{ color: BRAND }}>✓</span>
+                <p className="text-sm leading-snug" style={{ color: "rgba(255,255,255,0.85)" }}>
+                  <span className="font-bold" style={{ color: BRAND }}>Evaluación InBody incluida.</span> Cada pack de 4 clases incluye una evaluación InBody para medir tu progreso — una aprox. cada 4 semanas, en todos los planes.
+                </p>
+              </div>
               <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.4)" }}>Planes mensuales</p>
               <ul className="mb-4 space-y-2.5">
                 {[

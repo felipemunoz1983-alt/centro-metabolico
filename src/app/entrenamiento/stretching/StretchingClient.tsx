@@ -146,6 +146,12 @@ export function StretchingClient() {
             <div ref={blk2Ref} className="absolute inset-x-6 sm:inset-x-10 md:inset-x-16" style={{ opacity: 0, willChange: "opacity, transform" }}>
               <p className="mb-4 text-lg font-bold uppercase tracking-widest" style={{ color: BRAND }}>Planes Stretching</p>
               <h3 className="mb-6 text-4xl text-white md:text-5xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", lineHeight: "1.1" }}>Tu cuerpo merece<br />descansar bien.</h3>
+              <div className="mb-4 flex items-start gap-3 rounded-xl px-4 py-3" style={{ backgroundColor: "rgba(99,102,241,0.10)", border: "1px solid rgba(99,102,241,0.30)" }}>
+                <span className="mt-0.5 shrink-0 text-base font-bold" style={{ color: BRAND }}>✓</span>
+                <p className="text-sm leading-snug" style={{ color: "rgba(255,255,255,0.85)" }}>
+                  <span className="font-bold" style={{ color: BRAND }}>Evaluación InBody incluida.</span> Cada pack de 4 sesiones incluye una evaluación InBody para medir tu progreso — una aprox. cada 4 semanas, en todos los planes.
+                </p>
+              </div>
               <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.4)" }}>Planes mensuales</p>
               <ul className="mb-4 space-y-2.5">
                 {[
