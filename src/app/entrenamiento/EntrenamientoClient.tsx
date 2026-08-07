@@ -56,7 +56,7 @@ const cards = [
       { d: "Lun", h: "19:00" },
       { d: "Mar", h: "19:00" },
       { d: "Mié", h: "12:30, 19:00" },
-      { d: "Dom", h: "10:00" },
+      { d: "Dom", h: "10:00, 11:00" },
     ],
     gradient: "linear-gradient(135deg, #1C1917 0%, #44403C 100%)",
     color: "#F97316",
@@ -259,6 +259,83 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
   );
 }
 
+/* ── Parrilla semanal ───────────────────────────────────────────── */
+const DAYS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"] as const;
+const PROG: Record<string, string> = {
+  Funcional: "#00AEEF",
+  Fuerza: "#F97316",
+  Movilidad: "#10B981",
+  Stretching: "#6366F1",
+};
+const ROWS: { time: string; cells: Record<string, string[]> }[] = [
+  { time: "10:00", cells: { Dom: ["Fuerza", "Movilidad"] } },
+  { time: "11:00", cells: { Sáb: ["Funcional"], Dom: ["Fuerza"] } },
+  { time: "12:30", cells: { Mié: ["Fuerza"] } },
+  { time: "18:00", cells: { Lun: ["Stretching"], Mié: ["Stretching"] } },
+  { time: "19:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Fuerza"], Mié: ["Funcional", "Fuerza"] } },
+  { time: "20:00", cells: { Lun: ["Movilidad"] } },
+];
+
+function cellBg(progs: string[]) {
+  if (progs.length === 1) return PROG[progs[0]];
+  return `linear-gradient(135deg, ${PROG[progs[0]]} 0%, ${PROG[progs[1]]} 100%)`;
+}
+
+function WeeklySchedule() {
+  const cols = "72px repeat(7, 1fr)";
+  return (
+    <section className="px-4 pb-20 md:px-6">
+      <div className="mx-auto max-w-[1100px]">
+        <div className="mb-8 text-center">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-widest" style={{ color: BRAND }}>Parrilla semanal</p>
+          <h2 className="text-3xl font-bold md:text-4xl" style={{ color: t.text, fontFamily: "var(--font-display)" }}>Horarios de entrenamiento</h2>
+        </div>
+
+        <div className="overflow-x-auto rounded-2xl" style={{ border: `1px solid ${t.border}` }}>
+          <div className="min-w-[760px]">
+            {/* Header */}
+            <div className="grid" style={{ gridTemplateColumns: cols }}>
+              <div style={{ backgroundColor: t.text }} />
+              {DAYS.map((d) => (
+                <div key={d} className="py-3 text-center text-sm font-bold uppercase tracking-wider text-white" style={{ backgroundColor: t.text }}>{d}</div>
+              ))}
+            </div>
+            {/* Rows */}
+            {ROWS.map((row) => (
+              <div key={row.time} className="grid" style={{ gridTemplateColumns: cols, borderTop: `1px solid ${t.border}` }}>
+                <div className="flex items-center justify-center py-4 text-sm font-bold" style={{ color: t.textMid, backgroundColor: t.bgSoft }}>{row.time}</div>
+                {DAYS.map((d) => {
+                  const progs = row.cells[d];
+                  return (
+                    <div key={d} className="flex items-center justify-center p-1.5" style={{ borderLeft: `1px solid ${t.border}` }}>
+                      {progs ? (
+                        <span className="w-full rounded-lg px-2 py-2 text-center text-[11px] font-bold uppercase leading-tight text-white" style={{ background: cellBg(progs) }}>
+                          {progs.join(" / ")}
+                        </span>
+                      ) : null}
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Leyenda */}
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+          {Object.entries(PROG).map(([name, color]) => (
+            <span key={name} className="flex items-center gap-2 text-sm" style={{ color: t.textMid }}>
+              <span className="h-3 w-3 rounded-full" style={{ backgroundColor: color }} />
+              {name}
+            </span>
+          ))}
+        </div>
+        <p className="mt-3 text-center text-xs" style={{ color: t.textMuted }}>Cupos limitados · Reserva tu hora al agendar. Solo se muestran los días con clases.</p>
+      </div>
+    </section>
+  );
+}
+
 /* ── Page ───────────────────────────────────────────────────────── */
 export function EntrenamientoClient() {
   return (
@@ -289,6 +366,9 @@ export function EntrenamientoClient() {
           ))}
         </div>
       </section>
+
+      {/* ── Parrilla semanal ────────────────────────────────────────── */}
+      <WeeklySchedule />
 
       {/* ── Footer ──────────────────────────────────────────────────── */}
       <footer className="py-10 text-center" style={{ borderTop: `1px solid ${t.border}` }}>
