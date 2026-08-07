@@ -28,6 +28,11 @@ const cards = [
     tagline: "Velocidad · Coordinación · Agilidad",
     image: `${BP}/funcional.webp`,
     href: "/entrenamiento/funcional",
+    schedule: [
+      { d: "Lun", h: "19:00" },
+      { d: "Mié", h: "19:00" },
+      { d: "Sáb", h: "11:00" },
+    ],
     gradient: "linear-gradient(135deg, #0369A1 0%, #0EA5E9 100%)",
     color: BRAND,
     sessions: "4 clases / mes",
@@ -47,6 +52,12 @@ const cards = [
     image: `${BP}/fuerza3.webp`,
     focusPoint: "50% 30%",
     href: "/entrenamiento/fuerza",
+    schedule: [
+      { d: "Lun", h: "19:00" },
+      { d: "Mar", h: "19:00" },
+      { d: "Mié", h: "12:30, 19:00" },
+      { d: "Dom", h: "10:00" },
+    ],
     gradient: "linear-gradient(135deg, #1C1917 0%, #44403C 100%)",
     color: "#F97316",
     sessions: "4 clases / mes",
@@ -65,6 +76,10 @@ const cards = [
     tagline: "Control · Estabilidad · Movimiento",
     image: `${BP}/movilidad1.webp`,
     href: "/entrenamiento/movilidad",
+    schedule: [
+      { d: "Lun", h: "20:00" },
+      { d: "Dom", h: "10:00" },
+    ],
     gradient: "linear-gradient(135deg, #064E3B 0%, #10B981 100%)",
     color: "#10B981",
     sessions: "4 sesiones / mes",
@@ -83,6 +98,10 @@ const cards = [
     tagline: "Flexibilidad · Relajación · Bienestar",
     image: `${BP}/movilidad3.webp`,
     href: "/entrenamiento/stretching",
+    schedule: [
+      { d: "Lun", h: "18:00" },
+      { d: "Mié", h: "18:00" },
+    ],
     gradient: "linear-gradient(135deg, #1E3A5F 0%, #6366F1 100%)",
     color: "#6366F1",
     sessions: "4 sesiones / mes",
@@ -168,9 +187,21 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
         <p className="mb-3 text-sm font-medium text-white/70">{card.tagline}</p>
 
         {/* Price */}
-        <p className="mb-5 text-xs font-semibold uppercase tracking-widest" style={{ color: card.color }}>
+        <p className="mb-3 text-xs font-semibold uppercase tracking-widest" style={{ color: card.color }}>
           {card.price}
         </p>
+
+        {/* Horarios */}
+        <div className="mb-5 w-full">
+          <p className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.25em] text-white/50">Horarios de clases</p>
+          <div className="flex flex-wrap justify-center gap-x-2.5 gap-y-1 text-xs text-white/85">
+            {card.schedule.map((s) => (
+              <span key={s.d} className="whitespace-nowrap">
+                <span className="font-bold" style={{ color: card.color }}>{s.d}</span> {s.h}
+              </span>
+            ))}
+          </div>
+        </div>
 
         {/* Expand */}
         <div className="flex w-full items-center justify-center">
