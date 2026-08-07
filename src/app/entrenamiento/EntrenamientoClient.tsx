@@ -29,8 +29,8 @@ const cards = [
     image: `${BP}/funcional.webp`,
     href: "/entrenamiento/funcional",
     schedule: [
-      { d: "Lun", h: "19:00" },
-      { d: "Mié", h: "19:00" },
+      { d: "Lun", h: "18:00, 19:00" },
+      { d: "Mié", h: "18:00, 19:00" },
       { d: "Sáb", h: "11:00" },
     ],
     gradient: "linear-gradient(135deg, #0369A1 0%, #0EA5E9 100%)",
@@ -53,9 +53,9 @@ const cards = [
     focusPoint: "50% 30%",
     href: "/entrenamiento/fuerza",
     schedule: [
-      { d: "Lun", h: "19:00" },
-      { d: "Mar", h: "19:00" },
-      { d: "Mié", h: "12:30, 19:00" },
+      { d: "Lun", h: "18:00, 19:00" },
+      { d: "Mar", h: "18:00, 19:00" },
+      { d: "Mié", h: "12:30, 18:00, 19:00" },
       { d: "Dom", h: "10:00, 11:00" },
     ],
     gradient: "linear-gradient(135deg, #1C1917 0%, #44403C 100%)",
@@ -78,7 +78,6 @@ const cards = [
     href: "/entrenamiento/movilidad",
     schedule: [
       { d: "Lun", h: "20:00" },
-      { d: "Dom", h: "10:00" },
     ],
     gradient: "linear-gradient(135deg, #064E3B 0%, #10B981 100%)",
     color: "#10B981",
@@ -98,10 +97,7 @@ const cards = [
     tagline: "Flexibilidad · Relajación · Bienestar",
     image: `${BP}/movilidad3.webp`,
     href: "/entrenamiento/stretching",
-    schedule: [
-      { d: "Lun", h: "18:00" },
-      { d: "Mié", h: "18:00" },
-    ],
+    schedule: [] as { d: string; h: string }[],
     gradient: "linear-gradient(135deg, #1E3A5F 0%, #6366F1 100%)",
     color: "#6366F1",
     sessions: "4 sesiones / mes",
@@ -192,16 +188,18 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
         </p>
 
         {/* Horarios */}
-        <div className="mb-5 w-full">
-          <p className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.25em] text-white/50">Horarios de clases</p>
-          <div className="flex flex-wrap justify-center gap-x-2.5 gap-y-1 text-xs text-white/85">
-            {card.schedule.map((s) => (
-              <span key={s.d} className="whitespace-nowrap">
-                <span className="font-bold" style={{ color: card.color }}>{s.d}</span> {s.h}
-              </span>
-            ))}
+        {card.schedule.length > 0 && (
+          <div className="mb-5 w-full">
+            <p className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.25em] text-white/50">Horarios de clases</p>
+            <div className="flex flex-wrap justify-center gap-x-2.5 gap-y-1 text-xs text-white/85">
+              {card.schedule.map((s) => (
+                <span key={s.d} className="whitespace-nowrap">
+                  <span className="font-bold" style={{ color: card.color }}>{s.d}</span> {s.h}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Expand */}
         <div className="flex w-full items-center justify-center">
@@ -265,13 +263,12 @@ const PROG: Record<string, string> = {
   Funcional: "#00AEEF",
   Fuerza: "#F97316",
   Movilidad: "#10B981",
-  Stretching: "#6366F1",
 };
 const ROWS: { time: string; cells: Record<string, string[]> }[] = [
-  { time: "10:00", cells: { Dom: ["Fuerza", "Movilidad"] } },
+  { time: "10:00", cells: { Dom: ["Fuerza"] } },
   { time: "11:00", cells: { Sáb: ["Funcional"], Dom: ["Fuerza"] } },
   { time: "12:30", cells: { Mié: ["Fuerza"] } },
-  { time: "18:00", cells: { Lun: ["Stretching"], Mié: ["Stretching"] } },
+  { time: "18:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Fuerza"], Mié: ["Funcional", "Fuerza"] } },
   { time: "19:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Fuerza"], Mié: ["Funcional", "Fuerza"] } },
   { time: "20:00", cells: { Lun: ["Movilidad"] } },
 ];

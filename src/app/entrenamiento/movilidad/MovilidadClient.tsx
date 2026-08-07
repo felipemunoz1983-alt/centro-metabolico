@@ -155,7 +155,7 @@ export function MovilidadClient() {
                 </p>
               </div>
               <p className="mb-4 text-sm leading-snug" style={{ color: "rgba(255,255,255,0.7)" }}>
-                <span className="font-bold" style={{ color: GREEN }}>Horarios:</span> Lun 20:00 · Dom 10:00
+                <span className="font-bold" style={{ color: GREEN }}>Horarios:</span> Lun 20:00
               </p>
               <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.4)" }}>Planes mensuales</p>
               <ul className="mb-4 space-y-2.5">
