@@ -184,9 +184,10 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
         <span
           className="mb-4 rounded-full px-3 py-1 text-[10px] font-bold tracking-widest uppercase"
           style={{
-            backgroundColor: `${card.color}22`,
+            backgroundColor: "rgba(0,0,0,0.5)",
             color: card.color,
-            border: `1px solid ${card.color}55`,
+            border: `1px solid ${card.color}66`,
+            backdropFilter: "blur(4px)",
           }}
         >
           {card.badge}
@@ -195,16 +196,16 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
         {/* Name */}
         <h2
           className="mb-1 text-2xl leading-[1.1] md:text-3xl"
-          style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", whiteSpace: "pre-line", color: card.color }}
+          style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", whiteSpace: "pre-line", color: "#ffffff", textShadow: "0 2px 16px rgba(0,0,0,0.75)" }}
         >
           {card.name}
         </h2>
 
         {/* Tagline */}
-        <p className="mb-3 text-sm font-medium text-white/70">{card.tagline}</p>
+        <p className="mb-3 text-sm font-medium text-white/75" style={{ textShadow: "0 1px 8px rgba(0,0,0,0.6)" }}>{card.tagline}</p>
 
         {/* Price */}
-        <p className="mb-3 text-xs font-semibold uppercase tracking-widest" style={{ color: card.color }}>
+        <p className="mb-3 text-xs font-semibold uppercase tracking-widest" style={{ color: card.color, textShadow: "0 1px 10px rgba(0,0,0,0.65)" }}>
           {card.price}
         </p>
 
