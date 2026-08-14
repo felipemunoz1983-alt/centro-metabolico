@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -57,6 +57,19 @@ const decisions = [
 
 export function AsesoriaClient() {
   const [selected, setSelected] = useState<string | null>(null);
+
+  // Preselecciona el filtro según el hash de la URL (/asesoria#medica o
+  // /asesoria#nutricional), para que el menú "Consulta Médica" / "Consulta
+  // Nutricional" abra directamente la vista correcta.
+  useEffect(() => {
+    const applyHash = () => {
+      const h = window.location.hash.replace("#", "");
+      if (h === "medica" || h === "nutricional") setSelected(h);
+    };
+    applyHash();
+    window.addEventListener("hashchange", applyHash);
+    return () => window.removeEventListener("hashchange", applyHash);
+  }, []);
 
   return (
     <div style={{ backgroundColor: t.bg, color: t.text }} className="min-h-screen font-sans">
