@@ -239,11 +239,13 @@ export function ProgramaMetabolicoClient() {
               style={{ backgroundColor: "rgba(0,174,239,0.12)", border: "1px solid rgba(0,174,239,0.3)" }}>
               <div className="text-xs font-bold tracking-widest uppercase" style={{ color: BRAND }}>Plan Metabólico Básico</div>
               <div className="text-2xl font-bold text-white mt-1">$360.000</div>
+              <div className="mt-0.5 text-[10px] font-medium" style={{ color: "rgba(255,255,255,0.45)" }}>Nutrición + Medicina</div>
             </div>
             <div className="rounded-2xl px-6 py-3 text-center"
               style={{ backgroundColor: "rgba(167,139,250,0.12)", border: "1px solid rgba(167,139,250,0.3)" }}>
               <div className="text-xs font-bold tracking-widest uppercase" style={{ color: VIOLET }}>Plan Metabólico Pro</div>
               <div className="text-2xl font-bold text-white mt-1">$380.000</div>
+              <div className="mt-0.5 text-[10px] font-semibold" style={{ color: VIOLET }}>+ 40 entrenamientos</div>
             </div>
           </div>
 
@@ -347,11 +349,13 @@ export function ProgramaMetabolicoClient() {
                 style={{ backgroundColor: "rgba(0,174,239,0.12)", border: "1px solid rgba(0,174,239,0.3)" }}>
                 <div className="text-xs font-bold tracking-widest uppercase" style={{ color: BRAND }}>Plan Metabólico Básico</div>
                 <div className="text-2xl font-bold text-white mt-1">$360.000</div>
+                <div className="mt-0.5 text-[10px] font-medium" style={{ color: "rgba(255,255,255,0.45)" }}>Nutrición + Medicina</div>
               </div>
               <div className="rounded-2xl px-6 py-3 text-center"
                 style={{ backgroundColor: "rgba(167,139,250,0.12)", border: "1px solid rgba(167,139,250,0.3)" }}>
                 <div className="text-xs font-bold tracking-widest uppercase" style={{ color: VIOLET }}>Plan Metabólico Pro</div>
                 <div className="text-2xl font-bold text-white mt-1">$380.000</div>
+                <div className="mt-0.5 text-[10px] font-semibold" style={{ color: VIOLET }}>+ 40 entrenamientos</div>
               </div>
             </div>
             <motion.a
@@ -406,7 +410,7 @@ export function ProgramaMetabolicoClient() {
                 <div className="mb-1 flex items-center gap-2">
                   <span className="rounded-full px-3 py-0.5 text-[10px] font-bold tracking-widest uppercase"
                     style={{ backgroundColor: "rgba(0,174,239,0.12)", color: BRAND, border: "1px solid rgba(0,174,239,0.25)" }}>
-                    6 Sesiones
+                    6 Consultas
                   </span>
                   <span className="rounded-full px-3 py-0.5 text-[10px] font-bold tracking-widest uppercase"
                     style={{ backgroundColor: "rgba(0,174,239,0.06)", color: "rgba(0,174,239,0.6)" }}>
@@ -499,17 +503,25 @@ export function ProgramaMetabolicoClient() {
                 <div className="mb-1 flex items-center gap-2">
                   <span className="rounded-full px-3 py-0.5 text-[10px] font-bold tracking-widest uppercase"
                     style={{ backgroundColor: "rgba(167,139,250,0.12)", color: VIOLET, border: "1px solid rgba(167,139,250,0.25)" }}>
-                    40 Sesiones
+                    40 Entrenamientos
                   </span>
                   <span className="rounded-full px-3 py-0.5 text-[10px] font-bold tracking-widest uppercase"
                     style={{ backgroundColor: "rgba(167,139,250,0.06)", color: "rgba(167,139,250,0.6)" }}>
-                    1 hr c/u
+                    2×/semana
                   </span>
                 </div>
-                <h2 className="mt-3 text-2xl font-bold text-white md:text-3xl">Plan Metabólico Pro</h2>
+                <div className="mt-3 flex flex-wrap items-center gap-2">
+                  <h2 className="text-2xl font-bold text-white md:text-3xl">Plan Metabólico Pro</h2>
+                  <span className="rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-white" style={{ backgroundColor: VIOLET }}>Más completo</span>
+                </div>
                 <p className="mt-1.5 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
                   2 Consultas médicas · 4 Consultas Nutricionales · 40 sesiones de entrenamiento
                 </p>
+                <div className="mt-4 rounded-xl px-4 py-3" style={{ backgroundColor: "rgba(167,139,250,0.10)", border: "1px solid rgba(167,139,250,0.3)" }}>
+                  <p className="text-sm leading-snug" style={{ color: "rgba(255,255,255,0.85)" }}>
+                    Incluye <span className="font-bold" style={{ color: VIOLET }}>todo el Plan Básico</span> + evaluación de fuerza y <span className="font-bold" style={{ color: VIOLET }}>40 sesiones de entrenamiento</span> (2×/semana con entrenador). Por solo <span className="font-bold" style={{ color: VIOLET }}>$20.000 más</span>.
+                  </p>
+                </div>
                 <div className="mt-5 flex items-end gap-2">
                   <span className="text-4xl font-bold text-white">$380.000</span>
                   <span className="mb-1 text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>CLP</span>
