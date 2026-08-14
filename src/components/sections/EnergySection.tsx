@@ -160,6 +160,7 @@ export function EnergySection() {
         const op = interp(sp, [0.78,0.88,1], [0,1,1]);
         p3Ref.current.style.opacity   = String(op);
         p3Ref.current.style.transform = `translateY(${interp(sp, [0.78,0.88], [50,0])}px)`;
+        p3Ref.current.style.pointerEvents = op > 0.5 ? "auto" : "none";
       }
       if (hintRef.current) hintRef.current.style.opacity = String(interp(sp, [0,0.10], [0.6,0]));
 
@@ -231,7 +232,7 @@ export function EnergySection() {
           </div>
         </div>
 
-        <div ref={p3Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center" style={{ opacity: 0, transform: "translateY(50px)", willChange: "opacity, transform" }}>
+        <div ref={p3Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none" style={{ opacity: 0, transform: "translateY(50px)", willChange: "opacity, transform" }}>
           <div className="flex flex-col items-center rounded-3xl px-6 py-7 md:px-10 md:py-8 backdrop-blur-md" style={{ backgroundColor: "rgba(3,8,15,0.92)" }}>
             <h2 className="mb-5 text-3xl leading-[1.05] text-white sm:text-4xl md:text-6xl lg:text-7xl"
               style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 8px rgba(0,0,0,0.9)" }}>
