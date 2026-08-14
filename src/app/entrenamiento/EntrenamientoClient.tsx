@@ -22,6 +22,27 @@ const t = {
 
 const cards = [
   {
+    id: "personalizado",
+    badge: "PERSONALIZADO",
+    name: "Entrenamiento\nPersonalizado",
+    tagline: "1 a 1 · A tu medida · Resultados",
+    image: `${BP}/kettebell.webp`,
+    href: "/entrenamiento/personalizado",
+    schedule: [
+      { d: "A convenir", h: "2 días/sem · 1 h" },
+    ],
+    gradient: "linear-gradient(135deg, #78350F 0%, #EAB308 100%)",
+    color: "#EAB308",
+    sessions: "2 días / semana · 1 h",
+    price: "$200.000 / mes",
+    bullets: [
+      "Plan 100% individual, uno a uno con tu profesor",
+      "2 sesiones por semana de 1 hora, a tu ritmo",
+      "Evaluación InBody incluida para medir tu progreso",
+      "Horario flexible, a convenir según tu disponibilidad",
+    ],
+  },
+  {
     id: "funcional",
     badge: "FUNCIONAL DINAFIT",
     name: "Entrenamiento\nFuncional",
@@ -351,13 +372,13 @@ export function EntrenamientoClient() {
           <span style={{ color: BRAND }}>Transforma tu cuerpo.</span>
         </h1>
         <p className="mx-auto max-w-[50ch] text-base leading-relaxed" style={{ color: t.textMid }}>
-          Cuatro programas con tecnología de precisión y metodología basada en evidencia. Cada uno diseñado para un objetivo específico.
+          Cinco programas con tecnología de precisión y metodología basada en evidencia. Cada uno diseñado para un objetivo específico.
         </p>
       </section>
 
       {/* ── Grid de tarjetas ────────────────────────────────────────── */}
       <section className="px-4 py-16 md:px-6">
-        <div className="mx-auto max-w-[1600px] grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto max-w-[1600px] grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {cards.map((card, i) => (
             <TrainingCard key={card.id} card={card} index={i} />
           ))}
