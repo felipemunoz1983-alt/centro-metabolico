@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { StickyAgendar } from "@/components/ui/StickyAgendar";
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const AGENDA_URL = "https://centro-metabolico-agendamiento.vercel.app/reservar?cat=Entrenamiento";
@@ -87,6 +88,7 @@ export function MovilidadClient() {
 
   return (
     <div>
+      <StickyAgendar href={AGENDA_URL} color={GREEN} />
       <section ref={heroRef} style={{ height: "320vh" }} className="relative">
         <div className="sticky top-0 h-screen min-h-[100svh] overflow-hidden bg-[#0A0A0A]" style={{ transform: "translateZ(0)" }}>
           <div ref={bgImgRef} className="absolute inset-0" style={{ transformOrigin: "50% 50%", willChange: "transform" }}>

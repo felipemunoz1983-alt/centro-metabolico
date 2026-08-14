@@ -226,7 +226,7 @@ export function ProgramaMetabolicoClient() {
         <div className="relative flex flex-col items-center px-6 pt-28 pb-20 text-center">
           <span className="mb-5 rounded-full px-5 py-2 text-[10px] font-bold tracking-widest uppercase"
             style={{ backgroundColor: "rgba(0,174,239,0.18)", color: BRAND, border: "1px solid rgba(0,174,239,0.35)" }}>
-            Dos programas · Un objetivo
+            Dos planes · Un objetivo
           </span>
           <h2 className="text-4xl leading-[1.05] text-white"
             style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95)" }}>
@@ -334,7 +334,7 @@ export function ProgramaMetabolicoClient() {
             <div className="flex flex-col items-center gap-4 mb-6">
               <span className="rounded-full px-5 py-2 text-xs font-bold tracking-widest uppercase"
                 style={{ backgroundColor: "rgba(0,174,239,0.18)", color: BRAND, border: "1px solid rgba(0,174,239,0.35)" }}>
-                Dos programas · Un objetivo
+                Dos planes · Un objetivo
               </span>
               <h2 className="text-4xl leading-[1.05] text-white sm:text-5xl md:text-7xl lg:text-8xl"
                 style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
@@ -382,7 +382,7 @@ export function ProgramaMetabolicoClient() {
 
           <AnimatedSection className="text-center mb-14">
             <p className="mb-3 text-[11px] font-bold uppercase tracking-widest" style={{ color: BRAND }}>
-              Los programas
+              Los planes
             </p>
             <h2 className="text-3xl font-semibold tracking-tight text-sky-50 md:text-4xl">
               Elige el que se adapta a tus objetivos.
@@ -476,7 +476,7 @@ export function ProgramaMetabolicoClient() {
               <motion.div className="absolute inset-0" style={{ y: imgY2 }}>
                 <Image
                   src={`${BP}/cm4.webp`}
-                  alt="Programa Metabólico Dinámics"
+                  alt="Plan Metabólico Pro"
                   fill
                   className="object-cover object-center"
                   sizes="(max-width: 1024px) 100vw, 50vw"
