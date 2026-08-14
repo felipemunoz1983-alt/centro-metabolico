@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
@@ -148,6 +149,7 @@ export function EnergySection() {
         const op = interp(sp, [0,0.28,0.40], [1,1,0]);
         p1Ref.current.style.opacity   = String(op);
         p1Ref.current.style.transform = `translateY(${interp(sp, [0,0.40], [0,-50])}px)`;
+        p1Ref.current.style.pointerEvents = op > 0.5 ? "auto" : "none";
       }
       if (p2Ref.current) {
         const op = interp(sp, [0.40,0.52,0.68,0.78], [0,1,1,0]);
@@ -197,7 +199,7 @@ export function EnergySection() {
         <div ref={vigRef}  className="absolute inset-0 pointer-events-none" style={{ opacity: 0.65, background: "radial-gradient(ellipse 65% 65% at 50% 50%, transparent 0%, rgba(3,8,15,0.97) 100%)" }} />
         <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(3,8,15,0.5) 0%, transparent 15%, transparent 85%, rgba(3,8,15,0.7) 100%)" }} />
 
-        <div ref={p1Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none" style={{ opacity: 1, willChange: "opacity, transform" }}>
+        <div ref={p1Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center" style={{ opacity: 1, willChange: "opacity, transform" }}>
           <div className="flex flex-col items-center rounded-3xl px-6 py-7 md:px-10 md:py-8 backdrop-blur-md" style={{ backgroundColor: "rgba(3,8,15,0.92)" }}>
             <h1 className="mb-5 text-3xl leading-[1.05] text-white sm:text-4xl md:text-6xl lg:text-7xl"
               style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 8px rgba(0,0,0,0.9)" }}>
@@ -206,6 +208,14 @@ export function EnergySection() {
             <p className="max-w-[48ch] text-base leading-relaxed md:text-lg" style={{ color: "rgba(220,240,255,0.85)" }}>
               Todo lo que necesitas para transformar tu cuerpo está dentro de ti.<br />Nosotros ponemos la ciencia.
             </p>
+            <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row">
+              <Link href="/asesoria" className="rounded-2xl px-7 py-3.5 text-sm font-semibold text-white transition-all" style={{ backgroundColor: "var(--brand)", boxShadow: "0 0 24px rgba(0,174,239,0.35)" }}>
+                Agenda tu consulta →
+              </Link>
+              <Link href="/entrenamiento" className="rounded-2xl px-7 py-3.5 text-sm font-semibold text-white transition-all" style={{ border: "1px solid rgba(255,255,255,0.3)", backgroundColor: "rgba(255,255,255,0.06)" }}>
+                Ver programas
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -227,6 +237,14 @@ export function EnergySection() {
               style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 8px rgba(0,0,0,0.9)" }}>
               SALUD, ENTRENAMIENTO,<br />NUTRICIÓN Y MEDICINA.
             </h2>
+            <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row">
+              <Link href="/asesoria" className="rounded-2xl px-8 py-4 text-base font-semibold text-white transition-all" style={{ backgroundColor: "var(--brand)", boxShadow: "0 0 32px rgba(0,174,239,0.4)" }}>
+                Agenda tu consulta →
+              </Link>
+              <Link href="/entrenamiento" className="rounded-2xl px-8 py-4 text-base font-semibold text-white transition-all" style={{ border: "1px solid rgba(255,255,255,0.3)", backgroundColor: "rgba(255,255,255,0.06)" }}>
+                Ver programas
+              </Link>
+            </div>
           </div>
         </div>
 
