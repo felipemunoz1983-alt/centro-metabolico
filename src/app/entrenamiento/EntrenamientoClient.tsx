@@ -82,6 +82,7 @@ const cards = [
       { d: "Mar", h: "08:00, 18:00, 19:00" },
       { d: "Mié", h: "08:00, 12:30, 18:00, 19:00" },
       { d: "Vie", h: "08:00" },
+      { d: "Sáb", h: "10:00" },
       { d: "Dom", h: "10:00, 11:00" },
     ],
     gradient: "linear-gradient(135deg, #1C1917 0%, #44403C 100%)",
@@ -293,7 +294,7 @@ const PROG: Record<string, string> = {
 };
 const ROWS: { time: string; cells: Record<string, string[]> }[] = [
   { time: "08:00", cells: { Lun: ["Fuerza"], Mar: ["Fuerza"], Mié: ["Fuerza"], Vie: ["Fuerza"] } },
-  { time: "10:00", cells: { Dom: ["Funcional", "Fuerza"] } },
+  { time: "10:00", cells: { Sáb: ["Fuerza"], Dom: ["Funcional", "Fuerza"] } },
   { time: "11:00", cells: { Sáb: ["Funcional"], Dom: ["Funcional", "Fuerza"] } },
   { time: "12:30", cells: { Mié: ["Fuerza"] } },
   { time: "17:30", cells: { Vie: ["Funcional"] } },
