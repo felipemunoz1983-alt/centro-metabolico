@@ -51,8 +51,12 @@ const cards = [
     href: "/entrenamiento/funcional",
     schedule: [
       { d: "Lun", h: "18:00, 19:00" },
+      { d: "Mar", h: "18:00, 19:00" },
       { d: "Mié", h: "18:00, 19:00" },
+      { d: "Jue", h: "18:00, 19:00" },
+      { d: "Vie", h: "17:30" },
       { d: "Sáb", h: "11:00" },
+      { d: "Dom", h: "10:00, 11:00" },
     ],
     gradient: "linear-gradient(135deg, #0369A1 0%, #0EA5E9 100%)",
     color: BRAND,
@@ -74,9 +78,10 @@ const cards = [
     focusPoint: "50% 30%",
     href: "/entrenamiento/fuerza",
     schedule: [
-      { d: "Lun", h: "18:00, 19:00" },
-      { d: "Mar", h: "18:00, 19:00" },
-      { d: "Mié", h: "12:30, 18:00, 19:00" },
+      { d: "Lun", h: "08:00, 18:00, 19:00" },
+      { d: "Mar", h: "08:00, 18:00, 19:00" },
+      { d: "Mié", h: "08:00, 12:30, 18:00, 19:00" },
+      { d: "Vie", h: "08:00" },
       { d: "Dom", h: "10:00, 11:00" },
     ],
     gradient: "linear-gradient(135deg, #1C1917 0%, #44403C 100%)",
@@ -287,11 +292,13 @@ const PROG: Record<string, string> = {
   Movilidad: "#10B981",
 };
 const ROWS: { time: string; cells: Record<string, string[]> }[] = [
-  { time: "10:00", cells: { Dom: ["Fuerza"] } },
-  { time: "11:00", cells: { Sáb: ["Funcional"], Dom: ["Fuerza"] } },
+  { time: "08:00", cells: { Lun: ["Fuerza"], Mar: ["Fuerza"], Mié: ["Fuerza"], Vie: ["Fuerza"] } },
+  { time: "10:00", cells: { Dom: ["Funcional", "Fuerza"] } },
+  { time: "11:00", cells: { Sáb: ["Funcional"], Dom: ["Funcional", "Fuerza"] } },
   { time: "12:30", cells: { Mié: ["Fuerza"] } },
-  { time: "18:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Fuerza"], Mié: ["Funcional", "Fuerza"] } },
-  { time: "19:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Fuerza"], Mié: ["Funcional", "Fuerza"] } },
+  { time: "17:30", cells: { Vie: ["Funcional"] } },
+  { time: "18:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Funcional", "Fuerza"], Mié: ["Funcional", "Fuerza"], Jue: ["Funcional"] } },
+  { time: "19:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Funcional", "Fuerza"], Mié: ["Funcional", "Fuerza"], Jue: ["Funcional"] } },
   { time: "20:00", cells: { Lun: ["Movilidad"] } },
 ];
 
