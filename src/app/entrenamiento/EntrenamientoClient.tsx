@@ -73,8 +73,8 @@ const cards = [
     badge: "FUERZA IRONFIT",
     name: "Entrenamiento\nde Fuerza",
     tagline: "Potencia · Músculo · Rendimiento",
-    image: `${BP}/fuerza3.webp`,
-    focusPoint: "50% 30%",
+    image: `${BP}/fuerza4.webp`,
+    focusPoint: "32% 45%",
     href: "/entrenamiento/fuerza",
     schedule: [
       { d: "Lun", h: "08:00, 18:00, 19:00" },
