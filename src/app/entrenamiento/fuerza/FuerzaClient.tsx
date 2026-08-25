@@ -157,7 +157,7 @@ export function FuerzaClient() {
                 </p>
               </div>
               <p className="mb-4 text-sm leading-snug" style={{ color: "rgba(255,255,255,0.7)" }}>
-                <span className="font-bold" style={{ color: ORANGE }}>Horarios:</span> Lun 08:00, 18:00 y 19:00 · Mar 08:00, 18:00 y 19:00 · Mié 08:00, 12:30, 18:00 y 19:00 · Vie 08:00 · Sáb 10:00 · Dom 10:00 y 11:00
+                <span className="font-bold" style={{ color: ORANGE }}>Horarios:</span> Lun 08:00, 18:00 y 19:00 · Mar 08:00, 18:00 y 19:00 · Mié 08:00, 12:30, 18:00 y 19:00 · Vie 08:00 · Dom 10:00 y 11:00
               </p>
               <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.4)" }}>Planes mensuales</p>
               <ul className="mb-4 space-y-2.5">
