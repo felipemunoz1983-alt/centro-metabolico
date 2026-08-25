@@ -99,8 +99,8 @@ const cards = [
     badge: "HALTEROFILIA",
     name: "Halterofilia",
     tagline: "Arranque · Envión · Potencia",
-    image: `${BP}/fuerza.webp`,
-    focusPoint: "72% 45%",
+    image: `${BP}/halterofilia.webp`,
+    focusPoint: "30% 45%",
     href: "/entrenamiento/halterofilia",
     schedule: [
       { d: "Mar", h: "19:00" },
