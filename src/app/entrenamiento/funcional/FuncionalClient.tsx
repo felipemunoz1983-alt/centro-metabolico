@@ -185,7 +185,7 @@ export function FuncionalClient() {
                 </p>
               </div>
               <p className="mb-4 text-sm leading-snug" style={{ color: "rgba(255,255,255,0.7)" }}>
-                <span className="font-bold" style={{ color: BRAND }}>Horarios:</span> Lun 18:00 y 19:00 · Mar 18:00 y 19:00 · Mié 18:00 y 19:00 · Jue 18:00 y 19:00 · Vie 17:30 · Sáb 11:00 · Dom 10:00 y 11:00
+                <span className="font-bold" style={{ color: BRAND }}>Horarios:</span> Lun 18:00 y 19:00 · Mar 18:00 · Mié 18:00 y 19:00 · Jue 18:00 · Vie 17:30 · Sáb 11:00 · Dom 10:00 y 11:00
               </p>
               <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.4)" }}>Planes mensuales</p>
               <ul className="mb-4 space-y-2.5">

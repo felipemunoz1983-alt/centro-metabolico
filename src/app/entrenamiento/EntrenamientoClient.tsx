@@ -51,9 +51,9 @@ const cards = [
     href: "/entrenamiento/funcional",
     schedule: [
       { d: "Lun", h: "18:00, 19:00" },
-      { d: "Mar", h: "18:00, 19:00" },
+      { d: "Mar", h: "18:00" },
       { d: "Mié", h: "18:00, 19:00" },
-      { d: "Jue", h: "18:00, 19:00" },
+      { d: "Jue", h: "18:00" },
       { d: "Vie", h: "17:30" },
       { d: "Sáb", h: "11:00" },
       { d: "Dom", h: "10:00, 11:00" },
@@ -322,7 +322,7 @@ const ROWS: { time: string; cells: Record<string, string[]> }[] = [
   { time: "12:30", cells: { Mié: ["Fuerza"] } },
   { time: "17:30", cells: { Vie: ["Funcional"] } },
   { time: "18:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Funcional", "Fuerza"], Mié: ["Funcional", "Fuerza"], Jue: ["Funcional"] } },
-  { time: "19:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Funcional", "Fuerza", "Halterofilia"], Mié: ["Funcional", "Fuerza"], Jue: ["Funcional", "Halterofilia"] } },
+  { time: "19:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Fuerza", "Halterofilia"], Mié: ["Funcional", "Fuerza"], Jue: ["Halterofilia"] } },
   { time: "20:00", cells: { Lun: ["Movilidad"] } },
 ];
 
