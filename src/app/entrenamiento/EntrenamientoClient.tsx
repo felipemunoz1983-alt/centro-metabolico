@@ -231,23 +231,9 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
         <p className="mb-3 text-sm font-medium text-white/75" style={{ textShadow: "0 1px 8px rgba(0,0,0,0.6)" }}>{card.tagline}</p>
 
         {/* Price */}
-        <p className="mb-3 text-xs font-semibold uppercase tracking-widest" style={{ color: card.color, textShadow: "0 1px 10px rgba(0,0,0,0.65)" }}>
+        <p className="mb-6 text-sm font-semibold uppercase tracking-widest" style={{ color: card.color, textShadow: "0 1px 10px rgba(0,0,0,0.65)" }}>
           {card.price}
         </p>
-
-        {/* Horarios */}
-        {card.schedule.length > 0 && (
-          <div className="mb-5 w-full">
-            <p className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.25em] text-white/50">Horarios de clases</p>
-            <div className="flex flex-wrap justify-center gap-x-2.5 gap-y-1 text-xs text-white/85">
-              {card.schedule.map((s) => (
-                <span key={s.d} className="whitespace-nowrap">
-                  <span className="font-bold" style={{ color: card.color }}>{s.d}</span> {s.h}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
 
         {/* Expand */}
         <div className="flex w-full items-center justify-center">
