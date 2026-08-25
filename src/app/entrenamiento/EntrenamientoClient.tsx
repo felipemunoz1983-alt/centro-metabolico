@@ -220,16 +220,16 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
           {card.badge}
         </span>
 
-        {/* Name */}
+        {/* Name — altura fija (2 líneas) para que los badges queden alineados */}
         <h2
-          className="mb-1 text-2xl leading-[1.1] md:text-3xl"
-          style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", whiteSpace: "pre-line", color: "#ffffff", textShadow: "0 2px 16px rgba(0,0,0,0.75)" }}
+          className="mb-1 flex flex-col justify-end text-2xl leading-[1.1] md:text-3xl"
+          style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", whiteSpace: "pre-line", color: "#ffffff", textShadow: "0 2px 16px rgba(0,0,0,0.75)", minHeight: "2.2em" }}
         >
           {card.name}
         </h2>
 
-        {/* Tagline */}
-        <p className="mb-3 text-sm font-medium text-white/75" style={{ textShadow: "0 1px 8px rgba(0,0,0,0.6)" }}>{card.tagline}</p>
+        {/* Tagline — altura fija (2 líneas) */}
+        <p className="mb-3 min-h-[2.5rem] text-sm font-medium text-white/75" style={{ textShadow: "0 1px 8px rgba(0,0,0,0.6)" }}>{card.tagline}</p>
 
         {/* Price */}
         <p className="mb-6 text-sm font-semibold uppercase tracking-widest" style={{ color: card.color, textShadow: "0 1px 10px rgba(0,0,0,0.65)" }}>
