@@ -97,6 +97,28 @@ const cards = [
     ],
   },
   {
+    id: "halterofilia",
+    badge: "HALTEROFILIA",
+    name: "Halterofilia",
+    tagline: "Arranque · Envión · Potencia",
+    image: `${BP}/fuerza.webp`,
+    href: "/entrenamiento/halterofilia",
+    schedule: [
+      { d: "Mar", h: "19:00" },
+      { d: "Jue", h: "19:00" },
+    ],
+    gradient: "linear-gradient(135deg, #450A0A 0%, #DC2626 100%)",
+    color: "#DC2626",
+    sessions: "4 clases / mes",
+    price: "Desde $50.000",
+    bullets: [
+      "Técnica olímpica: arranque, envión y sentadilla",
+      "Grupos reducidos con guía profesional en cada sesión",
+      "Progresión medida y segura desde el primer día",
+      "Evaluación InBody incluida para medir tu progreso",
+    ],
+  },
+  {
     id: "movilidad",
     badge: "MOVILIDAD",
     name: "Movilidad",
@@ -291,6 +313,7 @@ const PROG: Record<string, string> = {
   Funcional: "#00AEEF",
   Fuerza: "#F97316",
   Movilidad: "#10B981",
+  Halterofilia: "#DC2626",
 };
 const ROWS: { time: string; cells: Record<string, string[]> }[] = [
   { time: "08:00", cells: { Lun: ["Fuerza"], Mar: ["Fuerza"], Mié: ["Fuerza"], Vie: ["Fuerza"] } },
@@ -299,13 +322,17 @@ const ROWS: { time: string; cells: Record<string, string[]> }[] = [
   { time: "12:30", cells: { Mié: ["Fuerza"] } },
   { time: "17:30", cells: { Vie: ["Funcional"] } },
   { time: "18:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Funcional", "Fuerza"], Mié: ["Funcional", "Fuerza"], Jue: ["Funcional"] } },
-  { time: "19:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Funcional", "Fuerza"], Mié: ["Funcional", "Fuerza"], Jue: ["Funcional"] } },
+  { time: "19:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Funcional", "Fuerza", "Halterofilia"], Mié: ["Funcional", "Fuerza"], Jue: ["Funcional", "Halterofilia"] } },
   { time: "20:00", cells: { Lun: ["Movilidad"] } },
 ];
 
 function cellBg(progs: string[]) {
-  if (progs.length === 1) return PROG[progs[0]];
-  return `linear-gradient(135deg, ${PROG[progs[0]]} 0%, ${PROG[progs[1]]} 100%)`;
+  const colors = progs.map((p) => PROG[p]).filter(Boolean);
+  if (colors.length <= 1) return colors[0] ?? PROG[progs[0]];
+  const stops = colors
+    .map((c, i) => `${c} ${Math.round((i / (colors.length - 1)) * 100)}%`)
+    .join(", ");
+  return `linear-gradient(135deg, ${stops})`;
 }
 
 function WeeklySchedule() {
@@ -381,13 +408,13 @@ export function EntrenamientoClient() {
           <span style={{ color: BRAND }}>Transforma tu cuerpo.</span>
         </h1>
         <p className="mx-auto max-w-[50ch] text-base leading-relaxed" style={{ color: t.textMid }}>
-          Cinco programas con tecnología de precisión y metodología basada en evidencia. Cada uno diseñado para un objetivo específico.
+          Seis programas con tecnología de precisión y metodología basada en evidencia. Cada uno diseñado para un objetivo específico.
         </p>
       </section>
 
       {/* ── Grid de tarjetas ────────────────────────────────────────── */}
       <section className="px-4 py-16 md:px-6">
-        <div className="mx-auto max-w-[1600px] grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        <div className="mx-auto max-w-[1600px] grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           {cards.map((card, i) => (
             <TrainingCard key={card.id} card={card} index={i} />
           ))}

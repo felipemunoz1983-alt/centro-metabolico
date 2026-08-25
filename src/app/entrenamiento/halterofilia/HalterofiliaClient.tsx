@@ -1,0 +1,213 @@
+"use client";
+
+import { useRef, useEffect } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { StickyAgendar } from "@/components/ui/StickyAgendar";
+
+const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const AGENDA_URL = "https://centro-metabolico-agendamiento.vercel.app/reservar?cat=Entrenamiento";
+const RED = "#DC2626";
+
+function interp(p: number, ins: number[], outs: number[]): number {
+  const n = ins.length;
+  if (p <= ins[0]) return outs[0];
+  if (p >= ins[n - 1]) return outs[n - 1];
+  for (let i = 0; i < n - 1; i++) {
+    if (p >= ins[i] && p <= ins[i + 1]) {
+      const t = (p - ins[i]) / (ins[i + 1] - ins[i]);
+      return outs[i] + t * (outs[i + 1] - outs[i]);
+    }
+  }
+  return outs[n - 1];
+}
+
+export function HalterofiliaClient() {
+  const heroRef  = useRef<HTMLElement>(null);
+  const descRef  = useRef<HTMLElement>(null);
+  const bgImgRef = useRef<HTMLDivElement>(null);
+  const darkRef  = useRef<HTMLDivElement>(null);
+  const vigRef   = useRef<HTMLDivElement>(null);
+  const p1Ref    = useRef<HTMLDivElement>(null);
+  const p2Ref    = useRef<HTMLDivElement>(null);
+  const p3Ref    = useRef<HTMLDivElement>(null);
+  const hintRef  = useRef<HTMLDivElement>(null);
+  const blk1Ref  = useRef<HTMLDivElement>(null);
+  const blk3Ref  = useRef<HTMLDivElement>(null);
+  const imgYRef  = useRef<HTMLDivElement>(null);
+  const rafRef   = useRef(0);
+
+  useEffect(() => {
+    const tick = () => {
+      const hero = heroRef.current;
+      if (hero) {
+        const rect = hero.getBoundingClientRect();
+        const scrollable = Math.max(1, hero.offsetHeight - window.innerHeight);
+        const sp = Math.max(0, Math.min(1, -rect.top / scrollable));
+
+        if (bgImgRef.current) bgImgRef.current.style.transform = `scale(${interp(sp, [0,1], [1.0,1.45])}) translateZ(0)`;
+        if (darkRef.current)  darkRef.current.style.opacity  = String(interp(sp, [0,0.15,0.55,1], [0.45,0.35,0.35,0.65]));
+        if (vigRef.current)   vigRef.current.style.opacity   = String(interp(sp, [0,0.3,0.6,1], [0.40,0.15,0.25,0.85]));
+        if (p1Ref.current) {
+          p1Ref.current.style.opacity   = String(interp(sp, [0,0.25,0.38], [1,1,0]));
+          p1Ref.current.style.transform = `translateY(${interp(sp, [0,0.38], [0,-60])}px)`;
+        }
+        if (p2Ref.current) {
+          p2Ref.current.style.opacity   = String(interp(sp, [0.38,0.50,0.65,0.74], [0,1,1,0]));
+          p2Ref.current.style.transform = `translateY(${interp(sp, [0.38,0.74], [60,-60])}px)`;
+        }
+        if (p3Ref.current) {
+          p3Ref.current.style.opacity   = String(interp(sp, [0.74,0.85,1], [0,1,1]));
+          p3Ref.current.style.transform = `translateY(${interp(sp, [0.74,0.85], [60,0])}px)`;
+        }
+        if (hintRef.current) hintRef.current.style.opacity = String(interp(sp, [0,0.10], [0.8,0]));
+      }
+
+      const desc = descRef.current;
+      if (desc) {
+        const rect = desc.getBoundingClientRect();
+        const scrollable = Math.max(1, desc.offsetHeight - window.innerHeight);
+        const dp = Math.max(0, Math.min(1, -rect.top / scrollable));
+        if (blk1Ref.current) {
+          blk1Ref.current.style.opacity   = String(interp(dp, [0,0.15,0.35,0.50], [0,1,1,0]));
+          blk1Ref.current.style.transform = `translateY(${interp(dp, [0,0.15,0.50], [40,0,-30])}px)`;
+        }
+        if (blk3Ref.current) {
+          blk3Ref.current.style.opacity   = String(interp(dp, [0.50,0.65,1], [0,1,1]));
+          blk3Ref.current.style.transform = `translateY(${interp(dp, [0.50,0.65,1], [40,0,0])}px)`;
+        }
+        if (imgYRef.current) imgYRef.current.style.transform = `translateY(${interp(dp, [0,1], [80,-80])}px) scale(1.15)`;
+      }
+
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, []);
+
+  return (
+    <div>
+      <StickyAgendar href={AGENDA_URL} color={RED} />
+      <section ref={heroRef} style={{ height: "320vh" }} className="relative">
+        <div className="sticky top-0 h-screen min-h-[100svh] overflow-hidden bg-[#0A0A0A]" style={{ transform: "translateZ(0)" }}>
+          <div ref={bgImgRef} className="absolute inset-0" style={{ transformOrigin: "50% 30%", willChange: "transform" }}>
+            <Image src={`${BP}/fuerza3.webp`} alt="Halterofilia" fill priority className="object-cover" style={{ objectPosition: "50% 30%" }} sizes="100vw" />
+          </div>
+          <div ref={darkRef} className="absolute inset-0 pointer-events-none bg-black" style={{ opacity: 0.45 }} />
+          <div ref={vigRef}  className="absolute inset-0 pointer-events-none" style={{ opacity: 0.40, background: "radial-gradient(ellipse 70% 70% at 50% 50%, transparent 0%, rgba(0,0,0,0.95) 100%)" }} />
+          <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 18%, transparent 82%, rgba(0,0,0,0.8) 100%)" }} />
+
+          <div ref={p1Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none" style={{ opacity: 1, willChange: "opacity, transform" }}>
+            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(220,38,38,0.2)", color: RED, border: "1px solid rgba(220,38,38,0.4)" }}>Halterofilia</span>
+            <h2 className="text-4xl sm:text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
+              Domina el<br /><span style={{ color: RED }}>levantamiento.</span>
+            </h2>
+            <p className="mt-6 max-w-[44ch] text-base leading-relaxed md:text-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
+              Arranque y envión con técnica olímpica,<br />guiados paso a paso en cada sesión.
+            </p>
+          </div>
+
+          <div ref={p2Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none" style={{ opacity: 0, transform: "translateY(60px)", willChange: "opacity, transform" }}>
+            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(220,38,38,0.2)", color: RED, border: "1px solid rgba(220,38,38,0.4)" }}>Técnica olímpica</span>
+            <h2 className="text-4xl sm:text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
+              Potencia que<br /><span style={{ color: RED }}>se levanta.</span>
+            </h2>
+            <p className="mt-6 max-w-[44ch] text-base leading-relaxed md:text-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
+              Arranque, envión y sentadilla con progresión medida.<br />Cada sesión ajustada a tu nivel y técnica.
+            </p>
+          </div>
+
+          <div ref={p3Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center" style={{ opacity: 0, transform: "translateY(60px)", willChange: "opacity, transform" }}>
+            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(220,38,38,0.2)", color: RED, border: "1px solid rgba(220,38,38,0.4)" }}>Planes desde $50.000</span>
+            <h2 className="text-4xl sm:text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
+              Levanta tu<br /><span style={{ color: RED }}>potencial.</span>
+            </h2>
+            <p className="mt-6 mb-8 max-w-[44ch] text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
+              Grupos reducidos · Profesor en cada sesión · Técnica y seguridad primero.
+            </p>
+            <motion.a href={AGENDA_URL} className="inline-flex items-center gap-2 rounded-2xl px-10 py-4 text-base font-bold text-white" style={{ backgroundColor: RED }} whileHover={{ scale: 1.05, boxShadow: "0 0 48px rgba(220,38,38,0.6)" }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
+              Agendar Halterofilia →
+            </motion.a>
+          </div>
+
+          <div ref={hintRef} className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none" style={{ opacity: 0.8 }}>
+            <span className="text-[9px] tracking-[0.25em] uppercase text-white/50">Scroll</span>
+            <div className="h-7 w-px" style={{ background: "linear-gradient(to bottom, rgba(220,38,38,0.6), transparent)" }} />
+          </div>
+        </div>
+      </section>
+
+      <section ref={descRef} className="relative bg-[#0A0A0A]" style={{ height: "200vh" }}>
+        <div className="sticky top-0 h-screen min-h-[100svh] flex items-center overflow-hidden bg-[#0A0A0A]" style={{ transform: "translateZ(0)" }}>
+          <div className="relative z-10 flex h-full w-full lg:w-1/2 flex-col justify-center px-6 sm:px-10 md:px-16">
+            <div ref={blk1Ref} className="absolute inset-x-6 sm:inset-x-10 md:inset-x-16" style={{ opacity: 0, willChange: "opacity, transform" }}>
+              <p className="mb-4 text-lg font-bold uppercase tracking-widest" style={{ color: RED }}>El método</p>
+              <h3 className="mb-6 text-4xl text-white md:text-5xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", lineHeight: "1.1" }}>Halterofilia<br />con técnica.</h3>
+              <p className="text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>Clases exclusivas en grupos reducidos. Aprende arranque y envión con progresiones seguras, un profesor que corrige tu técnica en cada levantamiento para que avances con potencia y sin riesgo.</p>
+            </div>
+            <div ref={blk3Ref} className="absolute inset-x-6 sm:inset-x-10 md:inset-x-16" style={{ opacity: 0, willChange: "opacity, transform" }}>
+              <p className="mb-3 text-lg font-bold uppercase tracking-widest" style={{ color: RED }}>Planes Halterofilia</p>
+              <h3 className="mb-5 text-4xl text-white md:text-5xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", lineHeight: "1.1" }}>Tu potencia está<br />más cerca.</h3>
+              <div className="mb-4 flex items-center gap-3 rounded-xl px-4 py-3" style={{ backgroundColor: "rgba(220,38,38,0.10)", border: "1px solid rgba(220,38,38,0.30)" }}>
+                <span className="shrink-0 text-base font-bold" style={{ color: RED }}>✓</span>
+                <p className="text-sm leading-snug" style={{ color: "rgba(255,255,255,0.85)" }}>
+                  Cada pack de clases incluye evaluación{" "}
+                  <img src={`${BP}/inbody-logo.png`} alt="InBody" className="inline-block align-[-0.12em]" style={{ height: "1.05em", width: "auto", filter: "brightness(0) invert(1)" }} />.
+                </p>
+              </div>
+              <p className="mb-4 text-sm leading-snug" style={{ color: "rgba(255,255,255,0.7)" }}>
+                <span className="font-bold" style={{ color: RED }}>Horarios:</span> Mar 19:00 · Jue 19:00
+              </p>
+              <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.4)" }}>Planes mensuales</p>
+              <ul className="mb-4 space-y-2.5">
+                {[
+                  { freq: "1× semana", clases: "4 clases / mes", precio: "$50.000" },
+                  { freq: "2× semana", clases: "8 clases / mes", precio: "$70.000" },
+                  { freq: "3× semana", clases: "12 clases / mes", precio: "$80.000" },
+                ].map(plan => (
+                  <li key={plan.clases} className="flex items-baseline justify-between gap-3 border-b border-white/10 pb-2 text-base">
+                    <span className="flex items-center gap-3">
+                      <span className="shrink-0" style={{ color: RED }}>✓</span>
+                      <span className="font-semibold text-white">{plan.freq}</span>
+                      <span className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>{plan.clases}</span>
+                    </span>
+                    <span className="font-bold" style={{ color: RED }}>{plan.precio}<span className="ml-0.5 text-xs font-normal" style={{ color: "rgba(255,255,255,0.4)" }}>/mes</span></span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="relative mb-4 overflow-hidden rounded-2xl px-5 py-4" style={{ background: "linear-gradient(135deg, rgba(220,38,38,0.20), rgba(220,38,38,0.05))", border: "1px solid rgba(220,38,38,0.5)", boxShadow: "0 0 44px rgba(220,38,38,0.20)" }}>
+                <span className="mb-2.5 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-white" style={{ backgroundColor: RED }}>★ Mejor valor</span>
+                <div className="flex items-end justify-between gap-3">
+                  <div>
+                    <p className="text-lg font-bold text-white">Plan Trimestral</p>
+                    <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>3× semana · 36 clases en 3 meses</p>
+                  </div>
+                  <div className="shrink-0 text-right">
+                    <p className="text-2xl font-extrabold leading-none" style={{ color: RED }}>$190.000</p>
+                    <p className="mt-1 text-[11px]" style={{ color: "rgba(255,255,255,0.5)" }}>pago único / 3 meses</p>
+                  </div>
+                </div>
+                <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-white/10 pt-3 text-sm">
+                  <span className="font-semibold text-white">Equivale a $63.333/mes</span>
+                  <span className="rounded-md px-2 py-0.5 text-xs font-bold" style={{ backgroundColor: "rgba(220,38,38,0.22)", color: RED }}>Ahorras $50.000</span>
+                </div>
+              </div>
+
+              <div className="mb-6 rounded-xl px-4 py-3 text-sm" style={{ backgroundColor: "rgba(220,38,38,0.08)", border: "1px solid rgba(220,38,38,0.25)", color: "rgba(255,255,255,0.85)" }}>
+                <span className="font-bold" style={{ color: RED }}>+ $20.000:</span> 3 sesiones de Recovery de 30 minutos.
+              </div>
+              <a href={AGENDA_URL} className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-base font-bold text-white" style={{ backgroundColor: RED, boxShadow: "0 0 32px rgba(220,38,38,0.35)" }}>Agendar Halterofilia →</a>
+            </div>
+          </div>
+          <div className="hidden lg:block relative h-full flex-1 overflow-hidden">
+            <div ref={imgYRef} className="absolute inset-0" style={{ willChange: "transform" }}>
+              <Image src={`${BP}/fuerza.webp`} alt="Halterofilia" fill className="object-cover" sizes="50vw" />
+            </div>
+            <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to right, rgba(10,10,10,1) 0%, rgba(10,10,10,0.3) 30%, transparent 60%)" }} />
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
