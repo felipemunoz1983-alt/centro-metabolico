@@ -425,14 +425,14 @@ export function CalorimetriaClient() {
             </motion.p>
           </div>
 
-          {/* Visual: intercambio de gases (SVG) */}
+          {/* Visual: fotografía de la evaluación + gráfico donut */}
           <motion.div
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9, delay: 0.3 }}
             className="relative mx-auto w-full max-w-md lg:max-w-none"
           >
-            <GasExchangeVisual />
+            <HeroVisual />
           </motion.div>
         </div>
       </section>
@@ -699,6 +699,84 @@ export function CalorimetriaClient() {
           <p className="mt-4 text-center text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
             Valores de ejemplo. No representan resultados reales de un paciente.
           </p>
+        </div>
+      </section>
+
+      {/* ── BENEFICIO: BAJAR DE PESO Y GRASA ──────────────────────────── */}
+      <section id="objetivo" className="border-t" style={{ borderColor: "rgba(255,255,255,0.07)", backgroundColor: "#060E1A" }}>
+        <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 px-6 py-20 sm:px-10 md:px-16 md:py-28 lg:grid-cols-2">
+          {/* Texto */}
+          <div>
+            <SectionHead
+              eyebrow="Un aliado para tu objetivo"
+              title="Un apoyo real para bajar de peso y grasa corporal"
+              sub="Conocer tu gasto energético medido —y no una estimación— te permite ajustar tus calorías con precisión. Esa precisión es la base para bajar de peso y grasa corporal de forma sostenible, en lugar de trabajar a ciegas con fórmulas generales."
+            />
+            <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {[
+                { t: "Tu punto de partida real", d: "Sabes cuánta energía usa tu cuerpo antes de definir tu plan." },
+                { t: "Calorías con precisión", d: "Ajustas tu alimentación sobre tu dato, no sobre un promedio." },
+                { t: "Seguimiento objetivo", d: "Puedes volver a medir y comparar tu evolución." },
+                { t: "Decisiones informadas", d: "Menos ensayo y error en el camino hacia tu meta." },
+              ].map((b) => (
+                <motion.div
+                  key={b.t}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.45 }}
+                  viewport={{ once: true }}
+                  className="rounded-2xl p-5"
+                  style={{ backgroundColor: "rgba(255,255,255,0.03)", border: "1px solid rgba(0,174,239,0.14)" }}
+                >
+                  <h3 className="mb-1 text-sm font-bold text-white">{b.t}</h3>
+                  <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
+                    {b.d}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Reseña */}
+          <motion.figure
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="relative overflow-hidden rounded-3xl p-8 sm:p-10"
+            style={{
+              background: "linear-gradient(160deg, rgba(0,174,239,0.14) 0%, rgba(0,174,239,0.03) 60%)",
+              border: "1px solid rgba(0,174,239,0.3)",
+            }}
+          >
+            {/* Estrellas */}
+            <div className="mb-5 flex items-center gap-1" aria-label="5 de 5 estrellas">
+              {[0, 1, 2, 3, 4].map((i) => (
+                <svg key={i} width="20" height="20" viewBox="0 0 20 20" fill={ACCENT_LIGHT} aria-hidden="true">
+                  <path d="M10 1.6l2.47 5.01 5.53.8-4 3.9.94 5.5L10 14.2l-4.95 2.6.94-5.5-4-3.9 5.53-.8L10 1.6z" />
+                </svg>
+              ))}
+            </div>
+            <blockquote className="text-xl font-medium leading-snug text-white sm:text-2xl" style={{ fontFamily: "var(--font-display)" }}>
+              “Con mi gasto energético medido pude ajustar mi alimentación con
+              precisión y avanzar hacia mi objetivo de bajar de peso y grasa
+              corporal, sin adivinar.”
+            </blockquote>
+            <figcaption className="mt-6 flex items-center gap-3">
+              <span
+                className="flex h-11 w-11 items-center justify-center rounded-full text-sm font-bold text-white"
+                style={{ backgroundColor: "rgba(0,174,239,0.25)", border: "1px solid rgba(0,174,239,0.4)" }}
+              >
+                CM
+              </span>
+              <span>
+                <span className="block text-sm font-semibold text-white">Paciente de Centro Metabólico</span>
+                <span className="block text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
+                  Reseña editable — reemplazar por testimonio real
+                </span>
+              </span>
+            </figcaption>
+          </motion.figure>
         </div>
       </section>
 
@@ -980,95 +1058,126 @@ export function CalorimetriaClient() {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   Visual SVG — intercambio de gases respiratorios (O₂ entra / CO₂ sale).
-   Ligero, GPU-friendly, sin dependencias externas.
+   Gráfico donut — distribución de sustratos (grasas / carbohidratos).
+   Ligero, sin dependencias. Los valores son EJEMPLO ILUSTRATIVO.
    ────────────────────────────────────────────────────────────────────────── */
-function GasExchangeVisual() {
+const SUSTRATOS = [
+  { label: "Grasas", value: 60, color: ACCENT_LIGHT },
+  { label: "Carbohidratos", value: 40, color: "#1C6E93" },
+];
+
+function Donut({ size = 128 }: { size?: number }) {
+  const stroke = Math.round(size * 0.17);
+  const r = (size - stroke) / 2;
+  const c = 2 * Math.PI * r;
+  const total = SUSTRATOS.reduce((s, d) => s + d.value, 0);
+  let acc = 0;
   return (
-    <div
-      className="relative aspect-square w-full rounded-[2rem] p-6"
-      style={{
-        background: "linear-gradient(160deg, rgba(11,22,40,0.9) 0%, rgba(3,8,15,0.9) 100%)",
-        border: "1px solid rgba(0,174,239,0.2)",
-        boxShadow: "0 30px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(0,174,239,0.1)",
-      }}
+    <svg
+      width={size}
+      height={size}
+      viewBox={`0 0 ${size} ${size}`}
+      className="shrink-0"
+      role="img"
+      aria-label="Distribución de sustratos: grasas 60%, carbohidratos 40% (ejemplo)"
     >
-      <svg viewBox="0 0 400 400" className="h-full w-full" role="img" aria-label="Diagrama del intercambio de gases: O₂ consumido y CO₂ producido">
-        <defs>
-          <radialGradient id="core" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#33C3F5" stopOpacity="0.9" />
-            <stop offset="60%" stopColor="#00AEEF" stopOpacity="0.25" />
-            <stop offset="100%" stopColor="#00AEEF" stopOpacity="0" />
-          </radialGradient>
-          <linearGradient id="wave" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#00AEEF" stopOpacity="0" />
-            <stop offset="50%" stopColor="#33C3F5" stopOpacity="1" />
-            <stop offset="100%" stopColor="#00AEEF" stopOpacity="0" />
-          </linearGradient>
-        </defs>
+      <g transform={`rotate(-90 ${size / 2} ${size / 2})`}>
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth={stroke} />
+        {SUSTRATOS.map((d) => {
+          const frac = d.value / total;
+          const dash = frac * c;
+          const seg = (
+            <circle
+              key={d.label}
+              cx={size / 2}
+              cy={size / 2}
+              r={r}
+              fill="none"
+              stroke={d.color}
+              strokeWidth={stroke}
+              strokeDasharray={`${dash} ${c - dash}`}
+              strokeDashoffset={-acc * c}
+            />
+          );
+          acc += frac;
+          return seg;
+        })}
+      </g>
+      <text x="50%" y="47%" textAnchor="middle" fill="#ffffff" fontSize={size * 0.2} fontWeight="800" style={{ fontFamily: "var(--font-display)" }}>
+        60%
+      </text>
+      <text x="50%" y="63%" textAnchor="middle" fill="rgba(255,255,255,0.55)" fontSize={size * 0.09} letterSpacing="1.5">
+        GRASAS
+      </text>
+    </svg>
+  );
+}
 
-        {/* anillos */}
-        {[150, 110, 70].map((r, i) => (
-          <circle
-            key={r}
-            cx="200"
-            cy="200"
-            r={r}
-            fill="none"
-            stroke="rgba(0,174,239,0.18)"
-            strokeWidth="1"
-            strokeDasharray={i === 0 ? "3 6" : undefined}
-          >
-            <animate attributeName="opacity" values="0.35;0.7;0.35" dur={`${4 + i}s`} repeatCount="indefinite" />
-          </circle>
-        ))}
-
-        {/* núcleo */}
-        <circle cx="200" cy="200" r="120" fill="url(#core)">
-          <animate attributeName="r" values="118;128;118" dur="5s" repeatCount="indefinite" />
-        </circle>
-
-        {/* onda respiratoria */}
-        <path
-          d="M60 200 Q100 200 115 200 T150 170 T185 230 T220 160 T255 240 T285 200 T340 200"
-          fill="none"
-          stroke="url(#wave)"
-          strokeWidth="2.5"
-          strokeLinecap="round"
+/* Visual del hero: fotografía real de la evaluación + tarjeta flotante donut */
+function HeroVisual() {
+  return (
+    <div className="relative">
+      {/* Fotografía */}
+      <div
+        className="relative overflow-hidden rounded-[1.75rem]"
+        style={{
+          aspectRatio: "4 / 3",
+          border: "1px solid rgba(0,174,239,0.22)",
+          boxShadow: "0 30px 80px rgba(0,0,0,0.55), inset 0 1px 0 rgba(0,174,239,0.12)",
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`${BP}/calorimetria.webp`}
+          alt="Persona realizando una evaluación de calorimetría indirecta con mascarilla de análisis de gases respiratorios en Centro Metabólico"
+          className="h-full w-full object-cover"
+          style={{ objectPosition: "62% 42%" }}
+        />
+        {/* Degradado inferior para legibilidad de la tarjeta */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{ background: "linear-gradient(to top, rgba(3,8,15,0.85) 0%, rgba(3,8,15,0.1) 38%, transparent 60%)" }}
+        />
+        {/* Chip superior */}
+        <span
+          className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em]"
+          style={{ backgroundColor: "rgba(3,8,15,0.6)", color: "#fff", border: "1px solid rgba(255,255,255,0.2)", backdropFilter: "blur(6px)" }}
         >
-          <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite" />
-        </path>
+          <span className="h-1.5 w-1.5 rounded-full animate-pulse-dot" style={{ backgroundColor: ACCENT }} />
+          Medición en reposo
+        </span>
+      </div>
 
-        {/* O₂ entrante */}
-        <g>
-          <circle cx="90" cy="120" r="20" fill="rgba(0,174,239,0.12)" stroke="rgba(0,174,239,0.5)" strokeWidth="1" />
-          <text x="90" y="125" textAnchor="middle" fill="#33C3F5" fontSize="15" fontWeight="700" fontFamily="monospace">
-            O₂
-          </text>
-          <path d="M112 128 L150 160" stroke="rgba(51,195,245,0.5)" strokeWidth="1.5" strokeDasharray="2 4">
-            <animate attributeName="stroke-dashoffset" values="12;0" dur="1s" repeatCount="indefinite" />
-          </path>
-        </g>
-
-        {/* CO₂ saliente */}
-        <g>
-          <circle cx="315" cy="285" r="22" fill="rgba(0,174,239,0.08)" stroke="rgba(0,174,239,0.4)" strokeWidth="1" />
-          <text x="315" y="290" textAnchor="middle" fill="rgba(200,235,255,0.85)" fontSize="14" fontWeight="700" fontFamily="monospace">
-            CO₂
-          </text>
-          <path d="M250 240 L293 272" stroke="rgba(200,235,255,0.35)" strokeWidth="1.5" strokeDasharray="2 4">
-            <animate attributeName="stroke-dashoffset" values="0;12" dur="1s" repeatCount="indefinite" />
-          </path>
-        </g>
-
-        {/* etiqueta central */}
-        <text x="200" y="196" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="600" letterSpacing="2" fontFamily="var(--font-display)">
-          GASTO
-        </text>
-        <text x="200" y="216" textAnchor="middle" fill="#33C3F5" fontSize="13" fontWeight="700" letterSpacing="2" fontFamily="var(--font-display)">
-          ENERGÉTICO
-        </text>
-      </svg>
+      {/* Tarjeta flotante: donut de sustratos */}
+      <div
+        className="absolute -bottom-5 -left-3 flex items-center gap-4 rounded-2xl p-4 sm:-left-5 sm:p-5"
+        style={{
+          backgroundColor: "rgba(6,14,26,0.92)",
+          border: "1px solid rgba(0,174,239,0.28)",
+          boxShadow: "0 20px 50px rgba(0,0,0,0.55)",
+          backdropFilter: "blur(10px)",
+        }}
+      >
+        <Donut size={104} />
+        <div className="pr-1">
+          <span
+            className="mb-2 inline-block rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.16em]"
+            style={{ backgroundColor: "rgba(0,174,239,0.16)", color: ACCENT_LIGHT, border: "1px solid rgba(0,174,239,0.32)" }}
+          >
+            Ejemplo
+          </span>
+          <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.45)" }}>
+            Uso de sustratos
+          </p>
+          {SUSTRATOS.map((d) => (
+            <div key={d.label} className="mb-1 flex items-center gap-2 text-sm last:mb-0">
+              <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: d.color }} />
+              <span className="text-white/80">{d.label}</span>
+              <span className="ml-auto font-bold text-white">{d.value}%</span>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
