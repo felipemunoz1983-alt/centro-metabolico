@@ -484,64 +484,143 @@ export function CalorimetriaClient() {
         <div className="mx-auto max-w-[1400px] px-6 py-20 sm:px-10 md:px-16 md:py-28">
           <SectionHead
             eyebrow="Por qué medir"
-            title="¿Por qué medir tu gasto energético?"
-            sub="Una estimación puede ser útil. Una medición aporta información individualizada sobre tu propio cuerpo."
+            title="Tu plan nutricional, calibrado a tu metabolismo real"
+            sub="Una fórmula estima tus calorías. La calorimetría las mide. Empezar tu plan sobre tu gasto energético real hace toda la diferencia."
           />
-          <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2">
-            {/* Estimar */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="rounded-3xl p-8"
-              style={{ backgroundColor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
-            >
-              <span className="text-xs font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.4)" }}>
-                Estimar
-              </span>
-              <div
-                className="my-6 rounded-xl px-5 py-4 font-mono text-sm"
-                style={{ backgroundColor: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.55)", border: "1px dashed rgba(255,255,255,0.14)" }}
-              >
-                GE ≈ ƒ (edad, sexo, peso, talla…)
-              </div>
-              <h3 className="mb-2 text-lg font-bold text-white">Ecuaciones predictivas</h3>
-              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
-                Las fórmulas usan variables generales de población para estimar tu
-                gasto energético. Son un punto de partida útil, pero no observan tu
-                fisiología individual.
-              </p>
-            </motion.div>
 
-            {/* Medir */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="relative overflow-hidden rounded-3xl p-8"
-              style={{
-                background: "linear-gradient(160deg, rgba(0,174,239,0.14) 0%, rgba(0,174,239,0.03) 60%)",
-                border: "1px solid rgba(0,174,239,0.3)",
-              }}
+          {/* Contraste simple: estimación ≠ medición */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="mt-10 flex flex-wrap items-center gap-3 text-sm"
+          >
+            <span
+              className="rounded-full px-4 py-2 font-semibold"
+              style={{ backgroundColor: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.5)", border: "1px dashed rgba(255,255,255,0.18)" }}
             >
-              <span className="text-xs font-bold uppercase tracking-[0.2em]" style={{ color: ACCENT_LIGHT }}>
-                Medir
-              </span>
-              <div
-                className="my-6 flex items-center gap-3 rounded-xl px-5 py-4 font-mono text-sm"
-                style={{ backgroundColor: "rgba(0,174,239,0.1)", color: ACCENT_LIGHT, border: "1px solid rgba(0,174,239,0.3)" }}
+              Estimación · una fórmula general
+            </span>
+            <span className="text-lg font-bold" style={{ color: ACCENT_LIGHT }}>≠</span>
+            <span
+              className="rounded-full px-4 py-2 font-semibold text-white"
+              style={{ backgroundColor: "rgba(0,174,239,0.14)", border: "1px solid rgba(0,174,239,0.35)" }}
+            >
+              Medición · tu dato real
+            </span>
+          </motion.div>
+
+          {/* Flujo simple de 3 pasos */}
+          <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
+            {[
+              {
+                icon: (
+                  <>
+                    <path d="M4 15a8 8 0 0 1 16 0" />
+                    <path d="M12 15l4-3.5" />
+                    <circle cx="12" cy="15" r="1.2" fill="currentColor" stroke="none" />
+                  </>
+                ),
+                t: "Medimos tu metabolismo",
+                d: "Con calorimetría indirecta conocemos tu gasto energético real, no una estimación.",
+                hi: false,
+              },
+              {
+                icon: (
+                  <>
+                    <rect x="6" y="4" width="12" height="16" rx="2" />
+                    <path d="M9.5 4h5v2.5h-5z" />
+                    <path d="M9 12.5l2 2 4-4" />
+                  </>
+                ),
+                t: "Calibramos tu plan nutricional",
+                d: "Tu plan se ajusta a TUS calorías reales, no a un promedio de población.",
+                hi: true,
+              },
+              {
+                icon: (
+                  <>
+                    <path d="M7 4h10v3a5 5 0 0 1-10 0V4z" />
+                    <path d="M12 12v4M9 20h6M9.5 16h5" />
+                  </>
+                ),
+                t: "Avanzas con precisión",
+                d: "Comes según lo que tu cuerpo realmente gasta: un plan más preciso y sostenible.",
+                hi: false,
+              },
+            ].map((s, i) => (
+              <motion.div
+                key={s.t}
+                initial={{ opacity: 0, y: 26 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.12 }}
+                viewport={{ once: true }}
+                className="relative rounded-3xl p-7"
+                style={
+                  s.hi
+                    ? { background: "linear-gradient(160deg, rgba(0,174,239,0.16) 0%, rgba(0,174,239,0.03) 60%)", border: "1px solid rgba(0,174,239,0.35)" }
+                    : { backgroundColor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }
+                }
               >
-                O₂ · CO₂ → datos fisiológicos
-              </div>
-              <h3 className="mb-2 text-lg font-bold text-white">Calorimetría indirecta</h3>
-              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.62)" }}>
-                Evalúa el intercambio de gases respiratorios para estimar tu gasto
-                energético en condiciones de reposo, a partir de datos obtenidos de
-                tu propio organismo.
-              </p>
-            </motion.div>
+                <div className="mb-5 flex items-center gap-3">
+                  <span
+                    className="flex h-12 w-12 items-center justify-center rounded-2xl"
+                    style={{ backgroundColor: "rgba(0,174,239,0.14)", color: ACCENT_LIGHT, border: "1px solid rgba(0,174,239,0.3)" }}
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                      {s.icon}
+                    </svg>
+                  </span>
+                  <span
+                    className="text-4xl font-black leading-none"
+                    style={{ fontFamily: "var(--font-reto)", color: s.hi ? ACCENT_LIGHT : "rgba(255,255,255,0.18)" }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <h3 className="mb-2 text-lg font-bold text-white">{s.t}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
+                  {s.d}
+                </p>
+                {i < 2 && (
+                  <span
+                    className="absolute -right-3 top-1/2 hidden -translate-y-1/2 text-2xl md:block"
+                    style={{ color: "rgba(0,174,239,0.55)" }}
+                  >
+                    →
+                  </span>
+                )}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Beneficios para el paciente */}
+          <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              "Calorías a tu medida",
+              "Menos ensayo y error",
+              "Un plan sostenible",
+              "Evolución que puedes medir",
+            ].map((b, i) => (
+              <motion.div
+                key={b}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: i * 0.07 }}
+                viewport={{ once: true }}
+                className="flex items-center gap-3 rounded-2xl px-4 py-3"
+                style={{ backgroundColor: "rgba(255,255,255,0.03)", border: "1px solid rgba(0,174,239,0.16)" }}
+              >
+                <span
+                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold"
+                  style={{ backgroundColor: "rgba(0,174,239,0.16)", color: ACCENT_LIGHT }}
+                >
+                  ✓
+                </span>
+                <span className="text-sm font-medium text-white">{b}</span>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
