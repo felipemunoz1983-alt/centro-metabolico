@@ -694,7 +694,7 @@ export function CalorimetriaClient() {
             title="Lo que descubres para bajar de peso"
             sub="No necesitas saber de metabolismo. En simple, sabrás cuánta energía quema tu cuerpo y cómo usar ese dato para bajar de peso con un plan hecho para ti."
           />
-          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
                 icon: (
@@ -775,20 +775,6 @@ export function CalorimetriaClient() {
                     </span>
                   </div>
                 ),
-              },
-              {
-                icon: (
-                  <>
-                    <circle cx="12" cy="12" r="9" />
-                    <circle cx="12" cy="12" r="5" />
-                    <circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none" />
-                  </>
-                ),
-                t: "Cuánto deberías comer",
-                d: "Con tu gasto real definimos tus calorías objetivo para bajar de peso.",
-                hi: false,
-                image: null,
-                viz: null,
               },
             ].map((c, i) => (
               <motion.div
