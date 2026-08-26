@@ -605,7 +605,7 @@ export function CalorimetriaClient() {
           />
 
           {/* Storyboard visual de 3 pasos */}
-          <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
             {[
               {
                 img: "calorimetria",
@@ -624,15 +624,6 @@ export function CalorimetriaClient() {
                 t: "Te entregamos tu metabolismo",
                 d: "Tu gasto energético y el uso de grasas y carbohidratos en reposo.",
                 badge: "Ejemplo",
-              },
-              {
-                img: "",
-                pos: "center",
-                graphic: false,
-                icon: true,
-                t: "Obtienes tu energía",
-                d: "Con esos gases se calcula el gasto energético que usa tu cuerpo.",
-                badge: "kcal/día",
               },
             ].map((s, i) => (
               <motion.div
@@ -672,27 +663,6 @@ export function CalorimetriaClient() {
                           ))}
                         </div>
                       </div>
-                    </div>
-                  </div>
-                ) : s.icon ? (
-                  /* Tarjeta sin imagen: energía */
-                  <div
-                    className="absolute inset-0"
-                    style={{ background: "linear-gradient(160deg, #0B1628 0%, #03080F 100%)" }}
-                  >
-                    <div
-                      className="pointer-events-none absolute inset-0"
-                      style={{ background: "radial-gradient(70% 55% at 50% 40%, rgba(0,174,239,0.18) 0%, transparent 60%)" }}
-                    />
-                    <div className="absolute inset-x-0 top-0 flex justify-center pt-16">
-                      <span
-                        className="flex h-24 w-24 items-center justify-center rounded-3xl"
-                        style={{ backgroundColor: "rgba(0,174,239,0.12)", border: "1px solid rgba(0,174,239,0.3)" }}
-                      >
-                        <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#33C3F5" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z" />
-                        </svg>
-                      </span>
                     </div>
                   </div>
                 ) : (
