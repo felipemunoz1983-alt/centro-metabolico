@@ -703,15 +703,18 @@ export function CalorimetriaClient() {
                 t: "Cuántas calorías quema tu cuerpo",
                 d: "Tu gasto en reposo: la base para saber cuánto comer sin adivinar.",
                 hi: false,
+                image: "calorimetria",
                 viz: (
-                  <div className="mt-4 flex items-end gap-2">
-                    <span className="text-3xl font-black leading-none text-white" style={{ fontFamily: "var(--font-display)" }}>
-                      1.680
-                    </span>
-                    <span className="pb-0.5 text-xs font-semibold" style={{ color: ACCENT_LIGHT }}>
-                      kcal/día
-                    </span>
-                    <span className="ml-auto pb-1 text-[10px] font-bold uppercase tracking-wide" style={{ color: "rgba(255,255,255,0.35)" }}>
+                  <div className="mt-4 flex flex-col items-center">
+                    <div className="flex items-end gap-2">
+                      <span className="text-3xl font-black leading-none text-white" style={{ fontFamily: "var(--font-display)" }}>
+                        1.680
+                      </span>
+                      <span className="pb-0.5 text-xs font-semibold" style={{ color: ACCENT_LIGHT }}>
+                        kcal/día
+                      </span>
+                    </div>
+                    <span className="mt-1 text-[10px] font-bold uppercase tracking-wide" style={{ color: "rgba(255,255,255,0.5)" }}>
                       ejemplo
                     </span>
                   </div>
@@ -724,6 +727,7 @@ export function CalorimetriaClient() {
                 t: "Cuánta grasa usas de combustible",
                 d: "Qué parte de tu energía viene de la grasa. Clave si tu meta es bajar grasa.",
                 hi: true,
+                image: null,
                 viz: (
                   <div className="mt-4 flex items-center gap-3">
                     <Donut size={64} />
@@ -755,6 +759,7 @@ export function CalorimetriaClient() {
                 t: "Qué prefiere quemar tu cuerpo",
                 d: "Si tira más de grasa o de azúcar. Ayuda a ajustar lo que comes.",
                 hi: false,
+                image: null,
                 viz: (
                   <div className="mt-4">
                     <div className="flex h-6 w-full overflow-hidden rounded-full" style={{ border: "1px solid rgba(255,255,255,0.12)" }}>
@@ -782,6 +787,7 @@ export function CalorimetriaClient() {
                 t: "Cuánto deberías comer",
                 d: "Con tu gasto real definimos tus calorías objetivo para bajar de peso.",
                 hi: false,
+                image: null,
                 viz: null,
               },
             ].map((c, i) => (
@@ -791,26 +797,48 @@ export function CalorimetriaClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 viewport={{ once: true }}
-                className="flex flex-col rounded-2xl p-6"
+                className="relative flex min-h-[300px] flex-col overflow-hidden rounded-2xl p-6"
                 style={
-                  c.hi
+                  c.image
+                    ? { border: "1px solid rgba(0,174,239,0.3)" }
+                    : c.hi
                     ? { background: "linear-gradient(160deg, rgba(0,174,239,0.16) 0%, rgba(0,174,239,0.03) 60%)", border: "1px solid rgba(0,174,239,0.35)" }
                     : { backgroundColor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }
                 }
               >
-                <span
-                  className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl"
-                  style={{ backgroundColor: "rgba(0,174,239,0.14)", color: ACCENT_LIGHT, border: "1px solid rgba(0,174,239,0.3)" }}
-                >
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                    {c.icon}
-                  </svg>
-                </span>
-                <h3 className="mb-1.5 font-bold leading-snug text-white">{c.t}</h3>
-                <p className="flex-1 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
-                  {c.d}
-                </p>
-                {c.viz}
+                {c.image && (
+                  <>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={`${BP}/${c.image}.webp`}
+                      alt=""
+                      aria-hidden="true"
+                      className="absolute inset-0 h-full w-full object-cover"
+                      style={{ objectPosition: "60% 38%" }}
+                    />
+                    <div
+                      className="pointer-events-none absolute inset-0"
+                      style={{ background: "linear-gradient(180deg, rgba(3,8,15,0.82) 0%, rgba(3,8,15,0.66) 45%, rgba(3,8,15,0.9) 100%)" }}
+                    />
+                  </>
+                )}
+                <div className={`relative flex flex-1 flex-col ${c.image ? "items-center justify-center text-center" : ""}`}>
+                  {!c.image && (
+                    <span
+                      className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl"
+                      style={{ backgroundColor: "rgba(0,174,239,0.14)", color: ACCENT_LIGHT, border: "1px solid rgba(0,174,239,0.3)" }}
+                    >
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                        {c.icon}
+                      </svg>
+                    </span>
+                  )}
+                  <h3 className="mb-1.5 font-bold leading-snug text-white">{c.t}</h3>
+                  <p className={`text-sm leading-relaxed ${c.image ? "" : "flex-1"}`} style={{ color: "rgba(255,255,255,0.72)" }}>
+                    {c.d}
+                  </p>
+                  {c.viz}
+                </div>
               </motion.div>
             ))}
           </div>
