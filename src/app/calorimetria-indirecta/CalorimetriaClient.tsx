@@ -704,6 +704,7 @@ export function CalorimetriaClient() {
                 d: "Tu gasto en reposo: la base para saber cuánto comer sin adivinar.",
                 hi: false,
                 image: "calorimetria",
+                imgPos: "60% 38%",
                 viz: (
                   <div className="mt-4 flex flex-col items-center">
                     <div className="flex items-end gap-2">
@@ -727,7 +728,8 @@ export function CalorimetriaClient() {
                 t: "Cuánta grasa usas de combustible",
                 d: "Qué parte de tu energía viene de la grasa. Clave si tu meta es bajar grasa.",
                 hi: true,
-                image: null,
+                image: "qd-grasa",
+                imgPos: "50% 45%",
                 viz: (
                   <div className="mt-4 flex items-center gap-3">
                     <Donut size={64} />
@@ -759,9 +761,10 @@ export function CalorimetriaClient() {
                 t: "Qué prefiere quemar tu cuerpo",
                 d: "Si tira más de grasa o de azúcar. Ayuda a ajustar lo que comes.",
                 hi: false,
-                image: null,
+                image: "qd-fuel",
+                imgPos: "center",
                 viz: (
-                  <div className="mt-4">
+                  <div className="mt-4 w-full max-w-[240px]">
                     <div className="flex h-6 w-full overflow-hidden rounded-full" style={{ border: "1px solid rgba(255,255,255,0.12)" }}>
                       <div className="flex items-center justify-center text-[10px] font-bold" style={{ width: "60%", backgroundColor: SUSTRATOS[0].color, color: "#03080F" }}>
                         Grasa
@@ -800,11 +803,11 @@ export function CalorimetriaClient() {
                       alt=""
                       aria-hidden="true"
                       className="absolute inset-0 h-full w-full object-cover"
-                      style={{ objectPosition: "60% 38%" }}
+                      style={{ objectPosition: c.imgPos }}
                     />
                     <div
                       className="pointer-events-none absolute inset-0"
-                      style={{ background: "linear-gradient(180deg, rgba(3,8,15,0.82) 0%, rgba(3,8,15,0.66) 45%, rgba(3,8,15,0.9) 100%)" }}
+                      style={{ background: "linear-gradient(180deg, rgba(3,8,15,0.86) 0%, rgba(3,8,15,0.72) 45%, rgba(3,8,15,0.93) 100%)" }}
                     />
                   </>
                 )}
