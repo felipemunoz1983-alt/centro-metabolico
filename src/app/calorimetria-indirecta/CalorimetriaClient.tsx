@@ -25,39 +25,6 @@ const DATA = {
 
 /* Variables del informe. `confirmar: true` = depende del equipo/protocolo real
    y debe validarse antes de publicar. */
-const VARIABLES = [
-  {
-    k: "REE",
-    t: "Gasto energético en reposo",
-    d: "Las kilocalorías que tu cuerpo utiliza en reposo para mantener sus funciones vitales.",
-    confirmar: false,
-  },
-  {
-    k: "VO₂",
-    t: "Consumo de oxígeno",
-    d: "El volumen de oxígeno que tu organismo consume durante la medición.",
-    confirmar: false,
-  },
-  {
-    k: "VCO₂",
-    t: "Producción de dióxido de carbono",
-    d: "El volumen de CO₂ que tu cuerpo produce y exhala durante la evaluación.",
-    confirmar: false,
-  },
-  {
-    k: "RER",
-    t: "Cociente respiratorio",
-    d: "La relación entre el CO₂ producido y el O₂ consumido (VCO₂ / VO₂).",
-    confirmar: false,
-  },
-  {
-    k: "%",
-    t: "Utilización relativa de sustratos",
-    d: "La proporción estimada de grasas y carbohidratos que tu cuerpo utiliza en reposo.",
-    confirmar: true,
-  },
-];
-
 const PROCESO = [
   {
     n: "01",
@@ -178,7 +145,7 @@ function withPending(text: string) {
 
 const ANCHORS = [
   { id: "que-es", label: "Qué es" },
-  { id: "que-mide", label: "Qué mide" },
+  { id: "que-mide", label: "Qué descubres" },
   { id: "como-funciona", label: "Cómo funciona" },
   { id: "preparacion", label: "Preparación" },
   { id: "faq", label: "Preguntas" },
@@ -723,54 +690,94 @@ export function CalorimetriaClient() {
       <section id="que-mide" className="border-t" style={{ borderColor: "rgba(255,255,255,0.07)", backgroundColor: "#060E1A" }}>
         <div className="mx-auto max-w-[1400px] px-6 py-20 sm:px-10 md:px-16 md:py-28">
           <SectionHead
-            eyebrow="Qué mide"
-            title="Tus datos metabólicos"
-            sub="Las variables que puede entregar el informe. La disponibilidad de cada una depende del equipo y del protocolo utilizado."
+            eyebrow="Qué descubres"
+            title="Lo que descubres para bajar de peso"
+            sub="No necesitas saber de metabolismo. En simple, sabrás cuánta energía quema tu cuerpo y cómo usar ese dato para bajar de peso con un plan hecho para ti."
           />
-          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {VARIABLES.map((v, i) => (
+          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                icon: (
+                  <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
+                ),
+                t: "Cuántas calorías quema tu cuerpo",
+                d: "Tu gasto en reposo: la base para saber cuánto comer sin adivinar.",
+                tag: "Punto de partida",
+                hi: false,
+              },
+              {
+                icon: (
+                  <path d="M12 3s6 6.3 6 11a6 6 0 0 1-12 0c0-4.7 6-11 6-11z" />
+                ),
+                t: "Cuánta grasa usas de combustible",
+                d: "Qué parte de tu energía viene de la grasa. Clave si tu meta es bajar grasa.",
+                tag: "Uso de grasas",
+                hi: true,
+              },
+              {
+                icon: (
+                  <>
+                    <rect x="2.5" y="8" width="19" height="8" rx="4" />
+                    <circle cx="8" cy="12" r="2.4" fill="currentColor" stroke="none" />
+                  </>
+                ),
+                t: "Qué prefiere quemar tu cuerpo",
+                d: "Si tira más de grasa o de azúcar. Ayuda a ajustar lo que comes.",
+                tag: "Grasa vs azúcar",
+                hi: false,
+              },
+              {
+                icon: (
+                  <>
+                    <circle cx="12" cy="12" r="9" />
+                    <circle cx="12" cy="12" r="5" />
+                    <circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none" />
+                  </>
+                ),
+                t: "Cuánto deberías comer",
+                d: "Con tu gasto real definimos tus calorías objetivo para bajar de peso.",
+                tag: "Tu meta",
+                hi: false,
+              },
+            ].map((c, i) => (
               <motion.div
-                key={v.t}
+                key={c.t}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.07 }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
                 viewport={{ once: true }}
                 className="flex flex-col rounded-2xl p-6"
-                style={{ backgroundColor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
+                style={
+                  c.hi
+                    ? { background: "linear-gradient(160deg, rgba(0,174,239,0.16) 0%, rgba(0,174,239,0.03) 60%)", border: "1px solid rgba(0,174,239,0.35)" }
+                    : { backgroundColor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }
+                }
               >
                 <span
-                  className="mb-4 text-2xl font-bold"
-                  style={{ fontFamily: "var(--font-mono)", color: ACCENT_LIGHT }}
+                  className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl"
+                  style={{ backgroundColor: "rgba(0,174,239,0.14)", color: ACCENT_LIGHT, border: "1px solid rgba(0,174,239,0.3)" }}
                 >
-                  {v.k}
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                    {c.icon}
+                  </svg>
                 </span>
-                <h3 className="mb-1.5 font-bold text-white">{v.t}</h3>
-                <p className="flex-1 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
-                  {v.d}
+                <h3 className="mb-1.5 font-bold leading-snug text-white">{c.t}</h3>
+                <p className="flex-1 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
+                  {c.d}
                 </p>
-                {v.confirmar && (
-                  <span className="mt-4">
-                    <Pending>Según equipo y protocolo</Pending>
-                  </span>
-                )}
+                <span
+                  className="mt-4 inline-flex w-fit items-center rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wider"
+                  style={{ backgroundColor: "rgba(0,174,239,0.1)", color: ACCENT_LIGHT, border: "1px solid rgba(0,174,239,0.28)" }}
+                >
+                  {c.tag}
+                </span>
               </motion.div>
             ))}
-            {/* Nota editable */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="flex flex-col justify-center rounded-2xl p-6"
-              style={{ border: "1px dashed rgba(0,174,239,0.35)", backgroundColor: "rgba(0,174,239,0.04)" }}
-            >
-              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
-                <strong className="text-white">Módulo configurable.</strong> Añade
-                o retira variables según lo que realmente entregue el equipamiento
-                utilizado. No deben mostrarse variables que el equipo no mida.
-              </p>
-            </motion.div>
           </div>
+
+          <p className="mt-6 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
+            Los datos exactos que verás dependen del equipo y del protocolo utilizado.
+          </p>
         </div>
       </section>
 
