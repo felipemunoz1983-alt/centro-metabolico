@@ -608,19 +608,22 @@ export function CalorimetriaClient() {
           <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
             {[
               {
-                img: "qe-respiras",
+                img: "calorimetria",
+                pos: "64% 38%",
                 t: "Respiras",
                 d: "Te recuestas y respiras con normalidad a través del sistema.",
                 badge: null as string | null,
               },
               {
                 img: "qe-gases",
+                pos: "center",
                 t: "Se miden tus gases",
                 d: "El equipo analiza el oxígeno (O₂) que consumes y el CO₂ que exhalas.",
                 badge: "O₂ · CO₂",
               },
               {
                 img: "qe-energia",
+                pos: "center",
                 t: "Obtienes tu energía",
                 d: "Con esos gases se calcula el gasto energético que usa tu cuerpo.",
                 badge: "kcal/día",
@@ -640,6 +643,7 @@ export function CalorimetriaClient() {
                   src={`${BP}/${s.img}.webp`}
                   alt={s.t}
                   className="absolute inset-0 h-full w-full object-cover"
+                  style={{ objectPosition: s.pos }}
                 />
                 <div
                   className="pointer-events-none absolute inset-0"
