@@ -608,7 +608,7 @@ export function CalorimetriaClient() {
                     className="absolute inset-0"
                     style={{ background: "linear-gradient(160deg, #0B1628 0%, #03080F 100%)" }}
                   >
-                    <div className="absolute inset-x-0 top-0 flex items-center gap-4 px-6 pb-4 pt-16">
+                    <div className="absolute inset-x-0 top-0 flex items-center justify-center gap-4 px-6 pb-4 pt-16">
                       <Donut size={104} />
                       <div>
                         <p className="text-[11px] font-semibold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)" }}>
@@ -663,7 +663,7 @@ export function CalorimetriaClient() {
                     {s.badge}
                   </span>
                 )}
-                <div className="absolute inset-x-0 bottom-0 p-6">
+                <div className={`absolute inset-x-0 bottom-0 p-6 ${s.graphic ? "text-center" : ""}`}>
                   <h3 className="text-lg font-bold text-white">{s.t}</h3>
                   <p className="mt-1 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.78)" }}>
                     {s.d}
