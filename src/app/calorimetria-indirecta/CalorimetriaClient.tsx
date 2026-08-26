@@ -702,8 +702,20 @@ export function CalorimetriaClient() {
                 ),
                 t: "Cuántas calorías quema tu cuerpo",
                 d: "Tu gasto en reposo: la base para saber cuánto comer sin adivinar.",
-                tag: "Punto de partida",
                 hi: false,
+                viz: (
+                  <div className="mt-4 flex items-end gap-2">
+                    <span className="text-3xl font-black leading-none text-white" style={{ fontFamily: "var(--font-display)" }}>
+                      1.680
+                    </span>
+                    <span className="pb-0.5 text-xs font-semibold" style={{ color: ACCENT_LIGHT }}>
+                      kcal/día
+                    </span>
+                    <span className="ml-auto pb-1 text-[10px] font-bold uppercase tracking-wide" style={{ color: "rgba(255,255,255,0.35)" }}>
+                      ejemplo
+                    </span>
+                  </div>
+                ),
               },
               {
                 icon: (
@@ -711,8 +723,27 @@ export function CalorimetriaClient() {
                 ),
                 t: "Cuánta grasa usas de combustible",
                 d: "Qué parte de tu energía viene de la grasa. Clave si tu meta es bajar grasa.",
-                tag: "Uso de grasas",
                 hi: true,
+                viz: (
+                  <div className="mt-4 flex items-center gap-3">
+                    <Donut size={64} />
+                    <div className="min-w-[92px] space-y-1 text-xs">
+                      <div className="flex items-center gap-1.5">
+                        <span className="h-2 w-2 rounded-full" style={{ backgroundColor: SUSTRATOS[0].color }} />
+                        <span className="text-white/70">Grasas</span>
+                        <span className="ml-auto font-bold text-white">60%</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="h-2 w-2 rounded-full" style={{ backgroundColor: SUSTRATOS[1].color }} />
+                        <span className="text-white/70">Carbos</span>
+                        <span className="ml-auto font-bold text-white">40%</span>
+                      </div>
+                      <span className="text-[10px] uppercase tracking-wide" style={{ color: "rgba(255,255,255,0.35)" }}>
+                        ejemplo
+                      </span>
+                    </div>
+                  </div>
+                ),
               },
               {
                 icon: (
@@ -723,8 +754,22 @@ export function CalorimetriaClient() {
                 ),
                 t: "Qué prefiere quemar tu cuerpo",
                 d: "Si tira más de grasa o de azúcar. Ayuda a ajustar lo que comes.",
-                tag: "Grasa vs azúcar",
                 hi: false,
+                viz: (
+                  <div className="mt-4">
+                    <div className="flex h-6 w-full overflow-hidden rounded-full" style={{ border: "1px solid rgba(255,255,255,0.12)" }}>
+                      <div className="flex items-center justify-center text-[10px] font-bold" style={{ width: "60%", backgroundColor: SUSTRATOS[0].color, color: "#03080F" }}>
+                        Grasa
+                      </div>
+                      <div className="flex items-center justify-center text-[10px] font-bold text-white" style={{ width: "40%", backgroundColor: SUSTRATOS[1].color }}>
+                        Azúcar
+                      </div>
+                    </div>
+                    <span className="mt-1 inline-block text-[10px] uppercase tracking-wide" style={{ color: "rgba(255,255,255,0.35)" }}>
+                      ejemplo
+                    </span>
+                  </div>
+                ),
               },
               {
                 icon: (
@@ -736,8 +781,8 @@ export function CalorimetriaClient() {
                 ),
                 t: "Cuánto deberías comer",
                 d: "Con tu gasto real definimos tus calorías objetivo para bajar de peso.",
-                tag: "Tu meta",
                 hi: false,
+                viz: null,
               },
             ].map((c, i) => (
               <motion.div
@@ -765,12 +810,7 @@ export function CalorimetriaClient() {
                 <p className="flex-1 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
                   {c.d}
                 </p>
-                <span
-                  className="mt-4 inline-flex w-fit items-center rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wider"
-                  style={{ backgroundColor: "rgba(0,174,239,0.1)", color: ACCENT_LIGHT, border: "1px solid rgba(0,174,239,0.28)" }}
-                >
-                  {c.tag}
-                </span>
+                {c.viz}
               </motion.div>
             ))}
           </div>
