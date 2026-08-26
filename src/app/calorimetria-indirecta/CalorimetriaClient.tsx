@@ -501,10 +501,10 @@ export function CalorimetriaClient() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={`${BP}/estimar.webp`}
-                alt="Calculadora, cinta métrica y pesa: estimar las calorías con una fórmula general"
+                src={`${BP}/plato-adivinar.webp`}
+                alt="Plato con una porción grande de pasta servida al ojo, sin medir las calorías"
                 className="absolute inset-0 h-full w-full object-cover"
-                style={{ objectPosition: "center 55%", filter: "grayscale(0.85) brightness(0.72)" }}
+                style={{ objectPosition: "center 45%", filter: "saturate(0.85) brightness(0.8)" }}
               />
               <div
                 className="pointer-events-none absolute inset-0"
@@ -520,10 +520,10 @@ export function CalorimetriaClient() {
                 ≈
               </span>
               <div className="absolute inset-x-0 bottom-0 p-6">
-                <h3 className="text-xl font-bold text-white">Con una fórmula</h3>
+                <h3 className="text-xl font-bold text-white">Al ojo</h3>
                 <p className="mt-1 max-w-xs text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.72)" }}>
-                  Edad, sexo, peso y talla → un promedio de población. Un punto de
-                  partida, pero no eres tú.
+                  Porciones y calorías estimadas con una fórmula general. Un
+                  promedio de población, no eres tú.
                 </p>
               </div>
             </motion.div>
@@ -539,10 +539,10 @@ export function CalorimetriaClient() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={`${BP}/calorimetria.webp`}
-                alt="Evaluación de calorimetría indirecta: medir el gasto energético real"
+                src={`${BP}/plato-medida.webp`}
+                alt="Plato equilibrado y porcionado según el gasto energético real medido con calorimetría"
                 className="absolute inset-0 h-full w-full object-cover"
-                style={{ objectPosition: "62% 38%" }}
+                style={{ objectPosition: "center 50%" }}
               />
               <div
                 className="pointer-events-none absolute inset-0"
@@ -552,13 +552,13 @@ export function CalorimetriaClient() {
                 className="absolute left-5 top-5 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-white"
                 style={{ backgroundColor: "rgba(0,174,239,0.9)", border: "1px solid rgba(255,255,255,0.25)" }}
               >
-                Medir ✓
+                A tu medida ✓
               </span>
               <div className="absolute inset-x-0 bottom-0 p-6">
-                <h3 className="text-xl font-bold text-white">Con calorimetría</h3>
+                <h3 className="text-xl font-bold text-white">A tu medida</h3>
                 <p className="mt-1 max-w-xs text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.82)" }}>
-                  Tu gasto energético real, medido a partir de tu propia
-                  respiración. Tu número, no un promedio.
+                  Porciones y calorías ajustadas a tu gasto energético real,
+                  medido con calorimetría.
                 </p>
               </div>
             </motion.div>
@@ -577,23 +577,19 @@ export function CalorimetriaClient() {
             >
               <div>
                 <span className="text-xs font-bold uppercase tracking-[0.2em]" style={{ color: ACCENT_LIGHT }}>
-                  El resultado
+                  El punto de partida
                 </span>
                 <h3 className="mt-1 text-2xl font-bold text-white sm:text-3xl" style={{ fontFamily: "var(--font-display)" }}>
-                  Tu plan nutricional, a tu medida
+                  Todo empieza por medir tu metabolismo
                 </h3>
               </div>
-              <div className="flex flex-wrap justify-center gap-2">
-                {["Calorías reales", "Menos ensayo y error", "Plan sostenible"].map((b) => (
-                  <span
-                    key={b}
-                    className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-white"
-                    style={{ backgroundColor: "rgba(3,8,15,0.35)", border: "1px solid rgba(0,174,239,0.3)" }}
-                  >
-                    <span style={{ color: ACCENT_LIGHT }}>✓</span> {b}
-                  </span>
-                ))}
-              </div>
+              <a
+                href={DATA.agendaUrl}
+                className="inline-flex shrink-0 items-center gap-2 rounded-2xl px-7 py-4 text-sm font-bold text-white transition-all"
+                style={{ backgroundColor: ACCENT, boxShadow: "0 0 30px rgba(0,174,239,0.4)" }}
+              >
+                Agendar mi evaluación →
+              </a>
             </motion.div>
           </div>
         </div>
