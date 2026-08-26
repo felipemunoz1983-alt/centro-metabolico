@@ -604,43 +604,82 @@ export function CalorimetriaClient() {
             sub="Un método no invasivo que utiliza el intercambio respiratorio de oxígeno (O₂) y dióxido de carbono (CO₂) para estimar tu gasto energético. El equipo analiza tu respiración mientras permaneces en condiciones controladas."
           />
 
-          {/* Flujo */}
-          <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Storyboard visual de 3 pasos */}
+          <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
             {[
-              { t: "Respiración", d: "Respiras con normalidad a través del sistema." },
-              { t: "O₂ / CO₂", d: "Se mide el oxígeno consumido y el CO₂ producido." },
-              { t: "Análisis metabólico", d: "Se procesan los gases respiratorios." },
-              { t: "Gasto energético", d: "Se estima la energía que utiliza tu cuerpo." },
+              {
+                img: "qe-respiras",
+                t: "Respiras",
+                d: "Te recuestas y respiras con normalidad a través del sistema.",
+                badge: null as string | null,
+              },
+              {
+                img: "qe-gases",
+                t: "Se miden tus gases",
+                d: "El equipo analiza el oxígeno (O₂) que consumes y el CO₂ que exhalas.",
+                badge: "O₂ · CO₂",
+              },
+              {
+                img: "qe-energia",
+                t: "Obtienes tu energía",
+                d: "Con esos gases se calcula el gasto energético que usa tu cuerpo.",
+                badge: "kcal/día",
+              },
             ].map((s, i) => (
               <motion.div
                 key={s.t}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                transition={{ duration: 0.55, delay: i * 0.12 }}
                 viewport={{ once: true }}
-                className="relative rounded-2xl p-6"
-                style={{ backgroundColor: "rgba(255,255,255,0.03)", border: "1px solid rgba(0,174,239,0.14)" }}
+                className="relative h-72 overflow-hidden rounded-3xl sm:h-80"
+                style={{ border: "1px solid rgba(0,174,239,0.22)" }}
               >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`${BP}/${s.img}.webp`}
+                  alt={s.t}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  style={{ background: "linear-gradient(to top, rgba(3,8,15,0.95) 0%, rgba(3,8,15,0.35) 46%, rgba(3,8,15,0.12) 100%)" }}
+                />
+                {/* Número de paso */}
                 <span
-                  className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl text-sm font-bold"
-                  style={{ backgroundColor: "rgba(0,174,239,0.12)", color: ACCENT_LIGHT }}
+                  className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-xl text-sm font-bold text-white"
+                  style={{ backgroundColor: "rgba(0,174,239,0.92)", boxShadow: "0 6px 18px rgba(0,0,0,0.45)" }}
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mb-1.5 font-bold text-white">{s.t}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
-                  {s.d}
-                </p>
-                {i < 3 && (
+                {/* Etiqueta opcional */}
+                {s.badge && (
                   <span
-                    className="absolute -right-3 top-1/2 hidden -translate-y-1/2 text-2xl lg:block"
-                    style={{ color: "rgba(0,174,239,0.5)" }}
+                    className="absolute right-5 top-5 rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wider"
+                    style={{ backgroundColor: "rgba(3,8,15,0.55)", color: ACCENT_LIGHT, border: "1px solid rgba(0,174,239,0.4)", backdropFilter: "blur(6px)" }}
                   >
-                    →
+                    {s.badge}
                   </span>
                 )}
+                <div className="absolute inset-x-0 bottom-0 p-6">
+                  <h3 className="text-lg font-bold text-white">{s.t}</h3>
+                  <p className="mt-1 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.78)" }}>
+                    {s.d}
+                  </p>
+                </div>
               </motion.div>
             ))}
+          </div>
+
+          {/* Línea de flujo textual */}
+          <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-semibold" style={{ color: "rgba(255,255,255,0.6)" }}>
+            <span className="text-white">Respiración</span>
+            <span style={{ color: ACCENT_LIGHT }}>→</span>
+            <span className="text-white">O₂ / CO₂</span>
+            <span style={{ color: ACCENT_LIGHT }}>→</span>
+            <span className="text-white">Análisis</span>
+            <span style={{ color: ACCENT_LIGHT }}>→</span>
+            <span style={{ color: ACCENT_LIGHT }}>Gasto energético</span>
           </div>
         </div>
       </section>
