@@ -610,20 +610,23 @@ export function CalorimetriaClient() {
               {
                 img: "calorimetria",
                 pos: "64% 38%",
+                graphic: false,
                 t: "Respiras",
                 d: "Te recuestas y respiras con normalidad a través del sistema.",
                 badge: null as string | null,
               },
               {
-                img: "qe-gases",
+                img: "",
                 pos: "center",
-                t: "Se miden tus gases",
-                d: "El equipo analiza el oxígeno (O₂) que consumes y el CO₂ que exhalas.",
-                badge: "O₂ · CO₂",
+                graphic: true,
+                t: "Te entregamos tu metabolismo",
+                d: "Tu gasto energético y el uso de grasas y carbohidratos en reposo.",
+                badge: "Ejemplo",
               },
               {
                 img: "qe-energia",
                 pos: "center",
+                graphic: false,
                 t: "Obtienes tu energía",
                 d: "Con esos gases se calcula el gasto energético que usa tu cuerpo.",
                 badge: "kcal/día",
@@ -638,17 +641,51 @@ export function CalorimetriaClient() {
                 className="relative h-72 overflow-hidden rounded-3xl sm:h-80"
                 style={{ border: "1px solid rgba(0,174,239,0.22)" }}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={`${BP}/${s.img}.webp`}
-                  alt={s.t}
-                  className="absolute inset-0 h-full w-full object-cover"
-                  style={{ objectPosition: s.pos }}
-                />
-                <div
-                  className="pointer-events-none absolute inset-0"
-                  style={{ background: "linear-gradient(to top, rgba(3,8,15,0.95) 0%, rgba(3,8,15,0.35) 46%, rgba(3,8,15,0.12) 100%)" }}
-                />
+                {s.graphic ? (
+                  /* Tarjeta con gráfico: metabolismo + uso de grasas en reposo */
+                  <div
+                    className="absolute inset-0"
+                    style={{ background: "linear-gradient(160deg, #0B1628 0%, #03080F 100%)" }}
+                  >
+                    <div className="absolute inset-x-0 top-0 flex items-center gap-4 px-6 pb-4 pt-16">
+                      <Donut size={104} />
+                      <div>
+                        <p className="text-[11px] font-semibold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)" }}>
+                          Metabolismo en reposo
+                        </p>
+                        <p className="text-3xl font-black leading-none text-white" style={{ fontFamily: "var(--font-display)" }}>
+                          1.680
+                          <span className="ml-1 text-sm font-semibold" style={{ color: ACCENT_LIGHT }}>
+                            kcal/día
+                          </span>
+                        </p>
+                        <div className="mt-3 space-y-1.5">
+                          {SUSTRATOS.map((d) => (
+                            <div key={d.label} className="flex items-center gap-2 text-xs">
+                              <span className="h-2 w-2 rounded-full" style={{ backgroundColor: d.color }} />
+                              <span className="text-white/75">{d.label}</span>
+                              <span className="ml-auto font-bold text-white">{d.value}%</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={`${BP}/${s.img}.webp`}
+                      alt={s.t}
+                      className="absolute inset-0 h-full w-full object-cover"
+                      style={{ objectPosition: s.pos }}
+                    />
+                    <div
+                      className="pointer-events-none absolute inset-0"
+                      style={{ background: "linear-gradient(to top, rgba(3,8,15,0.95) 0%, rgba(3,8,15,0.35) 46%, rgba(3,8,15,0.12) 100%)" }}
+                    />
+                  </>
+                )}
                 {/* Número de paso */}
                 <span
                   className="absolute left-5 top-5 flex h-10 w-10 items-center justify-center rounded-xl text-sm font-bold text-white"
