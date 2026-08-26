@@ -322,40 +322,53 @@ export function CalorimetriaClient() {
 
       {/* ── HERO ──────────────────────────────────────────────────────── */}
       <section
-        className="relative flex min-h-[100svh] items-center overflow-hidden"
+        className="relative min-h-[100svh] w-full overflow-hidden"
         style={{ backgroundColor: "#03080F" }}
       >
-        {/* Fondo: resplandor + rejilla + motivo respiratorio */}
+        {/* Fotografía a pantalla completa */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`${BP}/calorimetria.webp`}
+          alt="Persona realizando una evaluación de calorimetría indirecta con mascarilla de análisis de gases respiratorios en Centro Metabólico"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ objectPosition: "72% 32%" }}
+          fetchPriority="high"
+        />
+        {/* Degradado lateral (izquierda oscura para el texto) */}
         <div
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "radial-gradient(120% 90% at 78% 20%, rgba(0,174,239,0.16) 0%, rgba(0,174,239,0.05) 35%, transparent 62%)",
+              "linear-gradient(100deg, rgba(3,8,15,0.95) 0%, rgba(3,8,15,0.85) 34%, rgba(3,8,15,0.45) 64%, rgba(3,8,15,0.12) 100%)",
           }}
         />
+        {/* Degradado vertical (arriba/abajo) para navbar y borde inferior */}
         <div
-          className="pointer-events-none absolute inset-0 opacity-[0.5]"
+          className="pointer-events-none absolute inset-0"
           style={{
-            backgroundImage:
-              "linear-gradient(rgba(0,174,239,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,174,239,0.05) 1px, transparent 1px)",
-            backgroundSize: "56px 56px",
-            maskImage: "radial-gradient(80% 80% at 70% 30%, #000 0%, transparent 75%)",
-            WebkitMaskImage: "radial-gradient(80% 80% at 70% 30%, #000 0%, transparent 75%)",
+            background:
+              "linear-gradient(to top, rgba(3,8,15,0.96) 0%, transparent 26%, transparent 74%, rgba(3,8,15,0.7) 100%)",
           }}
+        />
+        {/* Resplandor de marca */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{ background: "radial-gradient(85% 60% at 12% 42%, rgba(0,174,239,0.14) 0%, transparent 55%)" }}
         />
 
-        <div className="relative mx-auto grid w-full max-w-[1400px] grid-cols-1 items-center gap-12 px-6 pb-16 pt-28 sm:px-10 md:px-16 lg:grid-cols-[1.1fr_0.9fr] lg:pt-20">
-          {/* Texto */}
-          <div>
+        {/* Contenido */}
+        <div className="relative mx-auto flex min-h-[100svh] max-w-[1400px] flex-col justify-center px-6 pb-28 pt-28 sm:px-10 md:px-16">
+          <div className="max-w-2xl">
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.28em]"
               style={{
-                backgroundColor: "rgba(0,174,239,0.1)",
+                backgroundColor: "rgba(0,174,239,0.12)",
                 color: ACCENT_LIGHT,
                 border: "1px solid rgba(0,174,239,0.32)",
+                backdropFilter: "blur(4px)",
               }}
             >
               <span
@@ -370,7 +383,11 @@ export function CalorimetriaClient() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
               className="text-4xl leading-[1.02] text-white sm:text-5xl md:text-6xl lg:text-7xl"
-              style={{ fontFamily: "var(--font-display)", letterSpacing: "0.01em" }}
+              style={{
+                fontFamily: "var(--font-display)",
+                letterSpacing: "0.01em",
+                textShadow: "0 2px 30px rgba(0,0,0,0.7)",
+              }}
             >
               Mide cuánta energía{" "}
               <span className="gradient-text">realmente</span> utiliza tu cuerpo.
@@ -381,7 +398,7 @@ export function CalorimetriaClient() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.25 }}
               className="mt-6 max-w-xl text-base leading-relaxed sm:text-lg"
-              style={{ color: "rgba(255,255,255,0.66)" }}
+              style={{ color: "rgba(255,255,255,0.78)", textShadow: "0 1px 16px rgba(0,0,0,0.6)" }}
             >
               La calorimetría indirecta permite evaluar tu gasto energético en
               reposo a partir del análisis del intercambio de oxígeno (O₂) y
@@ -405,9 +422,10 @@ export function CalorimetriaClient() {
                 href="#como-funciona"
                 className="inline-flex items-center gap-2 rounded-2xl px-7 py-4 text-sm font-semibold transition-all"
                 style={{
-                  color: "rgba(200,235,255,0.9)",
-                  border: "1px solid rgba(0,174,239,0.3)",
-                  backgroundColor: "rgba(0,174,239,0.06)",
+                  color: "rgba(220,242,255,0.95)",
+                  border: "1px solid rgba(0,174,239,0.4)",
+                  backgroundColor: "rgba(3,8,15,0.4)",
+                  backdropFilter: "blur(6px)",
                 }}
               >
                 ¿Cómo funciona?
@@ -419,22 +437,46 @@ export function CalorimetriaClient() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
               className="mt-8 text-sm font-semibold uppercase tracking-[0.2em]"
-              style={{ color: "rgba(255,255,255,0.4)" }}
+              style={{ color: "rgba(255,255,255,0.5)" }}
             >
               Deja de estimar. Mide tu metabolismo.
             </motion.p>
           </div>
-
-          {/* Visual: fotografía de la evaluación + gráfico donut */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.94 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0.3 }}
-            className="relative mx-auto w-full max-w-md lg:max-w-none"
-          >
-            <HeroVisual />
-          </motion.div>
         </div>
+
+        {/* Tarjeta flotante: donut de sustratos (oculta en móvil) */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="absolute bottom-8 right-6 z-10 hidden items-center gap-4 rounded-2xl p-4 md:flex md:p-5"
+          style={{
+            backgroundColor: "rgba(6,14,26,0.82)",
+            border: "1px solid rgba(0,174,239,0.3)",
+            boxShadow: "0 20px 50px rgba(0,0,0,0.6)",
+            backdropFilter: "blur(12px)",
+          }}
+        >
+          <Donut size={104} />
+          <div className="pr-1">
+            <span
+              className="mb-2 inline-block rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.16em]"
+              style={{ backgroundColor: "rgba(0,174,239,0.16)", color: ACCENT_LIGHT, border: "1px solid rgba(0,174,239,0.32)" }}
+            >
+              Ejemplo
+            </span>
+            <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)" }}>
+              Uso de sustratos
+            </p>
+            {SUSTRATOS.map((d) => (
+              <div key={d.label} className="mb-1 flex items-center gap-2 text-sm last:mb-0">
+                <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: d.color }} />
+                <span className="text-white/80">{d.label}</span>
+                <span className="ml-auto font-bold text-white">{d.value}%</span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </section>
 
       {/* ── POR QUÉ MEDIR ─────────────────────────────────────────────── */}
@@ -1113,71 +1155,3 @@ function Donut({ size = 128 }: { size?: number }) {
   );
 }
 
-/* Visual del hero: fotografía real de la evaluación + tarjeta flotante donut */
-function HeroVisual() {
-  return (
-    <div className="relative">
-      {/* Fotografía */}
-      <div
-        className="relative overflow-hidden rounded-[1.75rem]"
-        style={{
-          aspectRatio: "4 / 3",
-          border: "1px solid rgba(0,174,239,0.22)",
-          boxShadow: "0 30px 80px rgba(0,0,0,0.55), inset 0 1px 0 rgba(0,174,239,0.12)",
-        }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={`${BP}/calorimetria.webp`}
-          alt="Persona realizando una evaluación de calorimetría indirecta con mascarilla de análisis de gases respiratorios en Centro Metabólico"
-          className="h-full w-full object-cover"
-          style={{ objectPosition: "62% 42%" }}
-        />
-        {/* Degradado inferior para legibilidad de la tarjeta */}
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{ background: "linear-gradient(to top, rgba(3,8,15,0.85) 0%, rgba(3,8,15,0.1) 38%, transparent 60%)" }}
-        />
-        {/* Chip superior */}
-        <span
-          className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em]"
-          style={{ backgroundColor: "rgba(3,8,15,0.6)", color: "#fff", border: "1px solid rgba(255,255,255,0.2)", backdropFilter: "blur(6px)" }}
-        >
-          <span className="h-1.5 w-1.5 rounded-full animate-pulse-dot" style={{ backgroundColor: ACCENT }} />
-          Medición en reposo
-        </span>
-      </div>
-
-      {/* Tarjeta flotante: donut de sustratos */}
-      <div
-        className="absolute -bottom-5 -left-3 flex items-center gap-4 rounded-2xl p-4 sm:-left-5 sm:p-5"
-        style={{
-          backgroundColor: "rgba(6,14,26,0.92)",
-          border: "1px solid rgba(0,174,239,0.28)",
-          boxShadow: "0 20px 50px rgba(0,0,0,0.55)",
-          backdropFilter: "blur(10px)",
-        }}
-      >
-        <Donut size={104} />
-        <div className="pr-1">
-          <span
-            className="mb-2 inline-block rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.16em]"
-            style={{ backgroundColor: "rgba(0,174,239,0.16)", color: ACCENT_LIGHT, border: "1px solid rgba(0,174,239,0.32)" }}
-          >
-            Ejemplo
-          </span>
-          <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.45)" }}>
-            Uso de sustratos
-          </p>
-          {SUSTRATOS.map((d) => (
-            <div key={d.label} className="mb-1 flex items-center gap-2 text-sm last:mb-0">
-              <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: d.color }} />
-              <span className="text-white/80">{d.label}</span>
-              <span className="ml-auto font-bold text-white">{d.value}%</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
