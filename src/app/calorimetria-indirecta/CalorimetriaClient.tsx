@@ -13,8 +13,8 @@ const ACCENT_LIGHT = "#33C3F5";
    Mientras no estén confirmados se muestran como "[DATO POR CONFIRMAR]".
    ────────────────────────────────────────────────────────────────────────── */
 const DATA = {
-  precio: "[DATO POR CONFIRMAR]",
-  duracion: "[DATO POR CONFIRMAR]", // ej: "30–45 min"
+  precio: "$60.000",
+  duracion: "30 minutos",
   modalidad: "Presencial · en consulta",
   lugar: "Suárez Mujica 950, Ñuñoa · Santiago",
   entregaResultados: "[DATO POR CONFIRMAR]", // ej: "el mismo día"
