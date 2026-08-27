@@ -51,20 +51,20 @@ const PROCESO = [
 /* Preparación — cada ítem debe validarlo el profesional responsable. */
 const PERFILES = [
   {
-    t: "Quieres conocer tu gasto energético",
-    d: "Para disponer de una medición individualizada de tu gasto energético en condiciones de reposo.",
+    t: "Quieres bajar de peso",
+    d: "Para saber cuántas calorías necesitas realmente y avanzar con un plan a tu medida, sin adivinar.",
   },
   {
-    t: "Deportistas",
-    d: "Para complementar la evaluación metabólica y fisiológica dentro de un contexto deportivo.",
+    t: "Quieres bajar grasa corporal",
+    d: "Para ajustar tu alimentación según tu gasto energético y tu uso de grasas medidos, no estimados.",
   },
   {
-    t: "Buscas mayor precisión",
-    d: "Para comparar una estimación mediante ecuaciones con una medición obtenida por calorimetría indirecta.",
+    t: "Tienes resistencia a la insulina",
+    d: "Para personalizar tu plan con datos reales de tu metabolismo, como apoyo a tu proceso junto a tu profesional de salud.",
   },
   {
-    t: "Profesionales de la salud",
-    d: "Como herramienta de evaluación dentro de un proceso clínico o deportivo, cuando esté indicada.",
+    t: "Quieres mejorar tu condición física",
+    d: "Para orientar tu alimentación y tu entrenamiento a partir de tu metabolismo medido.",
   },
 ];
 
