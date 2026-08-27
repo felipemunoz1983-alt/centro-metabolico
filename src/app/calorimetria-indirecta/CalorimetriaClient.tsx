@@ -54,7 +54,7 @@ const PERFILES = [
     t: "Quieres bajar de peso",
     d: "Para saber cuántas calorías necesitas realmente y avanzar con un plan a tu medida, sin adivinar.",
     image: "pq-peso",
-    imgPos: "center 28%",
+    imgPos: "42% 20%",
   },
   {
     t: "Quieres bajar grasa corporal",
@@ -66,13 +66,13 @@ const PERFILES = [
     t: "Tienes resistencia a la insulina",
     d: "Para personalizar tu plan con datos reales de tu metabolismo, como apoyo a tu proceso junto a tu profesional de salud.",
     image: "pq-insulina",
-    imgPos: "center 42%",
+    imgPos: "center 55%",
   },
   {
     t: "Quieres mejorar tu condición física",
     d: "Para orientar tu alimentación y tu entrenamiento a partir de tu metabolismo medido.",
     image: "pq-fisico",
-    imgPos: "center 35%",
+    imgPos: "58% 30%",
   },
 ];
 
@@ -877,7 +877,7 @@ export function CalorimetriaClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 viewport={{ once: true }}
-                className="relative flex min-h-[240px] flex-col justify-end overflow-hidden rounded-2xl p-6"
+                className="relative flex min-h-[300px] flex-col justify-end overflow-hidden rounded-2xl p-6"
                 style={{ border: "1px solid rgba(0,174,239,0.2)" }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
