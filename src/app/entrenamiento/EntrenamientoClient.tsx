@@ -80,6 +80,7 @@ const cards = [
       { d: "Lun", h: "08:00, 18:00, 19:00" },
       { d: "Mar", h: "08:00, 18:00, 19:00" },
       { d: "Mié", h: "08:00, 12:30, 18:00, 19:00" },
+      { d: "Jue", h: "18:00, 19:00" },
       { d: "Vie", h: "08:00" },
       { d: "Dom", h: "10:00, 11:00" },
     ],
@@ -306,8 +307,8 @@ const ROWS: { time: string; cells: Record<string, string[]> }[] = [
   { time: "11:00", cells: { Sáb: ["Funcional"], Dom: ["Fuerza"] } },
   { time: "12:30", cells: { Mié: ["Fuerza"] } },
   { time: "17:30", cells: { Vie: ["Funcional"] } },
-  { time: "18:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Funcional", "Fuerza"], Mié: ["Funcional", "Fuerza"], Jue: ["Funcional"] } },
-  { time: "19:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Fuerza", "Halterofilia"], Mié: ["Funcional", "Fuerza"], Jue: ["Halterofilia"] } },
+  { time: "18:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Funcional", "Fuerza"], Mié: ["Funcional", "Fuerza"], Jue: ["Funcional", "Fuerza"] } },
+  { time: "19:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Fuerza", "Halterofilia"], Mié: ["Funcional", "Fuerza"], Jue: ["Fuerza", "Halterofilia"] } },
   { time: "20:00", cells: { Lun: ["Movilidad"] } },
 ];
 
