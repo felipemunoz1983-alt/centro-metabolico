@@ -79,15 +79,6 @@ const PERFILES = [
   },
 ];
 
-const EXPERIENCIA = [
-  { n: "1", t: "Recepción", d: "Te recibimos y resolvemos tus dudas antes de comenzar." },
-  { n: "2", t: "Preparación", d: "Verificamos que estés en las condiciones adecuadas para medir." },
-  { n: "3", t: "Instalación", d: "Se instala el sistema de análisis de gases respiratorios." },
-  { n: "4", t: "Evaluación", d: "Realizamos la medición del intercambio de gases en reposo." },
-  { n: "5", t: "Análisis", d: "Procesamos los datos obtenidos durante la evaluación." },
-  { n: "6", t: "Explicación", d: "Revisamos contigo qué significan tus resultados." },
-];
-
 const FAQ = [
   {
     q: "¿La calorimetría indirecta duele?",
@@ -968,43 +959,6 @@ export function CalorimetriaClient() {
             <span style={{ color: ACCENT_LIGHT }}>≠</span>
             <span className="text-white">Medición</span>
           </motion.div>
-        </div>
-      </section>
-
-      {/* ── EXPERIENCIA ───────────────────────────────────────────────── */}
-      <section id="experiencia" className="border-t" style={{ borderColor: "rgba(255,255,255,0.07)", backgroundColor: "#060E1A" }}>
-        <div className="mx-auto max-w-[1400px] px-6 py-20 sm:px-10 md:px-16 md:py-28">
-          <SectionHead
-            eyebrow="La experiencia"
-            title="Más que ponerse una mascarilla"
-            sub="Una evaluación acompañada, de principio a fin."
-          />
-          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {EXPERIENCIA.map((e, i) => (
-              <motion.div
-                key={e.n}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.07 }}
-                viewport={{ once: true }}
-                className="flex items-start gap-4 rounded-2xl p-6"
-                style={{ backgroundColor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
-              >
-                <span
-                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-sm font-bold"
-                  style={{ backgroundColor: "rgba(0,174,239,0.12)", color: ACCENT_LIGHT }}
-                >
-                  {e.n}
-                </span>
-                <div>
-                  <h3 className="mb-1 font-bold text-white">{e.t}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
-                    {e.d}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
