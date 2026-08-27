@@ -53,18 +53,26 @@ const PERFILES = [
   {
     t: "Quieres bajar de peso",
     d: "Para saber cuántas calorías necesitas realmente y avanzar con un plan a tu medida, sin adivinar.",
+    image: "pq-peso",
+    imgPos: "center 28%",
   },
   {
     t: "Quieres bajar grasa corporal",
     d: "Para ajustar tu alimentación según tu gasto energético y tu uso de grasas medidos, no estimados.",
+    image: "qd-grasa",
+    imgPos: "50% 40%",
   },
   {
     t: "Tienes resistencia a la insulina",
     d: "Para personalizar tu plan con datos reales de tu metabolismo, como apoyo a tu proceso junto a tu profesional de salud.",
+    image: "pq-insulina",
+    imgPos: "center 42%",
   },
   {
     t: "Quieres mejorar tu condición física",
     d: "Para orientar tu alimentación y tu entrenamiento a partir de tu metabolismo medido.",
+    image: "pq-fisico",
+    imgPos: "center 35%",
   },
 ];
 
@@ -869,13 +877,27 @@ export function CalorimetriaClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 viewport={{ once: true }}
-                className="rounded-2xl p-7"
-                style={{ backgroundColor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
+                className="relative flex min-h-[240px] flex-col justify-end overflow-hidden rounded-2xl p-6"
+                style={{ border: "1px solid rgba(0,174,239,0.2)" }}
               >
-                <h3 className="mb-2 text-lg font-bold text-white">{p.t}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
-                  {p.d}
-                </p>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`${BP}/${p.image}.webp`}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  style={{ objectPosition: p.imgPos }}
+                />
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  style={{ background: "linear-gradient(to top, rgba(3,8,15,0.96) 0%, rgba(3,8,15,0.6) 42%, rgba(3,8,15,0.2) 100%)" }}
+                />
+                <div className="relative">
+                  <h3 className="mb-1.5 text-lg font-bold text-white">{p.t}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.78)" }}>
+                    {p.d}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
