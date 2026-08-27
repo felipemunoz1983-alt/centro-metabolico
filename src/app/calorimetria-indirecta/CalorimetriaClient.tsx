@@ -49,17 +49,6 @@ const PROCESO = [
 ];
 
 /* Preparación — cada ítem debe validarlo el profesional responsable. */
-const PREPARACION = [
-  { t: "Ayuno", d: "Indicaciones sobre alimentación previa a la evaluación." },
-  { t: "Ejercicio previo", d: "Recomendaciones sobre actividad física antes de la medición." },
-  { t: "Cafeína", d: "Consumo de café u otras bebidas con cafeína previo a la prueba." },
-  { t: "Alcohol", d: "Consumo de alcohol en las horas previas." },
-  { t: "Tabaco / nicotina", d: "Consumo de tabaco o nicotina antes de la evaluación." },
-  { t: "Medicamentos", d: "Fármacos que podrían influir en la medición." },
-  { t: "Descanso", d: "Descanso recomendado la noche anterior." },
-  { t: "Horario", d: "Momento del día sugerido para realizar la evaluación." },
-];
-
 const PERFILES = [
   {
     t: "Quieres conocer tu gasto energético",
@@ -138,7 +127,6 @@ const ANCHORS = [
   { id: "que-es", label: "Qué es" },
   { id: "que-mide", label: "Qué descubres" },
   { id: "como-funciona", label: "Cómo funciona" },
-  { id: "preparacion", label: "Preparación" },
   { id: "faq", label: "Preguntas" },
 ];
 
@@ -866,46 +854,6 @@ export function CalorimetriaClient() {
           <p className="mt-6 text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
             Duración estimada de la evaluación: {withPending(DATA.duracion)}.
           </p>
-        </div>
-      </section>
-
-      {/* ── PREPARACIÓN ───────────────────────────────────────────────── */}
-      <section id="preparacion" className="border-t" style={{ borderColor: "rgba(255,255,255,0.07)", backgroundColor: "#03080F" }}>
-        <div className="mx-auto max-w-[1400px] px-6 py-20 sm:px-10 md:px-16 md:py-28">
-          <SectionHead
-            eyebrow="Preparación"
-            title="Cómo prepararte para una medición confiable"
-            sub="Recibirás las instrucciones exactas al agendar. Las condiciones específicas de cada punto las define y valida el profesional responsable del servicio."
-          />
-          <div className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {PREPARACION.map((p, i) => (
-              <motion.div
-                key={p.t}
-                initial={{ opacity: 0, x: -12 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-                viewport={{ once: true }}
-                className="flex items-start gap-4 rounded-2xl p-5"
-                style={{ backgroundColor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}
-              >
-                <span
-                  className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs"
-                  style={{ backgroundColor: "rgba(0,174,239,0.14)", color: ACCENT_LIGHT }}
-                >
-                  ✓
-                </span>
-                <div>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="font-semibold text-white">{p.t}</h3>
-                    <Pending>por confirmar</Pending>
-                  </div>
-                  <p className="mt-1 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
-                    {p.d}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
