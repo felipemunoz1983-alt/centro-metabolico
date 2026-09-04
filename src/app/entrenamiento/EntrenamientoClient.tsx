@@ -231,9 +231,9 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
         {/* Tagline — altura fija (2 líneas) */}
         <p className="mb-3 min-h-[2.5rem] text-sm font-medium text-white/75" style={{ textShadow: "0 1px 8px rgba(0,0,0,0.6)" }}>{card.tagline}</p>
 
-        {/* Price */}
+        {/* Créditos (el precio real vive en las tarjetas de créditos) */}
         <p className="mb-6 text-sm font-semibold uppercase tracking-widest" style={{ color: card.color, textShadow: "0 1px 10px rgba(0,0,0,0.65)" }}>
-          {card.price}
+          {card.id === "personalizado" ? card.price : "Usa tus créditos"}
         </p>
 
         {/* Expand */}
@@ -374,6 +374,274 @@ function WeeklySchedule() {
   );
 }
 
+/* ── Sistema de créditos (nuevo modelo) ─────────────────────────── */
+const CREDIT_PLANS = [
+  { n: 4, precio: "$50.000", freq: "1× por semana", hint: "Para empezar", featured: false },
+  { n: 8, precio: "$70.000", freq: "2× por semana", hint: "El más elegido", featured: true },
+  { n: 12, precio: "$80.000", freq: "3× por semana", hint: "Máxima frecuencia", featured: false },
+];
+
+const CREDIT_FAQ = [
+  { q: "¿Qué es un crédito?", a: "Un crédito equivale a una clase." },
+  { q: "¿Puedo usar mis créditos en distintas clases?", a: "Sí. Puedes distribuirlos entre las clases disponibles según tus preferencias." },
+  { q: "¿Tengo que elegir todas mis clases al comprar?", a: "No. Primero compras tus créditos y luego reservas cada entrenamiento cuando quieras utilizarlo." },
+  { q: "¿Puedo cambiar de tipo de entrenamiento?", a: "Sí. Puedes combinar las diferentes clases disponibles." },
+  { q: "¿Cambian los horarios?", a: "No. Se mantienen los horarios disponibles del centro." },
+  { q: "¿Cambian los valores?", a: "No. Se mantienen los valores definidos para cada cantidad de clases/créditos." },
+];
+
+const DISCIPLINAS: { name: string; color: string }[] = [
+  { name: "Fuerza", color: "#F97316" },
+  { name: "Halterofilia", color: "#DC2626" },
+  { name: "Funcional", color: "#00AEEF" },
+  { name: "Movilidad", color: "#10B981" },
+  { name: "Stretching", color: "#8B5CF6" },
+];
+
+const COMO_FUNCIONA = [
+  { n: "1", t: "Compra tus créditos", d: "Elige cuántos créditos necesitas. Ej: 4 créditos = 4 clases." },
+  { n: "2", t: "Elige tu clase", d: "Fuerza, Halterofilia, Funcional, Movilidad u otra disponible." },
+  { n: "3", t: "Reserva", d: "Selecciona el día y horario disponible que más te acomode." },
+  { n: "4", t: "Entrena", d: "Cada clase que realizas descuenta 1 crédito." },
+];
+
+const EJEMPLO = [
+  { dia: "Lunes", clase: "Fuerza", color: "#F97316" },
+  { dia: "Miércoles", clase: "Halterofilia", color: "#DC2626" },
+  { dia: "Jueves", clase: "Funcional", color: "#00AEEF" },
+  { dia: "Sábado", clase: "Fuerza", color: "#F97316" },
+];
+
+function FaqItem({ q, a, open, onClick }: { q: string; a: string; open: boolean; onClick: () => void }) {
+  return (
+    <div className="border-b" style={{ borderColor: t.border }}>
+      <button onClick={onClick} className="flex w-full items-center justify-between gap-4 py-5 text-left" aria-expanded={open}>
+        <span className="text-base font-semibold sm:text-lg" style={{ color: t.text }}>{q}</span>
+        <span
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-lg transition-transform"
+          style={{ backgroundColor: "rgba(0,174,239,0.1)", color: BRAND, transform: open ? "rotate(45deg)" : "rotate(0)" }}
+        >
+          +
+        </span>
+      </button>
+      <div className="grid transition-all duration-300" style={{ gridTemplateRows: open ? "1fr" : "0fr" }}>
+        <div className="overflow-hidden">
+          <p className="pb-5 text-sm leading-relaxed sm:text-base" style={{ color: t.textMid }}>{a}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CreditsSection() {
+  const [faq, setFaq] = useState<number | null>(0);
+  return (
+    <>
+      {/* ── Concepto ─────────────────────────────────────────────── */}
+      <section id="creditos" className="px-6 py-16 md:px-10 md:py-24" style={{ backgroundColor: t.bg }}>
+        <div className="mx-auto max-w-[1000px] text-center">
+          <span
+            className="mb-5 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest"
+            style={{ backgroundColor: "rgba(0,174,239,0.1)", color: BRAND, border: `1px solid rgba(0,174,239,0.3)` }}
+          >
+            Nuevo · Sistema de créditos
+          </span>
+          <h2 className="text-4xl font-bold tracking-tight md:text-5xl" style={{ color: t.text, fontFamily: "var(--font-display)" }}>
+            Entrena como quieras
+          </h2>
+          <p className="mx-auto mt-4 max-w-[52ch] text-base leading-relaxed md:text-lg" style={{ color: t.textMid }}>
+            Ahora entrenar es más simple y flexible. Compra tus créditos y úsalos en la
+            clase que prefieras. Reserva tu horario y elige cómo entrenar.
+          </p>
+
+          {/* 1 crédito = 1 clase */}
+          <div className="mx-auto mt-10 flex max-w-[560px] flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+            <div className="flex-1 rounded-2xl px-6 py-5" style={{ backgroundColor: t.bgSoft, border: `1px solid ${t.border}` }}>
+              <p className="text-3xl font-black md:text-4xl" style={{ color: t.text }}>1 crédito</p>
+            </div>
+            <span className="text-3xl font-black" style={{ color: BRAND }}>=</span>
+            <div className="flex-1 rounded-2xl px-6 py-5" style={{ background: "linear-gradient(135deg, #00AEEF 0%, #0090C5 100%)" }}>
+              <p className="text-3xl font-black text-white md:text-4xl">1 clase</p>
+            </div>
+          </div>
+
+          {/* Tú eliges cuál + disciplinas */}
+          <p className="mt-8 text-sm font-bold uppercase tracking-widest" style={{ color: t.textMuted }}>
+            Tú eliges cuál
+          </p>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5">
+            {DISCIPLINAS.map((d) => (
+              <span
+                key={d.name}
+                className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold"
+                style={{ backgroundColor: t.bgSoft, border: `1px solid ${t.border}`, color: t.text }}
+              >
+                <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: d.color }} />
+                {d.name}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Tarjetas de créditos ─────────────────────────────────── */}
+      <section className="px-6 py-16 md:px-10 md:py-20" style={{ backgroundColor: t.bgSoft, borderTop: `1px solid ${t.border}`, borderBottom: `1px solid ${t.border}` }}>
+        <div className="mx-auto max-w-[1100px]">
+          <div className="mb-10 text-center">
+            <h3 className="text-3xl font-bold md:text-4xl" style={{ color: t.text, fontFamily: "var(--font-display)" }}>Elige tus créditos</h3>
+            <p className="mt-2 text-base" style={{ color: t.textMid }}>Mismos valores de siempre. Ahora los usas en la clase que quieras.</p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {CREDIT_PLANS.map((p) => (
+              <div
+                key={p.n}
+                className="relative flex flex-col rounded-3xl p-7 text-center"
+                style={
+                  p.featured
+                    ? { backgroundColor: t.text, boxShadow: "0 20px 50px rgba(0,0,0,0.18)" }
+                    : { backgroundColor: t.bg, border: `1px solid ${t.border}` }
+                }
+              >
+                {p.featured && (
+                  <span
+                    className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white"
+                    style={{ backgroundColor: BRAND }}
+                  >
+                    {p.hint}
+                  </span>
+                )}
+                <p className="text-xs font-bold uppercase tracking-widest" style={{ color: p.featured ? "rgba(255,255,255,0.55)" : t.textMuted }}>
+                  {!p.featured && p.hint}
+                  {p.featured && " "}
+                </p>
+                <p className="mt-1 text-6xl font-black leading-none" style={{ color: p.featured ? "#fff" : t.text, fontFamily: "var(--font-display)" }}>
+                  {p.n}
+                </p>
+                <p className="mt-1 text-sm font-bold uppercase tracking-widest" style={{ color: BRAND }}>créditos</p>
+                <p className="mt-3 text-lg font-semibold" style={{ color: p.featured ? "rgba(255,255,255,0.9)" : t.text }}>
+                  = {p.n} clases
+                </p>
+                <p className="mt-4 text-3xl font-extrabold" style={{ color: p.featured ? "#fff" : t.text }}>{p.precio}</p>
+                <p className="mt-1 text-sm" style={{ color: p.featured ? "rgba(255,255,255,0.6)" : t.textMuted }}>{p.freq}</p>
+                <p className="mt-4 text-sm" style={{ color: p.featured ? "rgba(255,255,255,0.7)" : t.textMid }}>
+                  Úsalos en las clases que prefieras.
+                </p>
+                <a
+                  href={AGENDA_URL}
+                  className="mt-6 inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-sm font-bold transition-all"
+                  style={
+                    p.featured
+                      ? { backgroundColor: BRAND, color: "#fff" }
+                      : { backgroundColor: t.text, color: "#fff" }
+                  }
+                >
+                  Comprar {p.n} créditos →
+                </a>
+              </div>
+            ))}
+          </div>
+
+          {/* Trimestral */}
+          <div
+            className="mt-4 flex flex-col items-center gap-4 rounded-3xl p-6 text-center sm:flex-row sm:justify-between sm:text-left"
+            style={{ backgroundColor: t.bg, border: `1px solid ${BRAND}55` }}
+          >
+            <div>
+              <p className="text-lg font-bold" style={{ color: t.text }}>
+                Plan Trimestral · <span style={{ color: BRAND }}>36 créditos</span>
+              </p>
+              <p className="text-sm" style={{ color: t.textMid }}>3× por semana · 36 clases en 3 meses · equivale a $63.333/mes</p>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="text-right">
+                <p className="text-2xl font-extrabold leading-none" style={{ color: BRAND }}>$190.000</p>
+                <span className="text-xs font-bold" style={{ color: "#16A34A" }}>Ahorras $50.000</span>
+              </div>
+              <a href={AGENDA_URL} className="rounded-2xl px-5 py-3 text-sm font-bold text-white" style={{ backgroundColor: t.text }}>
+                Comprar →
+              </a>
+            </div>
+          </div>
+
+          <p className="mt-5 text-center text-sm" style={{ color: t.textMuted }}>
+            Cada compra incluye evaluación InBody. Elige entre las clases y horarios disponibles.
+          </p>
+        </div>
+      </section>
+
+      {/* ── ¿Cómo funciona? ──────────────────────────────────────── */}
+      <section className="px-6 py-16 md:px-10 md:py-24" style={{ backgroundColor: t.bg }}>
+        <div className="mx-auto max-w-[1100px]">
+          <div className="mb-10 text-center">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-widest" style={{ color: BRAND }}>¿Cómo funciona?</p>
+            <h3 className="text-3xl font-bold md:text-4xl" style={{ color: t.text, fontFamily: "var(--font-display)" }}>Simple, en 4 pasos</h3>
+          </div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {COMO_FUNCIONA.map((s) => (
+              <div key={s.n} className="rounded-2xl p-6" style={{ backgroundColor: t.bgSoft, border: `1px solid ${t.border}` }}>
+                <span
+                  className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl text-lg font-black text-white"
+                  style={{ backgroundColor: BRAND }}
+                >
+                  {s.n}
+                </span>
+                <h4 className="mb-1.5 text-lg font-bold" style={{ color: t.text }}>{s.t}</h4>
+                <p className="text-sm leading-relaxed" style={{ color: t.textMid }}>{s.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Ejemplo real ─────────────────────────────────────────── */}
+      <section className="px-6 pb-20 md:px-10" style={{ backgroundColor: t.bg }}>
+        <div
+          className="mx-auto max-w-[1000px] rounded-3xl p-8 md:p-12"
+          style={{ background: "linear-gradient(135deg, #0F172A 0%, #1E293B 100%)" }}
+        >
+          <div className="text-center">
+            <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.5)" }}>Ejemplo real</p>
+            <h3 className="mt-2 text-3xl font-bold text-white md:text-4xl" style={{ fontFamily: "var(--font-display)" }}>
+              Tienes <span style={{ color: BRAND }}>4 créditos</span>
+            </h3>
+            <p className="mt-2 text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>Los combinas como quieras:</p>
+          </div>
+          <div className="mx-auto mt-8 grid max-w-[760px] grid-cols-2 gap-3 sm:grid-cols-4">
+            {EJEMPLO.map((e, i) => (
+              <div key={i} className="rounded-2xl p-5 text-center" style={{ backgroundColor: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: "rgba(255,255,255,0.5)" }}>{e.dia}</p>
+                <p className="mt-1.5 text-lg font-bold text-white">{e.clase}</p>
+                <span className="mt-3 inline-block rounded-full px-3 py-1 text-xs font-bold" style={{ backgroundColor: `${e.color}22`, color: e.color }}>
+                  −1 crédito
+                </span>
+              </div>
+            ))}
+          </div>
+          <p className="mt-8 text-center text-lg font-bold text-white">
+            4 créditos = 4 clases · <span style={{ color: BRAND }}>tú decides dónde</span>
+          </p>
+        </div>
+      </section>
+
+      {/* ── FAQ ──────────────────────────────────────────────────── */}
+      <section className="px-6 pb-20 md:px-10" style={{ backgroundColor: t.bg }}>
+        <div className="mx-auto max-w-[760px]">
+          <div className="mb-8 text-center">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-widest" style={{ color: BRAND }}>Preguntas frecuentes</p>
+            <h3 className="text-3xl font-bold md:text-4xl" style={{ color: t.text, fontFamily: "var(--font-display)" }}>Sobre los créditos</h3>
+          </div>
+          <div>
+            {CREDIT_FAQ.map((f, i) => (
+              <FaqItem key={f.q} q={f.q} a={f.a} open={faq === i} onClick={() => setFaq(faq === i ? null : i)} />
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
 /* ── Page ───────────────────────────────────────────────────────── */
 export function EntrenamientoClient() {
   return (
@@ -382,22 +650,31 @@ export function EntrenamientoClient() {
       {/* ── Hero ────────────────────────────────────────────────────── */}
       <section className="px-6 pt-28 pb-16 md:px-10 md:pt-32 md:pb-20 text-center" style={{ backgroundColor: t.bgSoft, borderBottom: `1px solid ${t.border}` }}>
         <p className="mb-3 text-xs font-semibold uppercase tracking-widest" style={{ color: BRAND }}>
-          Entrenamiento Personalizado
+          Entrenamiento
         </p>
         <h1
           className="mb-4 text-5xl font-bold tracking-tight md:text-6xl"
           style={{ color: t.text, fontFamily: "var(--font-display)" }}
         >
-          Elige tu programa.<br />
-          <span style={{ color: BRAND }}>Transforma tu cuerpo.</span>
+          Tus créditos. Tus clases.<br />
+          <span style={{ color: BRAND }}>Tu elección.</span>
         </h1>
-        <p className="mx-auto max-w-[50ch] text-base leading-relaxed" style={{ color: t.textMid }}>
-          Seis programas con tecnología de precisión y metodología basada en evidencia. Cada uno diseñado para un objetivo específico.
+        <p className="mx-auto max-w-[52ch] text-base leading-relaxed" style={{ color: t.textMid }}>
+          1 crédito = 1 clase. Compra tus créditos y úsalos en el entrenamiento que
+          prefieras: Fuerza, Halterofilia, Funcional, Movilidad y más.
         </p>
       </section>
 
+      {/* ── Sistema de créditos ─────────────────────────────────────── */}
+      <CreditsSection />
+
       {/* ── Grid de tarjetas ────────────────────────────────────────── */}
-      <section className="px-4 py-16 md:px-6">
+      <section className="px-4 py-16 md:px-6" style={{ backgroundColor: t.bgSoft, borderTop: `1px solid ${t.border}` }}>
+        <div className="mx-auto mb-10 max-w-[1000px] text-center">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-widest" style={{ color: BRAND }}>Las clases</p>
+          <h3 className="text-3xl font-bold md:text-4xl" style={{ color: t.text, fontFamily: "var(--font-display)" }}>Elige dónde usar tus créditos</h3>
+          <p className="mx-auto mt-2 max-w-[46ch] text-base" style={{ color: t.textMid }}>Todas nuestras disciplinas. Usa tus créditos en cualquiera de ellas.</p>
+        </div>
         <div className="mx-auto max-w-[1600px] grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           {cards.map((card, i) => (
             <TrainingCard key={card.id} card={card} index={i} />
