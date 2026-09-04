@@ -158,12 +158,12 @@ export function HalterofiliaClient() {
               <p className="mb-4 text-sm leading-snug" style={{ color: "rgba(255,255,255,0.7)" }}>
                 <span className="font-bold" style={{ color: RED }}>Horarios:</span> Mar 19:00 · Jue 19:00
               </p>
-              <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.4)" }}>Planes mensuales</p>
+              <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.4)" }}>Créditos · 1 = 1 clase · úsalos donde quieras</p>
               <ul className="mb-4 space-y-2.5">
                 {[
-                  { freq: "1× semana", clases: "4 clases / mes", precio: "$50.000" },
-                  { freq: "2× semana", clases: "8 clases / mes", precio: "$70.000" },
-                  { freq: "3× semana", clases: "12 clases / mes", precio: "$80.000" },
+                  { freq: "1× semana", clases: "4 créditos", precio: "$50.000" },
+                  { freq: "2× semana", clases: "8 créditos", precio: "$70.000" },
+                  { freq: "3× semana", clases: "12 créditos", precio: "$80.000" },
                 ].map(plan => (
                   <li key={plan.clases} className="flex items-baseline justify-between gap-3 border-b border-white/10 pb-2 text-base">
                     <span className="flex items-center gap-3">
@@ -181,7 +181,7 @@ export function HalterofiliaClient() {
                 <div className="flex items-end justify-between gap-3">
                   <div>
                     <p className="text-lg font-bold text-white">Plan Trimestral</p>
-                    <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>3× semana · 36 clases en 3 meses</p>
+                    <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>3× semana · 36 créditos · 36 clases (3 meses)</p>
                   </div>
                   <div className="shrink-0 text-right">
                     <p className="text-2xl font-extrabold leading-none" style={{ color: RED }}>$190.000</p>
