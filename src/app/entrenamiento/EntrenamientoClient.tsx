@@ -523,7 +523,6 @@ function CreditsSection() {
                   = {p.n} clases
                 </p>
                 <p className="mt-4 text-3xl font-extrabold" style={{ color: p.featured ? "#fff" : t.text }}>{p.precio}</p>
-                <p className="mt-1 text-sm" style={{ color: p.featured ? "rgba(255,255,255,0.6)" : t.textMuted }}>{p.freq}</p>
                 <p className="mt-4 text-sm" style={{ color: p.featured ? "rgba(255,255,255,0.7)" : t.textMid }}>
                   Úsalos en las clases que prefieras.
                 </p>
@@ -564,9 +563,17 @@ function CreditsSection() {
             </div>
           </div>
 
-          <p className="mt-5 text-center text-sm" style={{ color: t.textMuted }}>
-            Cada compra incluye evaluación InBody. Elige entre las clases y horarios disponibles.
-          </p>
+          <div className="mt-6 flex flex-col items-center gap-2.5">
+            <div
+              className="inline-flex items-center gap-3 rounded-full px-6 py-3"
+              style={{ backgroundColor: t.bg, border: `1px solid ${t.border}`, boxShadow: "0 4px 20px rgba(0,0,0,0.05)" }}
+            >
+              <span className="text-base font-semibold sm:text-lg" style={{ color: t.text }}>Cada compra incluye evaluación</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`${BP}/inbody-logo.png`} alt="InBody" style={{ height: "2em", width: "auto" }} />
+            </div>
+            <p className="text-sm" style={{ color: t.textMuted }}>Elige entre las clases y horarios disponibles.</p>
+          </div>
         </div>
       </section>
 
