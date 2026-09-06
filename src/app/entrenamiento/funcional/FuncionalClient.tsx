@@ -6,7 +6,7 @@ import Image from "next/image";
 import { StickyAgendar } from "@/components/ui/StickyAgendar";
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const AGENDA_URL = "https://centro-metabolico-agendamiento.vercel.app/reservar?prog=DINAFIT";
+const AGENDA_URL = "https://centro-metabolico-agendamiento.vercel.app/reservar?cat=Entrenamiento";
 const BRAND = "#00AEEF";
 
 function interp(p: number, ins: number[], outs: number[]): number {
