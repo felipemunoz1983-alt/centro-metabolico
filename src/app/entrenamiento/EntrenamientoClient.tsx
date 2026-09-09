@@ -95,66 +95,26 @@ const cards = [
     ],
   },
   {
-    id: "halterofilia",
-    badge: "HALTEROFILIA",
-    name: "Halterofilia",
-    tagline: "Arranque · Envión · Potencia",
-    image: `${BP}/halterofilia.webp`,
-    focusPoint: "70% 48%",
-    href: "/entrenamiento/halterofilia",
+    id: "hibrido",
+    badge: "HÍBRIDO",
+    name: "Entrenamiento\nHíbrido",
+    tagline: "Fuerza + Resistencia · Estilo Hyrox",
+    image: `${BP}/funcional2.webp`,
+    focusPoint: "50% 45%",
+    href: "/entrenamiento/hibrido",
     schedule: [
       { d: "Mar", h: "19:00" },
       { d: "Jue", h: "19:00" },
     ],
-    gradient: "linear-gradient(135deg, #450A0A 0%, #DC2626 100%)",
-    color: "#DC2626",
+    gradient: "linear-gradient(135deg, #2E1065 0%, #7C3AED 100%)",
+    color: "#7C3AED",
     sessions: "4 clases / mes",
     price: "Desde $50.000",
     bullets: [
-      "Técnica olímpica: arranque, envión y sentadilla",
-      "Grupos reducidos con guía profesional en cada sesión",
-      "Progresión medida y segura desde el primer día",
-      "Evaluación InBody incluida para medir tu progreso",
-    ],
-  },
-  {
-    id: "movilidad",
-    badge: "MOVILIDAD",
-    name: "Movilidad",
-    tagline: "Control · Estabilidad · Movimiento",
-    image: `${BP}/movilidad1.webp`,
-    href: "/entrenamiento/movilidad",
-    schedule: [
-      { d: "Lun", h: "20:00" },
-    ],
-    gradient: "linear-gradient(135deg, #064E3B 0%, #10B981 100%)",
-    color: "#10B981",
-    sessions: "4 sesiones / mes",
-    price: "Desde $50.000",
-    bullets: [
-      "Diseñado para personas +35 que quieren moverse sin dolor",
-      "Movilidad articular, control motor y estabilidad funcional",
-      "Recuperación activa que potencia todos tus demás entrenamientos",
-      "Grupos reducidos con guía profesional en cada sesión",
-    ],
-  },
-  {
-    id: "stretching",
-    badge: "STRETCHING",
-    name: "Stretching",
-    tagline: "Flexibilidad · Relajación · Bienestar",
-    image: `${BP}/movilidad3.webp`,
-    href: "/entrenamiento/stretching",
-    schedule: [] as { d: string; h: string }[],
-    gradient: "linear-gradient(135deg, #1E3A5F 0%, #6366F1 100%)",
-    color: "#6366F1",
-    sessions: "4 sesiones / mes",
-    price: "Desde $50.000",
-    bullets: [
-      "Técnicas FNP para flexibilidad real y duradera",
-      "Reduce tensión muscular y mejora el rango de movimiento",
-      "Ideal para complementar cualquier programa de entrenamiento",
-      "Sesiones enfocadas en recuperación y bienestar corporal",
+      "Combina fuerza y resistencia en una sola sesión, estilo Hyrox",
+      "Corres + estaciones funcionales: trineo, remo, sandbag, wall balls y más",
+      "Mejora tu capacidad aeróbica, tu potencia y tu resistencia a la fatiga",
+      "Acondicionamiento integral que se traslada directo a tu vida diaria",
     ],
   },
 ];
@@ -297,8 +257,7 @@ const DAYS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"] as const;
 const PROG: Record<string, string> = {
   Funcional: "#00AEEF",
   Fuerza: "#F97316",
-  Movilidad: "#10B981",
-  Halterofilia: "#DC2626",
+  "Híbrido": "#7C3AED",
 };
 const ROWS: { time: string; cells: Record<string, string[]> }[] = [
   { time: "08:00", cells: { Lun: ["Fuerza"], Mar: ["Fuerza"], Mié: ["Fuerza"], Vie: ["Fuerza"] } },
@@ -306,8 +265,7 @@ const ROWS: { time: string; cells: Record<string, string[]> }[] = [
   { time: "11:00", cells: { Sáb: ["Funcional"], Dom: ["Fuerza"] } },
   { time: "12:30", cells: { Mié: ["Fuerza"] } },
   { time: "18:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Funcional", "Fuerza"], Mié: ["Funcional", "Fuerza"], Jue: ["Funcional", "Fuerza"] } },
-  { time: "19:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Fuerza", "Halterofilia"], Mié: ["Funcional", "Fuerza"], Jue: ["Fuerza", "Halterofilia"] } },
-  { time: "20:00", cells: { Lun: ["Movilidad"] } },
+  { time: "19:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Fuerza", "Híbrido"], Mié: ["Funcional", "Fuerza"], Jue: ["Fuerza", "Híbrido"] } },
 ];
 
 function cellBg(progs: string[]) {
@@ -392,22 +350,20 @@ const CREDIT_FAQ = [
 
 const DISCIPLINAS: { name: string; color: string }[] = [
   { name: "Fuerza", color: "#F97316" },
-  { name: "Halterofilia", color: "#DC2626" },
   { name: "Funcional", color: "#00AEEF" },
-  { name: "Movilidad", color: "#10B981" },
-  { name: "Stretching", color: "#8B5CF6" },
+  { name: "Híbrido", color: "#7C3AED" },
 ];
 
 const COMO_FUNCIONA = [
   { n: "1", t: "Compra tus créditos", d: "Elige cuántos créditos necesitas. Ej: 4 créditos = 4 clases." },
-  { n: "2", t: "Elige tu clase", d: "Fuerza, Halterofilia, Funcional, Movilidad u otra disponible." },
+  { n: "2", t: "Elige tu clase", d: "Fuerza, Funcional, Híbrido u otra disponible." },
   { n: "3", t: "Reserva", d: "Selecciona el día y horario disponible que más te acomode." },
   { n: "4", t: "Entrena", d: "Cada clase que realizas descuenta 1 crédito." },
 ];
 
 const EJEMPLO = [
   { dia: "Lunes", clase: "Fuerza", color: "#F97316" },
-  { dia: "Miércoles", clase: "Halterofilia", color: "#DC2626" },
+  { dia: "Martes", clase: "Híbrido", color: "#7C3AED" },
   { dia: "Jueves", clase: "Funcional", color: "#00AEEF" },
   { dia: "Sábado", clase: "Fuerza", color: "#F97316" },
 ];
@@ -668,7 +624,7 @@ export function EntrenamientoClient() {
         </h1>
         <p className="mx-auto max-w-[52ch] text-base leading-relaxed" style={{ color: t.textMid }}>
           1 crédito = 1 clase. Compra tus créditos y úsalos en el entrenamiento que
-          prefieras: Fuerza, Halterofilia, Funcional, Movilidad y más.
+          prefieras: Fuerza, Funcional, Híbrido y más.
         </p>
       </section>
 

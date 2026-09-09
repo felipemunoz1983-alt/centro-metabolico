@@ -4,14 +4,14 @@ import { EntrenamientoClient } from "./EntrenamientoClient";
 export const metadata: Metadata = {
   title: "Entrenamiento Personalizado",
   description:
-    "Funcional, Fuerza, Stretching y Movilidad. Programas diseñados con tecnología de precisión para transformar tu rendimiento en Centro Metabólico, Santiago.",
+    "Funcional, Fuerza e Híbrido (estilo Hyrox). Programas diseñados con tecnología de precisión para transformar tu rendimiento en Centro Metabólico, Santiago.",
   alternates: {
     canonical: "/centro-metabolico/entrenamiento/",
   },
   openGraph: {
     title: "Entrenamiento Personalizado — Centro Metabólico",
     description:
-      "Funcional, Fuerza, Stretching y Movilidad. Programas diseñados con tecnología de precisión para transformar tu rendimiento.",
+      "Funcional, Fuerza e Híbrido (estilo Hyrox). Programas diseñados con tecnología de precisión para transformar tu rendimiento.",
     url: "https://felipemunoz1983-alt.github.io/centro-metabolico/entrenamiento/",
     images: [
       {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Entrenamiento Personalizado — Centro Metabólico",
     description:
-      "Funcional, Fuerza, Stretching y Movilidad. Programas diseñados con tecnología de precisión.",
+      "Funcional, Fuerza e Híbrido (estilo Hyrox). Programas diseñados con tecnología de precisión.",
     images: ["/centro-metabolico/entrenamiento_funcional2.webp"],
   },
 };
