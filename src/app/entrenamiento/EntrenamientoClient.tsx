@@ -130,7 +130,9 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
     target: ref,
     offset: ["start end", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
+  // Parallax suave y centrado: poco desplazamiento para que el sujeto quede
+  // centrado en la tarjeta sin que el zoom lo corra hacia los bordes.
+  const y = useTransform(scrollYProgress, [0, 1], ["-3%", "3%"]);
 
   return (
     <motion.div
@@ -143,7 +145,7 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
       style={{ height: "clamp(420px, 60vw, 520px)" }}
     >
       {/* ── Background image with parallax ── */}
-      <motion.div className="absolute inset-0" style={{ y, scale: 1.15 }}>
+      <motion.div className="absolute inset-0" style={{ y, scale: 1.08 }}>
         <Image
           src={card.image}
           alt={card.name}
