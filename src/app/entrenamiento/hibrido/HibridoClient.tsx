@@ -8,7 +8,7 @@ import { StickyAgendar } from "@/components/ui/StickyAgendar";
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const AGENDA_URL = "https://centro-metabolico-agendamiento.vercel.app/reservar?cat=Entrenamiento";
 const VIO = "#7C3AED";
-const IMG = `${BP}/funcional2.webp`;
+const IMG = `${BP}/hibrido.webp`;
 
 function interp(p: number, ins: number[], outs: number[]): number {
   const n = ins.length;
@@ -92,7 +92,7 @@ export function HibridoClient() {
       <section ref={heroRef} style={{ height: "320vh" }} className="relative">
         <div className="sticky top-0 h-screen min-h-[100svh] overflow-hidden bg-[#0A0A0A]" style={{ transform: "translateZ(0)" }}>
           <div ref={bgImgRef} className="absolute inset-0" style={{ transformOrigin: "50% 30%", willChange: "transform" }}>
-            <Image src={IMG} alt="Entrenamiento Híbrido" fill priority className="object-cover" style={{ objectPosition: "50% 45%" }} sizes="100vw" />
+            <Image src={IMG} alt="Entrenamiento Híbrido" fill priority className="object-cover" style={{ objectPosition: "50% 50%" }} sizes="100vw" />
           </div>
           <div ref={darkRef} className="absolute inset-0 pointer-events-none bg-black" style={{ opacity: 0.45 }} />
           <div ref={vigRef}  className="absolute inset-0 pointer-events-none" style={{ opacity: 0.40, background: "radial-gradient(ellipse 70% 70% at 50% 50%, transparent 0%, rgba(0,0,0,0.95) 100%)" }} />
@@ -204,7 +204,7 @@ export function HibridoClient() {
           </div>
           <div className="hidden lg:block relative h-full flex-1 overflow-hidden">
             <div ref={imgYRef} className="absolute inset-0" style={{ willChange: "transform" }}>
-              <Image src={IMG} alt="Entrenamiento Híbrido" fill className="object-cover" style={{ objectPosition: "60% 50%" }} sizes="50vw" />
+              <Image src={IMG} alt="Entrenamiento Híbrido" fill className="object-cover" style={{ objectPosition: "50% 50%" }} sizes="50vw" />
             </div>
             <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to right, rgba(10,10,10,1) 0%, rgba(10,10,10,0.3) 30%, transparent 60%)" }} />
           </div>

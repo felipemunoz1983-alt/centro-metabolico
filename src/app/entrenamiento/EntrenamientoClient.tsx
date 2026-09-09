@@ -73,7 +73,7 @@ const cards = [
     name: "Entrenamiento\nde Fuerza",
     tagline: "Potencia · Músculo · Rendimiento",
     image: `${BP}/fuerza4.webp`,
-    focusPoint: "32% 45%",
+    focusPoint: "50% 50%",
     href: "/entrenamiento/fuerza",
     schedule: [
       { d: "Lun", h: "08:00, 18:00, 19:00" },
@@ -99,8 +99,8 @@ const cards = [
     badge: "HÍBRIDO",
     name: "Entrenamiento\nHíbrido",
     tagline: "Fuerza + Resistencia · Estilo Hyrox",
-    image: `${BP}/funcional2.webp`,
-    focusPoint: "50% 45%",
+    image: `${BP}/hibrido.webp`,
+    focusPoint: "50% 50%",
     href: "/entrenamiento/hibrido",
     schedule: [
       { d: "Mar", h: "19:00" },
