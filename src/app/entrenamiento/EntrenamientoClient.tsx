@@ -336,14 +336,15 @@ function WeeklySchedule() {
 
 /* ── Sistema de créditos (nuevo modelo) ─────────────────────────── */
 const CREDIT_PLANS = [
-  { n: 4, precio: "$50.000", freq: "1× por semana", hint: "Para empezar", featured: false },
-  { n: 8, precio: "$70.000", freq: "2× por semana", hint: "El más elegido", featured: true },
-  { n: 12, precio: "$80.000", freq: "3× por semana", hint: "Máxima frecuencia", featured: false },
+  { n: 4, precio: "$50.000", hint: "Para empezar", featured: false },
+  { n: 8, precio: "$70.000", hint: "El más elegido", featured: true },
+  { n: 12, precio: "$80.000", hint: "Máximo ahorro", featured: false },
 ];
 
 const CREDIT_FAQ = [
   { q: "¿Qué es un crédito?", a: "Un crédito equivale a una clase." },
   { q: "¿Puedo usar mis créditos en distintas clases?", a: "Sí. Puedes distribuirlos entre las clases disponibles según tus preferencias." },
+  { q: "¿Hay un máximo de clases por semana?", a: "No. Usa tus créditos cuando quieras, incluso varias clases en la misma semana. Tú defines tu ritmo, sin importar cuántos créditos compres." },
   { q: "¿Tengo que elegir todas mis clases al comprar?", a: "No. Primero compras tus créditos y luego reservas cada entrenamiento cuando quieras utilizarlo." },
   { q: "¿Puedo cambiar de tipo de entrenamiento?", a: "Sí. Puedes combinar las diferentes clases disponibles." },
   { q: "¿Cambian los horarios?", a: "No. Se mantienen los horarios disponibles del centro." },
@@ -409,7 +410,8 @@ function CreditsSection() {
           </h2>
           <p className="mx-auto mt-4 max-w-[52ch] text-base leading-relaxed md:text-lg" style={{ color: t.textMid }}>
             Ahora entrenar es más simple y flexible. Compra tus créditos y úsalos en la
-            clase que prefieras. Reserva tu horario y elige cómo entrenar.
+            clase que prefieras, <strong>sin límite de clases por semana</strong>.
+            Reserva tu horario y elige cómo entrenar.
           </p>
 
           {/* 1 crédito = 1 clase */}
@@ -508,7 +510,7 @@ function CreditsSection() {
               <p className="text-lg font-bold" style={{ color: t.text }}>
                 Plan Trimestral · <span style={{ color: BRAND }}>36 créditos</span>
               </p>
-              <p className="text-sm" style={{ color: t.textMid }}>3× por semana · 36 clases en 3 meses · equivale a $63.333/mes</p>
+              <p className="text-sm" style={{ color: t.textMid }}>36 clases en 3 meses · equivale a $63.333/mes</p>
             </div>
             <div className="flex items-center gap-4">
               <div className="text-right">
