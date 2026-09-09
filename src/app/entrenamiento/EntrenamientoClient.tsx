@@ -640,7 +640,7 @@ export function EntrenamientoClient() {
           <h3 className="text-3xl font-bold md:text-4xl" style={{ color: t.text, fontFamily: "var(--font-display)" }}>Elige dónde usar tus créditos</h3>
           <p className="mx-auto mt-2 max-w-[46ch] text-base" style={{ color: t.textMid }}>Todas nuestras disciplinas. Usa tus créditos en cualquiera de ellas.</p>
         </div>
-        <div className="mx-auto max-w-[1600px] grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+        <div className="mx-auto max-w-[1240px] grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {cards.map((card, i) => (
             <TrainingCard key={card.id} card={card} index={i} />
           ))}
