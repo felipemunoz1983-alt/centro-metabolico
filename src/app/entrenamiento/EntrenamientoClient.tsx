@@ -487,7 +487,7 @@ function CreditsSection() {
                   Úsalos en las clases que prefieras.
                 </p>
                 <a
-                  href={AGENDA_URL}
+                  href={`${AGENDA_URL}&plan=${p.n}`}
                   className="mt-6 inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-sm font-bold transition-all"
                   style={
                     p.featured
@@ -517,7 +517,7 @@ function CreditsSection() {
                 <p className="text-2xl font-extrabold leading-none" style={{ color: BRAND }}>$190.000</p>
                 <span className="text-xs font-bold" style={{ color: "#16A34A" }}>Ahorras $50.000</span>
               </div>
-              <a href={AGENDA_URL} className="rounded-2xl px-5 py-3 text-sm font-bold text-white" style={{ backgroundColor: t.text }}>
+              <a href={`${AGENDA_URL}&plan=36`} className="rounded-2xl px-5 py-3 text-sm font-bold text-white" style={{ backgroundColor: t.text }}>
                 Comprar →
               </a>
             </div>
