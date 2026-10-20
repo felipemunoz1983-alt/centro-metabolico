@@ -26,21 +26,21 @@ const t = {
 const cards = [
   {
     id: "pilates",
-    badge: "PILATES",
+    badge: "PILATES REFORMER",
     name: "Pilates",
-    tagline: "Control · Core · Postura",
-    image: `${BP}/pilates.webp`,
-    focusPoint: "68% 38%",
+    tagline: "Reformer · Control · Postura",
+    image: `${BP}/pilates-card.webp`,
+    focusPoint: "50% 50%",
     href: "/entrenamiento/pilates",
     schedule: [
       { d: "Lun a Vie", h: "08:00, 09:00, 10:00" },
-      { d: "Lun a Jue", h: "20:00" },
+      { d: "Lun a Jue", h: "18:00, 19:00, 20:00" },
       { d: "Dom", h: "10:00" },
     ],
     gradient: "linear-gradient(135deg, #831843 0%, #EC4899 100%)",
     color: PILATES,
     sessions: "4 clases / mes",
-    price: "Desde $35.000",
+    price: "Desde $40.500",
     bullets: [
       "Grupos reducidos con corrección postural en cada ejercicio",
       "Trabajo profundo de core, movilidad y control respiratorio",
@@ -79,12 +79,12 @@ const cards = [
     schedule: [
       { d: "Lun a Jue", h: "18:00" },
       { d: "Lun y Mié", h: "19:00" },
-      { d: "Sáb", h: "09:00" },
+      { d: "Sáb", h: "10:00" },
     ],
     gradient: "linear-gradient(135deg, #0369A1 0%, #0EA5E9 100%)",
     color: BRAND,
     sessions: "4 clases / mes",
-    price: "Desde $35.000",
+    price: "Desde $40.500",
     bullets: [
       "Luces de acción y reacción para mejorar tu respuesta neuromuscular",
       "Encoder deportivo para medir tu fuerza en tiempo real (1RM)",
@@ -101,13 +101,14 @@ const cards = [
     focusPoint: "50% 50%",
     href: "/entrenamiento/fuerza",
     schedule: [
+      { d: "Mié", h: "12:30" },
       { d: "Lun a Jue", h: "18:00, 19:00" },
-      { d: "Sáb", h: "10:00" },
+      { d: "Dom", h: "10:00, 11:00" },
     ],
     gradient: "linear-gradient(135deg, #1C1917 0%, #44403C 100%)",
     color: "#F97316",
     sessions: "4 clases / mes",
-    price: "Desde $35.000",
+    price: "Desde $40.500",
     bullets: [
       "Máximo 7 personas por clase para atención personalizada",
       "Medición en tiempo real de tu nivel de fuerza y fatiga",
@@ -129,7 +130,7 @@ const cards = [
     gradient: "linear-gradient(135deg, #2E1065 0%, #7C3AED 100%)",
     color: "#7C3AED",
     sessions: "4 clases / mes",
-    price: "Desde $35.000",
+    price: "Desde $40.500",
     bullets: [
       "Combina fuerza y resistencia en una sola sesión, estilo Hyrox",
       "Corres + estaciones funcionales: trineo, remo, sandbag, wall balls y más",
@@ -284,10 +285,12 @@ const PROG: Record<string, string> = {
 };
 const ROWS: { time: string; cells: Record<string, string[]> }[] = [
   { time: "08:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"], Vie: ["Pilates"] } },
-  { time: "09:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"], Vie: ["Pilates"], "Sáb": ["Funcional"] } },
-  { time: "10:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"], Vie: ["Pilates"], "Sáb": ["Fuerza"], Dom: ["Pilates"] } },
-  { time: "18:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Funcional", "Fuerza"], "Mié": ["Funcional", "Fuerza"], Jue: ["Funcional", "Fuerza"] } },
-  { time: "19:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Fuerza", "Híbrido"], "Mié": ["Funcional", "Fuerza"], Jue: ["Fuerza", "Híbrido"] } },
+  { time: "09:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"], Vie: ["Pilates"] } },
+  { time: "10:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"], Vie: ["Pilates"], "Sáb": ["Funcional"], Dom: ["Fuerza", "Pilates"] } },
+  { time: "11:00", cells: { Dom: ["Fuerza"] } },
+  { time: "12:30", cells: { "Mié": ["Fuerza"] } },
+  { time: "18:00", cells: { Lun: ["Funcional", "Fuerza", "Pilates"], Mar: ["Funcional", "Fuerza", "Pilates"], "Mié": ["Funcional", "Fuerza", "Pilates"], Jue: ["Funcional", "Fuerza", "Pilates"] } },
+  { time: "19:00", cells: { Lun: ["Funcional", "Fuerza", "Pilates"], Mar: ["Fuerza", "Híbrido", "Pilates"], "Mié": ["Funcional", "Fuerza", "Pilates"], Jue: ["Fuerza", "Híbrido", "Pilates"] } },
   { time: "20:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"] } },
 ];
 
@@ -365,16 +368,12 @@ const DISCIPLINAS: { name: string; color: string }[] = [
 
 const PILARES = [
   {
-    t: "Congela cuando lo necesites",
-    d: "Lesión, viaje o un mes imposible: congelas y la fecha de término se corre. No pierdes lo pagado.",
-  },
-  {
     t: "Arrastra lo que no usaste",
     d: "Desde el plan Semestral las clases que te sobran pasan al mes siguiente. Hasta 4 en el Anual.",
   },
   {
     t: "Tus mediciones, incluidas",
-    d: "InBody y evaluación metabólica vienen dentro del plan. Entrenas con datos, no con sensaciones.",
+    d: "La evaluación InBody viene dentro del plan. Entrenas con datos de tu composición corporal, no con sensaciones.",
   },
 ];
 
@@ -430,7 +429,7 @@ function PlanesSection() {
               más largo el compromiso, menos pagas por clase y más evaluaciones vienen incluidas.
             </p>
           </div>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div className="mx-auto grid max-w-[760px] grid-cols-1 gap-4 md:grid-cols-2">
             {PILARES.map((p) => (
               <div key={p.t} className="rounded-2xl p-6" style={{ backgroundColor: t.bgSoft, border: `1px solid ${t.border}` }}>
                 <h3 className="mb-2 text-lg font-bold" style={{ color: t.text }}>{p.t}</h3>

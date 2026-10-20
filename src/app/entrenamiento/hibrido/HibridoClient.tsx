@@ -163,9 +163,9 @@ export function HibridoClient() {
               <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.4)" }}>Plan mensual · sin compromiso · sirve en todas las disciplinas</p>
               <ul className="mb-4 space-y-2.5">
                 {[
-                  { freq: "4 clases", clases: "al mes", precio: "$44.000" },
-                  { freq: "8 clases", clases: "al mes", precio: "$72.000" },
-                  { freq: "12 clases", clases: "al mes", precio: "$92.000" },
+                  { freq: "4 clases", clases: "al mes", precio: "$50.000" },
+                  { freq: "8 clases", clases: "al mes", precio: "$70.000" },
+                  { freq: "12 clases", clases: "al mes", precio: "$80.000" },
                 ].map(plan => (
                   <li key={plan.clases} className="flex items-baseline justify-between gap-3 border-b border-white/10 pb-2 text-base">
                     <span className="flex items-center gap-3">
@@ -186,13 +186,13 @@ export function HibridoClient() {
                     <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>8 clases al mes · compromiso 12 meses</p>
                   </div>
                   <div className="shrink-0 text-right">
-                    <p className="text-2xl font-extrabold leading-none" style={{ color: VIO }}>$58.000</p>
+                    <p className="text-2xl font-extrabold leading-none" style={{ color: VIO }}>$57.000</p>
                     <p className="mt-1 text-[11px]" style={{ color: "rgba(255,255,255,0.5)" }}>por mes</p>
                   </div>
                 </div>
                 <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-white/10 pt-3 text-sm">
-                  <span className="font-semibold text-white">Equivale a $7.250 por clase</span>
-                  <span className="rounded-md px-2 py-0.5 text-xs font-bold" style={{ backgroundColor: "rgba(124,58,237,0.22)", color: VIO }}>Ahorras $14.000 al mes</span>
+                  <span className="font-semibold text-white">Equivale a $7.125 por clase</span>
+                  <span className="rounded-md px-2 py-0.5 text-xs font-bold" style={{ backgroundColor: "rgba(124,58,237,0.22)", color: VIO }}>Ahorras $13.000 al mes</span>
                 </div>
               </div>
 

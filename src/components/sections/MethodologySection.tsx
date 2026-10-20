@@ -107,12 +107,12 @@ export function MethodologySection() {
 
                   {/* Content */}
                   <div
-                    className="card-surface flex-1 p-7 transition-all duration-300"
+                    className="card-surface min-w-0 flex-1 p-7 transition-all duration-300"
                     style={{ borderColor: `rgba(0,174,239,${step.alpha * 0.1})` }}
                     onMouseEnter={(e) => (e.currentTarget.style.borderColor = `rgba(0,174,239,${step.alpha * 0.3})`)}
                     onMouseLeave={(e) => (e.currentTarget.style.borderColor = `rgba(0,174,239,${step.alpha * 0.1})`)}
                   >
-                    <div className="mb-2 flex items-center gap-3">
+                    <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1">
                       <h3
                         className="text-2xl font-semibold tracking-tight"
                         style={{ color: `rgba(0,174,239,${step.alpha})` }}

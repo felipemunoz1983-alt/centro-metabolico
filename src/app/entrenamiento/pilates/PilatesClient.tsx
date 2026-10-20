@@ -96,14 +96,14 @@ export function PilatesClient() {
       <section ref={heroRef} style={{ height: "320vh" }} className="relative">
         <div className="sticky top-0 h-screen min-h-[100svh] overflow-hidden bg-[#0A0A0A]" style={{ transform: "translateZ(0)" }}>
           <div ref={bgImgRef} className="absolute inset-0" style={{ transformOrigin: "60% 35%", willChange: "transform" }}>
-            <Image src={`${BP}/pilates.webp`} alt="Clase de Pilates en estudio luminoso" fill priority className="object-cover" style={{ objectPosition: "62% 40%" }} sizes="100vw" />
+            <Image src={`${BP}/pilates.webp`} alt="Clase de Pilates Reformer en estudio luminoso" fill priority className="object-cover" style={{ objectPosition: "62% 40%" }} sizes="100vw" />
           </div>
           <div ref={darkRef} className="absolute inset-0 pointer-events-none bg-black" style={{ opacity: 0.34 }} />
           <div ref={vigRef}  className="absolute inset-0 pointer-events-none" style={{ opacity: 0.32, background: "radial-gradient(ellipse 70% 70% at 50% 50%, transparent 0%, rgba(0,0,0,0.95) 100%)" }} />
           <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 18%, transparent 82%, rgba(0,0,0,0.8) 100%)" }} />
 
           <div ref={p1Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none" style={{ opacity: 1, willChange: "opacity, transform" }}>
-            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(236,72,153,0.2)", color: "#F9A8D4", border: "1px solid rgba(236,72,153,0.4)" }}>Pilates</span>
+            <span className="mb-5 rounded-full px-6 py-2.5 text-lg md:text-2xl font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(236,72,153,0.32)", color: "#ffffff", border: "1px solid rgba(236,72,153,0.6)", textShadow: "0 2px 14px rgba(0,0,0,0.65)" }}>Pilates Reformer</span>
             <h2 className="text-4xl sm:text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
               Fuerza que nace<br /><span style={{ color: PILATES }}>del centro.</span>
             </h2>
@@ -113,7 +113,7 @@ export function PilatesClient() {
           </div>
 
           <div ref={p2Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none" style={{ opacity: 0, transform: "translateY(60px)", willChange: "opacity, transform" }}>
-            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(236,72,153,0.2)", color: "#F9A8D4", border: "1px solid rgba(236,72,153,0.4)" }}>Grupos reducidos</span>
+            <span className="mb-5 rounded-full px-6 py-2.5 text-lg md:text-2xl font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(236,72,153,0.32)", color: "#ffffff", border: "1px solid rgba(236,72,153,0.6)", textShadow: "0 2px 14px rgba(0,0,0,0.65)" }}>Grupos reducidos</span>
             <h2 className="text-4xl sm:text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
               Cada repetición,<br /><span style={{ color: PILATES }}>corregida.</span>
             </h2>
@@ -123,15 +123,15 @@ export function PilatesClient() {
           </div>
 
           <div ref={p3Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center" style={{ opacity: 0, transform: "translateY(60px)", willChange: "opacity, transform" }}>
-            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(236,72,153,0.2)", color: "#F9A8D4", border: "1px solid rgba(236,72,153,0.4)" }}>Desde $35.000 / mes</span>
+            <span className="mb-5 rounded-full px-6 py-2.5 text-lg md:text-2xl font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(236,72,153,0.32)", color: "#ffffff", border: "1px solid rgba(236,72,153,0.6)", textShadow: "0 2px 14px rgba(0,0,0,0.65)" }}>Desde $40.500 / mes</span>
             <h2 className="text-4xl sm:text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
               Empieza cuando<br /><span style={{ color: PILATES }}>quieras.</span>
             </h2>
             <p className="mt-6 mb-8 max-w-[46ch] text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
-              Lun a Vie 08:00 · 09:00 · 10:00 · 20:00 — Dom 10:00
+              Lun a Vie 08:00 · 09:00 · 10:00 — Lun a Jue 18:00 · 19:00 · 20:00 — Dom 10:00
             </p>
             <motion.a href={AGENDA_URL} className="inline-flex items-center gap-2 rounded-2xl px-10 py-4 text-base font-bold text-white" style={{ backgroundColor: PILATES }} whileHover={{ scale: 1.05, boxShadow: "0 0 48px rgba(236,72,153,0.6)" }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
-              Agendar Pilates →
+              Agendar Pilates Reformer →
             </motion.a>
           </div>
 
@@ -149,9 +149,9 @@ export function PilatesClient() {
               <p className="mb-4 text-lg font-bold uppercase tracking-widest" style={{ color: PILATES }}>El método</p>
               <h3 className="mb-6 text-4xl text-white md:text-5xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", lineHeight: "1.1" }}>Control antes<br />que carga.</h3>
               <p className="text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
-                Trabajo profundo de centro, movilidad y respiración. Sin saltos ni cargas que
-                castiguen articulaciones: exige control, no impacto. Por eso sirve igual si vuelves
-                de una lesión o si ya compites y te falta base.
+                Trabajo profundo de centro, movilidad y respiración sobre reformer: la resistencia
+                la ponen los resortes, no el peso, así que exige control sin castigar articulaciones.
+                Por eso sirve igual si vuelves de una lesión o si ya compites y te falta base.
               </p>
             </div>
 
@@ -168,15 +168,15 @@ export function PilatesClient() {
               </div>
 
               <p className="mb-4 text-sm leading-snug" style={{ color: "rgba(255,255,255,0.7)" }}>
-                <span className="font-bold" style={{ color: PILATES }}>Horarios:</span> Lun a Vie 08:00, 09:00 y 10:00 · Lun a Jue 20:00 · Dom 10:00
+                <span className="font-bold" style={{ color: PILATES }}>Horarios:</span> Lun a Vie 08:00, 09:00 y 10:00 · Lun a Jue 18:00, 19:00 y 20:00 · Dom 10:00
               </p>
 
               <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.4)" }}>Plan mensual · sin compromiso · sirve en todas las disciplinas</p>
               <ul className="mb-4 space-y-2.5">
                 {[
-                  { freq: "4 clases", clases: "al mes", precio: "$44.000" },
-                  { freq: "8 clases", clases: "al mes", precio: "$72.000" },
-                  { freq: "12 clases", clases: "al mes", precio: "$92.000" },
+                  { freq: "4 clases", clases: "al mes", precio: "$50.000" },
+                  { freq: "8 clases", clases: "al mes", precio: "$70.000" },
+                  { freq: "12 clases", clases: "al mes", precio: "$80.000" },
                 ].map(plan => (
                   <li key={plan.freq} className="flex items-baseline justify-between gap-3 border-b border-white/10 pb-2 text-base">
                     <span className="flex items-center gap-3">
@@ -197,19 +197,19 @@ export function PilatesClient() {
                     <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>8 clases al mes · compromiso 12 meses</p>
                   </div>
                   <div className="shrink-0 text-right">
-                    <p className="text-2xl font-extrabold leading-none" style={{ color: PILATES }}>$58.000</p>
+                    <p className="text-2xl font-extrabold leading-none" style={{ color: PILATES }}>$57.000</p>
                     <p className="mt-1 text-[11px]" style={{ color: "rgba(255,255,255,0.5)" }}>por mes</p>
                   </div>
                 </div>
                 <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-white/10 pt-3 text-sm">
-                  <span className="font-semibold text-white">Equivale a $7.250 por clase</span>
-                  <span className="rounded-md px-2 py-0.5 text-xs font-bold" style={{ backgroundColor: "rgba(236,72,153,0.22)", color: PILATES }}>Ahorras $14.000 al mes</span>
+                  <span className="font-semibold text-white">Equivale a $7.125 por clase</span>
+                  <span className="rounded-md px-2 py-0.5 text-xs font-bold" style={{ backgroundColor: "rgba(236,72,153,0.22)", color: PILATES }}>Ahorras $13.000 al mes</span>
                 </div>
               </div>
 
               <div className="flex flex-wrap items-center gap-4">
-                <a href={AGENDA_URL} className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-base font-bold text-white" style={{ backgroundColor: PILATES, boxShadow: "0 0 32px rgba(236,72,153,0.35)" }}>Agendar Pilates →</a>
-                <Link href="/entrenamiento#planes" className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.6)" }}>
+                <a href={AGENDA_URL} className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-base font-bold text-white" style={{ backgroundColor: PILATES, boxShadow: "0 0 32px rgba(236,72,153,0.35)" }}>Agendar Pilates Reformer →</a>
+                <Link href="/entrenamiento#planes" className="inline-flex min-h-[44px] items-center text-sm font-semibold" style={{ color: "rgba(255,255,255,0.6)" }}>
                   Ver los 4 compromisos →
                 </Link>
               </div>
@@ -218,7 +218,7 @@ export function PilatesClient() {
 
           <div className="hidden lg:block relative h-full flex-1 overflow-hidden">
             <div ref={imgYRef} className="absolute inset-0" style={{ willChange: "transform" }}>
-              <Image src={`${BP}/pilates.webp`} alt="Estudio de Pilates" fill className="object-cover" style={{ objectPosition: "22% 55%" }} sizes="50vw" />
+              <Image src={`${BP}/pilates-estiramiento.webp`} alt="Estiramiento sobre reformer en el estudio" fill className="object-cover" style={{ objectPosition: "64% 45%" }} sizes="50vw" />
             </div>
             <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to right, rgba(10,10,10,1) 0%, rgba(10,10,10,0.3) 30%, transparent 60%)" }} />
           </div>

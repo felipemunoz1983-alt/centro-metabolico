@@ -80,7 +80,7 @@ export function PlanesPricing({
                   key={v}
                   onClick={() => setVol(v)}
                   aria-pressed={on}
-                  className="rounded-xl px-4 py-2.5 text-sm font-bold transition-all sm:px-5"
+                  className="min-h-[44px] rounded-xl px-4 py-2.5 text-sm font-bold transition-all sm:px-5"
                   style={{
                     backgroundColor: on ? t.text : "transparent",
                     color: on ? "#fff" : t.textMid,

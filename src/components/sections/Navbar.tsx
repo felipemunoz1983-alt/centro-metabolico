@@ -104,7 +104,7 @@ export function Navbar() {
 
         <div className="relative mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 md:px-8">
           {/* Logo */}
-          <Link href="/" className="transition-opacity hover:opacity-80">
+          <Link href="/" className="flex min-h-[44px] items-center transition-opacity hover:opacity-80">
             <BrandLogo size="sm" variant="full" />
           </Link>
 
@@ -286,6 +286,7 @@ export function Navbar() {
               backgroundColor: lightMode ? "rgba(10,22,40,0.04)" : "rgba(0,174,239,0.08)",
               color: lightMode ? "#0A1628" : "#7DD9F9",
               minWidth: 56,
+              minHeight: 44,
             }}
             onClick={() => setMenuOpen(!menuOpen)}
           >
