@@ -1,321 +1,229 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
+import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Footer } from "@/components/sections/Footer";
-import { PlanesPricing } from "@/components/sections/PlanesPricing";
+import Image from "next/image";
+import Link from "next/link";
+import { StickyAgendar } from "@/components/ui/StickyAgendar";
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const BRAND = "#00AEEF";
-const PILATES = "#EC4899";
 const AGENDA_URL = "https://centro-metabolico-agendamiento.vercel.app/reservar?cat=Entrenamiento";
+const PILATES = "#EC4899";
 
-const t = {
-  bg: "#ffffff",
-  bgSoft: "#FDF2F8",
-  border: "#E2E8F0",
-  text: "#0F172A",
-  textMid: "#475569",
-  textMuted: "#94A3B8",
-};
-
-/* ── Horario de Pilates ─────────────────────────────────────────── */
-const DAYS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"] as const;
-const HORARIO: { time: string; dias: string[] }[] = [
-  { time: "08:00", dias: ["Lun", "Mar", "Mié", "Jue", "Vie"] },
-  { time: "09:00", dias: ["Lun", "Mar", "Mié", "Jue", "Vie"] },
-  { time: "10:00", dias: ["Lun", "Mar", "Mié", "Jue", "Vie", "Dom"] },
-  { time: "20:00", dias: ["Lun", "Mar", "Mié", "Jue"] },
-];
-
-const BENEFICIOS = [
-  {
-    t: "Core que se nota fuera del estudio",
-    d: "El trabajo profundo de centro mejora tu postura sentado, tu respiración y cómo cargas peso en el resto de tus entrenamientos.",
-  },
-  {
-    t: "Bajo impacto, alta exigencia",
-    d: "Sin saltos ni cargas que castiguen articulaciones. Exige control, no impacto: por eso sirve igual si partes de cero o si compites.",
-  },
-  {
-    t: "Corrección en cada repetición",
-    d: "Grupos reducidos. El profesor te corrige en el movimiento, que es donde el Pilates realmente cambia algo.",
-  },
-  {
-    t: "Medido, no estimado",
-    d: "Aquí el progreso se mide: InBody para composición corporal y calorimetría para tu metabolismo, incluidos según tu plan.",
-  },
-];
-
-const PARA_QUIEN = [
-  "Vuelves de una lesión y necesitas reconstruir base sin impacto",
-  "Pasas muchas horas sentado y lo estás sintiendo en la espalda",
-  "Entrenas fuerza y te falta movilidad y control para progresar",
-  "Buscas empezar a moverte con algo exigente pero amable",
-  "Quieres trabajar el core de verdad, no hacer abdominales",
-];
-
-const FAQ = [
-  {
-    q: "¿Necesito experiencia previa?",
-    a: "No. Las clases se adaptan al nivel de cada persona y el profesor corrige en el momento. Mucha gente parte en Pilates justamente porque nunca ha entrenado.",
-  },
-  {
-    q: "¿Puedo combinar Pilates con las otras clases?",
-    a: "Sí, y es lo que recomendamos. Tu plan sirve para Pilates, Fuerza, Funcional e Híbrido: puedes hacer Pilates en la mañana y fuerza en la tarde el mismo día.",
-  },
-  {
-    q: "¿Sirve si tengo una lesión o dolor de espalda?",
-    a: "En general sí, y es uno de los motivos más frecuentes de consulta. Si vienes de una lesión reciente, agenda primero una evaluación para adaptar el trabajo a tu caso.",
-  },
-  {
-    q: "¿Cuántas clases a la semana me conviene?",
-    a: "Dos por semana (plan de 8 al mes) es el punto donde la mayoría empieza a notar cambios de postura y control. Tres o más si lo usas como entrenamiento principal.",
-  },
-  {
-    q: "¿Qué llevo a la clase?",
-    a: "Ropa cómoda que permita moverse, calcetines antideslizantes y tu botella de agua. El resto del material lo pone el centro.",
-  },
-];
-
-function FaqItem({ q, a, open, onClick }: { q: string; a: string; open: boolean; onClick: () => void }) {
-  return (
-    <div className="border-b" style={{ borderColor: t.border }}>
-      <button onClick={onClick} className="flex w-full items-center justify-between gap-4 py-5 text-left" aria-expanded={open}>
-        <span className="text-base font-semibold sm:text-lg" style={{ color: t.text }}>{q}</span>
-        <span
-          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-lg transition-transform"
-          style={{ backgroundColor: "rgba(236,72,153,0.12)", color: PILATES, transform: open ? "rotate(45deg)" : "rotate(0)" }}
-        >
-          +
-        </span>
-      </button>
-      <div className="grid transition-all duration-300" style={{ gridTemplateRows: open ? "1fr" : "0fr" }}>
-        <div className="overflow-hidden">
-          <p className="pb-5 text-sm leading-relaxed sm:text-base" style={{ color: t.textMid }}>{a}</p>
-        </div>
-      </div>
-    </div>
-  );
+function interp(p: number, ins: number[], outs: number[]): number {
+  const n = ins.length;
+  if (p <= ins[0]) return outs[0];
+  if (p >= ins[n - 1]) return outs[n - 1];
+  for (let i = 0; i < n - 1; i++) {
+    if (p >= ins[i] && p <= ins[i + 1]) {
+      const t = (p - ins[i]) / (ins[i + 1] - ins[i]);
+      return outs[i] + t * (outs[i + 1] - outs[i]);
+    }
+  }
+  return outs[n - 1];
 }
 
 export function PilatesClient() {
-  const [faq, setFaq] = useState<number | null>(0);
+  const heroRef  = useRef<HTMLElement>(null);
+  const descRef  = useRef<HTMLElement>(null);
+  const bgImgRef = useRef<HTMLDivElement>(null);
+  const darkRef  = useRef<HTMLDivElement>(null);
+  const vigRef   = useRef<HTMLDivElement>(null);
+  const p1Ref    = useRef<HTMLDivElement>(null);
+  const p2Ref    = useRef<HTMLDivElement>(null);
+  const p3Ref    = useRef<HTMLDivElement>(null);
+  const hintRef  = useRef<HTMLDivElement>(null);
+  const blk1Ref  = useRef<HTMLDivElement>(null);
+  const blk2Ref  = useRef<HTMLDivElement>(null);
+  const imgYRef  = useRef<HTMLDivElement>(null);
+  const rafRef   = useRef(0);
+
+  useEffect(() => {
+    const tick = () => {
+      const hero = heroRef.current;
+      if (hero) {
+        const rect = hero.getBoundingClientRect();
+        const scrollable = Math.max(1, hero.offsetHeight - window.innerHeight);
+        const sp = Math.max(0, Math.min(1, -rect.top / scrollable));
+
+        if (bgImgRef.current) bgImgRef.current.style.transform = `scale(${interp(sp, [0,1], [1.0,1.45])}) translateZ(0)`;
+        // La foto es un estudio luminoso: el velo arranca más suave que en las
+        // otras disciplinas para no apagar la luz natural, y solo cierra al
+        // final, cuando el panel de precio necesita contraste.
+        if (darkRef.current)  darkRef.current.style.opacity  = String(interp(sp, [0,0.15,0.55,1], [0.34,0.28,0.32,0.62]));
+        if (vigRef.current)   vigRef.current.style.opacity   = String(interp(sp, [0,0.3,0.6,1], [0.32,0.12,0.22,0.80]));
+        if (p1Ref.current) {
+          p1Ref.current.style.opacity   = String(interp(sp, [0,0.25,0.38], [1,1,0]));
+          p1Ref.current.style.transform = `translateY(${interp(sp, [0,0.38], [0,-60])}px)`;
+        }
+        if (p2Ref.current) {
+          p2Ref.current.style.opacity   = String(interp(sp, [0.38,0.50,0.65,0.74], [0,1,1,0]));
+          p2Ref.current.style.transform = `translateY(${interp(sp, [0.38,0.74], [60,-60])}px)`;
+        }
+        if (p3Ref.current) {
+          p3Ref.current.style.opacity   = String(interp(sp, [0.74,0.85,1], [0,1,1]));
+          p3Ref.current.style.transform = `translateY(${interp(sp, [0.74,0.85], [60,0])}px)`;
+        }
+        if (hintRef.current) hintRef.current.style.opacity = String(interp(sp, [0,0.10], [0.8,0]));
+      }
+
+      const desc = descRef.current;
+      if (desc) {
+        const rect = desc.getBoundingClientRect();
+        const scrollable = Math.max(1, desc.offsetHeight - window.innerHeight);
+        const dp = Math.max(0, Math.min(1, -rect.top / scrollable));
+        if (blk1Ref.current) {
+          blk1Ref.current.style.opacity   = String(interp(dp, [0,0.15,0.35,0.50], [0,1,1,0]));
+          blk1Ref.current.style.transform = `translateY(${interp(dp, [0,0.15,0.50], [40,0,-30])}px)`;
+        }
+        if (blk2Ref.current) {
+          blk2Ref.current.style.opacity   = String(interp(dp, [0.50,0.65,1], [0,1,1]));
+          blk2Ref.current.style.transform = `translateY(${interp(dp, [0.50,0.65,1], [40,0,0])}px)`;
+        }
+        if (imgYRef.current) imgYRef.current.style.transform = `translateY(${interp(dp, [0,1], [80,-80])}px) scale(1.15)`;
+      }
+
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, []);
 
   return (
-    <div style={{ backgroundColor: t.bg, minHeight: "100vh" }}>
-      {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden" style={{ backgroundColor: "#0A0A0A" }}>
-        <div className="absolute inset-0">
-          <Image
-            src={`${BP}/pilates.webp`}
-            alt="Clase de Pilates en Centro Metabólico"
-            fill
-            priority
-            className="object-cover"
-            style={{ objectPosition: "50% 50%" }}
-            sizes="100vw"
-          />
-          <div
-            className="absolute inset-0"
-            style={{ background: "linear-gradient(to top, rgba(0,0,0,0.92) 10%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.45) 100%)" }}
-          />
-        </div>
+    <div>
+      <StickyAgendar href={AGENDA_URL} color={PILATES} />
 
-        <div className="relative mx-auto flex max-w-[1100px] flex-col items-center px-6 pt-32 pb-20 text-center md:pt-40 md:pb-28">
-          <motion.span
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-5 rounded-full px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest"
-            style={{ backgroundColor: "rgba(236,72,153,0.18)", color: "#F9A8D4", border: "1px solid rgba(236,72,153,0.4)" }}
-          >
-            Nueva disciplina
-          </motion.span>
+      <section ref={heroRef} style={{ height: "320vh" }} className="relative">
+        <div className="sticky top-0 h-screen min-h-[100svh] overflow-hidden bg-[#0A0A0A]" style={{ transform: "translateZ(0)" }}>
+          <div ref={bgImgRef} className="absolute inset-0" style={{ transformOrigin: "60% 35%", willChange: "transform" }}>
+            <Image src={`${BP}/pilates.webp`} alt="Clase de Pilates en estudio luminoso" fill priority className="object-cover" style={{ objectPosition: "62% 40%" }} sizes="100vw" />
+          </div>
+          <div ref={darkRef} className="absolute inset-0 pointer-events-none bg-black" style={{ opacity: 0.34 }} />
+          <div ref={vigRef}  className="absolute inset-0 pointer-events-none" style={{ opacity: 0.32, background: "radial-gradient(ellipse 70% 70% at 50% 50%, transparent 0%, rgba(0,0,0,0.95) 100%)" }} />
+          <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 18%, transparent 82%, rgba(0,0,0,0.8) 100%)" }} />
 
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.08 }}
-            className="text-5xl leading-[1.05] text-white md:text-7xl"
-            style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 24px rgba(0,0,0,0.9)" }}
-          >
-            Pilates
-          </motion.h1>
+          <div ref={p1Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none" style={{ opacity: 1, willChange: "opacity, transform" }}>
+            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(236,72,153,0.2)", color: "#F9A8D4", border: "1px solid rgba(236,72,153,0.4)" }}>Pilates</span>
+            <h2 className="text-4xl sm:text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
+              Fuerza que nace<br /><span style={{ color: PILATES }}>del centro.</span>
+            </h2>
+            <p className="mt-6 max-w-[44ch] text-base leading-relaxed md:text-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
+              Control, core y postura.<br />Bajo impacto, alta exigencia.
+            </p>
+          </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.16 }}
-            className="mt-5 max-w-[46ch] text-lg leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.75)" }}
-          >
-            Control, core y postura. Bajo impacto y alta exigencia, en grupos reducidos
-            y con tu progreso medido, no estimado.
-          </motion.p>
+          <div ref={p2Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none" style={{ opacity: 0, transform: "translateY(60px)", willChange: "opacity, transform" }}>
+            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(236,72,153,0.2)", color: "#F9A8D4", border: "1px solid rgba(236,72,153,0.4)" }}>Grupos reducidos</span>
+            <h2 className="text-4xl sm:text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
+              Cada repetición,<br /><span style={{ color: PILATES }}>corregida.</span>
+            </h2>
+            <p className="mt-6 max-w-[44ch] text-base leading-relaxed md:text-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
+              Pocas personas por clase.<br />El profesor corrige en el movimiento, no después.
+            </p>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.24 }}
-            className="mt-9 flex w-full max-w-xs flex-col gap-3 sm:w-auto sm:flex-row"
-          >
-            <a
-              href="#planes"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl px-8 py-4 text-base font-bold text-white"
-              style={{ backgroundColor: PILATES }}
-            >
-              Ver planes →
-            </a>
-            <a
-              href="#horario"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl px-8 py-4 text-base font-bold text-white"
-              style={{ backgroundColor: "rgba(255,255,255,0.14)", border: "1px solid rgba(255,255,255,0.3)" }}
-            >
-              Ver horarios
-            </a>
-          </motion.div>
+          <div ref={p3Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center" style={{ opacity: 0, transform: "translateY(60px)", willChange: "opacity, transform" }}>
+            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(236,72,153,0.2)", color: "#F9A8D4", border: "1px solid rgba(236,72,153,0.4)" }}>Desde $35.000 / mes</span>
+            <h2 className="text-4xl sm:text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
+              Empieza cuando<br /><span style={{ color: PILATES }}>quieras.</span>
+            </h2>
+            <p className="mt-6 mb-8 max-w-[46ch] text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
+              Lun a Vie 08:00 · 09:00 · 10:00 · 20:00 — Dom 10:00
+            </p>
+            <motion.a href={AGENDA_URL} className="inline-flex items-center gap-2 rounded-2xl px-10 py-4 text-base font-bold text-white" style={{ backgroundColor: PILATES }} whileHover={{ scale: 1.05, boxShadow: "0 0 48px rgba(236,72,153,0.6)" }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
+              Agendar Pilates →
+            </motion.a>
+          </div>
 
-          <p className="mt-6 text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
-            Lun a Vie 08:00 · 09:00 · 10:00 · 20:00 — Dom 10:00
-          </p>
+          <div ref={hintRef} className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none" style={{ opacity: 0.8 }}>
+            <span className="text-[9px] tracking-[0.25em] uppercase text-white/50">Scroll</span>
+            <div className="h-7 w-px" style={{ background: `linear-gradient(to bottom, ${PILATES}99, transparent)` }} />
+          </div>
         </div>
       </section>
 
-      {/* ── Beneficios ───────────────────────────────────────────── */}
-      <section className="px-6 py-16 md:px-10 md:py-24" style={{ backgroundColor: t.bg }}>
-        <div className="mx-auto max-w-[1100px]">
-          <div className="mb-10 text-center">
-            <p className="mb-2 text-xs font-semibold uppercase tracking-widest" style={{ color: PILATES }}>Por qué Pilates</p>
-            <h2 className="text-3xl font-bold md:text-4xl" style={{ color: t.text, fontFamily: "var(--font-display)" }}>
-              Lo que se trabaja de verdad
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {BENEFICIOS.map((b) => (
-              <div key={b.t} className="rounded-2xl p-7" style={{ backgroundColor: t.bgSoft, border: `1px solid ${t.border}` }}>
-                <h3 className="mb-2 text-lg font-bold" style={{ color: t.text }}>{b.t}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: t.textMid }}>{b.d}</p>
+      <section ref={descRef} className="relative bg-[#0A0A0A]" style={{ height: "200vh" }}>
+        <div className="sticky top-0 h-screen min-h-[100svh] flex items-center overflow-hidden bg-[#0A0A0A]" style={{ transform: "translateZ(0)" }}>
+          <div className="relative z-10 flex h-full w-full lg:w-1/2 flex-col justify-center px-6 sm:px-10 md:px-16">
+            <div ref={blk1Ref} className="absolute inset-x-6 sm:inset-x-10 md:inset-x-16" style={{ opacity: 0, willChange: "opacity, transform" }}>
+              <p className="mb-4 text-lg font-bold uppercase tracking-widest" style={{ color: PILATES }}>El método</p>
+              <h3 className="mb-6 text-4xl text-white md:text-5xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", lineHeight: "1.1" }}>Control antes<br />que carga.</h3>
+              <p className="text-base leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
+                Trabajo profundo de centro, movilidad y respiración. Sin saltos ni cargas que
+                castiguen articulaciones: exige control, no impacto. Por eso sirve igual si vuelves
+                de una lesión o si ya compites y te falta base.
+              </p>
+            </div>
+
+            <div ref={blk2Ref} className="absolute inset-x-6 sm:inset-x-10 md:inset-x-16" style={{ opacity: 0, willChange: "opacity, transform" }}>
+              <p className="mb-3 text-lg font-bold uppercase tracking-widest" style={{ color: PILATES }}>Planes</p>
+              <h3 className="mb-5 text-4xl text-white md:text-5xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", lineHeight: "1.1" }}>Tu plan sirve<br />en toda clase.</h3>
+
+              <div className="mb-4 flex items-center gap-3 rounded-xl px-4 py-3" style={{ backgroundColor: "rgba(236,72,153,0.10)", border: "1px solid rgba(236,72,153,0.30)" }}>
+                <span className="shrink-0 text-base font-bold" style={{ color: PILATES }}>✓</span>
+                <p className="text-sm leading-snug" style={{ color: "rgba(255,255,255,0.85)" }}>
+                  Desde el plan Trimestral incluye evaluación{" "}
+                  <img src={`${BP}/inbody-logo.png`} alt="InBody" className="inline-block align-[-0.12em]" style={{ height: "1.05em", width: "auto", filter: "brightness(0) invert(1)" }} /> para medir tu progreso.
+                </p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* ── Para quién ───────────────────────────────────────────── */}
-      <section className="px-6 pb-20 md:px-10">
-        <div
-          className="mx-auto max-w-[1000px] rounded-3xl p-8 md:p-12"
-          style={{ background: "linear-gradient(135deg, #500724 0%, #9D174D 100%)" }}
-        >
-          <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.55)" }}>Para quién es</p>
-          <h3 className="mt-2 text-3xl font-bold text-white md:text-4xl" style={{ fontFamily: "var(--font-display)" }}>
-            Esto es para ti si…
-          </h3>
-          <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {PARA_QUIEN.map((p) => (
-              <li
-                key={p}
-                className="flex items-start gap-3 rounded-2xl p-4 text-sm leading-snug text-white/90"
-                style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }}
-              >
-                <span className="mt-0.5 shrink-0" style={{ color: "#F9A8D4" }}>✓</span>
-                {p}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+              <p className="mb-4 text-sm leading-snug" style={{ color: "rgba(255,255,255,0.7)" }}>
+                <span className="font-bold" style={{ color: PILATES }}>Horarios:</span> Lun a Vie 08:00, 09:00 y 10:00 · Lun a Jue 20:00 · Dom 10:00
+              </p>
 
-      {/* ── Horario ──────────────────────────────────────────────── */}
-      <section id="horario" className="px-4 pb-20 md:px-6">
-        <div className="mx-auto max-w-[1100px]">
-          <div className="mb-8 text-center">
-            <p className="mb-2 text-xs font-semibold uppercase tracking-widest" style={{ color: PILATES }}>Horario</p>
-            <h2 className="text-3xl font-bold md:text-4xl" style={{ color: t.text, fontFamily: "var(--font-display)" }}>
-              Clases de Pilates
-            </h2>
-          </div>
-
-          <div className="overflow-x-auto rounded-2xl" style={{ border: `1px solid ${t.border}` }}>
-            <div className="min-w-[760px]">
-              <div className="grid" style={{ gridTemplateColumns: "72px repeat(7, 1fr)" }}>
-                <div style={{ backgroundColor: t.text }} />
-                {DAYS.map((d) => (
-                  <div key={d} className="py-3 text-center text-sm font-bold uppercase tracking-wider text-white" style={{ backgroundColor: t.text }}>
-                    {d}
-                  </div>
+              <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.4)" }}>Plan mensual · sin compromiso · sirve en todas las disciplinas</p>
+              <ul className="mb-4 space-y-2.5">
+                {[
+                  { freq: "4 clases", clases: "al mes", precio: "$44.000" },
+                  { freq: "8 clases", clases: "al mes", precio: "$72.000" },
+                  { freq: "12 clases", clases: "al mes", precio: "$92.000" },
+                ].map(plan => (
+                  <li key={plan.freq} className="flex items-baseline justify-between gap-3 border-b border-white/10 pb-2 text-base">
+                    <span className="flex items-center gap-3">
+                      <span className="shrink-0" style={{ color: PILATES }}>✓</span>
+                      <span className="font-semibold text-white">{plan.freq}</span>
+                      <span className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>{plan.clases}</span>
+                    </span>
+                    <span className="font-bold" style={{ color: PILATES }}>{plan.precio}<span className="ml-0.5 text-xs font-normal" style={{ color: "rgba(255,255,255,0.4)" }}>/mes</span></span>
+                  </li>
                 ))}
-              </div>
-              {HORARIO.map((row) => (
-                <div key={row.time} className="grid" style={{ gridTemplateColumns: "72px repeat(7, 1fr)", borderTop: `1px solid ${t.border}` }}>
-                  <div className="flex items-center justify-center py-4 text-sm font-bold" style={{ color: t.textMid, backgroundColor: t.bgSoft }}>
-                    {row.time}
+              </ul>
+
+              <div className="relative mb-4 overflow-hidden rounded-2xl px-5 py-4" style={{ background: "linear-gradient(135deg, rgba(236,72,153,0.20), rgba(236,72,153,0.05))", border: "1px solid rgba(236,72,153,0.5)", boxShadow: "0 0 44px rgba(236,72,153,0.20)" }}>
+                <span className="mb-2.5 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-white" style={{ backgroundColor: PILATES }}>★ Mejor valor</span>
+                <div className="flex items-end justify-between gap-3">
+                  <div>
+                    <p className="text-lg font-bold text-white">Plan Anual</p>
+                    <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>8 clases al mes · compromiso 12 meses</p>
                   </div>
-                  {DAYS.map((d) => (
-                    <div key={d} className="flex items-center justify-center p-1.5" style={{ borderLeft: `1px solid ${t.border}` }}>
-                      {row.dias.includes(d) ? (
-                        <span
-                          className="w-full rounded-lg px-2 py-2 text-center text-[11px] font-bold uppercase leading-tight text-white"
-                          style={{ backgroundColor: PILATES }}
-                        >
-                          Pilates
-                        </span>
-                      ) : null}
-                    </div>
-                  ))}
+                  <div className="shrink-0 text-right">
+                    <p className="text-2xl font-extrabold leading-none" style={{ color: PILATES }}>$58.000</p>
+                    <p className="mt-1 text-[11px]" style={{ color: "rgba(255,255,255,0.5)" }}>por mes</p>
+                  </div>
                 </div>
-              ))}
+                <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-white/10 pt-3 text-sm">
+                  <span className="font-semibold text-white">Equivale a $7.250 por clase</span>
+                  <span className="rounded-md px-2 py-0.5 text-xs font-bold" style={{ backgroundColor: "rgba(236,72,153,0.22)", color: PILATES }}>Ahorras $14.000 al mes</span>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-4">
+                <a href={AGENDA_URL} className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-base font-bold text-white" style={{ backgroundColor: PILATES, boxShadow: "0 0 32px rgba(236,72,153,0.35)" }}>Agendar Pilates →</a>
+                <Link href="/entrenamiento#planes" className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.6)" }}>
+                  Ver los 4 compromisos →
+                </Link>
+              </div>
             </div>
           </div>
 
-          <p className="mt-4 text-center text-xs" style={{ color: t.textMuted }}>
-            Cupos limitados · Reserva cada clase desde tu portal. Solo se muestran los bloques con Pilates.
-          </p>
-          <div className="mt-6 text-center">
-            <a
-              href={AGENDA_URL}
-              className="inline-flex items-center justify-center gap-2 rounded-2xl px-7 py-3.5 text-sm font-bold text-white"
-              style={{ backgroundColor: t.text }}
-            >
-              Reservar una clase →
-            </a>
+          <div className="hidden lg:block relative h-full flex-1 overflow-hidden">
+            <div ref={imgYRef} className="absolute inset-0" style={{ willChange: "transform" }}>
+              <Image src={`${BP}/pilates.webp`} alt="Estudio de Pilates" fill className="object-cover" style={{ objectPosition: "22% 55%" }} sizes="50vw" />
+            </div>
+            <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to right, rgba(10,10,10,1) 0%, rgba(10,10,10,0.3) 30%, transparent 60%)" }} />
           </div>
         </div>
       </section>
-
-      {/* ── Planes ───────────────────────────────────────────────── */}
-      <PlanesPricing
-        disciplina="Pilates"
-        titulo="Planes para entrenar Pilates"
-        bajada="El mismo plan te sirve para Pilates y para el resto de las disciplinas. Mientras más largo el compromiso, menos pagas por clase y más evaluaciones vienen incluidas."
-      />
-
-      {/* ── FAQ ──────────────────────────────────────────────────── */}
-      <section className="px-6 py-16 md:px-10 md:py-24" style={{ backgroundColor: t.bg }}>
-        <div className="mx-auto max-w-[760px]">
-          <div className="mb-8 text-center">
-            <p className="mb-2 text-xs font-semibold uppercase tracking-widest" style={{ color: PILATES }}>Preguntas frecuentes</p>
-            <h2 className="text-3xl font-bold md:text-4xl" style={{ color: t.text, fontFamily: "var(--font-display)" }}>
-              Antes de tu primera clase
-            </h2>
-          </div>
-          <div>
-            {FAQ.map((f, i) => (
-              <FaqItem key={f.q} q={f.q} a={f.a} open={faq === i} onClick={() => setFaq(faq === i ? null : i)} />
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <Link href="/entrenamiento" className="text-sm font-semibold" style={{ color: BRAND }}>
-              ← Ver todas las disciplinas
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
     </div>
   );
 }

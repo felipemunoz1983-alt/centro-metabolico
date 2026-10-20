@@ -30,7 +30,7 @@ const cards = [
     name: "Pilates",
     tagline: "Control · Core · Postura",
     image: `${BP}/pilates.webp`,
-    focusPoint: "50% 50%",
+    focusPoint: "68% 38%",
     href: "/entrenamiento/pilates",
     schedule: [
       { d: "Lun a Vie", h: "08:00, 09:00, 10:00" },
