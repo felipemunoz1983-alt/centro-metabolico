@@ -5,10 +5,13 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { PlanesPricing } from "@/components/sections/PlanesPricing";
+import { PLANES_FAQ } from "@/lib/planes";
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const AGENDA_URL = "https://centro-metabolico-agendamiento.vercel.app/reservar?cat=Entrenamiento";
 const BRAND = "#00AEEF";
+const PILATES = "#EC4899";
 
 const t = {
   bg:       "#ffffff",
@@ -21,6 +24,30 @@ const t = {
 };
 
 const cards = [
+  {
+    id: "pilates",
+    badge: "PILATES",
+    name: "Pilates",
+    tagline: "Control · Core · Postura",
+    image: `${BP}/pilates.webp`,
+    focusPoint: "50% 50%",
+    href: "/entrenamiento/pilates",
+    schedule: [
+      { d: "Lun a Vie", h: "08:00, 09:00, 10:00" },
+      { d: "Lun a Jue", h: "20:00" },
+      { d: "Dom", h: "10:00" },
+    ],
+    gradient: "linear-gradient(135deg, #831843 0%, #EC4899 100%)",
+    color: PILATES,
+    sessions: "4 clases / mes",
+    price: "Desde $35.000",
+    bullets: [
+      "Grupos reducidos con corrección postural en cada ejercicio",
+      "Trabajo profundo de core, movilidad y control respiratorio",
+      "Bajo impacto: ideal si vuelves de una lesión o partes de cero",
+      "Complementa tu entrenamiento de fuerza sin sobrecargarte",
+    ],
+  },
   {
     id: "personalizado",
     badge: "PERSONALIZADO",
@@ -50,16 +77,14 @@ const cards = [
     image: `${BP}/funcional.webp`,
     href: "/entrenamiento/funcional",
     schedule: [
-      { d: "Lun", h: "18:00, 19:00" },
-      { d: "Mar", h: "18:00" },
-      { d: "Mié", h: "18:00, 19:00" },
-      { d: "Jue", h: "18:00" },
-      { d: "Sáb", h: "11:00" },
+      { d: "Lun a Jue", h: "18:00" },
+      { d: "Lun y Mié", h: "19:00" },
+      { d: "Sáb", h: "09:00" },
     ],
     gradient: "linear-gradient(135deg, #0369A1 0%, #0EA5E9 100%)",
     color: BRAND,
     sessions: "4 clases / mes",
-    price: "Desde $50.000",
+    price: "Desde $35.000",
     bullets: [
       "Luces de acción y reacción para mejorar tu respuesta neuromuscular",
       "Encoder deportivo para medir tu fuerza en tiempo real (1RM)",
@@ -76,17 +101,13 @@ const cards = [
     focusPoint: "50% 50%",
     href: "/entrenamiento/fuerza",
     schedule: [
-      { d: "Lun", h: "08:00, 18:00, 19:00" },
-      { d: "Mar", h: "08:00, 18:00, 19:00" },
-      { d: "Mié", h: "08:00, 12:30, 18:00, 19:00" },
-      { d: "Jue", h: "18:00, 19:00" },
-      { d: "Vie", h: "08:00" },
-      { d: "Dom", h: "10:00, 11:00" },
+      { d: "Lun a Jue", h: "18:00, 19:00" },
+      { d: "Sáb", h: "10:00" },
     ],
     gradient: "linear-gradient(135deg, #1C1917 0%, #44403C 100%)",
     color: "#F97316",
     sessions: "4 clases / mes",
-    price: "Desde $50.000",
+    price: "Desde $35.000",
     bullets: [
       "Máximo 7 personas por clase para atención personalizada",
       "Medición en tiempo real de tu nivel de fuerza y fatiga",
@@ -103,13 +124,12 @@ const cards = [
     focusPoint: "50% 50%",
     href: "/entrenamiento/hibrido",
     schedule: [
-      { d: "Mar", h: "19:00" },
-      { d: "Jue", h: "19:00" },
+      { d: "Mar y Jue", h: "19:00" },
     ],
     gradient: "linear-gradient(135deg, #2E1065 0%, #7C3AED 100%)",
     color: "#7C3AED",
     sessions: "4 clases / mes",
-    price: "Desde $50.000",
+    price: "Desde $35.000",
     bullets: [
       "Combina fuerza y resistencia en una sola sesión, estilo Hyrox",
       "Corres + estaciones funcionales: trineo, remo, sandbag, wall balls y más",
@@ -195,7 +215,7 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
 
         {/* Créditos (el precio real vive en las tarjetas de créditos) */}
         <p className="mb-6 text-sm font-semibold uppercase tracking-widest" style={{ color: card.color, textShadow: "0 1px 10px rgba(0,0,0,0.65)" }}>
-          {card.id === "personalizado" ? card.price : "Usa tus créditos"}
+          {card.id === "personalizado" ? card.price : "Incluido en tu plan"}
         </p>
 
         {/* Expand */}
@@ -257,17 +277,18 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
 /* ── Parrilla semanal ───────────────────────────────────────────── */
 const DAYS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"] as const;
 const PROG: Record<string, string> = {
+  Pilates: PILATES,
   Funcional: "#00AEEF",
   Fuerza: "#F97316",
   "Híbrido": "#7C3AED",
 };
 const ROWS: { time: string; cells: Record<string, string[]> }[] = [
-  { time: "08:00", cells: { Lun: ["Fuerza"], Mar: ["Fuerza"], Mié: ["Fuerza"], Vie: ["Fuerza"] } },
-  { time: "10:00", cells: { Dom: ["Fuerza"] } },
-  { time: "11:00", cells: { Sáb: ["Funcional"], Dom: ["Fuerza"] } },
-  { time: "12:30", cells: { Mié: ["Fuerza"] } },
-  { time: "18:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Funcional", "Fuerza"], Mié: ["Funcional", "Fuerza"], Jue: ["Funcional", "Fuerza"] } },
-  { time: "19:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Fuerza", "Híbrido"], Mié: ["Funcional", "Fuerza"], Jue: ["Fuerza", "Híbrido"] } },
+  { time: "08:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"], Vie: ["Pilates"] } },
+  { time: "09:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"], Vie: ["Pilates"], "Sáb": ["Funcional"] } },
+  { time: "10:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"], Vie: ["Pilates"], "Sáb": ["Fuerza"], Dom: ["Pilates"] } },
+  { time: "18:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Funcional", "Fuerza"], "Mié": ["Funcional", "Fuerza"], Jue: ["Funcional", "Fuerza"] } },
+  { time: "19:00", cells: { Lun: ["Funcional", "Fuerza"], Mar: ["Fuerza", "Híbrido"], "Mié": ["Funcional", "Fuerza"], Jue: ["Fuerza", "Híbrido"] } },
+  { time: "20:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"] } },
 ];
 
 function cellBg(progs: string[]) {
@@ -334,41 +355,41 @@ function WeeklySchedule() {
   );
 }
 
-/* ── Sistema de créditos (nuevo modelo) ─────────────────────────── */
-const CREDIT_PLANS = [
-  { n: 4, precio: "$50.000", hint: "Para empezar", featured: false },
-  { n: 8, precio: "$70.000", hint: "El más elegido", featured: true },
-  { n: 12, precio: "$80.000", hint: "Máximo ahorro", featured: false },
-];
-
-const CREDIT_FAQ = [
-  { q: "¿Qué es un crédito?", a: "Un crédito equivale a una clase." },
-  { q: "¿Puedo usar mis créditos en distintas clases?", a: "Sí. Puedes distribuirlos entre las clases disponibles según tus preferencias." },
-  { q: "¿Hay un máximo de clases por semana?", a: "No. Usa tus créditos cuando quieras, incluso varias clases en la misma semana. Tú defines tu ritmo, sin importar cuántos créditos compres." },
-  { q: "¿Tengo que elegir todas mis clases al comprar?", a: "No. Primero compras tus créditos y luego reservas cada entrenamiento cuando quieras utilizarlo." },
-  { q: "¿Puedo cambiar de tipo de entrenamiento?", a: "Sí. Puedes combinar las diferentes clases disponibles." },
-  { q: "¿Cambian los horarios?", a: "No. Se mantienen los horarios disponibles del centro." },
-  { q: "¿Cambian los valores?", a: "No. Se mantienen los valores definidos para cada cantidad de clases/créditos." },
-];
-
+/* ── Planes por compromiso ──────────────────────────────────────── */
 const DISCIPLINAS: { name: string; color: string }[] = [
+  { name: "Pilates", color: PILATES },
   { name: "Fuerza", color: "#F97316" },
   { name: "Funcional", color: "#00AEEF" },
   { name: "Híbrido", color: "#7C3AED" },
 ];
 
+const PILARES = [
+  {
+    t: "Congela cuando lo necesites",
+    d: "Lesión, viaje o un mes imposible: congelas y la fecha de término se corre. No pierdes lo pagado.",
+  },
+  {
+    t: "Arrastra lo que no usaste",
+    d: "Desde el plan Semestral las clases que te sobran pasan al mes siguiente. Hasta 4 en el Anual.",
+  },
+  {
+    t: "Tus mediciones, incluidas",
+    d: "InBody y evaluación metabólica vienen dentro del plan. Entrenas con datos, no con sensaciones.",
+  },
+];
+
 const COMO_FUNCIONA = [
-  { n: "1", t: "Compra tus créditos", d: "Elige cuántos créditos necesitas. Ej: 4 créditos = 4 clases." },
-  { n: "2", t: "Elige tu clase", d: "Fuerza, Funcional, Híbrido u otra disponible." },
-  { n: "3", t: "Reserva", d: "Selecciona el día y horario disponible que más te acomode." },
-  { n: "4", t: "Entrena", d: "Cada clase que realizas descuenta 1 crédito." },
+  { n: "1", t: "Elige tu plan", d: "Cuántas clases al mes (4, 8, 12 o 16) y por cuánto tiempo te comprometes." },
+  { n: "2", t: "Reserva online", d: "Cada clase la reservas desde tu portal, con cupo asegurado." },
+  { n: "3", t: "Entrena donde quieras", d: "Pilates, Fuerza, Funcional o Híbrido: tu plan sirve para todas." },
+  { n: "4", t: "Mide tu progreso", d: "Desde el plan Trimestral tus evaluaciones InBody vienen incluidas." },
 ];
 
 const EJEMPLO = [
-  { dia: "Lunes", clase: "Fuerza", color: "#F97316" },
-  { dia: "Martes", clase: "Híbrido", color: "#7C3AED" },
+  { dia: "Lunes", clase: "Pilates", color: PILATES },
+  { dia: "Martes", clase: "Fuerza", color: "#F97316" },
   { dia: "Jueves", clase: "Funcional", color: "#00AEEF" },
-  { dia: "Sábado", clase: "Fuerza", color: "#F97316" },
+  { dia: "Sábado", clase: "Híbrido", color: "#7C3AED" },
 ];
 
 function FaqItem({ q, a, open, onClick }: { q: string; a: string; open: boolean; onClick: () => void }) {
@@ -392,150 +413,36 @@ function FaqItem({ q, a, open, onClick }: { q: string; a: string; open: boolean;
   );
 }
 
-function CreditsSection() {
+function PlanesSection() {
   const [faq, setFaq] = useState<number | null>(0);
   return (
     <>
       {/* ── Concepto ─────────────────────────────────────────────── */}
-      <section id="creditos" className="px-6 py-16 md:px-10 md:py-24" style={{ backgroundColor: t.bg }}>
-        <div className="mx-auto max-w-[1000px] text-center">
-          <span
-            className="mb-5 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest"
-            style={{ backgroundColor: "rgba(0,174,239,0.1)", color: BRAND, border: `1px solid rgba(0,174,239,0.3)` }}
-          >
-            Nuevo · Sistema de créditos
-          </span>
-          <h2 className="text-4xl font-bold tracking-tight md:text-5xl" style={{ color: t.text, fontFamily: "var(--font-display)" }}>
-            Entrena como quieras
-          </h2>
-          <p className="mx-auto mt-4 max-w-[52ch] text-base leading-relaxed md:text-lg" style={{ color: t.textMid }}>
-            Ahora entrenar es más simple y flexible. Compra tus créditos y úsalos en la
-            clase que prefieras, <strong>sin límite de clases por semana</strong>.
-            Reserva tu horario y elige cómo entrenar.
-          </p>
-
-          {/* 1 crédito = 1 clase */}
-          <div className="mx-auto mt-10 flex max-w-[560px] flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-            <div className="flex-1 rounded-2xl px-6 py-5" style={{ backgroundColor: t.bgSoft, border: `1px solid ${t.border}` }}>
-              <p className="text-3xl font-black md:text-4xl" style={{ color: t.text }}>1 crédito</p>
-            </div>
-            <span className="text-3xl font-black" style={{ color: BRAND }}>=</span>
-            <div className="flex-1 rounded-2xl px-6 py-5" style={{ background: "linear-gradient(135deg, #00AEEF 0%, #0090C5 100%)" }}>
-              <p className="text-3xl font-black text-white md:text-4xl">1 clase</p>
-            </div>
-          </div>
-
-          {/* Tú eliges cuál + disciplinas */}
-          <p className="mt-8 text-sm font-bold uppercase tracking-widest" style={{ color: t.textMuted }}>
-            Tú eliges cuál
-          </p>
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5">
-            {DISCIPLINAS.map((d) => (
-              <span
-                key={d.name}
-                className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold"
-                style={{ backgroundColor: t.bgSoft, border: `1px solid ${t.border}`, color: t.text }}
-              >
-                <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: d.color }} />
-                {d.name}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Tarjetas de créditos ─────────────────────────────────── */}
-      <section className="px-6 py-16 md:px-10 md:py-20" style={{ backgroundColor: t.bgSoft, borderTop: `1px solid ${t.border}`, borderBottom: `1px solid ${t.border}` }}>
+      <section id="planes-concepto" className="px-6 py-16 md:px-10 md:py-24" style={{ backgroundColor: t.bg }}>
         <div className="mx-auto max-w-[1100px]">
           <div className="mb-10 text-center">
-            <h3 className="text-3xl font-bold md:text-4xl" style={{ color: t.text, fontFamily: "var(--font-display)" }}>Elige tus créditos</h3>
-            <p className="mt-2 text-base" style={{ color: t.textMid }}>Mismos valores de siempre. Ahora los usas en la clase que quieras.</p>
+            <p className="mb-2 text-xs font-semibold uppercase tracking-widest" style={{ color: BRAND }}>El modelo</p>
+            <h2 className="text-3xl font-bold md:text-4xl" style={{ color: t.text, fontFamily: "var(--font-display)" }}>
+              Un plan. Todas las disciplinas.
+            </h2>
+            <p className="mx-auto mt-3 max-w-[54ch] text-base leading-relaxed" style={{ color: t.textMid }}>
+              No compras clases sueltas: eliges cuántas quieres al mes y por cuánto tiempo. Mientras
+              más largo el compromiso, menos pagas por clase y más evaluaciones vienen incluidas.
+            </p>
           </div>
-
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {CREDIT_PLANS.map((p) => (
-              <div
-                key={p.n}
-                className="relative flex flex-col rounded-3xl p-7 text-center"
-                style={
-                  p.featured
-                    ? { backgroundColor: t.text, boxShadow: "0 20px 50px rgba(0,0,0,0.18)" }
-                    : { backgroundColor: t.bg, border: `1px solid ${t.border}` }
-                }
-              >
-                {p.featured && (
-                  <span
-                    className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white"
-                    style={{ backgroundColor: BRAND }}
-                  >
-                    {p.hint}
-                  </span>
-                )}
-                <p className="text-xs font-bold uppercase tracking-widest" style={{ color: p.featured ? "rgba(255,255,255,0.55)" : t.textMuted }}>
-                  {!p.featured && p.hint}
-                  {p.featured && " "}
-                </p>
-                <p className="mt-1 text-6xl font-black leading-none" style={{ color: p.featured ? "#fff" : t.text, fontFamily: "var(--font-display)" }}>
-                  {p.n}
-                </p>
-                <p className="mt-1 text-sm font-bold uppercase tracking-widest" style={{ color: BRAND }}>créditos</p>
-                <p className="mt-3 text-lg font-semibold" style={{ color: p.featured ? "rgba(255,255,255,0.9)" : t.text }}>
-                  = {p.n} clases
-                </p>
-                <p className="mt-4 text-3xl font-extrabold" style={{ color: p.featured ? "#fff" : t.text }}>{p.precio}</p>
-                <p className="mt-4 text-sm" style={{ color: p.featured ? "rgba(255,255,255,0.7)" : t.textMid }}>
-                  Úsalos en las clases que prefieras.
-                </p>
-                <a
-                  href={`${AGENDA_URL}&plan=${p.n}`}
-                  className="mt-6 inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-sm font-bold transition-all"
-                  style={
-                    p.featured
-                      ? { backgroundColor: BRAND, color: "#fff" }
-                      : { backgroundColor: t.text, color: "#fff" }
-                  }
-                >
-                  Comprar {p.n} créditos →
-                </a>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {PILARES.map((p) => (
+              <div key={p.t} className="rounded-2xl p-6" style={{ backgroundColor: t.bgSoft, border: `1px solid ${t.border}` }}>
+                <h3 className="mb-2 text-lg font-bold" style={{ color: t.text }}>{p.t}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: t.textMid }}>{p.d}</p>
               </div>
             ))}
           </div>
-
-          {/* Trimestral */}
-          <div
-            className="mt-4 flex flex-col items-center gap-4 rounded-3xl p-6 text-center sm:flex-row sm:justify-between sm:text-left"
-            style={{ backgroundColor: t.bg, border: `1px solid ${BRAND}55` }}
-          >
-            <div>
-              <p className="text-lg font-bold" style={{ color: t.text }}>
-                Plan Trimestral · <span style={{ color: BRAND }}>36 créditos</span>
-              </p>
-              <p className="text-sm" style={{ color: t.textMid }}>36 clases en 3 meses · equivale a $63.333/mes</p>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="text-right">
-                <p className="text-2xl font-extrabold leading-none" style={{ color: BRAND }}>$190.000</p>
-                <span className="text-xs font-bold" style={{ color: "#16A34A" }}>Ahorras $50.000</span>
-              </div>
-              <a href={`${AGENDA_URL}&plan=36`} className="rounded-2xl px-5 py-3 text-sm font-bold text-white" style={{ backgroundColor: t.text }}>
-                Comprar →
-              </a>
-            </div>
-          </div>
-
-          <div className="mt-6 flex flex-col items-center gap-2.5">
-            <div
-              className="inline-flex items-center gap-3 rounded-full px-6 py-3"
-              style={{ backgroundColor: t.bg, border: `1px solid ${t.border}`, boxShadow: "0 4px 20px rgba(0,0,0,0.05)" }}
-            >
-              <span className="text-base font-semibold sm:text-lg" style={{ color: t.text }}>Cada compra incluye evaluación</span>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${BP}/inbody-logo.png`} alt="InBody" style={{ height: "2em", width: "auto" }} />
-            </div>
-            <p className="text-sm" style={{ color: t.textMuted }}>Elige entre las clases y horarios disponibles.</p>
-          </div>
         </div>
       </section>
+
+      {/* ── Tabla de planes ──────────────────────────────────────── */}
+      <PlanesPricing />
 
       {/* ── ¿Cómo funciona? ──────────────────────────────────────── */}
       <section className="px-6 py-16 md:px-10 md:py-24" style={{ backgroundColor: t.bg }}>
@@ -570,9 +477,9 @@ function CreditsSection() {
           <div className="text-center">
             <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.5)" }}>Ejemplo real</p>
             <h3 className="mt-2 text-3xl font-bold text-white md:text-4xl" style={{ fontFamily: "var(--font-display)" }}>
-              Tienes <span style={{ color: BRAND }}>4 créditos</span>
+              Plan de <span style={{ color: BRAND }}>8 clases al mes</span>
             </h3>
-            <p className="mt-2 text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>Los combinas como quieras:</p>
+            <p className="mt-2 text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>Una semana tipo, repartida como tú quieras:</p>
           </div>
           <div className="mx-auto mt-8 grid max-w-[760px] grid-cols-2 gap-3 sm:grid-cols-4">
             {EJEMPLO.map((e, i) => (
@@ -580,13 +487,13 @@ function CreditsSection() {
                 <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: "rgba(255,255,255,0.5)" }}>{e.dia}</p>
                 <p className="mt-1.5 text-lg font-bold text-white">{e.clase}</p>
                 <span className="mt-3 inline-block rounded-full px-3 py-1 text-xs font-bold" style={{ backgroundColor: `${e.color}22`, color: e.color }}>
-                  −1 crédito
+                  1 clase
                 </span>
               </div>
             ))}
           </div>
           <p className="mt-8 text-center text-lg font-bold text-white">
-            4 créditos = 4 clases · <span style={{ color: BRAND }}>tú decides dónde</span>
+            2 clases por semana · <span style={{ color: BRAND }}>tú decides en cuál disciplina</span>
           </p>
         </div>
       </section>
@@ -596,10 +503,10 @@ function CreditsSection() {
         <div className="mx-auto max-w-[760px]">
           <div className="mb-8 text-center">
             <p className="mb-2 text-xs font-semibold uppercase tracking-widest" style={{ color: BRAND }}>Preguntas frecuentes</p>
-            <h3 className="text-3xl font-bold md:text-4xl" style={{ color: t.text, fontFamily: "var(--font-display)" }}>Sobre los créditos</h3>
+            <h3 className="text-3xl font-bold md:text-4xl" style={{ color: t.text, fontFamily: "var(--font-display)" }}>Sobre los planes</h3>
           </div>
           <div>
-            {CREDIT_FAQ.map((f, i) => (
+            {PLANES_FAQ.map((f, i) => (
               <FaqItem key={f.q} q={f.q} a={f.a} open={faq === i} onClick={() => setFaq(faq === i ? null : i)} />
             ))}
           </div>
@@ -623,28 +530,30 @@ export function EntrenamientoClient() {
           className="mb-4 text-5xl font-bold tracking-tight md:text-6xl"
           style={{ color: t.text, fontFamily: "var(--font-display)" }}
         >
-          Tus créditos. Tus clases.<br />
+          Tu plan. Tus clases.<br />
           <span style={{ color: BRAND }}>Tu elección.</span>
         </h1>
         <p className="mx-auto max-w-[52ch] text-base leading-relaxed" style={{ color: t.textMid }}>
-          1 crédito = 1 clase. Compra tus créditos y úsalos en el entrenamiento que
-          prefieras: Fuerza, Funcional, Híbrido y más.
+          Eliges cuántas clases quieres al mes y las usas donde prefieras:
+          Pilates, Fuerza, Funcional o Híbrido.
         </p>
       </section>
 
-      {/* ── Sistema de créditos ─────────────────────────────────────── */}
-      <CreditsSection />
+      {/* ── Planes ─────────────────────────────────────── */}
+      <PlanesSection />
 
       {/* ── Grid de tarjetas ────────────────────────────────────────── */}
       <section className="px-4 py-16 md:px-6" style={{ backgroundColor: t.bgSoft, borderTop: `1px solid ${t.border}` }}>
         <div className="mx-auto mb-10 max-w-[1000px] text-center">
           <p className="mb-2 text-xs font-semibold uppercase tracking-widest" style={{ color: BRAND }}>Las clases</p>
-          <h3 className="text-3xl font-bold md:text-4xl" style={{ color: t.text, fontFamily: "var(--font-display)" }}>Elige dónde usar tus créditos</h3>
-          <p className="mx-auto mt-2 max-w-[46ch] text-base" style={{ color: t.textMid }}>Todas nuestras disciplinas. Usa tus créditos en cualquiera de ellas.</p>
+          <h3 className="text-3xl font-bold md:text-4xl" style={{ color: t.text, fontFamily: "var(--font-display)" }}>Elige dónde entrenar</h3>
+          <p className="mx-auto mt-2 max-w-[46ch] text-base" style={{ color: t.textMid }}>Todas nuestras disciplinas. Tu plan sirve en cualquiera de ellas.</p>
         </div>
-        <div className="mx-auto max-w-[1240px] grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto flex max-w-[1240px] flex-wrap justify-center gap-4">
           {cards.map((card, i) => (
-            <TrainingCard key={card.id} card={card} index={i} />
+            <div key={card.id} className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
+              <TrainingCard card={card} index={i} />
+            </div>
           ))}
         </div>
       </section>

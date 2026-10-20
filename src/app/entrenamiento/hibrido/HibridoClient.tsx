@@ -158,14 +158,14 @@ export function HibridoClient() {
                 </p>
               </div>
               <p className="mb-4 text-sm leading-snug" style={{ color: "rgba(255,255,255,0.7)" }}>
-                <span className="font-bold" style={{ color: VIO }}>Horarios:</span> Mar 19:00 · Jue 19:00
+                <span className="font-bold" style={{ color: VIO }}>Horarios:</span> Mar y Jue 19:00
               </p>
-              <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.4)" }}>Créditos · 1 = 1 clase · sin límite semanal · úsalos cuando quieras</p>
+              <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.4)" }}>Plan mensual · sin compromiso · sirve en todas las disciplinas</p>
               <ul className="mb-4 space-y-2.5">
                 {[
-                  { freq: "4 créditos", clases: "= 4 clases", precio: "$50.000" },
-                  { freq: "8 créditos", clases: "= 8 clases", precio: "$70.000" },
-                  { freq: "12 créditos", clases: "= 12 clases", precio: "$80.000" },
+                  { freq: "4 clases", clases: "al mes", precio: "$44.000" },
+                  { freq: "8 clases", clases: "al mes", precio: "$72.000" },
+                  { freq: "12 clases", clases: "al mes", precio: "$92.000" },
                 ].map(plan => (
                   <li key={plan.clases} className="flex items-baseline justify-between gap-3 border-b border-white/10 pb-2 text-base">
                     <span className="flex items-center gap-3">
@@ -182,17 +182,17 @@ export function HibridoClient() {
                 <span className="mb-2.5 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-white" style={{ backgroundColor: VIO }}>★ Mejor valor</span>
                 <div className="flex items-end justify-between gap-3">
                   <div>
-                    <p className="text-lg font-bold text-white">Plan Trimestral</p>
-                    <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>36 créditos · 36 clases · 3 meses</p>
+                    <p className="text-lg font-bold text-white">Plan Anual</p>
+                    <p className="text-sm" style={{ color: "rgba(255,255,255,0.65)" }}>8 clases al mes · compromiso 12 meses</p>
                   </div>
                   <div className="shrink-0 text-right">
-                    <p className="text-2xl font-extrabold leading-none" style={{ color: VIO }}>$190.000</p>
-                    <p className="mt-1 text-[11px]" style={{ color: "rgba(255,255,255,0.5)" }}>pago único / 3 meses</p>
+                    <p className="text-2xl font-extrabold leading-none" style={{ color: VIO }}>$58.000</p>
+                    <p className="mt-1 text-[11px]" style={{ color: "rgba(255,255,255,0.5)" }}>por mes</p>
                   </div>
                 </div>
                 <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-white/10 pt-3 text-sm">
-                  <span className="font-semibold text-white">Equivale a $63.333/mes</span>
-                  <span className="rounded-md px-2 py-0.5 text-xs font-bold" style={{ backgroundColor: "rgba(124,58,237,0.22)", color: VIO }}>Ahorras $50.000</span>
+                  <span className="font-semibold text-white">Equivale a $7.250 por clase</span>
+                  <span className="rounded-md px-2 py-0.5 text-xs font-bold" style={{ backgroundColor: "rgba(124,58,237,0.22)", color: VIO }}>Ahorras $14.000 al mes</span>
                 </div>
               </div>
 
