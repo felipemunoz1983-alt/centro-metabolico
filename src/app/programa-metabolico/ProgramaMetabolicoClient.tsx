@@ -9,7 +9,13 @@ import { Footer } from "@/components/sections/Footer";
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const BRAND = "#00AEEF";
 const VIOLET = "#A78BFA";
-const AGENDA_URL = "https://centro-metabolico-agendamiento.vercel.app/reservar?servicio=Programa%20Metab%C3%B3lico";
+// El wizard empareja ?servicio= por nombre (exacto -> empieza-con -> contiene).
+// "Programa Metabolico" a secas cae siempre en el primero por orden alfabetico
+// (el Basico), asi que cada plan lleva su nombre completo. El CTA generico no
+// preselecciona: deja elegir en la lista.
+const AGENDA_URL = "https://centro-metabolico-agendamiento.vercel.app/reservar";
+const AGENDA_BASICO = `${AGENDA_URL}?servicio=Programa%20Metab%C3%B3lico%20B%C3%A1sico`;
+const AGENDA_PRO = `${AGENDA_URL}?servicio=Programa%20Metab%C3%B3lico%20Pro`;
 
 /* ── Icons ──────────────────────────────────────────────────── */
 function CheckIcon({ color }: { color: string }) {
@@ -426,7 +432,7 @@ export function ProgramaMetabolicoClient() {
                   <span className="mb-1 text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>CLP</span>
                 </div>
                 <motion.a
-                  href={AGENDA_URL}
+                  href={AGENDA_BASICO}
                   className="mt-5 block w-full rounded-2xl py-3.5 text-center text-sm font-semibold text-white"
                   style={{ backgroundColor: BRAND }}
                   whileHover={{ scale: 1.01, boxShadow: "0 0 28px rgba(0,174,239,0.4)" }}
@@ -527,7 +533,7 @@ export function ProgramaMetabolicoClient() {
                   <span className="mb-1 text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>CLP</span>
                 </div>
                 <motion.a
-                  href={AGENDA_URL}
+                  href={AGENDA_PRO}
                   className="mt-5 block w-full rounded-2xl py-3.5 text-center text-sm font-semibold text-white"
                   style={{ backgroundColor: VIOLET }}
                   whileHover={{ scale: 1.01, boxShadow: "0 0 28px rgba(167,139,250,0.4)" }}
