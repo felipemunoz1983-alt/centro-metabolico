@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -46,14 +46,6 @@ function Tag({ children, color = t.brand, bg = t.brandBg }: { children: React.Re
   );
 }
 
-const decisions = [
-  { text: "Quiero revisar mi salud general", type: "medica" },
-  { text: "Tengo exámenes que no entiendo", type: "medica" },
-  { text: "Tengo +30 años y quiero prevenir enfermedades", type: "medica" },
-  { text: "Quiero mejorar mi composición corporal", type: "nutricional" },
-  { text: "Busco un plan de alimentación personalizado", type: "nutricional" },
-  { text: "Quiero optimizar mi rendimiento deportivo", type: "nutricional" },
-];
 
 export function AsesoriaClient() {
   const [selected, setSelected] = useState<string | null>(null);
@@ -93,65 +85,34 @@ export function AsesoriaClient() {
           </div>
 
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl" style={{ color: t.text, lineHeight: 1.1 }}>
-            ¿Cuál consulta es{" "}
-            <span style={{ color: t.brand }}>la adecuada para ti?</span>
+            {selected === "medica" ? (
+              <>Consulta <span style={{ color: t.brand }}>Médica Integral</span></>
+            ) : selected === "nutricional" ? (
+              <>Consulta <span style={{ color: t.brand }}>Nutricional</span></>
+            ) : (
+              <>¿Cuál consulta es{" "}<span style={{ color: t.brand }}>la adecuada para ti?</span></>
+            )}
           </h1>
           <p className="text-lg leading-relaxed" style={{ color: t.textMid }}>
-            Dos especialidades, un mismo objetivo: transformar tu salud con ciencia y datos reales.
+            {selected === "medica"
+              ? "Evaluación médica con enfoque en salud metabólica. Agenda directamente abajo."
+              : selected === "nutricional"
+                ? "Evaluación y plan de alimentación personalizado. Elige con quién atenderte."
+                : "Dos especialidades, un mismo objetivo: transformar tu salud con ciencia y datos reales."}
           </p>
+
+          {/* Sin las fichas de autodiagnóstico, quien llega filtrado no tiene
+              como ver la otra especialidad sin volver al menú. */}
+          {selected && (
+            <a
+              href={selected === "medica" ? "#nutricional" : "#medica"}
+              className="mt-5 inline-flex min-h-[44px] items-center text-sm font-semibold underline underline-offset-4"
+              style={{ color: t.brand }}
+            >
+              Ver también Consulta {selected === "medica" ? "Nutricional" : "Médica"} →
+            </a>
+          )}
         </motion.div>
-      </section>
-
-      {/* ── Decision helper ────────────────────────────────────────── */}
-      <section className="px-6 py-10 md:px-8" style={{ backgroundColor: t.bg, borderBottom: `1px solid ${t.border}` }}>
-        <div className="mx-auto max-w-[860px]">
-          <p className="mb-5 text-center text-xs font-semibold uppercase tracking-widest" style={{ color: t.textMid }}>
-            Selecciona lo que mejor te describe
-          </p>
-          <div className="flex flex-wrap justify-center gap-2.5" role="group" aria-label="Filtro de recomendación">
-            {decisions.map((d) => {
-              const active = selected === d.type;
-              return (
-                <button
-                  key={d.text}
-                  onClick={() => setSelected(s => s === d.type ? null : d.type)}
-                  className="rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 cursor-pointer"
-                  style={{
-                    backgroundColor: active ? t.brand : "#F8FAFC",
-                    color: active ? "#fff" : t.text,
-                    border: `1.5px solid ${active ? t.brand : "#94A3B8"}`,
-                    boxShadow: active ? `0 0 0 3px ${t.brand}20` : "none",
-                  }}
-                  aria-pressed={active}
-                >
-                  {d.text}
-                </button>
-              );
-            })}
-          </div>
-
-          <AnimatePresence>
-            {selected && (
-              <motion.div
-                key={selected}
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                className="mt-5 flex items-center justify-center gap-2"
-                role="alert"
-              >
-                <div className="flex items-center gap-2 rounded-xl px-4 py-2.5" style={{ backgroundColor: t.brandBg, border: `1px solid ${t.brand}30` }}>
-                  <CheckIcon />
-                  <span className="text-sm font-semibold" style={{ color: t.brand }}>
-                    {selected === "medica"
-                      ? "Te recomendamos la Consulta Médica Integral con la Dra. Bárbara Plass."
-                      : "Te recomendamos la Consulta Nutricional con Valeska o Felipe."}
-                  </span>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
       </section>
 
       {/* ── Cards ──────────────────────────────────────────────────── */}
