@@ -6,7 +6,9 @@ import Image from "next/image";
 import { StickyAgendar } from "@/components/ui/StickyAgendar";
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const AGENDA_URL = "https://centro-metabolico-agendamiento.vercel.app/reservar?cat=Entrenamiento";
+import { waPlan, CLASES_URL } from "@/lib/contacto";
+
+const AGENDA_URL = waPlan("Fuerza IRONFIT");
 const BRAND = "#00AEEF";
 const ORANGE = "#F97316";
 
@@ -199,6 +201,12 @@ export function FuerzaClient() {
                 <span className="font-bold" style={{ color: ORANGE }}>+ $20.000:</span> 3 sesiones de Recovery de 30 minutos.
               </div>
               <a href={AGENDA_URL} className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-base font-bold text-white" style={{ backgroundColor: ORANGE, boxShadow: "0 0 32px rgba(249,115,22,0.35)" }}>Agendar Fuerza IRONFIT →</a>
+              <p className="mt-4 text-sm" style={{ color: "rgba(255,255,255,0.55)" }}>
+                ¿Ya tienes plan?{" "}
+                <a href={CLASES_URL} target="_blank" rel="noopener noreferrer" className="font-semibold underline underline-offset-2" style={{ color: ORANGE }}>
+                  Reserva tu clase →
+                </a>
+              </p>
             </div>
           </div>
           <div className="hidden lg:block relative h-full flex-1 overflow-hidden">

@@ -9,7 +9,7 @@ import { PlanesPricing } from "@/components/sections/PlanesPricing";
 import { PLANES_FAQ } from "@/lib/planes";
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const AGENDA_URL = "https://centro-metabolico-agendamiento.vercel.app/reservar?cat=Entrenamiento";
+import { waPlan } from "@/lib/contacto";
 const BRAND = "#00AEEF";
 const PILATES = "#EC4899";
 
@@ -26,6 +26,7 @@ const t = {
 const cards = [
   {
     id: "pilates",
+    waLabel: "Pilates Reformer",
     badge: "PILATES REFORMER",
     name: "Pilates",
     tagline: "Reformer · Control · Postura",
@@ -50,6 +51,7 @@ const cards = [
   },
   {
     id: "personalizado",
+    waLabel: "Entrenamiento Personalizado",
     badge: "PERSONALIZADO",
     name: "Entrenamiento\nPersonalizado",
     tagline: "1 a 1 · A tu medida · Resultados",
@@ -71,6 +73,7 @@ const cards = [
   },
   {
     id: "funcional",
+    waLabel: "Entrenamiento Funcional",
     badge: "FUNCIONAL DINAFIT",
     name: "Entrenamiento\nFuncional",
     tagline: "Velocidad · Coordinación · Agilidad",
@@ -94,6 +97,7 @@ const cards = [
   },
   {
     id: "fuerza",
+    waLabel: "Fuerza IRONFIT",
     badge: "FUERZA IRONFIT",
     name: "Entrenamiento\nde Fuerza",
     tagline: "Potencia · Músculo · Rendimiento",
@@ -118,6 +122,7 @@ const cards = [
   },
   {
     id: "hibrido",
+    waLabel: "Entrenamiento Híbrido",
     badge: "HÍBRIDO",
     name: "Entrenamiento\nHíbrido",
     tagline: "Fuerza + Resistencia · Estilo Hyrox",
@@ -261,7 +266,9 @@ function TrainingCard({ card, index }: { card: Card; index: number }) {
                 ))}
               </ul>
               <a
-                href={AGENDA_URL}
+                href={waPlan(card.waLabel)}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-5 inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold text-white"
                 style={{ backgroundColor: card.color }}
               >

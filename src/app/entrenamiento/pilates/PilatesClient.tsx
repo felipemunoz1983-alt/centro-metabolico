@@ -7,7 +7,9 @@ import Link from "next/link";
 import { StickyAgendar } from "@/components/ui/StickyAgendar";
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const AGENDA_URL = "https://centro-metabolico-agendamiento.vercel.app/reservar?cat=Entrenamiento";
+import { waPlan, CLASES_URL } from "@/lib/contacto";
+
+const AGENDA_URL = waPlan("Pilates Reformer");
 const PILATES = "#EC4899";
 
 function interp(p: number, ins: number[], outs: number[]): number {
@@ -212,6 +214,9 @@ export function PilatesClient() {
                 <Link href="/entrenamiento#planes" className="inline-flex min-h-[44px] items-center text-sm font-semibold" style={{ color: "rgba(255,255,255,0.6)" }}>
                   Ver los 4 compromisos →
                 </Link>
+                <a href={CLASES_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center text-sm font-semibold underline underline-offset-2" style={{ color: PILATES }}>
+                  ¿Ya tienes plan? Reserva tu clase →
+                </a>
               </div>
             </div>
           </div>

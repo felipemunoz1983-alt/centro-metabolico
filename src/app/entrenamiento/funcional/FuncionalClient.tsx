@@ -6,7 +6,9 @@ import Image from "next/image";
 import { StickyAgendar } from "@/components/ui/StickyAgendar";
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const AGENDA_URL = "https://centro-metabolico-agendamiento.vercel.app/reservar?cat=Entrenamiento";
+import { waPlan, CLASES_URL } from "@/lib/contacto";
+
+const AGENDA_URL = waPlan("Entrenamiento Funcional");
 const BRAND = "#00AEEF";
 
 function interp(p: number, ins: number[], outs: number[]): number {
@@ -229,6 +231,12 @@ export function FuncionalClient() {
               <a href={AGENDA_URL} className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-base font-bold text-white" style={{ backgroundColor: BRAND, boxShadow: "0 0 32px rgba(0,174,239,0.35)" }}>
                 Agendar Funcional DINAFIT →
               </a>
+              <p className="mt-4 text-sm" style={{ color: "rgba(255,255,255,0.55)" }}>
+                ¿Ya tienes plan?{" "}
+                <a href={CLASES_URL} target="_blank" rel="noopener noreferrer" className="font-semibold underline underline-offset-2" style={{ color: BRAND }}>
+                  Reserva tu clase →
+                </a>
+              </p>
             </div>
           </div>
 

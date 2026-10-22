@@ -12,6 +12,7 @@ import {
   type CompromisoId,
   type Volumen,
 } from "@/lib/planes";
+import { CLASES_URL } from "@/lib/contacto";
 
 const BRAND = "#00AEEF";
 
@@ -187,6 +188,18 @@ export function PlanesPricing({
 
         <p className="mt-8 text-center text-sm" style={{ color: t.textMuted }}>
           Todos los planes sirven para Pilates, Fuerza, Funcional e Híbrido. Combínalas como quieras.
+        </p>
+        <p className="mt-2 text-center text-sm" style={{ color: t.textMid }}>
+          ¿Ya eres alumno?{" "}
+          <a
+            href={CLASES_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold underline underline-offset-2"
+            style={{ color: BRAND }}
+          >
+            Reserva tu clase →
+          </a>
         </p>
       </div>
     </section>
