@@ -28,8 +28,9 @@ const cards = [
     id: "pilates",
     waLabel: "Pilates Reformer",
     badge: "PILATES REFORMER",
-    name: "Pilates",
-    tagline: "Reformer · Control · Postura",
+    name: "Pilates\nReformer",
+    // Sin "Reformer": ya está en el badge y en el nombre.
+    tagline: "Control · Postura · Precisión",
     image: `${BP}/pilates-card.webp`,
     focusPoint: "50% 50%",
     href: "/entrenamiento/pilates",
@@ -301,6 +302,16 @@ const ROWS: { time: string; cells: Record<string, string[]> }[] = [
   { time: "20:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"] } },
 ];
 
+/**
+ * Nombre visible de cada disciplina.
+ *
+ * La CLAVE sigue siendo la del dato -PROG la usa para el color y el SaaS para
+ * la bolsa de creditos-, asi que renombrarla romperia ambos. Esto cambia solo
+ * como se escribe.
+ */
+const ETIQUETA: Record<string, string> = { Pilates: "Pilates Reformer" };
+const etiqueta = (p: string) => ETIQUETA[p] ?? p;
+
 function cellBg(progs: string[]) {
   const colors = progs.map((p) => PROG[p]).filter(Boolean);
   if (colors.length <= 1) return colors[0] ?? PROG[progs[0]];
@@ -339,7 +350,7 @@ function WeeklySchedule() {
                     <div key={d} className="flex items-center justify-center p-1.5" style={{ borderLeft: `1px solid ${t.border}` }}>
                       {progs ? (
                         <span className="w-full rounded-lg px-2 py-2 text-center text-[11px] font-bold uppercase leading-tight text-white" style={{ background: cellBg(progs) }}>
-                          {progs.join(" / ")}
+                          {progs.map(etiqueta).join(" / ")}
                         </span>
                       ) : null}
                     </div>
@@ -355,7 +366,7 @@ function WeeklySchedule() {
           {Object.entries(PROG).map(([name, color]) => (
             <span key={name} className="flex items-center gap-2 text-sm" style={{ color: t.textMid }}>
               <span className="h-3 w-3 rounded-full" style={{ backgroundColor: color }} />
-              {name}
+              {etiqueta(name)}
             </span>
           ))}
         </div>
@@ -367,7 +378,7 @@ function WeeklySchedule() {
 
 /* ── Planes por compromiso ──────────────────────────────────────── */
 const DISCIPLINAS: { name: string; color: string }[] = [
-  { name: "Pilates", color: PILATES },
+  { name: "Pilates Reformer", color: PILATES },
   { name: "Fuerza", color: "#F97316" },
   { name: "Funcional", color: "#00AEEF" },
   { name: "Híbrido", color: "#7C3AED" },
@@ -387,12 +398,12 @@ const PILARES = [
 const COMO_FUNCIONA = [
   { n: "1", t: "Elige tu plan", d: "Cuántas clases al mes (4, 8, 12 o 16) y por cuánto tiempo te comprometes." },
   { n: "2", t: "Reserva online", d: "Cada clase la reservas desde tu portal, con cupo asegurado." },
-  { n: "3", t: "Entrena donde quieras", d: "Pilates, Fuerza, Funcional o Híbrido: tu plan sirve para todas." },
+  { n: "3", t: "Entrena donde quieras", d: "Pilates Reformer, Fuerza, Funcional o Híbrido: tu plan sirve para todas." },
   { n: "4", t: "Mide tu progreso", d: "Desde el plan Trimestral tus evaluaciones InBody vienen incluidas." },
 ];
 
 const EJEMPLO = [
-  { dia: "Lunes", clase: "Pilates", color: PILATES },
+  { dia: "Lunes", clase: "Pilates Reformer", color: PILATES },
   { dia: "Martes", clase: "Fuerza", color: "#F97316" },
   { dia: "Jueves", clase: "Funcional", color: "#00AEEF" },
   { dia: "Sábado", clase: "Híbrido", color: "#7C3AED" },
@@ -541,7 +552,7 @@ export function EntrenamientoClient() {
         </h1>
         <p className="mx-auto max-w-[52ch] text-base leading-relaxed" style={{ color: t.textMid }}>
           Eliges cuántas clases quieres al mes y las usas donde prefieras:
-          Pilates, Fuerza, Funcional o Híbrido.
+          Pilates Reformer, Fuerza, Funcional o Híbrido.
         </p>
       </section>
 

@@ -120,7 +120,7 @@ export const PLANES_FAQ = [
   },
   {
     q: "¿Puedo usar mis clases en cualquier disciplina?",
-    a: "Sí. Tu plan sirve para Pilates, Fuerza, Funcional e Híbrido indistintamente. Combínalas como quieras dentro de tu cupo mensual.",
+    a: "Sí. Tu plan sirve para Pilates Reformer, Fuerza, Funcional e Híbrido indistintamente. Combínalas como quieras dentro de tu cupo mensual.",
   },
   {
     q: "¿Hay un máximo de clases por semana?",

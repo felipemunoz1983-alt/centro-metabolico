@@ -218,7 +218,7 @@ export function PlanesPricing({
         </div>
 
         <p className="mt-8 text-center text-sm" style={{ color: t.textMuted }}>
-          Todos los planes sirven para Pilates, Fuerza, Funcional e Híbrido. Combínalas como quieras.
+          Todos los planes sirven para Pilates Reformer, Fuerza, Funcional e Híbrido. Combínalas como quieras.
         </p>
         <p className="mt-2 text-center text-sm" style={{ color: t.textMid }}>
           ¿Ya eres alumno?{" "}
