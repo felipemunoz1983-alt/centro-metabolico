@@ -12,7 +12,7 @@ import {
   type CompromisoId,
   type Volumen,
 } from "@/lib/planes";
-import { CLASES_URL } from "@/lib/contacto";
+import { comprarPlan, CLASES_URL } from "@/lib/contacto";
 
 const BRAND = "#00AEEF";
 
@@ -157,14 +157,45 @@ export function PlanesPricing({
                   {ahorro > 0 ? `Ahorras ${clp(ahorro)} al mes` : "·"}
                 </p>
 
+                {/*
+                  El total del período va ANTES del botón, no escondido tras él.
+                  Webpay cobra una sola vez, así que un anual son los doce meses
+                  juntos: quien toca "Comprar" tiene que saber ya qué se le va a
+                  cobrar. Ocultarlo hasta la pasarela es como se pierde la venta
+                  y la confianza.
+                */}
+                {/* Va SIEMPRE, también en el mensual: si solo apareciera en los
+                    compromisos largos, los botones de las cuatro tarjetas
+                    quedarían a distinta altura. */}
+                <p
+                  className="mt-4 text-center text-sm font-semibold"
+                  style={{ color: destacado ? "rgba(255,255,255,0.85)" : t.textMid }}
+                >
+                  {c.meses > 1
+                    ? `Pagas ${clp(precio * c.meses)} hoy, por los ${c.meses} meses`
+                    : `Pagas ${clp(precio)} hoy, por 1 mes`}
+                </p>
+
+                <a
+                  href={comprarPlan(c.id, vol)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 block w-full rounded-2xl py-3.5 text-center text-sm font-bold text-white transition-all"
+                  style={{ backgroundColor: destacado ? BRAND : t.text }}
+                >
+                  Comprar con Webpay
+                </a>
+
+                {/* Salida secundaria: un anual son $780.000 de una, y hay gente
+                    que necesita conversarlo antes de poner la tarjeta. */}
                 <a
                   href={waHref(c.label, vol, precio, disciplina)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 block w-full rounded-2xl py-3.5 text-center text-sm font-bold text-white transition-all"
-                  style={{ backgroundColor: destacado ? BRAND : t.text }}
+                  className="mt-2 block w-full py-2 text-center text-xs font-semibold underline underline-offset-2"
+                  style={{ color: destacado ? "rgba(255,255,255,0.7)" : t.textMuted }}
                 >
-                  Quiero que me contacten
+                  o prefiero que me contacten
                 </a>
 
                 <ul className="mt-6 space-y-2.5">
