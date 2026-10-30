@@ -339,15 +339,6 @@ const ETIQUETA: Record<string, string> = {
 };
 const etiqueta = (p: string) => ETIQUETA[p] ?? p;
 
-function cellBg(progs: string[]) {
-  const colors = progs.map((p) => PROG[p]).filter(Boolean);
-  if (colors.length <= 1) return colors[0] ?? PROG[progs[0]];
-  const stops = colors
-    .map((c, i) => `${c} ${Math.round((i / (colors.length - 1)) * 100)}%`)
-    .join(", ");
-  return `linear-gradient(135deg, ${stops})`;
-}
-
 function WeeklySchedule() {
   const cols = "72px repeat(7, 1fr)";
   return (
@@ -359,7 +350,7 @@ function WeeklySchedule() {
         </div>
 
         <div className="overflow-x-auto rounded-2xl" style={{ border: `1px solid ${t.border}` }}>
-          <div className="min-w-[760px]">
+          <div className="min-w-[940px]">
             {/* Header */}
             <div className="grid" style={{ gridTemplateColumns: cols }}>
               <div style={{ backgroundColor: t.text }} />
@@ -376,9 +367,24 @@ function WeeklySchedule() {
                   return (
                     <div key={d} className="flex items-center justify-center p-1.5" style={{ borderLeft: `1px solid ${t.border}` }}>
                       {progs ? (
-                        <span className="w-full rounded-lg px-2 py-2 text-center text-[11px] font-bold uppercase leading-tight text-white" style={{ background: cellBg(progs) }}>
-                          {progs.map(etiqueta).join(" / ")}
-                        </span>
+                        /*
+                          Una pastilla por disciplina, no una sola con todos
+                          los nombres separados por barras. Con tres o cuatro
+                          clases a la misma hora, aquello era un parrafo dentro
+                          de una celda y el degradado mezclaba los colores
+                          hasta volverlos inutiles para distinguirlas.
+                        */
+                        <div className="flex w-full flex-col gap-1">
+                          {progs.map((p) => (
+                            <span
+                              key={p}
+                              className="rounded-md px-1.5 py-1.5 text-center text-[10px] font-bold uppercase leading-[1.15] text-white"
+                              style={{ backgroundColor: PROG[p] }}
+                            >
+                              {etiqueta(p)}
+                            </span>
+                          ))}
+                        </div>
                       ) : null}
                     </div>
                   );

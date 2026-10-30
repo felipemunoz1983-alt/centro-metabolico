@@ -92,6 +92,11 @@ export function BoxeoClient() {
     return () => cancelAnimationFrame(rafRef.current);
   }, []);
 
+  /*
+    Los badges van sobre fondo negro translucido, no sobre el rojo al 20% que
+    usan las otras landings: esta foto es clara justo en el centro -guantes y
+    piel iluminados- y el texto rojo sobre rojo transparente se perdia.
+  */
   return (
     <div>
       <StickyAgendar href={AGENDA_URL} color={ROJO} />
@@ -111,7 +116,7 @@ export function BoxeoClient() {
           <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 18%, transparent 82%, rgba(0,0,0,0.8) 100%)" }} />
 
           <div ref={p1Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none" style={{ opacity: 1, willChange: "opacity, transform" }}>
-            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(220,38,38,0.2)", color: ROJO, border: "1px solid rgba(220,38,38,0.4)" }}>Boxeo Funcional</span>
+            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(0,0,0,0.55)", color: ROJO, border: "1px solid rgba(220,38,38,0.55)", backdropFilter: "blur(4px)" }}>Boxeo Funcional</span>
             <h2 className="text-4xl sm:text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
               Golpea fuerte,<br /><span style={{ color: ROJO }}>sal liviano.</span>
             </h2>
@@ -121,7 +126,7 @@ export function BoxeoClient() {
           </div>
 
           <div ref={p2Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none" style={{ opacity: 0, transform: "translateY(60px)", willChange: "opacity, transform" }}>
-            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(220,38,38,0.2)", color: ROJO, border: "1px solid rgba(220,38,38,0.4)" }}>Técnica + Acondicionamiento</span>
+            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(0,0,0,0.55)", color: ROJO, border: "1px solid rgba(220,38,38,0.55)", backdropFilter: "blur(4px)" }}>Técnica + Acondicionamiento</span>
             <h2 className="text-4xl sm:text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
               Las manos,<br /><span style={{ color: ROJO }}>los pies y el aire.</span>
             </h2>
@@ -131,7 +136,7 @@ export function BoxeoClient() {
           </div>
 
           <div ref={p3Ref} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center" style={{ opacity: 0, transform: "translateY(60px)", willChange: "opacity, transform" }}>
-            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(220,38,38,0.2)", color: ROJO, border: "1px solid rgba(220,38,38,0.4)" }}>Planes desde $50.000</span>
+            <span className="mb-5 rounded-full px-4 py-1.5 text-[11px] font-bold tracking-widest uppercase" style={{ backgroundColor: "rgba(0,0,0,0.55)", color: ROJO, border: "1px solid rgba(220,38,38,0.55)", backdropFilter: "blur(4px)" }}>Planes desde $50.000</span>
             <h2 className="text-4xl sm:text-5xl leading-[1.0] text-white md:text-7xl lg:text-8xl" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.02em", textShadow: "0 2px 20px rgba(0,0,0,0.95), 0 4px 40px rgba(0,0,0,0.9)" }}>
               Descarga el día,<br /><span style={{ color: ROJO }}>no el cuerpo.</span>
             </h2>
