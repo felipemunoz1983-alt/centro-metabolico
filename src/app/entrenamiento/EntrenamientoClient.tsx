@@ -37,6 +37,7 @@ const cards = [
     schedule: [
       { d: "Lun a Vie", h: "08:00, 09:00, 10:00" },
       { d: "Lun a Jue", h: "18:00, 19:00, 20:00" },
+      { d: "Sáb", h: "09:00, 11:00" },
       { d: "Dom", h: "10:00" },
     ],
     gradient: "linear-gradient(135deg, #831843 0%, #EC4899 100%)",
@@ -317,9 +318,9 @@ const PROG: Record<string, string> = {
 };
 const ROWS: { time: string; cells: Record<string, string[]> }[] = [
   { time: "08:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"], Vie: ["Pilates"] } },
-  { time: "09:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"], Vie: ["Pilates"] } },
+  { time: "09:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"], Vie: ["Pilates"], "Sáb": ["Pilates"] } },
   { time: "10:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"], Vie: ["Pilates"], "Sáb": ["Funcional"], Dom: ["Fuerza", "Pilates"] } },
-  { time: "11:00", cells: { Dom: ["Fuerza"] } },
+  { time: "11:00", cells: { "Sáb": ["Pilates"], Dom: ["Fuerza"] } },
   { time: "12:30", cells: { "Mié": ["Fuerza"] } },
   { time: "18:00", cells: { Lun: ["Funcional", "Fuerza", "Pilates"], Mar: ["Funcional", "Fuerza", "Pilates", "Boxeo"], "Mié": ["Funcional", "Fuerza", "Pilates"], Jue: ["Funcional", "Fuerza", "Pilates", "Boxeo"] } },
   { time: "19:00", cells: { Lun: ["Funcional", "Fuerza", "Pilates"], Mar: ["Fuerza", "Híbrido", "Pilates"], "Mié": ["Funcional", "Fuerza", "Pilates"], Jue: ["Fuerza", "Híbrido", "Pilates"] } },
@@ -336,6 +337,7 @@ const ROWS: { time: string; cells: Record<string, string[]> }[] = [
 const ETIQUETA: Record<string, string> = {
   Pilates: "Pilates Reformer",
   Boxeo: "Boxeo Funcional",
+  "Híbrido": "Entrenamiento Híbrido",
 };
 const etiqueta = (p: string) => ETIQUETA[p] ?? p;
 
@@ -414,7 +416,7 @@ const DISCIPLINAS: { name: string; color: string }[] = [
   { name: "Pilates Reformer", color: PILATES },
   { name: "Fuerza", color: "#F97316" },
   { name: "Funcional", color: "#00AEEF" },
-  { name: "Híbrido", color: "#7C3AED" },
+  { name: "Entrenamiento Híbrido", color: "#7C3AED" },
   { name: "Boxeo Funcional", color: "#DC2626" },
 ];
 

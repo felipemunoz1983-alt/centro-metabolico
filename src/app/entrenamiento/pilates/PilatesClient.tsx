@@ -170,7 +170,7 @@ export function PilatesClient() {
               </div>
 
               <p className="mb-4 text-sm leading-snug" style={{ color: "rgba(255,255,255,0.7)" }}>
-                <span className="font-bold" style={{ color: PILATES }}>Horarios:</span> Lun a Vie 08:00, 09:00 y 10:00 · Lun a Jue 18:00, 19:00 y 20:00 · Dom 10:00
+                <span className="font-bold" style={{ color: PILATES }}>Horarios:</span> Lun a Vie 08:00, 09:00 y 10:00 · Lun a Jue 18:00, 19:00 y 20:00 · Sáb 09:00 y 11:00 · Dom 10:00
               </p>
 
               <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.4)" }}>Plan mensual · sin compromiso · sirve en todas las disciplinas</p>
