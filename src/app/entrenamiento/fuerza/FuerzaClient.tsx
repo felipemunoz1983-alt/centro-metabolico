@@ -194,6 +194,14 @@ export function FuerzaClient() {
                 <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-white/10 pt-3 text-sm">
                   <span className="font-semibold text-white">Equivale a $7.125 por clase</span>
                   <span className="rounded-md px-2 py-0.5 text-xs font-bold" style={{ backgroundColor: "rgba(249,115,22,0.22)", color: ORANGE }}>Ahorras $13.000 al mes</span>
+                  {/*
+                    Webpay no tiene suscripcion: el plan se cobra entero de
+                    una vez. Sin esta linea, "$57.000 por mes" hacia esperar
+                    una mensualidad y el total aparecia recien en la pasarela.
+                  */}
+                  <span className="w-full text-[12.5px]" style={{ color: "rgba(255,255,255,0.6)" }}>
+                    Se cobra el año completo en un solo pago: <span className="font-semibold text-white">$684.000</span>
+                  </span>
                 </div>
               </div>
 
