@@ -107,6 +107,7 @@ const cards = [
     focusPoint: "50% 50%",
     href: "/entrenamiento/fuerza",
     schedule: [
+      { d: "Lun, Mar, Mié y Vie", h: "08:00" },
       { d: "Mié", h: "12:30" },
       { d: "Lun a Jue", h: "18:00, 19:00" },
       { d: "Dom", h: "10:00, 11:00" },
@@ -317,7 +318,7 @@ const PROG: Record<string, string> = {
   Boxeo: "#DC2626",
 };
 const ROWS: { time: string; cells: Record<string, string[]> }[] = [
-  { time: "08:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"], Vie: ["Pilates"] } },
+  { time: "08:00", cells: { Lun: ["Fuerza", "Pilates"], Mar: ["Fuerza", "Pilates"], "Mié": ["Fuerza", "Pilates"], Jue: ["Pilates"], Vie: ["Fuerza", "Pilates"] } },
   { time: "09:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"], Vie: ["Pilates"], "Sáb": ["Pilates"] } },
   { time: "10:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"], Vie: ["Pilates"], "Sáb": ["Funcional"], Dom: ["Fuerza", "Pilates"] } },
   { time: "11:00", cells: { "Sáb": ["Pilates"], Dom: ["Fuerza"] } },
