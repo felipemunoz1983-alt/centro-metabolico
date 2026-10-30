@@ -51,14 +51,37 @@ Dos detalles que importan:
 Verificado tras el parche: fondo visible en **menos de 1 segundo**, píldora de
 carga ya oculta, y la animación de scroll intacta.
 
+## Segundo parche, mismo día: los fotogramas a WebP
+
+Los 100 cuadros eran JPG de 1280x720, **4,98 MB en total** (53,5 KB cada uno).
+Convertidos a WebP con calidad 80 quedan en **2,75 MB — un 45% menos**, sin
+diferencia visible: se compararon recortes 1:1 del original contra q82 y q78 y
+son indistinguibles, y encima el fondo va escalado y tapado por degradados.
+
+(En la primera versión de este documento dije "un tercio". Era optimista: el
+ahorro real medido es 45%.)
+
+Los `.jpg` **se dejan en su sitio a propósito**. El nombre del chunk no cambia
+al parcharlo, así que quien tenga el bundle viejo en caché sigue pidiendo
+`.jpg`; si se borraran, vería el fondo roto hasta que expire. GitHub Pages
+cachea estos archivos unos diez minutos. **Se pueden borrar sin riesgo pasados
+unos días**, y ahí se recuperan los 4,98 MB del repo.
+
+Cambio en el bundle, en la función que arma la ruta:
+
+```js
+`/centro-metabolico/inbody/frames/inbody_${String(t+1).padStart(4,"0")}.webp`
+```
+
+Verificado: 100 peticiones `.webp`, cero `.jpg`, sin 404, fondo visible a los
+700 ms y animación de scroll intacta.
+
 ## Si alguien reexporta esta landing
 
-**El parche se pierde.** Hay que volver a aplicarlo sobre el bundle nuevo, o
-mejor, arreglarlo en el proyecto original: que el velo se levante con los
-primeros cuadros y el resto se precargue de fondo.
-
-Y de paso, ahí sí conviene atacar la causa: 55 KB por fotograma es mucho.
-Convertidos a WebP quedarían en un tercio sin pérdida visible.
+**Los dos parches se pierden.** Hay que volver a aplicarlos sobre el bundle
+nuevo, o mejor, arreglarlo en el proyecto original: que el velo se levante con
+los primeros cuadros, que el resto se precargue de fondo, y que los fotogramas
+salgan en WebP desde el principio.
 
 ## Cómo probarla local
 
