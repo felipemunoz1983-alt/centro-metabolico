@@ -11,20 +11,10 @@ import { waPlan, CLASES_URL } from "@/lib/contacto";
 const AGENDA_URL = waPlan("Boxeo Funcional");
 const ROJO = "#DC2626";
 
-/*
-  PENDIENTE: foto real de la sala. Las otras cinco disciplinas usan fotos del
-  centro y esta debe hacer lo mismo; hasta que llegue, la ruta queda apuntada y
-  cambiarla es esta sola línea. `images.unoptimized` hace que un archivo que
-  todavía no existe no rompa el build.
-*/
 const IMG = `${BP}/boxeo.webp`;
 
-/*
-  PENDIENTE: días y horas reales. No se publica una hora inventada — alguien se
-  presentaría a una clase que no existe. Aparece en este archivo y en la
-  parrilla semanal de /entrenamiento.
-*/
-const HORARIOS = "Por confirmar";
+/* También en la tarjeta y en la parrilla semanal de /entrenamiento. */
+const HORARIOS = "Mar y Jue 18:00";
 
 function interp(p: number, ins: number[], outs: number[]): number {
   const n = ins.length;
@@ -108,7 +98,13 @@ export function BoxeoClient() {
       <section ref={heroRef} style={{ height: "320vh" }} className="relative">
         <div className="sticky top-0 h-screen min-h-[100svh] overflow-hidden bg-[#0A0A0A]" style={{ transform: "translateZ(0)" }}>
           <div ref={bgImgRef} className="absolute inset-0" style={{ transformOrigin: "50% 30%", willChange: "transform" }}>
-            <Image src={IMG} alt="Boxeo Funcional" fill priority className="object-cover" style={{ objectPosition: "50% 50%" }} sizes="100vw" />
+            {/*
+              La foto es vertical (1024x1536) y el hero es apaisado, asi que
+              `cover` se queda con una banda del centro. Centrada, esa banda
+              cae en los torsos y deja las dos caras fuera. 26% la sube hasta
+              los guantes y las miradas, que es de lo que trata la imagen.
+            */}
+            <Image src={IMG} alt="Boxeo Funcional" fill priority className="object-cover" style={{ objectPosition: "50% 26%" }} sizes="100vw" />
           </div>
           <div ref={darkRef} className="absolute inset-0 pointer-events-none bg-black" style={{ opacity: 0.45 }} />
           <div ref={vigRef}  className="absolute inset-0 pointer-events-none" style={{ opacity: 0.40, background: "radial-gradient(ellipse 70% 70% at 50% 50%, transparent 0%, rgba(0,0,0,0.95) 100%)" }} />

@@ -150,14 +150,12 @@ const cards = [
     badge: "BOXEO FUNCIONAL",
     name: "Boxeo\nFuncional",
     tagline: "Técnica · Reacción · Descarga",
-    // PENDIENTE: foto real de la sala. Mientras no exista, la tarjeta se ve
-    // con el degradado de fondo, no con la foto de otra disciplina.
     image: `${BP}/boxeo.webp`,
     focusPoint: "50% 50%",
     href: "/entrenamiento/boxeo",
-    // PENDIENTE: dias y horas reales. No se inventan: alguien se presentaria
-    // a una clase que no existe.
-    schedule: [],
+    schedule: [
+      { d: "Mar y Jue", h: "18:00" },
+    ],
     gradient: "linear-gradient(135deg, #450A0A 0%, #DC2626 100%)",
     color: "#DC2626",
     sessions: "4 clases / mes",
@@ -323,7 +321,7 @@ const ROWS: { time: string; cells: Record<string, string[]> }[] = [
   { time: "10:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"], Vie: ["Pilates"], "Sáb": ["Funcional"], Dom: ["Fuerza", "Pilates"] } },
   { time: "11:00", cells: { Dom: ["Fuerza"] } },
   { time: "12:30", cells: { "Mié": ["Fuerza"] } },
-  { time: "18:00", cells: { Lun: ["Funcional", "Fuerza", "Pilates"], Mar: ["Funcional", "Fuerza", "Pilates"], "Mié": ["Funcional", "Fuerza", "Pilates"], Jue: ["Funcional", "Fuerza", "Pilates"] } },
+  { time: "18:00", cells: { Lun: ["Funcional", "Fuerza", "Pilates"], Mar: ["Funcional", "Fuerza", "Pilates", "Boxeo"], "Mié": ["Funcional", "Fuerza", "Pilates"], Jue: ["Funcional", "Fuerza", "Pilates", "Boxeo"] } },
   { time: "19:00", cells: { Lun: ["Funcional", "Fuerza", "Pilates"], Mar: ["Fuerza", "Híbrido", "Pilates"], "Mié": ["Funcional", "Fuerza", "Pilates"], Jue: ["Fuerza", "Híbrido", "Pilates"] } },
   { time: "20:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"] } },
 ];
