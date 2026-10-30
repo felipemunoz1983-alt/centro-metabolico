@@ -61,11 +61,12 @@ son indistinguibles, y encima el fondo va escalado y tapado por degradados.
 (En la primera versión de este documento dije "un tercio". Era optimista: el
 ahorro real medido es 45%.)
 
-Los `.jpg` **se dejan en su sitio a propósito**. El nombre del chunk no cambia
-al parcharlo, así que quien tenga el bundle viejo en caché sigue pidiendo
-`.jpg`; si se borraran, vería el fondo roto hasta que expire. GitHub Pages
-cachea estos archivos unos diez minutos. **Se pueden borrar sin riesgo pasados
-unos días**, y ahí se recuperan los 4,98 MB del repo.
+Los `.jpg` ya **no están**: se borraron el mismo día, una vez publicado el
+bundle que apunta a `.webp`. La espera fue corta porque GitHub Pages responde
+`Cache-Control: max-age=600` — diez minutos, no días. Quien tuviera el bundle
+viejo en caché pedía `.jpg` durante ese rato; pasado eso, nadie.
+
+La carpeta `frames/` pasó de **8,2 MB a 3,1 MB**.
 
 Cambio en el bundle, en la función que arma la ruta:
 
