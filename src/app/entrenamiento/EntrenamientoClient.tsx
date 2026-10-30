@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
@@ -142,6 +142,31 @@ const cards = [
       "Corres + estaciones funcionales: trineo, remo, sandbag, wall balls y más",
       "Mejora tu capacidad aeróbica, tu potencia y tu resistencia a la fatiga",
       "Acondicionamiento integral que se traslada directo a tu vida diaria",
+    ],
+  },
+  {
+    id: "boxeo",
+    waLabel: "Boxeo Funcional",
+    badge: "BOXEO FUNCIONAL",
+    name: "Boxeo\nFuncional",
+    tagline: "Técnica · Reacción · Descarga",
+    // PENDIENTE: foto real de la sala. Mientras no exista, la tarjeta se ve
+    // con el degradado de fondo, no con la foto de otra disciplina.
+    image: `${BP}/boxeo.webp`,
+    focusPoint: "50% 50%",
+    href: "/entrenamiento/boxeo",
+    // PENDIENTE: dias y horas reales. No se inventan: alguien se presentaria
+    // a una clase que no existe.
+    schedule: [],
+    gradient: "linear-gradient(135deg, #450A0A 0%, #DC2626 100%)",
+    color: "#DC2626",
+    sessions: "4 clases / mes",
+    price: "Desde $40.500",
+    bullets: [
+      "Técnica real: guardia, jab, cross, hook, uppercut y trabajo de pies",
+      "Saco y manoplas dentro de circuitos de alta intensidad",
+      "Sin sparring ni contacto — nadie recibe golpes",
+      "Coordinación, reacción y un gasto energético alto en poco tiempo",
     ],
   },
 ];
@@ -290,6 +315,7 @@ const PROG: Record<string, string> = {
   Funcional: "#00AEEF",
   Fuerza: "#F97316",
   "Híbrido": "#7C3AED",
+  Boxeo: "#DC2626",
 };
 const ROWS: { time: string; cells: Record<string, string[]> }[] = [
   { time: "08:00", cells: { Lun: ["Pilates"], Mar: ["Pilates"], "Mié": ["Pilates"], Jue: ["Pilates"], Vie: ["Pilates"] } },
@@ -309,7 +335,10 @@ const ROWS: { time: string; cells: Record<string, string[]> }[] = [
  * la bolsa de creditos-, asi que renombrarla romperia ambos. Esto cambia solo
  * como se escribe.
  */
-const ETIQUETA: Record<string, string> = { Pilates: "Pilates Reformer" };
+const ETIQUETA: Record<string, string> = {
+  Pilates: "Pilates Reformer",
+  Boxeo: "Boxeo Funcional",
+};
 const etiqueta = (p: string) => ETIQUETA[p] ?? p;
 
 function cellBg(progs: string[]) {
@@ -382,6 +411,7 @@ const DISCIPLINAS: { name: string; color: string }[] = [
   { name: "Fuerza", color: "#F97316" },
   { name: "Funcional", color: "#00AEEF" },
   { name: "Híbrido", color: "#7C3AED" },
+  { name: "Boxeo Funcional", color: "#DC2626" },
 ];
 
 const PILARES = [
